@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	lang="en">
+
+
+
+<h:head>
+   
+   <meta name="theme-color" content="#073473"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prime International Shipping LLC</title>
+		<link rel="icon" type="image/png" href="#{resource['images:logo.png']}"/>
+   
+   
+		  <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/bootstrap/css/bootstrap.css']}" />
+		  <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/font-awesome/css/font-awesome.css']}" />
+		  <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/magnific-popup/magnific-popup.css']}" />
+		  <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/bootstrap-datepicker/css/datepicker3.css']}" />
+		
+		
+	<!-- Skin CSS -->
+    <link rel="stylesheet" href="#{resource['css:public/vendorb315.css']}" />
+    <link rel="stylesheet" href="#{resource['css:public/designMain.css']}" />
+    
+    	
+    	
+    	
+		<!-- Vendor CSS -->
+		
+    <link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/font-awesome/css/font-awesome.css']}" />
+    	
+    	
+   
+    <!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="#{resource['css:dashboard/assets/vendor/pnotify/pnotify.custom.css']}" />
+	
+	
+	
+	
+	
+    	
+	<link rel="stylesheet" href="#{resource['css:dashboard/theme.css']}" />
+   
+		  
+		  
+	<link rel="stylesheet" href="#{resource['css:public/owlcarousel/owl.carousel.min.css']}" />
+	<link rel="stylesheet" href="#{resource['css:public/owlcarousel/owl.theme.default.min.css']}" />
+	
+	<!-- Skin CSS -->
+    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/skins/default.css']}" />
+    
+    
+	<!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="#{resource['css:dashboard/assets/stylesheets/theme-custom.css']}" />
+	
+	
+	
+		<h:outputScript name="js/dashboard/assets/vendor/modernizr/modernizr.js"/>
+	
+	
+     
+   
+    	
+    
+	
+	
+		
+	
+    <!-- Specific Page Vendor -->		
+		<h:outputScript name="js/dashboard/assets/vendor/select2/select2.js"/>
+		<h:outputScript name="js/dashboard/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"/>
+		<h:outputScript name="js/dashboard/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"/>
+		<h:outputScript name="js/dashboard/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"/>
+		
+		
+		<!-- Examples -->
+		<h:outputScript name="js/dashboard/assets/javascripts/tables/examples.datatables.default.js"/>
+		<h:outputScript name="js/dashboard/assets/javascripts/tables/examples.datatables.row.with.details.js"/>
+		<h:outputScript name="js/dashboard/assets/javascripts/tables/examples.datatables.tabletools.js"/>
+	
+ 
+    
+    
+    
+    
+	  
+	
+	
+	
+	
+</h:head>
+
+
+<h:body>
+   
+   
+<div class="main-wrapper">
+   <style>
+.num +  .top {
+   height: inherit;
+	 background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+    </style>
+   
+    <!-- Start of Header -->
+   
+   
+      
+   
+  
+
+<div id="mainLogin" class="top hidden-xs hidden-sm">
+<div class="container" style="    width: 100%;">
+
+<div class="row">
+
+<div class="col-md-1 ">
+<div style="height: max-content;text-align: right;">
+<span style="font-size: 19px;font-family: cursive;font-weight: 500;"> Share Now</span> 
+</div>
+
+</div>
+
+<div id="share" class="col-md-1 " style="    text-align: left;">
+
+  <!-- facebook -->
+  <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=cargomarin.com" target="blank"><i class="fab fa-facebook"></i></a>
+
+  <!-- twitter -->
+  <a class="whatsup hidden-md hidden-lg hidden-xl" href="whatsapp://send?text=cargomarin.com" data-action="share/whatsapp/share" ><i class="fab fa-whatsapp"></i></a>
+
+  <!-- google plus -->
+  <a class="viber hidden-md hidden-lg hidden-xl" href="viber://pa?text=cargomarin.com" target="blank"><i class="fab fa-viber"></i></a>
+
+</div> 
+
+
+
+<div class="col-md-8"></div>
+<div class="col-sm-1" style="    margin-top: 9px;"> 
+<div id="top-login"  style="    width: 51px;">
+<div onclick="showOrNot();" class="box">Log In</div>
+<div id="login_form" class="login_form">
+<div class="left">
+
+
+<!--  Login Form Start -->
+
+<h:form id="top-login-form" class="site-form c-ajax"  >
+ <input name="TopLoginForm[topLoginForm]" id="TopLoginForm_topLoginForm" type="hidden" value="1" />
+<div class="form-group">
+<div class="form-row">
+<div>
+<label for="TopLoginForm_email">Username</label> 
+<p:inputText placeholder="your username" style="width:351px" name="email" type="text" id="Mail" class="form-control input-lg" value="#{loginBean.userNameOfUserLoggedIn}"/>
+									
+</div>
+</div>
+<div class="form-row">
+<div>
+<label for="TopLoginForm_password">Password</label>
+<p:inputText placeholder="********" style="width:351px" name="password" type="password" id="Password" required="true" class="form-control input-lg" value="#{loginBean.passwordOfUserLoggedIn}"/>
+									
+ </div>
+</div>
+<table style="width:265px;"><tbody>
+<tr>
+<td>
+<div class="remember-me"><input id="ytTopLoginForm_rememberMe" type="hidden" value="0" name="TopLoginForm[rememberMe]" /><input name="TopLoginForm[rememberMe]" id="TopLoginForm_rememberMe" value="1" type="checkbox" /> <span>Remember me</span></div>
+</td>
+</tr>
+</tbody></table>
+<div style="text-align: center">
+<h:commandButton id="top-login-submit" action="#{loginBean.login}" value="Log to My Account" type="submit" class="yBtn">
+	<f:ajax execute="@form"></f:ajax>
+</h:commandButton>
+</div>
+</div>
+</h:form> 
+
+<!--  End of Login Form -->
+
+
+
+
+
+
+
+
+<span onclick="closeDialog();" class="closer"></span>
+</div>
+</div>
+</div>
+<div class="clearfix clr"></div>
+
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="header" style="background: url(/resources/imgs/background6.jpg);background-repeat: no-repeat;background-size: cover;box-shadow: 8px 10px 8px rgb(236, 236, 236), 0 0px 7px rgb(66, 66, 66);">
+
+
+<div class="container" style="width:100%;">
+<div class="row">
+
+<div class="ricon text-left col-xs-2 col-sm-1 hidden-md hidden-lg" onclick="openNav()" id="responsive_menu_icon">
+<div class="mobile_menu_open">
+<div class="mobile_menu_open burger__container">
+<div class="burger-line"></div>
+<div class="burger-line"></div>
+<div class="burger-line"></div>
+</div>
+</div>
+</div>
+<div class="logo-big col-md-3 col-lg-3 visible-md visible-lg">
+<a href="/" class=" visible-md visible-lg" >
+<img  src="#{resource['images:logo.png']}"  alt="A international Car Auctions" style="width: 171px;height: 151px;margin-left: 15%;"/></a>
+</div>
+<div class="logo-responsive col-xs-8 col-sm-4 text-center visible-sm visible-xs">
+<a href="/"><img src="#{resource['images:logo.png']}" width="90" height="37" alt="A international Car Auctions"/></a>
+</div>
+<div class="search col-sm-5 col-md-5 col-lg-5 hidden-xs">
+
+</div>
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+  
+  <a href="/"> Home </a>
+<a href="/pages/public/about.jsf?faces-redirect=true">About</a>
+<a href="/pages/public/contactUs.jsf?faces-redirect=true">Contact Us</a>
+<!-- <a href="/pages/public/carCost.jsf?faces-redirect=true">Calculate Shipping Cost</a>-->
+<a href="/pages/public/login.jsf?faces-redirect=true">Login</a>
+
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+<div class="phone  col-lg-3 text-right hidden-xs hidden-sm">
+<div style="    margin-top: 7%;">Prime International Shipping LLC-United States</div>
+<div class="num" style="    font-size: 19px;"><div></div>PrimeShippingllc@gmail.com</div>
+
+
+
+
+
+
+</div>
+
+<!-- 
+<div class="ricon text-right col-xs-2 col-sm-2 hidden-md hidden-lg" id="responsive_account_icon">
+<div class="mobile_menu_open">
+<img src="/resources/images/img/account_icon_responsive.png" width="24" height="22" alt="Account"/>
+</div>
+</div>
+ -->
+
+</div>
+</div>
+</div>
+
+
+
+
+<div id="responsive_menu_block" style="display:none">
+
+<div class="responsive_menu" id="responsive_menu"></div>
+</div>
+
+
+<div id="responsive_account_block" style="display:none">
+<div class="block active">
+<div class="block_content">
+
+
+
+
+
+
+
+
+<!-- Mobile login Form -->
+
+<h:form id="m-top-login-form" class="site-form"  >
+ <input name="TopLoginMobileForm[topLoginForm]" id="TopLoginMobileForm_topLoginForm" type="hidden" value="1" />
+<div class="form-row">
+<p:inputText type="text" id="Mail_Mobile" placeholder="Username" style="width:100%" name="TopLoginMobileForm[email]" value="#{loginBean.userNameOfUserLoggedIn}"/>
+									
+</div>
+<div class="form-row">
+<p:inputText placeholder="Password" style="width:100%" name="TopLoginMobileForm[password]" type="password" id="Password_Mobile" required="true" class="form-control input-lg" value="#{loginBean.passwordOfUserLoggedIn}"/>
+									
+ </div>
+ <h:commandButton action="#{loginBean.login}" value="LogIn to my account" type="submit" class="button yBtn" id="m-top-login-form__submit" style="width:100%; margin-bottom: 10px">
+	<f:ajax execute="@form" render="m-top-login-form" />
+ </h:commandButton>
+						
+<div class="block-content__bottom">
+<div class="remember-me"><input id="ytTopLoginMobileForm_rememberMe" type="hidden" value="0" name="TopLoginMobileForm[rememberMe]" /><input name="TopLoginMobileForm[rememberMe]" id="TopLoginMobileForm_rememberMe" value="1" type="checkbox" /> <span>Remember me</span></div>
+</div>
+<div class="clearfix"></div>
+</h:form>
+
+
+<!-- Mobile login Form End-->
+
+
+
+
+
+
+
+
+
+
+
+ </div>
+
+</div>
+
+</div>
+
+
+<div class="responsive-style__overlay"></div>
+
+
+<div class="mainmenu hidden-xs hidden-sm" style="background: url(/resources/imgs/background6.jpg);background-repeat: no-repeat;background-size: cover;box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #733838;text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;">
+<div class="container">
+<ul class="dropdown" id="yw0">
+
+
+
+
+<li style="
+    margin-left: 30%;
+" class="has-submenu has-submenu__lvl1 first-main-menu" id="menu-link-search_bid">
+<a href="/"> Home </a>
+
+</li>
+<li class=" has-submenu has-submenu__lvl1 mainmenu__item-live"><a href="/pages/public/about.jsf?faces-redirect=true">About</a>
+
+</li>
+<li><a href="/pages/public/contactUs.jsf?faces-redirect=true">Contact Us</a></li>
+<!-- <li class="has-submenu has-submenu__lvl1 responsive_menu__get-started"><a href="/pages/public/carCost.jsf?faces-redirect=true">Calculate Shipping Cost</a>
+
+</li> -->
+<li class="menu__fees-calc-mob"></li>
+</ul>
+
+
+</div>
+</div>
+
+  
+  
+     
+    
+    <!-- End of Header -->
+    
+   
+    <ui:insert name="content" > 
+    	 <ui:include src="content.xhtml"/> 
+  </ui:insert>
+   
+   
+    <ui:insert name="footer"> 
+    	 <ui:include src="footerPublic.xhtml"/> 
+  </ui:insert>
+   
+</div>
+<div id="global-modal"></div>
+   
+   
+   
+   
+  
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+		
+		<!-- Specific Page Vendor -->
+		
+		
+		<h:outputScript name="js/dashboard/assets/vendor/nanoscroller/nanoscroller.js"/>
+		
+<h:outputScript  type="text/javascript" name="js/public/vendorb315.js"/>
+<h:outputScript  type="text/javascript" name="js/public/displayMain.js"/>
+	
+
+
+	<h:outputScript name="js/dashboard/assets/vendor/pnotify/pnotify.custom.js"/>
+	
+<!-- Theme Base, Components and Settings -->
+		<h:outputScript name="js/dashboard/assets/javascripts/theme.js"/>
+		
+
+    
+
+  <ui:insert name="script"> 
+    	<script>
+    	
+    	</script>
+  </ui:insert>
+	
+	
+	<script>
+		   jQuery.noConflict();
+		 </script>
+		 
+		 
+		<h:outputScript name="js/public/owlcarousel/jquery.min.js"/>
+		<h:outputScript name="js/public/owlcarousel/owl.carousel.min.js"/>
+		
+		
+
+
+
+  <ui:insert name="script2"> 
+    	<script>
+    	
+    	</script>
+  </ui:insert>
+</h:body>
+
+</html>
