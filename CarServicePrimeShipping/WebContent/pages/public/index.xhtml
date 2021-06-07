@@ -5,412 +5,409 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-    xmlns:c="http://java.sun.com/jsp/jstl/core">
-<ui:composition template="/templates/publicTemplate.xhtml">
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/publicTemplatePrime.xhtml">
 
+
+<ui:define name="Banner-Part">
+<style>
+.img-fluid {
+    max-width: 100%;
+    height: 234px!important;
+}
+
+</style>
+
+
+
+<div class="container pt-5">
+					<div class="row">
+						<div class="text-head">
+							<img src="/resources/Image/logo.png" alt="logo" class="w-25"/>
+							<h3>Welcome to</h3>
+				<h1>Prime International Shipping LLC</h1>
+				<h3>Logistic beyond expectation</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora mollitia omnis voluptate molestias? <br></br>
+					Reiciendis tenetur eveniet fugiat, praesentium aut asperiores?
+				</p>
+				</div>
+					</div>
+				</div>
+				
+				
+				
+</ui:define>
+
+
+<ui:define name="content">
+			
+		<div class="img-item">
+		<section id="contact">
+			<div class="container">
+				<div class="row pt-4">
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-2">
+								<i class="fas fa-phone-alt"></i>
+							</div>
+							<div class="col-md-10">
+								<h5>Our contacts</h5>
+								<p>+1 (832)-500-7007</p>
+							  </div>
+
+						</div>
+					   
+					</div>
+
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-2">
+								<i class="fas fa-map-marker-alt"></i>
+							</div>
+							<div class="col-md-10">
+								<h5>Our location</h5>
+						<p>9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</p>
+
+						</div>
+					</div>
+
+					   
+					</div>
+
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-2">
+								<i class="fas fa-clock"></i>
+							</div>
+							<div class="col-md-10">
+								<h5>Business Hours
+								</h5>
+								<p>Mon, Tue, Wed, Thu (	7:30AM - 5:00PM )<br></br>
+									Friday	(7:30AM - 12:45PM), (02:15 - 05:00PM)<br></br>
+									Sat, Sun (Closed)	
+								</p>
+
+						</div>
+					</div>
+					   
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section id="features" class="pb-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="features-head">
+					<h2>Our Features</h2>
+					<p>Why Buy From<br></br>
+						Prime International</p>
+					</div>
+					<section id="CATEGORIES">
+			<script>
+				
+				function openCategories(n){
+					window.location.href = '/pages/public/carsForType.jsf?category='+n;
+					
+				}
+				</script>
+			    <div class="container" >
+			           
+			
+			               <div class="row mt-5">
+			                    <div class="col-md-1" onclick="openCategories('SMALL CARS');">
+			                        <i class="fas fa-car-side"></i>
+			                    </div>
+			                    
+			                    
+			                    <div class="col-md-5" onclick="openCategories('SMALL CARS');">
+			                     <h5>Small Cars</h5>
+			                     <p>The definition of compact cars are cars that are bigger than a supermini and smaller 
+			                         than a mid-sized car</p>
+			                    </div>
+			
+			                    <div class="col-md-1" onclick="openCategories('SUV');">
+			                        <i class="fas fa-car"></i>
+			                       </div>
+			                    <div class="col-md-5" onclick="openCategories('SUV');">
+			                     <h5>SUV Cars</h5>
+			                     <p>Sport utility vehicle (SUV) is a category of motor vehicles that combine elements
+			                          of road-going passenger cars with features from off-road vehicles</p>
+			                    </div>
+			
+			                    <div class="col-md-1" onclick="openCategories('Motor Cycle');">
+			                        <i class="fas fa-motorcycle"></i>
+			                         </div>
+			                    <div class="col-md-5" onclick="openCategories('Motor Cycle');">
+			                     <h5>MotorCycles</h5>
+			                     <p>A motorcycle, often called a bike, motorbike, or cycle, is a two- or three-wheeled 
+			                         motor vehicle.</p>
+			                    </div>
+			
+			
+			                    <div class="col-md-1" onclick="openCategories('JetSkies');">
+			<img src="/resources/Image/5bbfb5c630ed7-da7545b194ac6c7638c803481404e64e.png" class="w-100" alt=""/>                     
+			    </div>
+			                    <div class="col-md-5" onclick="openCategories('JetSkies');">
+			                     <h5>Jet Skis</h5>
+			                     <p>Jet Ski is the brand name of a personal water craft (PWC). A runabout style PWC 
+			                         typically carries 1–3 people seated in a configuration like a typical bicycle or motorcycle.</p>
+			                    </div>
+			
+			                    <div class="col-md-1" onclick="openCategories('Snow Mobile');">
+			                        <img src="/resources/Image/decal-sticker-snowmobile-sport-vehicle-others-ae3279e8d06ab3661e4135d1817c569b.png" class="w-100" alt=""/>                     
+			                    </div>
+			                    <div class="col-md-5" onclick="openCategories('Snow Mobile');">
+			                     <h5>Snow Mobile</h5>
+			                     <p>A snowmobile, also known as a motor sled, motor sledge, skimobile, snowscooter, 
+			                         or snowmachine, is a motorized vehicle designed for winter travel and recreation on snow.</p>
+			                    </div>
+			
+			                    <div class="col-md-1" onclick="openCategories('Heavy Duties');">
+			                        <i class="fas fa-truck-moving"></i>
+			                                             </div>
+			                    <div class="col-md-5" onclick="openCategories('Heavy Duties');">
+			                     <h5>Heavy Duty Vehicle</h5>
+			                     <p>Heavy-duty trucks have a gross vehicle weight of 33,000 lb (15,000 kg) or more</p>
+			                    </div>
+			
+			
+			                </div>
+			                <a type="button" href="/pages/public/carsForType.jsf" class="btn btn-primary">مزيد</a>
+			           
+			
+			    </div>
+			
+			</section>
+	
+
+
+				</div>
+				<div class="col-md-6">
+					
+					<div class="skitter skitter-large">
+						<ul>
+						  <li>
+							<a href="#cut"><img src="/resources/Image/img 1.jpg" class="cut" /></a>
+							<div class="label_text"><p>cut</p></div>
+						  </li>
+						  <li>
+							<a href="#swapBlocks"><img src="/resources/Image/img 2.jpg" class="swapBlocks" /></a>
+							<div class="label_text"><p>swapBlocks</p></div>
+						  </li>
+						  <li>
+							<a href="#swapBarsBack"><img src="/resources/Image/img 3.jpg" class="swapBarsBack" /></a>
+							<div class="label_text"><p>swapBarsBack</p></div>
+						  </li>
+
+						  <li>
+							<a href="#swapBarsBack"><img src="/resources/Image/img 4.jpg" class="swapBarsBack" /></a>
+							<div class="label_text"><p>swapBarsBack</p></div>
+						  </li>
+						</ul>
+					  </div>
+
+				</div>
+			</div>
+		</div>
+		</section>
+
+
+
+		</div>
+
+
+
+		
+		<section id="services" class="py-5">
+			   
+			<div class="container py-5">
+			  <div class="head-services">
+				<h2>OURE SERVICES</h2> 
+				<p>Start with a must-have and discover matches along the way.
+				</p>
+				 
+			   </div> 
+			   <div class="owl-carousel owl-theme">
+					<div>
+						<div class="single-service">
+						  <img class="img-fluid" src="/resources/Image/img 5.jpg"/>
+						  <div class="overlay">
+					 	
+						  <h4>SHIPPERS</h4>
+						  
+						  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+						  <a href="index_services.html"><button class="btn">Read More</button></a>
+						  	<svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+			  				
+					  		</div>
+
+					</div>
+				  </div>
+
+				  <div>
+					<div class="single-service">
+					  <img class="img-fluid" src="/resources/Image/img 6.jpg"/>
+					  <div class="overlay">
+				  
+				  <h4>
+					Carrier</h4>
+				  
+				  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+				  <a href="index_services.html"><button class="btn">Read More</button></a>
+				  <svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+				  </div>
+				</div>
+			  </div>
+				
+
+			  <div>
+				<div class="single-service shadow-sm">
+				  <img class="img-fluid" src="/resources/Image/img 7.jpg"/>
+				  <div class="overlay">
+			  <h4>Broker</h4>
+			  
+			  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+			  <a href="index_services.html"><button class="btn">Read More</button></a>
+			  <svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+			  </div>
+			</div>
+		  </div>
+			
+
+		  <div>
+			<div class="single-service shadow-sm">
+			  <img class="img-fluid" src="/resources/Image/img 8.jpg"/>
+			  <div class="overlay">
+		  <h4> Auction</h4>
+		  
+		  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+		  <a href="index_services.html"><button class="btn">Read More</button></a>
+		  <svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+		  </div>
+		</div>
+		</div>
+
+
+		<div>
+		<div class="single-service shadow-sm">
+		  <img class="img-fluid" src="/resources/Image/img 1.jpg"/>
+		  <div class="overlay">
+		<h4>Fleets</h4>
+
+		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+		<a href="index_services.html"><button class="btn">Read More</button></a>
+		<svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+		</div>
+		</div>
+		</div>
+
+
+		<div>
+		<div class="single-service shadow-sm">
+		<img class="img-fluid" src="/resources/Image/img 2.jpg"/>
+		<div class="overlay">
+		<h4>Manufacturer</h4>
+
+		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+		<a href="index_services.html"><button class="btn">Read More</button></a>
+		<svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+		</div>
+		</div>
+		</div>
+
+
+		<div>
+		<div class="single-service shadow-sm">
+		<img class="img-fluid" src="/resources/Image/img 3.jpg"/>
+		<div class="overlay">
+		<h4>Rental</h4>
+
+		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, beatae.</p>
+		<a href="index_services.html"><button class="btn">Read More</button></a>
+		<svg viewBox="0 0 1440 320">
+			  					<path fill="#f5a732" fill-opacity="1" d="M0,320L1440,64L1440,320L0,320Z"/>
+			  				</svg>
+		</div>
+		</div>
+		</div>
+			
+				  </div>
+
+			</div>
+		</section>
+
+		
+	
+<script>
+		
+		document.getElementById('mainHeadChange').id = 'head-slider';
+		</script>	
+</ui:define>
+<!--  
+	<ui:define name="bodyBlock">
+		
+	#{carLandingBean.refresh()}
+	
+	
+	</ui:define>
 
 	<ui:define name="content">
-	
-	
-
-<style>
-
-
-.owl-theme .owl-nav {
-    margin-top: 10px;
-    position: absolute;
-    top: 18px;
-    left: -5%;
-}
-
-.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
-    background: 0 0;
-    color: #0000003b;
-    border: none;
-    padding: 0!important;
-    font-size: 94px;
-}
-
-.owl-next{
-position: relative;
-    left: 1158px;
-}
-
-.owl-theme .owl-nav [class*=owl-]:hover {
-    background: #86979100;
-    color: #615c5c;
-    text-decoration: none;
-}
-
- 
- 
- .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-    width: 70%;
-    margin: auto;
-  }
-  
-  .fontForBanner{
-  font-size: 3vw;
-    font-family: initial;
-    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;
-  }
-  
-  .buttonLogin{
-     -moz-box-shadow: inset 0px 1px 0px 0px #F5978E;
--webkit-box-shadow: inset 0px 1px 0px 0px #F5978E;
-box-shadow: inset 0px 1px 0px 0px #615D4C;
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #F24537), color-stop(1, #C62D1F));
-background: -moz-linear-gradient(top, #B19C5C 29%, #755138 100%);
-background: -webkit-linear-gradient(top, #B19C5C 29%, #755138 100%);
-background: -o-linear-gradient(top, #B19C5C 29%, #755138 100%);
-background: -ms-linear-gradient(top, #B19C5C 29%, #755138 100%);
-background: linear-gradient(to bottom, #B19C5C 29%, #755138 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F24537', endColorstr='#C62D1F',GradientType=0);
-background-color: #4E4C6D;
--moz-border-radius: 6px;
-border: 1px solid #7499CE;
-display: inline-block;
-color: #E8E8E8;
-font-family: serif;
-width: 134px;
-font-size: 25px;
-font-weight: bold;
-text-shadow: 0px 1px 0px #B37974;
-border-radius: 23px!important;
-  }
-  
-  @media screen and (max-width: 1100px) {
-  .nextSliderShadow{
-    background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0, 0, 0, 0) 100%)!important;
-	
-  }
-  
-  
-  .wrapperSlider{
-    border: #c27467;
-    background-size: 100%;
-    box-shadow: 0px 0px 8px #dcdcdc, 0px 0px 1px #65969c, 0px 0px 42px #79a3a9;
-  }
-  
-  .imageWrapper{
-    border: #c27467;
-    background-size: 100%;
-    width: 100%;
-    height: 55vw;
-  }
-  
-  .imgsource{
-  width: 100%!important;height: 55vw!important;
-  }
-  }
-  
-  @media screen and (min-width: 1100px) {
-  .nextSliderShadow{
-    border-bottom-right-radius: 151px 151px;
-	
-  }
-  
-  
-  .wrapperSlider{
-  
-  width: 82%;
-    border: #c27467;
-    background-size: 100%;
-    box-shadow: 0px 0px 8px #dcdcdc, 0px 0px 1px #65969c, 0px 0px 42px #79a3a9;
-    border-bottom-right-radius: 151px 151px;
-  }
-  
-  .imageWrapper{
-  border-bottom-right-radius: 151px 151px;
-    border: #c27467;
-    background-size: 100%;
-    width: 100%;
-    height: 31vw;
-  }
-  .imgsource{
-  width: 100%!important;height: 31vw!important;
-  }
-  }
-  
-</style>
-
-
-   <!--  
-    <link rel="stylesheet" href="#{resource['css:public/jq-carousel-plugin.css']}" />
-     -->
-    
-		
-<div class="center">
-<div class="clearfix"></div>
-<div  style="    background: url(/resources/images/logo2.png) 99% 36% no-repeat;background-size: 16%;border: 1px solid #d1d3d85c;border-bottom-right-radius: 151px 151px;width: 100%;height: 100%;background-color: #406880;padding-bottom: 0.1%;box-shadow: 0px 0px 8px #b7b7b7, 0px 0px 1px #a9a9a9, 0px 0px 42px #d2d2d2;">
-
-<div class="hidden-sm hidden-xs" style="width: 100%; height: 121%;height: 31vw;position: absolute;text-align: right;">
-<h:form style="right: 90px;position: relative;color: aliceblue;font-size: 30px;right: 4vw;top: 46%; ">
-<h:commandButton action="/pages/public/login.jsf?faces-redirect=true" class="buttonLogin"  value="Login"/></h:form>
-
-</div>
-
-<div class="ab-banner__wrapper1 wrapperSlider" >
-    
- <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner imageWrapper" role="listbox" >
-
-      <div class="item active">
-        <img src="/resources/images/roro.jpg" alt="Chania" class=" imgsource" />
-        <div class="carousel-caption">
-          <h3 class="fontForBanner">Ro Ro Shipping</h3>
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="/resources/images/container.jpg" alt="Chania"  class=" imgsource" />
-        <div class="carousel-caption">
-          <h3 class="fontForBanner">Container Shipping</h3>
-        </div>
-      </div>
-    
-      <div class="item">
-        <img src="/resources/images/carshipping.png" alt="Flower"  class=" imgsource" />
-        <div class="carousel-caption">
-          <h3 class="fontForBanner">Vehicle in Container</h3>
-        </div>
-      </div>
-
-     
-  
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control nextSliderShadow" href="#myCarousel" role="button" data-slide="next" >
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>   
-    
-    
-</div>
-</div>
-
- 
-
-
-
-
-<div class="container">
-
-<div class="row  hidden-sm hidden-xs">
-<div class="col-md-12 ">
-<div class="main-title main-popular-title">
-<h2 class="main-title f-normal f-upper h2-like-h3">SERVICES GALLERY</h2> </div>
-
-
-
-<div class=" loop owl-carousel owl-theme owl-loaded owl-drag">
-    <div class="owl-stage-outer">
-         <div class="owl-stage" style="transition: all 0s ease 0s; width: 5880px;-webkit-transform: translate3d(-1102px, 0px, 0px); transform: translate3d(-1102px, 0px, 0px);">
-          
-          
-          
-        <ui:repeat var="data" value="#{carLandingBean.listOfCarsLandingScroller}">
+			
+			
+			
+			       <ui:repeat var="data" value="#{carLandingBean.listOfCarsLandingScroller}">
         
-        	<div class="owl-item active center" >
-            
-             		<span href="en/25177299-2018-tesla-model_3.html" >
-					 <h:graphicImage value="/images/?file=#{data.mainImage}" alt="image#{var}" style="    width: 393px;height: 315px;" />
-					<div style="text-align: -webkit-center;font-family: serif;position: absolute;bottom: 0;text-align: center;background: #ecececb5;width: 100%;">
-					
-						<a href="/pages/public/carsForDetails.jsf?id=#{data.id}" style="    color: #484848;">#{data.year} #{data.make}
-							<br></br>#{data.model} 
-						<span>($#{data.currentBid})</span>
-						</a>
-					</div>
-					</span>
-           
-            </div>
-            
-            
-            
+          
+			            <div>
+			                <div class="single-service">
+			                  <h:graphicImage value="#{data.mainImage}" alt="image#{var}" class="img-fluid" />
+							<div class="overlay">
+			             
+			              <h4> #{data.year} #{data.make}  #{data.model} <span>($#{data.currentBid})</span></h4>
+			              
+			              <p> #{data.year} #{data.make}</p>
+			              <a href="/pages/public/carsForDetails.jsf?id=#{data.id}"><button class="btn">المزيد</button></a>
+			              </div>
+			            </div>
+			          </div>
+			          
+			          
+			            
+        	
         </ui:repeat>
-            
-            
-            
-           
-            
-            </div>
-      </div>
-</div>
-          
-          
-          
-
-
-
-
-
-
- </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-<style>
-
- .row{
- display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}
- 
- .mb-4{
- font-family: -webkit-body;
-    font-weight: 700;
- }
- 
- .pTable{
- color: #7d7d7d;
-    font-size: 15px;
- }
-</style>
-
-<br></br>
-<br></br>
-<h:form>
-<script>
-
-function openCategories(n){
-	window.location.href = '/pages/public/carsForType.jsf?category='+n;
-	
-}
-</script>
-
-<div class="main-title main-popular-title">
-<h2 class="main-title f-normal f-upper h2-like-h3">All Categories</h2> </div>
-<div class="templateux-section bg-light">
-      <div class="container">
-        <div class="row mb-5">
-        
-        
-        
-          <div onclick="openCategories(0);" class="col-md-4 mb-4 aos-init aos-animate" data-aos="fade-up">
-            <div class="media block-icon-1 d-block text-center">
-              <div class="icon mb-3"><img class="ion-ios-loop" src="/resources/images/public/img/types/car.png" style="width: 106px;"/></div>
-              <div class="media-body">
-                <h3 class="h5 mb-4">Small Cars</h3>
-                <p class="pTable">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div> <!-- .block-icon-1 -->
-          </div>
-          
-          
-          
-          <div onclick="openCategories(1);" class="col-md-4 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-            <div class="media block-icon-1 d-block text-center">
-              <div class="icon mb-3"><img class="ion-ios-loop" src="/resources/images/public/img/types/suv.png" style="width: 106px;"/></div>
-              <div class="media-body">
-                <h3 class="h5 mb-4">SUV Cars</h3>
-                <p class="pTable">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div> <!-- .block-icon-1 -->
-          </div>
-          
-          
-          
-          
-          <div onclick="openCategories(2);" class="col-md-4 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-            <div class="media block-icon-1 d-block text-center">
-              <div class="icon mb-3"><img class="ion-ios-loop" src="/resources/images/public/img/types/motorcycle.png" style="width: 106px;"/></div>
-              <div class="media-body">
-                <h3 class="h5 mb-4">MotorCycles</h3>
-                <p class="pTable">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div> <!-- .block-icon-1 -->
-          </div>
-
-          <div onclick="openCategories(3);" class="col-md-4 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-            <div class="media block-icon-1 d-block text-center">
-              <div class="icon mb-3"><img class="ion-ios-loop" src="/resources/images/public/img/types/jet_ski.png" style="width: 106px;"/></div>
-              <div class="media-body">
-                <h3 class="h5 mb-4">Jet Skis</h3>
-                <p class="pTable">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div> <!-- .block-icon-1 -->
-          </div>
-          
-          
-          
-          
-          <div onclick="openCategories(4);" class="col-md-4 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-            <div class="media block-icon-1 d-block text-center">
-              <div class="icon mb-3"><img class="ion-ios-loop" src="/resources/images/public/img/types/snow_mobile.png" style="width: 106px;"/></div>
-              <div class="media-body">
-                <h3 class="h5 mb-4">Snow Mobile</h3>
-                <p class="pTable">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div> <!-- .block-icon-1 -->
-          </div>
-          
-          
-          
-          
-          <div onclick="openCategories(5);" class="col-md-4 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
-            <div class="media block-icon-1 d-block text-center">
-              <div class="icon mb-3"><img class="ion-ios-loop" src="/resources/images/public/img/types/heavy_d_vec.png" style="width: 106px;"/></div>
-              <div class="media-body">
-                <h3 class="h5 mb-4">Heavy Duty Vehicle</h3>
-                <p class="pTable">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div> <!-- .block-icon-1 -->
-          </div>
-
-        </div>
-        <div class="row">
-          
-          <div class="col-md-12 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-            <p><a href="/pages/public/carsForType.jsf" class="btn btn-black py-3 px-4">Show All</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-</h:form>
-
-
-</div>
-</div>
-
-  	
+        	    
+			    
+			
+			
+			
+					
+			
+			
 	</ui:define>
 	
 	
 	
-	<ui:define name="script2">
-   
-  	 
-		  <link rel="stylesheet" href="#{resource['css:public/bootstrapSlider.css']}" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  	 
+	<ui:define name="script">
+  	
+
+  	
   	</ui:define>
-	
+	-->
 	
 </ui:composition>
 </html>

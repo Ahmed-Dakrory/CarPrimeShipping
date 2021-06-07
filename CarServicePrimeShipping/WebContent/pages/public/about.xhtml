@@ -6,226 +6,201 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/templates/publicTemplate.xhtml">
+<ui:composition template="/templates/publicTemplatePrime.xhtml">
 
-	
 
-	<ui:define name="content">
+<ui:define name="Banner-Part">
 <style>
-
-.ui-selectonemenu .ui-selectonemenu-trigger {
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 0;
-    cursor: pointer;
-    width: 0;
-    height: 0;
-     position: absolute; 
-    right: 0;
-    top: 0;
-    padding: 0px 3px;
+.img-fluid {
+    max-width: 100%;
+    height: 234px!important;
 }
 
-
-.ui-selectonemenu.ui-state-hover, .ui-selectonemenu.ui-state-focus {
-     background-color: #00000021; 
-}
-
-.custom-select, select.hasCustomSelect {
-    width: 39%!important;
-}
 </style>
 
 
-<div class="center">
-<div class="clearfix"></div>
+
+ <div class="container">
+                    <div class="text-about">
+                        <h3 style="margin-top: 171px;">About Us</h3>
+            <p>Take the complexity out of customs Freight Solutions<br></br>
+                with customs brokerage services
+            </p>
+                </div>
+            </div>
+				
+				
+				
+</ui:define>
+
+
+
+<ui:define name="Slicer">
+	<svg  viewBox="0 0 1440 320">
+                    <path fill="#202020" fill-opacity="1" d="M0,224L1440,0L1440,0L0,0Z"></path></svg>
+</ui:define>
+
+
+
+<ui:define name="content">
+		
+		<div class="img-item">
+		<section id="contact">
+			
+		</section>
+
+
+		<section id="features" class="pb-5">
+		<div class="container">
+			
+		</div>
+		</section>
+
+
+
+		</div>
+		
+
+<section id="body-about">
 <div class="container">
-</div>
-<div class="container">
-<div class="clearfix"></div>
-
-<div id="mm-vehicle-types">
-<table class="vehicle-types-table"><tr><td class=""><a >Acura</a></td><td class=""><a >Ford</a></td><td class=""><a >KIA</a></td><td class="last"><a >Pontiac</a></td></tr><tr><td class=""><a >Audi</a></td><td class=""><a >Fiat</a></td><td class=""><a >Land Rover</a></td><td class="last"><a >Subaru</a></td></tr><tr><td class=""><a href="car-finder/type-automobiles/make-bmw.html">BMW</a></td><td class=""><a href="car-finder/type-automobiles/make-gmc.html">GMC</a></td><td class=""><a href="car-finder/type-automobiles/make-lexus.html">Lexus</a></td><td class="last"><a href="car-finder/type-automobiles/make-suzuki.html">Suzuki</a></td></tr><tr><td class=""><a href="car-finder/type-automobiles/make-cadillac.html">Cadillac</a></td><td class=""><a href="car-finder/type-automobiles/make-honda.html">Honda</a></td><td class=""><a href="car-finder/type-automobiles/make-mazda.html">Mazda</a></td><td class="last"><a href="car-finder/type-automobiles/make-toyota.html">Toyota</a></td></tr><tr><td class=""><a href="car-finder/type-automobiles/make-chevrolet.html">Chevrolet</a></td><td class=""><a href="car-finder/type-automobiles/make-hyundai.html">Hyundai</a></td><td class=""><a href="car-finder/type-automobiles/make-mercedes-benz.html">Mercedes-Benz</a></td><td class="last"><a href="car-finder/type-automobiles/make-volkswagen.html">Volkswagen</a></td></tr><tr><td class=""><a href="car-finder/type-automobiles/make-chrysler.html">Chrysler</a></td><td class=""><a href="car-finder/type-automobiles/make-infiniti.html">Infiniti</a></td><td class=""><a href="car-finder/type-automobiles/make-mitsubishi.html">Mitsubishi</a></td><td class="last"><a href="car-finder/type-automobiles/make-volvo.html">Volvo</a></td></tr><tr><td class=""><a href="car-finder/type-automobiles/make-dodge.html">Dodge</a></td><td class=""><a href="car-finder/type-automobiles/make-jeep.html">Jeep</a></td><td class=""><a href="car-finder/type-automobiles/make-nissan.html">Nissan</a></td><td class="last"><a href="car-finder/type-automobiles.html">All Makes</a></td></tr></table></div>
-<div id="mm-vehicle-types2">
-<table class="vehicle-types-table"><tr><td class=""><a >Automobile</a></td><td class=""><a >Trailers</a></td><td class=""><a >Industrial equipment</a></td><td class="last"><a >Homeowners</a></td></tr><tr><td class=""><a >Motorcycle</a></td><td class=""><a >Heavy duty trucks</a></td><td class=""><a >Truck</a></td><td class="last"><a href="car-finder/type-snowmobiles.html">Snowmobile</a></td></tr><tr><td class=""><a href="car-finder/type-rv.html">Recreational vehicle (rv)</a></td><td class=""><a href="car-finder/type-boats.html">Boat</a></td><td class=""><a href="car-finder/type-jet-ski.html">Jet ski</a></td><td class="last"><a href="car-finder/type-dirt-bikes.html">Dirt bike</a></td></tr><tr><td class=""><a href="car-finder/type-medium-duty-box-trucks.html">Medium duty/box trucks</a></td><td class=""><a href="car-finder/type-atv.html">Atv</a></td><td class="td-empty ">&nbsp;</td><td class="td-empty last">&nbsp;</td></tr></table></div>
-<div class="row">
-<div class="col-md-12">
-</div>
-</div>
-<div id="content">
-
-
-						
-						
-
-<div class="row">
-
-<div class="col-md-9 " >
-						<div class="col-xs-12" style="   background: #f7f7f7;margin-top: 1%;border-radius: 1%;padding-bottom: 5%;padding-left: 5%;padding-right: 5%;">	
-						
-						<section class="panel form-wizard">
-						
-						
-						
-<div id=":1dm" class="ii gt">
-
-<div id=":196" class="a3s aXjCH ">
-
-<div dir="ltr">
-<div dir="ltr">
-<div class="m_-5707307507711599961et_pb_section m_-5707307507711599961et_pb_section_1 m_-5707307507711599961et_section_regular" style="color:rgb(0,0,0);font-family:-webkit-standard;font-size:16px;box-sizing:border-box;margin:0px;padding:65px 0px 0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;background-position:50% 50%">
-<div class="m_-5707307507711599961et_pb_row m_-5707307507711599961et_pb_row_1" style="box-sizing:border-box;margin:auto;padding:32px 0px 0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;width:100%;max-width:100%;background-position:50% 50%"><div class="m_-5707307507711599961et_pb_column m_-5707307507711599961et_pb_column_4_4 m_-5707307507711599961et_pb_column_1 m_-5707307507711599961et_pb_css_mix_blend_mode_passthrough m_-5707307507711599961et-last-child" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;float:left;width:100%;mix-blend-mode:unset;background-position:50% 50%"><div class="m_-5707307507711599961et_pb_module m_-5707307507711599961et_pb_text m_-5707307507711599961et_pb_text_1 m_-5707307507711599961et_pb_bg_layout_light m_-5707307507711599961et_pb_text_align_left" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;word-wrap:break-word;background-position:50% 50%"><div class="m_-5707307507711599961et_pb_text_inner" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">
-<h2 style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;font-size:45px;vertical-align:baseline;color:rgb(33,147,209);line-height:1.2em;font-family:&quot;Open Sans&quot;,Helvetica,Arial,Lucida,sans-serif;background-position:0px 0px">About the Company</h2></div></div><div class="m_-5707307507711599961et_pb_module m_-5707307507711599961et_pb_dmb_breadcrumbs_0 m_-5707307507711599961et_pb_dmb_breadcrumbs" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;background-position:50% 50%">
-
-			<img src="/resources/images/shipping.jpg" style="    width: 100%;    box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #733838;"></img>
-<ol style="box-sizing:border-box;margin:0px;border:0px;outline:0px;vertical-align:baseline;list-style:none;line-height:26px;overflow:hidden;font-style:italic;padding:0px;color:rgb(135,137,140);background-position:0px 0px"><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;display:inline-block;line-height:1em;background-position:0px 0px">
-
-<a style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:rgb(33,147,209);text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNFEnoGop_ZU4VNAL5Fl5q6IqPT99g" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true"><span style="box-sizing:border-box;margin:0px 6px 0px 0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"></span></a></li><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;display:inline-block;line-height:1em;background-position:0px 0px"><span style="box-sizing:border-box;margin:0px 6px 0px 0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"></span></li></ol></div></div></div></div><div class="m_-5707307507711599961et_pb_section m_-5707307507711599961et_pb_section_2 m_-5707307507711599961et_section_regular" style="color:rgb(0,0,0);font-family:-webkit-standard;font-size:16px;box-sizing:border-box;margin:0px;padding:65px 0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;background-position:50% 50%">
-<div class="m_-5707307507711599961et_pb_column m_-5707307507711599961et_pb_column_3_4 m_-5707307507711599961et_pb_column_3 m_-5707307507711599961et_pb_css_mix_blend_mode_passthrough m_-5707307507711599961et-last-child" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;float:left;width:100%;mix-blend-mode:unset;background-position:50% 50%">
-<div class="m_-5707307507711599961et_pb_module m_-5707307507711599961et_pb_text m_-5707307507711599961et_pb_text_2 m_-5707307507711599961et_pb_bg_layout_light m_-5707307507711599961et_pb_text_align_left" style="box-sizing:border-box;margin:0px 0px 35.734375px;padding:0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;word-wrap:break-word;background-position:50% 50%"><div class="m_-5707307507711599961et_pb_text_inner" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><p style="box-sizing:border-box;margin:0px;padding:0px 0px 1em;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">Prime International Shipping LLC operates as an ocean freight forwarder (licensed OFF) with a focus on international auto, watercraft, and equipment shipments. We operate four (4) shipping terminals, where cargo is received, loaded into ocean containers AND RO/RO , and shipped to overseas destinations:</p><ul style="box-sizing:border-box;margin:0px;padding:0px 0px 1em 30px;border:0px;outline:0px;vertical-align:baseline;list-style-position:initial;line-height:26px;background-position:0px 0px"><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><a style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color: rgb(70, 70, 70);text-decoration:none;background-position:0px 0px;" target="_blank" >Savannah (GA)</a></li><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><a style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color: rgb(70, 70, 70);text-decoration:none;background-position:0px 0px;" target="_blank" >Newark (NJ)</a></li><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color: rgb(70, 70, 70);text-decoration:none;background-position:0px 0px;" target="_blank" >Houston (TX)</a></li><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><a style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color: rgb(70, 70, 70);text-decoration:none;background-position:0px 0px;" target="_blank">Los Angeles (CA)</a></li><li style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><a style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color: rgb(70, 70, 70);text-decoration:none;background-position:0px 0px;" target="_blank" >Indianapolis (IN)</a></li></ul><p style="box-sizing:border-box;margin:0px;padding:0px 0px 1em;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">We have well-established relationships with major US auto auctions, such as IAA, Copart, Manheim, Adesa, and others. Through our partnership with&nbsp;<a rel="noopener noreferrer" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:rgb(33,147,209);text-decoration:none;background-position:0px 0px" target="_blank" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">USA AutoMarket</a>, we offer our customers auction access and annual membership, with full access privileges to the largest salvage and used car market. We assist with purchase, required documentation, auto parts, and additional services as needed to assure a smooth process and hassle-free delivery of cargo.</p><p style="box-sizing:border-box;margin:0px;padding:0px 0px 1em;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">We offer real-time cargo tracking so our customers can access information such as photos, condition reports, and up-to-date location of shipment.</p><p style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">Have questions or want more information?</p></div></div></div>
-
-
-<div class="m_-5707307507711599961et_pb_column m_-5707307507711599961et_pb_column_1_4 m_-5707307507711599961et_pb_column_2 m_-5707307507711599961et_pb_css_mix_blend_mode_passthrough" style="box-sizing:border-box;margin:0px 71.5px 0px 0px;padding:0px;border:0px;outline:0px;background-size:cover;vertical-align:baseline;float:left;width:271.375px;mix-blend-mode:unset;background-position:50% 50%"><div class="m_-5707307507711599961et_pb_module m_-5707307507711599961et_pb_sidebar_0 m_-5707307507711599961et_pb_widget_area m_-5707307507711599961et_pb_bg_layout_light m_-5707307507711599961gmail-clearfix m_-5707307507711599961et_pb_widget_area_left m_-5707307507711599961et_pb_sidebar_no_border" style="box-sizing:border-box;margin:0px 0px 35.75px;padding:0px;border:none;outline:0px;background-size:cover;vertical-align:baseline;background-position:50% 50%"><div id="m_-5707307507711599961gmail-text-2" class="m_-5707307507711599961et_pb_widget m_-5707307507711599961gmail-widget_text" style="box-sizing:border-box;margin:0px 0px 13.5625px;padding:0px;border:0px;outline:0px;vertical-align:baseline;float:left;max-width:100%;word-wrap:break-word;width:271.375px;background-position:0px 0px"><h4 class="m_-5707307507711599961gmail-widgettitle" style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;font-size:33px;vertical-align:baseline;line-height:1.2em;background-position:0px 0px">Services</h4>
-
-
-<div class="m_-5707307507711599961gmail-textwidget" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">
-<p style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px">
-
-<a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/our-services/domestic-transportation/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNE6tWDRApwKm7cMkSvHZdDrVOvAxw" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">Domestic Transportation</a>
-
-<a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/our-services/international-transportation/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNHDhCmjU3AslYcLRc47mgN8IEo9Ow" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">International Transportation</a>
-
-
-<a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/our-services/cargo-tracking/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNHnk29GaDGXUd6lhA9AbECpJntbIA" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">Cargo Tracking</a>
-
-
-<a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/our-services/auto-auction-access/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNFYM2oXQQBOZgN1uoUQzby_Q0mSRg" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">US Auction Access</a></p>
-
+    <h2>Everyone within our business<br></br>
+        understands our mission
+        </h2>
+    <div class="row">
+        
+        <div class="col-md-8 about-img">
+            <img src="/resources/Image/project-15.jpg.webp" alt=""/>
+        </div>
+        <div class="body-content">
+        <div class="col-md-4 about-text">
+            <h3>“ To make the process of buying and managing shipping and 
+                logistics services simple, efficient, stress free and cost effective.”</h3>
+            <p>We do this by providing a friendly, efficient and personalized service combined with innovative 
+                IT solutions that enable our customers to always be in control of their supply chains.</p>
+        </div>
+    </div>
+    </div>
 </div>
 
+</section>
 
+<section id="Values">
+    <div class="container">
+        <div class="row">
 
-</div>
-</div>
+            <div class="col-md-6 Values-text">
+    <h6>Our Values</h6>
+    <h2>Giving customers a unique experience of partnership.</h2>
+            </div>
 
+            <div class="col-md-6">
+                <button class="accordion">Provide a service we are proud of
+                </button>
+                <div class="panel">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quidem sapiente ut 
+                      praesentium quibusdam, temporibus suscipit itaque quam nisi maxime ipsam qui magni
+                    .</p>
+                </div>
+                
+                <button class="accordion">Support each other and work together
+                </button>
+                <div class="panel">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quidem sapiente ut 
+                        praesentium quibusdam, temporibus suscipit itaque quam nisi maxime ipsam qui magni
+                      .</p>                </div>
+                
+                <button class="accordion">Always seek to improve
+                </button>
+                <div class="panel">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quidem sapiente ut 
+                        praesentium quibusdam, temporibus suscipit itaque quam nisi maxime ipsam qui magni
+                      .</p>              
+              </div>
+            </div>
 
+        </div>
+    </div>
 
-<div class="m_-5707307507711599961et_pb_module m_-5707307507711599961et_pb_sidebar_1 m_-5707307507711599961et_pb_widget_area m_-5707307507711599961et_pb_bg_layout_light m_-5707307507711599961gmail-clearfix m_-5707307507711599961et_pb_widget_area_left m_-5707307507711599961et_pb_sidebar_no_border" style="box-sizing:border-box;margin:0px;padding:0px;border:none;outline:0px;background-size:cover;vertical-align:baseline;background-position:50% 50%"><div id="m_-5707307507711599961gmail-text-4" class="m_-5707307507711599961et_pb_widget m_-5707307507711599961gmail-widget_text" style="box-sizing:border-box;margin:0px 0px 13.5625px;padding:0px;border:0px;outline:0px;vertical-align:baseline;float:left;max-width:100%;word-wrap:break-word;width:271.375px;background-position:0px 0px"><h4 class="m_-5707307507711599961gmail-widgettitle" style="box-sizing:border-box;margin:0px;padding:0px 0px 10px;border:0px;outline:0px;font-size:33px;vertical-align:baseline;line-height:1.2em;background-position:0px 0px">Resources</h4><div class="m_-5707307507711599961gmail-textwidget" style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><p style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;background-position:0px 0px"><a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/insuring-your-cargo/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNFuF3-AXvEmZcmJ_5I5rb0WQTse-Q" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">Insuring Your Cargo</a>
+</section>
 
+<section id="our-clints">
+    <div class="layout">
+    <div class="container">
 
-<a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/our-services/cargo-tracking/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNHnk29GaDGXUd6lhA9AbECpJntbIA" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">Cargo Tracking</a>
-
-
-<a style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/terms-and-conditions/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNEjX-D67GCKvgGniPyVkkVhMVxSGA" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">Terms and Conditions</a>
-
-
-<a  style="box-sizing:border-box;margin:0px;padding:0px;border:0px;outline:0px;vertical-align:baseline;color:inherit;text-decoration:none;background-position:0px 0px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.usaintercargo.com/bill-of-lading/&amp;source=gmail&amp;ust=1566368949522000&amp;usg=AFQjCNEReaaT2xDUkkhtYFgiXbe-uBiWWQ" data-mt-detrack-inspected="true" data-mt-detrack-attachment-inspected="true">Bill of Lading</a>
-
-
-</p>
-
-
-</div>
-</div>
-</div>
-
-
+        <h3>Our Clients</h3>
+<div class="owl-carousel owl-theme">
+    <div class="item w-75"><img src="/resources/Image/client-logo-1-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-10-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-12-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-13-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-16-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-2-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-3-320x320.png" alt=""/> </div>
+    <div class="item w-75"><img src="/resources/Image/client-logo-7-320x320.png" alt=""/> </div>
 
 </div>
 
+    </div>
+</div>
+</section>
 
-</div><div class="yj6qo"></div><div class="adL">
 
-
-</div>
-</div>
-</div>
-
-<div class="adL">
-</div></div></div>
-						
-						</section>
-						</div>
-						</div>
-						
-						
-
-<div class="col-md-3 hidden-sm hidden-xs" style="    margin-top: 1%;">
-<div class="searchBox">
-<div class="block_header">Contact Us</div>
-<div class="block_box">
-<table class="how_contacts_table">
-
-<tr>
-<td><div class="icon_email"></div></td>
-<td><a class="email_help" href="mailto:PrimeShippingllc@gmail.com">Email Us</a></td>
-</tr>
-
-<tr>
-<td><div class="icon_fb"></div></td>
-<td><a href="http://www.facebook.com/PrimeShipping">Facebook</a></td>
-</tr>
-
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-  
+		<script>
+		
+		document.getElementById('mainHeadChange').id = 'head-about';
+		</script>	
+		
+</ui:define>
+<!--  
+	<ui:define name="bodyBlock">
+		
+	#{carLandingBean.refresh()}
 	
 	
-	
-	
+	</ui:define>
 
+	<ui:define name="content">
+			
+			
+			
+			       <ui:repeat var="data" value="#{carLandingBean.listOfCarsLandingScroller}">
+        
+          
+			            <div>
+			                <div class="single-service">
+			                  <h:graphicImage value="#{data.mainImage}" alt="image#{var}" class="img-fluid" />
+							<div class="overlay">
+			             
+			              <h4> #{data.year} #{data.make}  #{data.model} <span>($#{data.currentBid})</span></h4>
+			              
+			              <p> #{data.year} #{data.make}</p>
+			              <a href="/pages/public/carsForDetails.jsf?id=#{data.id}"><button class="btn">المزيد</button></a>
+			              </div>
+			            </div>
+			          </div>
+			          
+			          
+			            
+        	
+        </ui:repeat>
+        	    
+			    
+			
+			
+			
+					
+			
+			
 	</ui:define>
 	
-		
+	
 	
 	<ui:define name="script">
-  			
-  			
-  			
-  			
-  			
-  			 	<!-- Vendor -->
-  		   
-  			<h:outputScript name="js/dashboard/assets/vendor/jquery/jquery.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/bootstrap/js/bootstrap.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/nanoscroller/nanoscroller.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/magnific-popup/magnific-popup.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/jquery-placeholder/jquery.placeholder.js"/>
-  			
-  			<script>
-  			   jQuery.noConflict();
-  			 </script>
-  			
-  			<h:outputScript name="js/dashboard/assets/vendor/jquery-validation/jquery.validate.js"/>
-  			<h:outputScript name="js/dashboard/assets/vendor/bootstrap-wizard/jquery.bootstrap.wizard.js"/>
-  			<h:outputScript name="js/dashboard/assets/javascripts/forms/examples.wizard.js"/>
-  			
-  			
-  			<!-- Theme Base, Components and Settings -->
-  			<h:outputScript name="js/dashboard/assets/javascripts/theme.js"/>
-  			
-  			<!-- Theme Custom -->
-  			<h:outputScript name="js/dashboard/assets/javascripts/theme.custom.js"/>
-  			
-  			<!-- Theme Initialization Files -->
-  			<h:outputScript name="js/dashboard/assets/javascripts/theme.init.js"/>
-  			
-  			<!-- Examples -->
-  			
-  	    	<h:outputScript name="js/dashboard/assets/javascripts/forms/examples.wizard.js"/>
-  	
   	
 
-	
-	</ui:define>
+  	
+  	</ui:define>
+	-->
 	
 </ui:composition>
 </html>

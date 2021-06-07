@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+import com.google.gson.JsonObject;
+
 import main.com.carService.loginNeeds.user;
 
 
@@ -26,6 +28,7 @@ import main.com.carService.loginNeeds.user;
 
 
 @NamedQueries({
+	
 	
 	
 	@NamedQuery(name="carLanding.getAll",
@@ -51,12 +54,25 @@ import main.com.carService.loginNeeds.user;
 			)
 	,
 	@NamedQuery(name="carLanding.getAllGroupsOfMake",
-	query = "from carLanding d where d.deleted = false group by d.make"
+	query = "from carLanding d where d.deleted = false group by d.make "
 			)
+	
+	,
+	@NamedQuery(name="carLanding.getAllGroupsOfCategory",
+	query = "from carLanding d where d.deleted = false group by d.category"
+			)
+	
+	,
+	@NamedQuery(name="carLanding.getAllGroupsOfModelWithMake",
+	query = "from carLanding d where d.deleted = false and d.make=:make group by d.model "
+			)
+	
 	,
 	@NamedQuery(name="carLanding.getAllForSearch",
-	query = "from carLanding d where d.year <= :yearEnd and d.year >= :yearStart and d.make = :make and d.category = :category and d.deleted = false"
+	query = "from carLanding d where d.year <= :yearEnd and d.year >= :yearStart and d.make like :make and d.model like :model and d.category like :category and d.deleted = false"
 			)
+	
+	
 	
 })
 
@@ -434,7 +450,36 @@ public class carLanding {
 	}
 
 
-	
+	  public JsonObject toJson() {
+	    	JsonObject obj=new JsonObject();
+	    	  obj.addProperty("id", String.valueOf(this.id));
+		      obj.addProperty("color", String.valueOf(this.color));
+		      if(this.mainId!=null) {
+		      obj.addProperty("mainId", String.valueOf(this.mainId.getId()));
+		      }else {
+			      obj.addProperty("mainId", String.valueOf("null"));
+		    	  
+		      }
+		      obj.addProperty("uuid", String.valueOf(this.uuid));
+		      obj.addProperty("make", String.valueOf(this.make));
+		      obj.addProperty("model", String.valueOf(this.model));
+		      obj.addProperty("year", String.valueOf(this.year));
+		      obj.addProperty("transmission", String.valueOf(this.transmission));
+		      obj.addProperty("mainImage", String.valueOf(this.mainImage));
+		      obj.addProperty("category", String.valueOf(this.category));
+		      obj.addProperty("docType", String.valueOf(this.docType));
+		      obj.addProperty("odoMeter", String.valueOf(this.odoMeter));
+		      
+		      
+		      obj.addProperty("mainImage", String.valueOf(this.mainImage));
+		      obj.addProperty("currentBid", String.valueOf(this.currentBid));
+		      obj.addProperty("auctionLocation", String.valueOf(this.auctionLocation));
+		      obj.addProperty("secondaryDamage", String.valueOf(this.secondaryDamage));
+		      return obj;
+	    	
+	    }
+
+
 	
 
 	

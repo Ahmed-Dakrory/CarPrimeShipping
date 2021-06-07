@@ -102,6 +102,7 @@ public class carLandingBean implements Serializable{
 
 	private Integer searchType;
 	private String searchMake;
+	private String searchModel;
 	private String searchStartYear;
 	private String searchEndYear;
 	
@@ -137,7 +138,7 @@ public class carLandingBean implements Serializable{
 		}
 		
 		try{
-			Integer categories=Integer.parseInt(origRequest.getParameterValues("category")[0]);
+			String categories=String.valueOf(origRequest.getParameterValues("category")[0]);
 				if(categories!=null){
 					listOfAddedCars=carLandingFacade.getAllForCategories(categories);
 				}
@@ -148,7 +149,7 @@ public class carLandingBean implements Serializable{
 	}
 	
 	public void makeSearch() {
-		listOfAddedCars=carLandingFacade.getAllForSearch(searchStartYear, searchEndYear, searchMake, searchType);
+		listOfAddedCars=carLandingFacade.getAllForSearch(searchStartYear, searchEndYear, searchMake,searchModel, String.valueOf(searchType));
 
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("panelCarsToUpdate");
 	}
@@ -638,6 +639,16 @@ private void removeFileFromImages(String fileURL) {
 
 	public void setImages_deleted(List<String> images_deleted) {
 		this.images_deleted = images_deleted;
+	}
+
+
+	public String getSearchModel() {
+		return searchModel;
+	}
+
+
+	public void setSearchModel(String searchModel) {
+		this.searchModel = searchModel;
 	}
 
 
