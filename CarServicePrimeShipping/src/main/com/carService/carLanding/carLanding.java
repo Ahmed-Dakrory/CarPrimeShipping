@@ -169,7 +169,7 @@ public class carLanding {
 	
 
 	@Column(name = "category")
-	private Integer category;
+	private String category;
 	
 	@Column(name = "isShowenInLanding")
 	private boolean isShowenInLanding;
@@ -420,12 +420,12 @@ public class carLanding {
 	}
 
 
-	public Integer getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
 
-	public void setCategory(Integer category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -469,6 +469,10 @@ public class carLanding {
 		      obj.addProperty("category", String.valueOf(this.category));
 		      obj.addProperty("docType", String.valueOf(this.docType));
 		      obj.addProperty("odoMeter", String.valueOf(this.odoMeter));
+		      obj.addProperty("primaryDamage", String.valueOf(this.primaryDamage));
+		      obj.addProperty("dateAdd", String.valueOf(this.dateAdd));
+		      obj.addProperty("kiloDistance", String.valueOf(this.kiloDistance));
+		      obj.addProperty("description", String.valueOf(this.description));
 		      
 		      
 		      obj.addProperty("mainImage", String.valueOf(this.mainImage));

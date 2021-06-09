@@ -447,10 +447,41 @@ public class shipperBean implements Serializable{
 			carinvoice.setInvoiceId(invoiceData);
 			
 			invoiceCarFacade.addinvoiceCar(carinvoice);
-			float landCost=carsForInvoice.get(i).getLandcost();
-			float Seacost=carsForInvoice.get(i).getSeacost();
-			float Commision=carsForInvoice.get(i).getCommision();
-			float Fees=carsForInvoice.get(i).getFees();
+			
+
+			float landCost = 0;
+			try {
+				landCost=carsForInvoice.get(i).getLandcost();
+			}catch(NullPointerException exc) {
+			}
+			
+			
+
+			float Seacost = 0;
+			try {
+				Seacost=carsForInvoice.get(i).getSeacost();
+			}catch(NullPointerException exc) {
+			}
+			
+			
+
+			float Commision = 0;
+			try {
+				Commision=carsForInvoice.get(i).getCommision();
+			}catch(NullPointerException exc) {
+			}
+			
+			
+			
+
+			float Fees = 0;
+			try {
+				Fees=carsForInvoice.get(i).getFees();
+			}catch(NullPointerException exc) {
+			}
+
+			
+			
 					
 			float totalForCar=(float) (landCost+Seacost
 					+Commision+Fees);
@@ -462,6 +493,8 @@ public class shipperBean implements Serializable{
 		
 		moneybox_transaction_details M_B_T = new moneybox_transaction_details();
 		M_B_T.setTypeOfTransaction(moneybox_transaction_details.depositeTypes.Payment.getType());
+//		System.out.println("Dakrory:"+String.valueOf(mBofMainAccount.getId()));		
+//		System.out.println("Dakrory:"+String.valueOf(mBofMainAccount.getId()));
 		M_B_T.setAmountBefore(mBofMainAccount.getAvailableMoney());
 		
 		float amount_Of_This_Invoice = invoiceData.getWireFees()+carFeesInvoice+(invoiceData.getTransferFees()/100*carFeesInvoice);
@@ -528,10 +561,38 @@ public class shipperBean implements Serializable{
 		shipperForInvoice=shipperFacade.getById(idShipper);
 		moneybox mB= loginBean.getThisAccountMoneyBox();
 				
-		invoiceData.setBankAccountNumber(mB.getBankAccountNumber());
-		invoiceData.setBankAddress(mB.getBankAddress());
-		invoiceData.setBankName(mB.getBankName());
-		invoiceData.setBankTelephone(mB.getBankTelephone());
+		try {
+			invoiceData.setBankAccountNumber(mB.getBankAccountNumber());
+				}catch(NullPointerException exc) {
+					
+				}
+		
+		
+		try {
+			invoiceData.setBankAddress(mB.getBankAddress());
+		}catch(NullPointerException exc) {
+			
+		}
+		
+		
+		try {
+			invoiceData.setBankName(mB.getBankName());
+		}catch(NullPointerException exc) {
+			
+		}
+
+		
+		
+		try {
+			invoiceData.setBankTelephone(mB.getBankTelephone());
+		}catch(NullPointerException exc) {
+			
+		}
+
+
+		
+		
+		
 		
 		carsForthisAccount=new ArrayList<car>();
 		

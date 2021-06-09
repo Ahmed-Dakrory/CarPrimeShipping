@@ -35,7 +35,8 @@
     ": ;
 }
 	</style>
-	
+									  
+		
 	#{carPageBean.refresh()}
 	
 	<div class="img-item">
@@ -303,7 +304,10 @@
 
 </div>
 </div>
+
+	
 <h:panelGroup id="panelCarsToUpdate">
+
 <h:form class="panel">
 					
 							
@@ -316,9 +320,8 @@
 											<th class=" d-none d-sm-table-cell" ><a>Car</a></th>
 											<th class="d-none d-sm-table-cell" ><a>Details</a></th>
 											<th class="d-none d-sm-table-cell"><a>Location</a></th>
-											<th class="d-none d-sm-table-cell"><a>Date</a></th>
 											<th class="d-none d-sm-table-cell"><a>Start Code</a></th>
-											<th class="d-none d-sm-table-cell"><a>Bid</a></th>
+											<th class="d-none d-sm-table-cell"><a>Price</a></th>
 										</tr>
 									</thead>
 								<tbody></tbody>
@@ -379,7 +382,7 @@
               	   
               return '<div class="preview-photo" id="pph-24311239">'
               +'<a data-auction="copart" data-lot="24311239" onclick="ViewDocById('+item.mainImage+')" class="see_photos">See Photos</a>'
-              +'<img style="width: 100%;" src="'+item.mainImage+'" alt="image'+item.mainImage+'"/>'
+              +'<img style="width: 100%;" src="/images/?file='+item.mainImage+'" alt="image'+item.mainImage+'"/>'
               +'</div>';
                  }
                },
@@ -391,7 +394,7 @@
                 	   
                 return '<div class="preview-photo" id="pph-24311239">'
                 +'<a data-auction="copart" data-lot="24311239" onclick="ViewDocById('+item.mainImage+')" class="see_photos">See Photos</a>'
-                +'<img style="width: 100%;" src="'+item.mainImage+'" alt="image'+item.mainImage+'"/>'
+                +'<img style="width: 100%;" src="/images/?file='+item.mainImage+'" alt="image'+item.mainImage+'"/>'
                 +'</div>';
                    }
                  },
@@ -400,28 +403,14 @@
            className: "d-none d-sm-table-cell","mData": null, "sWidth": "30%","mRender": function (item) { 
         	  
 
-        	   $.get("/rest/ApiCarLanding/isCarInFav",
-        	  		   {
-        	  		     userId: "#{loginBean.theUserOfThisAccount.id}",
-        	  		     carId: item.id
-        	  		   },
-        	  		   function(data, status){
-        	  		    if(data.isExist){
-        	  		    	$('#startWithId'+item.id).removeClass('w-add');
-        	  		    	$('#startWithId'+item.id).addClass('w-remove');
-        	  		    }else{
-        	  		    	$('#startWithId'+item.id).removeClass('w-remove');
-        	  		    	$('#startWithId'+item.id).addClass('w-add');
-        	  		    }
-        	  		   });
+        	 
         	  
         	   
                return '<h2 class="title">'
 				+'<a itemprop="url" href="/pages/public/carsForDetails.jsf?id='+item.id+'" style="color: #4697ea;font-size: 19px;"><span itemprop="name">'+item.year+' '+item.make+' '+item.model+'</span></a> </h2>'
 				+'<div class="vin" style="    text-align: initial;"><span class="name">VIN: </span>'+item.uuid+' </div>'
 				+'<div class="odometer" style="    text-align: initial;"><span class="name">Mileage: </span>'+item.odoMeter+ ' miles </div>'
-				+'<div class="odometer" style="    text-align: initial;"><span class="name">Damage: </span>'+item.damageDescription+ '</div>'
-				+'<div class="odometer" style="    text-align: initial;"><span class="name">Doc Type: </span>'+item.docType+  '</div>'
+				+'<div class="odometer" style="    text-align: initial;"><span class="name">Primary Damage: </span>'+item.primaryDamage+ '</div>'
 				
 				+'<div class="odometer" style="    text-align: initial;">'
 				+''
@@ -445,23 +434,16 @@
 
              }
          }                 
-        ,
-        {
-          className: "center d-none d-sm-table-cell", "mData": null, "sWidth": "15%","mRender": function (item) { 
-            
-            return '<div class="odometer" style="    text-align: initial;"><span class="name w-100">Live Auction Starts in </span><p style="text-align: center;">'+item.bidingDate+  '</p></div>';  
-
-            }
-        } ,
+         ,
         {
             className: "center d-none d-sm-table-cell ", "mData": null, "sWidth": "15%","mRender": function (item) { 
               
-              if(item.runsDrives=='null'){
-            	  runsDrives = "No Availble Data";
+              if(item.category=='null'){
+            	  category = "No Availble Data";
               }else{
-            	  runsDrives=item.runsDrives;
+            	  category=item.category;
               }
-            	 return '<div class="odometer" style="    text-align: initial;"><div><img style="width: 41px;position: relative;top: 27px;" src="/resources/images/checkEngine.png"/></div><div class="name w-100" style="text-align: center;margin-left: 21px;" >Start Code </div><p style="text-align: center;margin-left: 41px;">'+runsDrives+  '</p></div>';  
+            	 return '<div class="odometer" style="    text-align: initial;"><div><img style="width: 41px;position: relative;top: 27px;" src="/resources/images/checkEngine.png"/></div><div class="name w-100" style="text-align: center;margin-left: 21px;" >Type </div><p style="text-align: center;margin-left: 41px;">'+category+  '</p></div>';  
   
 
               }
@@ -469,21 +451,6 @@
         ,
         {
           className: "center d-none d-sm-table-cell ", "mData": null, "sWidth": "25%","mRender": function (item) { 
-            if(item.activebuyItNow=="true"){
-            	console.log(item.activebuyItNow);
-            	buyItNow = '<a style="width: 100%;text-align: center;height: 39px;padding-top: 5%;color: #f7f7f7;font-family: auto;margin-top: 5%;"  href="/pages/public/carsForDetails.jsf?id='+item.id+'" class="button yBtnYellow">Buy it Now </a>'; 
-
-            	
-            	buyItNowPrice = '<div class="price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">'
-        			+'$<span itemprop="price" content="'+item.buyItNowPrice+'"> '+item.buyItNowPrice+' </span>'
-        			+'<span class="currency"> USD </span><meta itemprop="priceCurrency" content="USD"/>'
-        			+'</div>'
-        			+'<div class="bidtype">Buy it now Price </div>';
-            }else{
-            	buyItNow = '';
-            	buyItNowPrice = '';
-            }
-            
             
             
             
@@ -493,17 +460,14 @@
         			+'$<span itemprop="price" content="'+item.currentBid+'"> '+item.currentBid+' </span>'
         			+'<span class="currency"> USD </span><meta itemprop="priceCurrency" content="USD"/>'
         			+'</div>'
-        			+'<div class="bidtype">Current bid </div>';
+        			+'<div class="bidtype">Current Price </div>';
             }else{
             	currentBid = '';
             }
             
             
-       	   return currentBid+buyItNowPrice
+       	   return currentBid
 			
-			+'<a style="width: 100%;text-align: center;height: 39px;padding-top: 5%;color: #f7f7f7;font-family: auto;margin-top: 5%;" href="/pages/public/carsForDetails.jsf?id='+item.id+'" class="button yBtnBlack">Bid </a>' 
-		    +buyItNow;
-	       	
             }
         }              
        
@@ -550,7 +514,8 @@
 </div>
 </div>
 	
-
+	
+	
 	</ui:define>
 	
 		
