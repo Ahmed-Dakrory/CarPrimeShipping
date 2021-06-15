@@ -83,12 +83,14 @@ font-size: 19px;
     padding: 2px 3px 8px 3px;
 }
 
-.title_box {
-    float: left;
-   	width: 251px;
+.title_box  col-md-4  col-md-4{
+     float: left;
+    TEXT-ALIGN: left;
+    width: 251px;
 }
 
 .description.importantly {
+width: inherit;
     color: black;
 }
 
@@ -340,7 +342,7 @@ z-index: 9999;
 										<div class=""></div>
 										
 										<div class="col-md-1 mt-1">Make* </div>
-		                 				<div class="col-md-3 mt-1">
+		                 				<div class="col-md-4 mt-1">
 											<h:selectOneMenu class="mainInput" value="#{formsBean.vehicleMake[var-1]}" >
 			                 					 	<f:selectItem itemLabel="Other" itemValue="Other" />
 					                                <f:selectItem itemLabel="Acura" itemValue="Acura" />
@@ -428,13 +430,13 @@ z-index: 9999;
 										</div>
 										
 										<div class="col-md-1 mt-1">Model</div>
-										<div class="col-md-3 mt-1">
+										<div class="col-md-4 mt-1">
 											<h:inputText class="mainInput" value="#{formsBean.vehicleModel[var-1]}"/>
 										</div>
 										
 										<div class="col-md-1 mt-1"></div>
 										<div class="col-md-1 mt-1">VIN*</div>
-										<div class="col-md-3 mt-1">
+										<div class="col-md-4 mt-1">
 											<h:inputText class="mainInput"  value="#{formsBean.vehicleVin[var-1]}" />
 										</div>
 										
@@ -454,7 +456,7 @@ z-index: 9999;
 													</h:selectBooleanCheckbox>
 													
 												</div>
-												<div class="col-md-8 mt-1 w-100 p-0" >
+												<div class="col-md-8 mt-1 w-100 p-3" >
 													Do you want insurance based upon your indicated value of your vehicle? (The premium is 2% of the indicated value or $200, whichever is higher).
 												</div>
 											</div>
@@ -467,7 +469,7 @@ z-index: 9999;
 													</h:selectBooleanCheckbox>
 													
 												</div>
-												<div class="col-md-9 mt-1 w-100 p-0">
+												<div class="col-md-9 mt-1 w-100 p-3">
 													Do you need us to pickup your vehicle from anywhere in the United States? 
 													<a href="#"  data-toggle="tooltip" data-placement="right" title="This is some information for our tooltip. ">
 														<span title="More">
@@ -500,8 +502,7 @@ z-index: 9999;
                  				<div class="holdharmless w-100">
 						            I <h:inputText type="text" size="25" class="comment" style="visibility:visible;" maxlength="30" value="#{formsBean.harmLess}"/>
 						            HAVE BEEN ADVISED OF THE AVAILABILITY OF ADDITIONAL INSURANCE. I DO NOT WANT TO PURCHASE THIS INSURANCE.
-						            IF THERE IS NO INSURANCE PURCHASED, I ACKNOWLEGE THAT ACCORDING TO THE CARRIAGE OF GOODS AT SEA ACT, 
-						            WEST COAST SHIPPING IS ONLY LIABLE FOR UP TO $500 IN DAMAGES WHICH OCCURED DURING TRANSPORTATION.
+						            IF THERE IS NO INSURANCE PURCHASED,I UNDERSTAND THAT MY RECOVERY WILL BE LIMITED IN THE EVENT LOSS.
 						        </div>
                  			</div>
                  			<div class="row w-100 mt-0 m-1">
@@ -512,11 +513,11 @@ z-index: 9999;
 							    <h4 class="headPort w-100">DESTINATION PORT:</h4>
 							    
 							    <div id="destination" >
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Port: <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.destPort}" required="true" requiredMessage="please enter the destination port"/>
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.destPort}" required="true" requiredMessage="please enter the destination port"/>
 								    </div>
 								</div>
 							</div>
@@ -540,8 +541,8 @@ z-index: 9999;
                  				
                  				<div id="shipper_block">
 								    <!-- US citizen info -->
-								    <div class="box" id="us_citizen" style="display: block;">
-								        <div class="title_box">
+								    <div class="box row mt-4" id="us_citizen" style="display: flex;">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">EIN Number<span>*  </span>
 								            <a href="#" title="Recently, a change was implemented by the U.S. Government that requires customers to use an EIN (Employer Identification Number) tax number in place of the social security number. This is to protect private information connected to your social security number."  data-toggle="tooltip" data-placement="right">
 								            <span title="More"><font color="blue" style="font-weight:bold;">
@@ -550,15 +551,15 @@ z-index: 9999;
 								            </a>
 								            </div>
 								        </div>
-								        <h:inputText type="text" size="30" class="text" value="#{formsBean.einNumber}"  />
+								        <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.einNumber}"  />
 								    </div>
 								
 								    <!-- US business info -->
 								   
 								
 								    <!-- Non US info -->
-								    <div class="box" id="non_us_citizen" style="display: none;">
-								        <div class="title_box">
+								    <div class="box row mt-4" id="non_us_citizen" style="display: none;">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly" id="3">Passport ID  
 								            <a href="#" title="This is some information for our tooltip. "  data-toggle="tooltip" data-placement="right">
 								            <span title="More"><font color="blue" style="font-weight:bold;">
@@ -568,54 +569,54 @@ z-index: 9999;
 								            </a>
 								            </div>
 								        </div>
-								        <h:inputText type="text" size="30" class="text" value="#{formsBean.passportId}" />
+								        <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.passportId}" />
 								    </div>
 								    
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Company Name</div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.shipperCompanyName}" required="true" requiredMessage="please enter the shipper Company Name"/>
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.shipperCompanyName}" required="true" requiredMessage="please enter the shipper Company Name"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">First Name <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.shipperFirstName}" required="true" requiredMessage="please enter the shipper First Name"/>
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.shipperFirstName}" required="true" requiredMessage="please enter the shipper First Name"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Last Name <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30" class="text" value="#{formsBean.shipperLastName}" required="true" requiredMessage="please enter shipper Last Name"/>
+								        <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.shipperLastName}" required="true" requiredMessage="please enter shipper Last Name"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Address <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.shipperAddress1}" required="true" requiredMessage="please enter the shipper Address1"/>
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.shipperAddress1}" required="true" requiredMessage="please enter the shipper Address1"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            &nbsp;
 								        </div>
-								        <h:inputText type="text" size="30" class="text" value="#{formsBean.shipperAddress2}" />
+								        <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.shipperAddress2}" />
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">City <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30" class="text" value="#{formsBean.shipperCity}" required="true" requiredMessage="please enter the shipper City"/>
+								        <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.shipperCity}" required="true" requiredMessage="please enter the shipper City"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">State (US only)</div>
 								        </div>
 								        <h:selectOneMenu value="#{formsBean.shipperState}" >
@@ -676,15 +677,15 @@ z-index: 9999;
 								        </h:selectOneMenu>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Province</div>
 								        </div>
-								        <h:inputText type="text" size="30" class="text" value="#{formsBean.shipperProvince}"/>
+								        <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.shipperProvince}"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Country <span>*</span></div>
 								        </div>
 								        <h:selectOneMenu value="#{formsBean.shipperCountry}" required="true" requiredMessage="please enter the shipper Country">
@@ -933,25 +934,25 @@ z-index: 9999;
 					                    </h:selectOneMenu>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box us_citizen us_business" id="zipCodeFirst" style="display: block;">
-								        <div class="title_box">
+								    <div class="box us_citizen us_business row mt-4" id="zipCodeFirst" style="display: flex;">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Zip <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.shipperZip}" />
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.shipperZip}" />
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">E-mail <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.shipperMail}" required="true" requiredMessage="please enter the shipper Mail"/>
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.shipperMail}" required="true" requiredMessage="please enter the shipper Mail"/>
 								    </div>
 								    <div class="clear"></div>
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Phone <span>*</span></div>
 								        </div>
-								        <h:inputText type="text" size="30"  class="text" value="#{formsBean.shipperPhone}" required="true" requiredMessage="please enter the shipper Phone"/>
+								        <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.shipperPhone}" required="true" requiredMessage="please enter the shipper Phone"/>
 								    </div>
 								    <div class="clear"></div>
 								</div>
@@ -968,43 +969,43 @@ z-index: 9999;
 						    	<div class="clear"><br></br></div>
 						    	
 						    	<div id="consignee_block" class="mt-3 w-100">
-								    <div class="box">
-								    <div class="title_box">
+								    <div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">First Name <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.consigneeFirstName}" required="true" requiredMessage="please enter the consignee first name"/>
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.consigneeFirstName}" required="true" requiredMessage="please enter the consignee first name"/>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Last Name <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.consigneeLastName}" required="true" requiredMessage="please enter the consignee last Name"/>
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.consigneeLastName}" required="true" requiredMessage="please enter the consignee last Name"/>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Address <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30" class="text" value="#{formsBean.consigneeAddress1}" required="true" requiredMessage="please enter the consignee address1"/>
+								    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.consigneeAddress1}" required="true" requiredMessage="please enter the consignee address1"/>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        &nbsp;
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.consigneeAddress2}"/>
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.consigneeAddress2}"/>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">City  <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30" class="text" value="#{formsBean.consigneeCity}" required="true" requiredMessage="please enter the consignee city"/>
+								    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.consigneeCity}" required="true" requiredMessage="please enter the consignee city"/>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">State (US only)</div>
 								    </div>
 								    <h:selectOneMenu name="state" value="#{formsBean.consigneeState}" >
@@ -1063,15 +1064,15 @@ z-index: 9999;
 					            	</h:selectOneMenu>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Province</div>
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.consigneeProvince}" />
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.consigneeProvince}" />
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Country <span>*</span></div>
 								    </div>
 								    <h:selectOneMenu value="#{formsBean.consigneeCountry}">
@@ -1319,18 +1320,18 @@ z-index: 9999;
 								    </h:selectOneMenu>
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Zip</div>
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.consigneeZip}" />
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.consigneeZip}" />
 								</div>
 								<div class="clear"></div>
-								<div class="box">
-								    <div class="title_box">
+								<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Phone <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.consigneePhone}" required="true" requiredMessage="please enter the consignee Phone"/>
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.consigneePhone}" required="true" requiredMessage="please enter the consignee Phone"/>
 								</div></div>
 	                 				
                  			</div>
@@ -1348,8 +1349,8 @@ z-index: 9999;
 						    	<div class="clear"><br></br></div>
 						    	
 						    	<div id="fedex_block" class="mt-3 w-100">
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Documents Delivery Method <span>*</span></div>
 								        </div>
 								        <h:selectOneMenu  id="bill_of_landing" value="#{formsBean.titleSelect}">
@@ -1361,8 +1362,8 @@ z-index: 9999;
 								    </div>
 								    <div class="clear"></div>
 								    <div id="bill_of_lading_block" style="display: none;">
-								        <div class="box">
-								            <div class="title_box">
+								        <div class="box row mt-4">
+								            <div class="title_box  col-md-4">
 								                <div class="description importantly">Mail to <span>*</span></div>
 								            </div>
 								            <h:selectOneMenu value="#{formsBean.titleMailTo}" >
@@ -1371,43 +1372,43 @@ z-index: 9999;
 								                <f:selectItem itemLabel="consignee" itemValue="same as consignee" />
 								            </h:selectOneMenu>
 								        </div>
-								        <div class="box">
-								    <div class="title_box">
+								        <div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">First Name <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30"  class="text" value="#{formsBean.titleFirstName}" />
+								    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.titleFirstName}" />
 								</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Last Name <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.titleLastName}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.titleLastName}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Address <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30"  class="text" value="#{formsBean.titleAddress1}" />
+										    <h:inputText type="text" size="30"  class="text col-md-4 col-7" value="#{formsBean.titleAddress1}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        &nbsp;
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.titleAddress2}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.titleAddress2}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">City  <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.titleCity}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.titleCity}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">State (US only)</div>
 										    </div>
 										    <h:selectOneMenu name="state" value="#{formsBean.titleState}" >
@@ -1466,15 +1467,15 @@ z-index: 9999;
 										    </h:selectOneMenu>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Province</div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.titleProvince}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.titleProvince}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Country <span>*</span></div>
 										    </div>
 										    <h:selectOneMenu name="country" value="#{formsBean.titleCountry}" >
@@ -1722,18 +1723,18 @@ z-index: 9999;
 											</h:selectOneMenu>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Zip</div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.titleZip}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.titleZip}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-								    <div class="title_box">
+										<div class="box row mt-4">
+								    <div class="title_box  col-md-4">
 								        <div class="description importantly">Phone <span>*</span></div>
 								    </div>
-								    <h:inputText type="text" size="30" class="text" value="#{formsBean.titlePhone}"/>
+								    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.titlePhone}"/>
 								</div>    </div>
 								</div>
 						    </div>
@@ -1752,8 +1753,8 @@ z-index: 9999;
 						    	<div class="clear"><br></br></div>
 						    	
 								<div id="agent">
-								    <div class="box">
-								        <div class="title_box">
+								    <div class="box row mt-4">
+								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Agent <span>*  </span>
 									            <a href="#" title="This is some information for our tooltip. " data-toggle="tooltip" data-placement="right">
 										            <span title="More">
@@ -1771,43 +1772,43 @@ z-index: 9999;
 								    </div>
 								    <div class="clear"></div>
 								    <div id="wcs_agent_block" style="display: block;">
-								        <div class="box">
-									    <div class="title_box">
+								        <div class="box row mt-4">
+									    <div class="title_box  col-md-4">
 									        <div class="description importantly">First Name <span>*</span></div>
 									    </div>
-									    	<h:inputText type="text" size="30" class="text" value="#{formsBean.agentFirstName}"/>
+									    	<h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentFirstName}"/>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Last Name <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentLastName}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentLastName}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Address <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentAddress1}"/>
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentAddress1}"/>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        &nbsp;
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentAddress2}"/>
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentAddress2}"/>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">City  <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentCity}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentCity}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">State (US only)</div>
 										    </div>
 										    <h:selectOneMenu value="#{formsBean.agentState}" >
@@ -1866,15 +1867,15 @@ z-index: 9999;
 										    </h:selectOneMenu>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Province</div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentProvince}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentProvince}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Country <span>*</span></div>
 										    </div>
 										    <h:selectOneMenu value="#{formsBean.agentCountry}" >
@@ -2122,18 +2123,18 @@ z-index: 9999;
 											</h:selectOneMenu>
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-										    <div class="title_box">
+										<div class="box row mt-4">
+										    <div class="title_box  col-md-4">
 										        <div class="description importantly">Zip</div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentZip}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentZip}" />
 										</div>
 										<div class="clear"></div>
-										<div class="box">
-								    	<div class="title_box">
+										<div class="box row mt-4">
+								    	<div class="title_box  col-md-4">
 										        <div class="description importantly">Phone <span>*</span></div>
 										    </div>
-										    <h:inputText type="text" size="30" class="text" value="#{formsBean.agentPhone}" />
+										    <h:inputText type="text" size="30" class="text col-md-4 col-7" value="#{formsBean.agentPhone}" />
 										</div>    
 									</div>
 								</div>
@@ -2321,37 +2322,37 @@ $('#features\\:NumberType').on('change', function() {
 
 $('#features\\:bill_of_landing').on('change', function() {
 	if($('#features\\:bill_of_landing').find(":selected").text()=="Local Pick Up - Free"){
-			$("#bill_of_lading_block").hide();
+			$("#bill_of_lading_block").css("display", "none");
 		}else{
-			$("#bill_of_lading_block").show();
+			$("#bill_of_lading_block").css("display", "block");
 		}
 });
 
 
 $('#features\\:agent_type').on('change', function() {
 	if($('#features\\:agent_type').find(":selected").text()=="My Own Agent"){
-			$("#wcs_agent_block").show();
+			$("#wcs_agent_block").css("display", "block");
 		}else{
-			$("#wcs_agent_block").hide();
+			$("#wcs_agent_block").css("display", "none");
 		}
 });
 
 
-$("#non_us_citizen").hide();
-$("#zipCodeFirst").show();
-$("#us_citizen").show();
+$("#non_us_citizen").css("display", "none");
+$("#zipCodeFirst").css("display", "flex");
+$("#us_citizen").css("display", "flex");
 $('#features\\:CitizenType').on('change', function() {
 	console.log("Ahmedededeeed");
 	console.log($('input[name="features:CitizenType"]:checked').val());
 	if($('input[name="features:CitizenType"]:checked').val()==0){
-		$("#non_us_citizen").hide();
-		$("#zipCodeFirst").show();
-		$("#us_citizen").show();
+		$("#non_us_citizen").css("display", "none");
+		$("#zipCodeFirst").css("display", "flex");
+		$("#us_citizen").css("display", "flex");
 		
 	}else{
-		$("#zipCodeFirst").hide();
-		$("#us_citizen").hide();
-		$("#non_us_citizen").show();
+		$("#zipCodeFirst").css("display", "none");
+		$("#us_citizen").css("display", "none");
+		$("#non_us_citizen").css("display", "flex");
 	}
 	
 });
