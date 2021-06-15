@@ -83,8 +83,8 @@
                                                     <table cellspacing="0" cellpadding="0" width="100%" border="0">
                                                         <tr>
                                                             <td class="blkname" width="100%">
-                                                                <nobr>&nbsp;VIN:
-																					<span id="ctl00_BodyHolder_lblVIN">New Car</span></nobr>
+                                                                <nobr>&nbsp;Serial:
+																					<span id="ctl00_BodyHolder_lblVIN">New Freight</span></nobr>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -238,7 +238,7 @@
                                                                                             <tr height="23">
                                                                                                 <td class="tbltxt" width="130">
                                                                                                     <div style="margin-left: 6px">
-                                                                                                        VIN:</div>
+                                                                                                        Serial:</div>
                                                                                                 </td>
                                                                                                 <td width="200">
                                                                                                     <h:inputText name="ctl00$BodyHolder$txtVIN" type="text" value="#{carLandingBean.selectedFreight.uuid}" id="ctl00_BodyHolder_txtVIN" style="font-size:11px;height:19px;width:200px;" />
@@ -655,8 +655,8 @@
 																	                                 <p:fileUpload id="FileUploadedMain" fileUploadListener="#{carLandingBean.previewImageMain}" dragDropSupport="true" sizeLimit="99999999" fileLimit="20" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
         
 																	                                    <label for="aspnetForm:FileUploadedMain_input">
-																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carLandingBean.selectedFreight.mainImage!=''?'false':'true'}" alt="imageMain3" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
-																	                                    <h:graphicImage value="/images/?file=#{carLandingBean.selectedFreight.mainImage}" rendered="#{carLandingBean.selectedFreight.mainImage!=''?'true':'false'}" alt="imageMain" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carLandingBean.selectedFreight.mainImage!=null?'false':'true'}" alt="imageMain3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage value="/images/?file=#{carLandingBean.selectedFreight.mainImage}" rendered="#{carLandingBean.selectedFreight.mainImage!=null?'true':'false'}" alt="imageMain" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
 																	                                    </label>
 																	                                     </h:panelGroup>   
                                                                                                      	

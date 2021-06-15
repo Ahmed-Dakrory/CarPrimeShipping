@@ -21,15 +21,30 @@
 		<link rel="stylesheet" href="#{resource['css:dashboardPrime/owl.carousel.min.css']}" />
 		<link rel="stylesheet" href="#{resource['css:dashboardPrime/owl.theme.default.min.css']}" />
 		<link rel="stylesheet" href="#{resource['css:dashboardPrime/main_style.css']}" />
-		 
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="preconnect" href="https://fonts.gstatic.com"/>
 	</h:head>
 	
 	<h:body>
 	
 			
+			<style>
 			
-	
+			
+			</style>
+	<script type="text/javascript">
+	function scrollToPosition(element){  
+		console.log(document.location.pathname);
+		if(document.location.pathname=="/" || document.location.pathname == ""){
+			let sectionOffset  = $("#"+element).offset().top;
+            $("html,body").animate( {scrollTop:sectionOffset-30}, 1000);
+		}else{
+			window.location.href = "/#"+element;
+		}
+			
+        
+		}
+	</script>
 			    
 		<title>
 			<ui:insert name="title"> 
@@ -80,7 +95,13 @@
 							  <a class="nav-link" href="/pages/public/about.jsf">About Us</a>
 							</li>
 							<li class="nav-item active">
+							  <a class="nav-link" href="/pages/public/application_form.jsf">Application Form</a>
+							</li>
+							<li class="nav-item active">
 							  <a class="nav-link" href="/pages/public/gallery.jsf">Gallery</a>
+							</li>
+							<li class="nav-item active">
+							  <a class="nav-link" href="javascript:void(0)" onclick="scrollToPosition('services')">Our Services</a>
 							</li>
 						
 							<li class="nav-item active">
@@ -137,8 +158,12 @@
 						<p class="ml-4">Prime International Shipping LLC<br></br>
 							Logistic beyond expectation
 							</p>
-						<p class="mt-4"><i class="fas fa-map-marker-alt mr-2"></i> 9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</p>
-						<p class="mt-4"> <i class="fas fa-phone-alt mr-2"></i>+1 (832)-500-7007</p>
+							<ul style="list-style-type: none;">
+								<li class="mt-2"><a class="mt-4"><i class="fas fa-map-marker-alt mr-2"></i> 9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</a></li>
+								<li class="mt-2"><a class="mt-4" href="mailto:support@primeshippingllc.com"><i class="fa fa-envelope mr-2"></i>  support@primeshippingllc.com</a></li>
+								<li class="mt-2"><a class="mt-4" href="tel:+1 (832)-500-7007"> <i class="fas fa-phone-alt mr-2"></i>+1 (832)-500-7007</a></li>
+								<li class="mt-2"><a class="mt-4" href="whatsapp://send?abid=+1 (832)-500-7007&amp;text=Prime Shipping"> <i class="fa fa-whatsapp mr-2"></i>+1 (832)-500-7007</a></li>
+							</ul>
 
 					</div>
 
@@ -157,13 +182,26 @@
 			</div>
 				</section>
 
-		
+		<nav class="footerui-bg-overlay bg-transparent opacity-75">
+      <div class="container d-flex flex-wrap justify-content-between text-center pb-3">
+    
+        <div>
+          
+        </div>
+    
+        <div class="pt-3">
+          <a href="#" class="footer-text font-weight-bolder text-dark text-lightest1">Prime International Shipping LLC</a> ©
+          <span class="footer-text text-dark text-lightest1">Developed by</span> 
+        <a class="footer-text text-dark text-lightest1" href="https://www.smartopal.com"> <i>Smart Opal</i> </a>
+        </div>
+      </div>
+    </nav>
 		
 	
 
 		
-	<h:outputScript name="js/dashboard/assets/vendor/pnotify/pnotify.custom.js"/>
 		<h:outputScript name="js/dashboardPrime/jquery-3.5.1.js"/>
+	<h:outputScript name="js/dashboard/assets/vendor/pnotify/pnotify.custom.js"/>
 		<h:outputScript name="js/dashboardPrime/popper.min.js"/>
 		<h:outputScript name="js/dashboardPrime/bootstrap.min.js"/>
 		<h:outputScript name="js/dashboardPrime/jquery.easing.1.3.js"/>
@@ -171,9 +209,12 @@
 		<h:outputScript name="js/dashboardPrime/owl.carousel.min.js"/>
 		<h:outputScript name="js/dashboardPrime/typed.js"/>
 		<h:outputScript name="js/dashboardPrime/index.js"/>
+		<script>
+
+		$('[data-toggle="tooltip"]').tooltip();
+		</script>
 		<ui:insert name="scriptsImport"> 
 					   
-		   		Prime International Shipping LLC
 			</ui:insert>
 		
 	   

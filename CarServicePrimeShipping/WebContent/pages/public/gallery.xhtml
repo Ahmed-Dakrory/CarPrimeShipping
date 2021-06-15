@@ -86,110 +86,40 @@ above qualities plus many more to ensure that your entire shipping needs are met
 
 
 
-	<div class="row">
-		<div class="row">
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/20200713_194918.jpg"
+	<div class="row swiper-container two">
+  <div class="swiper-wrapper">
+    
+        <ui:repeat var="data" value="#{carLandingBean.listOfCarsLandingScroller}">
+	    <div class="swiper-slide preview-photo" >
+	    <a class="thumbnail see_photos" href="#" data-image-id="" data-toggle="modal" data-title=""
+                   data-image="/images/?file=#{data.mainImage}"
                    data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/20200713_194918.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/VideoCapture_20201108-115642.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/VideoCapture_20201108-115642.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/Photo_1618284143262.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/Photo_1618284143262.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/cu-7.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/cu-7.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/20191111_094601.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/20191111_094601.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-
-
-
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/20210505_193400.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/20210505_193400.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/20200902_190356.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/20200902_190356.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/20201019_174959.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/20201019_174959.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-
-
-
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/IMG-20200330-WA0007.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/IMG-20200330-WA0007.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                   data-image="/resources/Image/gallery/container.jpg"
-                   data-target="#image-gallery">
-                    <img class="img-thumbnail"
-                         src="/resources/Image/gallery/container.jpg"
-                         alt="Another alt text"/>
-                </a>
-            </div>
            
-        </div>
-
-
-        <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <img src="/images/?file=#{data.mainImage}" class="entity-img" />
+	      <img src="/resources/images/public/img/zoom-magnifier.png" class="hoverImage"/>
+	      </a>
+	    </div>
+		</ui:repeat>
+  
+  
+  
+  		
+  </div>
+  
+  
+  
+  <!-- If we need pagination -->
+		<div class="swiper-pagination"></div>
+		
+		
+		
+		
+		
+		
+		
+</div>
+	
+	<div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -210,9 +140,8 @@ above qualities plus many more to ensure that your entire shipping needs are met
                 </div>
             </div>
         </div>
-	</div>
 
-              
+	        
 			
   
  </div>
@@ -231,6 +160,40 @@ above qualities plus many more to ensure that your entire shipping needs are met
 <ui:define name="scriptsImport">
 
 		<h:outputScript name="js/dashboardPrime/gallery.js"/>
+			
+	
+	
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
+	<script>
+	// Params
+	
+	
+	
+	
+	
+	
+
+	
+
+var swiper = new Swiper( '.swiper-container.two', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		effect: 'coverflow',
+		loop: true,
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		coverflow: {
+			rotate: 50, // Slide rotate in degrees
+	        stretch: 0, // Stretch space between slides (in px)
+	        depth: 100, // Depth offset in px (slides translate in Z axis)
+	        modifier: 1, // Effect multipler
+	        slideShadows : true, // Enables slides shadows
+		}
+} );
+</script>
+
+
 </ui:define>
 
 <!--  

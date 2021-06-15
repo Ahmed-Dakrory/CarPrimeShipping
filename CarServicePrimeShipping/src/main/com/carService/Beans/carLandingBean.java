@@ -153,8 +153,8 @@ public class carLandingBean implements Serializable{
 
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("panelCarsToUpdate");
 	}
-	public categoriesEnum getCategoryEnum(int type) {
-        return categoriesEnum.values()[type];
+	public categoriesEnum getCategoryEnum(String type) {
+        return categoriesEnum.valueOf(type);
     }
 	
 	public categoriesEnum[] getCategoriesEnum() {

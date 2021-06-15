@@ -106,14 +106,14 @@
                                             
 							<div class="panel-body">
 							   <h:form>
-									<h:commandButton value="Add New Car" action="#{carLandingBean.addCarForMain()}" class="btn btn-default" ></h:commandButton>
+									<h:commandButton value="Add New Freight" action="#{carLandingBean.addCarForMain()}" class="btn btn-default" ></h:commandButton>
 								</h:form>
 								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 									<thead>
 										<tr style="    box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;">
 											
 											<th class="hidden-phone">Image</th>
-											<th class="hidden-phone">Vin</th>
+											<th class="hidden-phone">Serial</th>
 											<th class="hidden-phone">Description</th>
 											<th class="hidden-phone">Year</th>
 											<th class="hidden-phone">Transmission</th>
@@ -150,7 +150,7 @@
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.saleStatues}</span></td>
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.kiloDistance}</span></td>
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.bodyStyle}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carLandingBean.getCategoryEnum(data.category).name}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.category}</span></td>
 										</tr>
 									</ui:repeat>
 										

@@ -45,7 +45,8 @@ $(document).ready(function() {
             
             $(window).scroll(function () {  
                let wScroll=  $(window).scrollTop();
-               if(wScroll >  featuresOffset-50)
+               //console.log(featuresOffset,"     ",wScroll);
+               if(wScroll >  200-0)
                {
                 $("#btnUp").fadeIn(500);
                 $("#navbar").css("backgroundColor","rgb(32, 32, 32)");

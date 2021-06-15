@@ -31,13 +31,12 @@ body{
 }
 
 #navbar{
-    z-index: 9999;
+    z-index: 959;
     width: 100%;
     background-color: rgba(32, 32, 32, 0);
-  padding: 0rem !important;
-  margin: 0;
-  position: fixed;
-
+    padding: 0rem !important;
+    margin: 0;
+    position: fixed;
 }
 nav::after
 {
@@ -278,7 +277,8 @@ right: -5%;
 }
 
 #footer-contact ul li a:hover{
-    color:black;
+    color: #d29d3d;
+    cursor:pointer
 }
 
 

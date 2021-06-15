@@ -15,7 +15,47 @@
     max-width: 100%;
     height: 234px!important;
 }
+.ui-growl-image-error {
+    width: 100%;
+    background-position: 95% -2px!important;
+}
+.ui-growl-image {
+    width: 106%;
+    height: 32px;
+    float: left;
+    margin: 4px;
+    padding: 0;
+    display: block;
+    background: url(/javax.faces.resource/messages/messages.png.jsf?ln=primefaces) no-repeat;
 
+}
+
+.ui-growl-message {
+    padding: 0 0 8px 6px;
+    width: 100%;
+    float: right;
+}
+
+
+
+.ui-growl-item-container {
+z-index: 9999;
+    background: white;
+    height: 120px;
+    position: relative;
+    right: 91px;
+    margin: 0 0 6px 0;
+    opacity: .99;
+    width: 395px;
+}
+.ihref{
+font-size: 20px;
+    color: black;
+}
+
+.ihref:hover{
+color: #d29d3d;
+}
 </style>
 
  <div class="container ">
@@ -73,8 +113,11 @@
     <p>We Are Always With You</p>
 </div>
     <div class="row">
-        <div class="col-md-8 map">
-<img src="/resources/Image/download.jpg" alt="map"/>
+        <div class="col-md-7 map mr-5">
+<iframe style="
+    width: 100%;
+    height: 100%;
+" src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d1734.0160272913151!2d-95.20669765807122!3d29.6318122455086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m5!1s0x864099c83d15247d%3A0xace8de49801c59d7!2s9100%20Galveston%20Rd%2C%20Houston%2C%20TX%2077034!3m2!1d29.6306491!2d-95.2065247!4m3!3m2!1d29.633680799999997!2d-95.2101946!5e0!3m2!1sar!2sus!4v1623777755008!5m2!1sar!2sus"></iframe> 
         </div>
 
         <div class="col-md-4 information">
@@ -82,11 +125,12 @@
             <h2>Our Information</h2>
         </div>
         <div class="body-Information">
-            <h5>Phone</h5>
-            <p>+1 (832)-500-7007</p>
-
-            <h5>location</h5>
-            <p>9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</p>
+            <ul style="list-style-type: none;">
+				<li class="mt-2"><a class="mt-4 ihref"><i class="fas fa-map-marker-alt mr-2"></i> 9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</a></li>
+				<li class="mt-2"><a class="mt-4 ihref" href="mailto:support@primeshippingllc.com"><i class="fa fa-envelope mr-2"></i>  support@primeshippingllc.com</a></li>
+				<li class="mt-2"><a class="mt-4 ihref" href="tel:+1 (832)-500-7007"> <i class="fas fa-phone-alt mr-2"></i>+1 (832)-500-7007</a></li>
+				<li class="mt-2"><a class="mt-4 ihref" href="whatsapp://send?abid=+1 (832)-500-7007&amp;text=Prime Shipping"> <i class="fa fa-whatsapp mr-2"></i>+1 (832)-500-7007</a></li>
+			</ul>
 
             <h5>Business Hours</h5>
             <p>Mon, Tue, Wed, Thu (	7:30AM - 5:00PM )<br></br>
@@ -103,8 +147,16 @@
 
 
 
+		#{formsBean.refresh()}
 <section id="contact-form">
-    <div class="layout">
+    <h:form class="layout">
+    <p:growl autoUpdate="true"  showDetail="true" life="9000">
+    <script>
+			   $(".ui-growl-title").on('click', function(event){
+			   	$(this).closest('.ui-growl-item-container').hide();
+			   });
+		   </script>
+    </p:growl>
                 <div class="container">
                 <h5>Have Any Question?</h5>
                 <P>If you would like to know more
@@ -112,24 +164,36 @@
                     us using this form</P>
 
                     <div class="row">
+                   
                         <div class="col-md-4">
-                          <input type="text" class="form-control" placeholder="Name" aria-label="First name"/>
+                          <p:inputText type="text" class="form-control" required="true" requiredMessage="Need the name" value="#{formsBean.contactName}" placeholder="Name" aria-label="First name"/>
                         </div>
                         <div class="col-md-4">
-                          <input type="text" class="form-control" placeholder="Phone Number" aria-label="Last name"/>
+                          <p:inputText type="text" class="form-control" required="true" requiredMessage="Need the phone" value="#{formsBean.contactPhone}" placeholder="Phone Number" aria-label="Last name"/>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="Email Adress" aria-label="Last name"/>
+                            <p:inputText type="text" class="form-control" required="true" requiredMessage="Need the mail" value="#{formsBean.contactMail}" placeholder="Email Adress" aria-label="Last name"/>
                           </div>
                           <div class="col-md-12">
-                            <textarea class="form-control mt-4" id="exampleFormControlTextarea1" placeholder="Message" rows="5"></textarea>
+                            <p:inputTextarea class="form-control mt-4" value="#{formsBean.contactMessage}" required="true" requiredMessage="Need the Message" id="exampleFormControlTextarea1" placeholder="Message" rows="5"/>
                           </div>
 
-                          <button type="button" class="btn btn-secondary mt-4">SEND MESSAGE</button>
-
+                          <p:commandButton action="#{formsBean.mail_Contact()}" class="btn btn-secondary mt-4" value="SEND MESSAGE" update=":scriptData "/>
+					
                       </div>
                     </div>
-                </div>
+                </h:form>
+       
+       <h:form id="scriptData">
+			<div id="scriptForGrowl">
+			<script>
+			   $(".ui-growl-title").on('click', function(event){
+			   	$(this).closest('.ui-growl-item-container').hide();
+			   });
+		   </script>
+		</div>
+		</h:form>
+       
             </section>
 		
 		
