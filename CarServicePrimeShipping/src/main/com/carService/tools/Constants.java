@@ -18,7 +18,8 @@ public class Constants {
 	
 	public static Integer Notifcation_Period=30;
 	
-	
+	//For tls and mail send
+	//sudo apt-get install libtcnative-1
 	
 	
 	public static void sendEmailNotificationForThisEmailWithMessage(car selectedCar2, String message,String mail) {
