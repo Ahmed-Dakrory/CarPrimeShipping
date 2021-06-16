@@ -448,38 +448,31 @@ z-index: 9999;
 										</div>
 										
 										<div class="row border w-100 p-2 m-0 mt-3">
-											<div class="row mt-0">
-												<div class="col-md-2 mt-1">Insurance</div>
-												<div class="col-md-1 mt-1 w-100">
+											<div class="row mt-0 w-100">
+												<div class="ml-3 col-md-10 mt-1 w-100">
 													<h:selectBooleanCheckbox value="#{formsBean.vehicleInsurance[var-1]}">
 													</h:selectBooleanCheckbox>
+													I wish to insure this shipment.
 													
-												</div>
-												<div class="col-md-8 mt-1 w-100 p-3" >
-													Do you want insurance based upon your indicated value of your vehicle? (The premium is 2% of the indicated value or $200, whichever is higher).
 												</div>
 											</div>
 											</div>
 											<div class="row border w-100 p-2 m-0 mt-3 mt-0">
-											<div class="row w-100 mt-0">
-												<div class="col-md-1 mt-1"></div>
-												<div class="col-md-1 mt-1 w-100"  >
+											<div class="row w-100 mt-0 ">
+												<div class="ml-3 col-md-10 mt-1 w-100"  >
 													<h:selectBooleanCheckbox value="#{formsBean.vehicleAdditionalPickUp[var-1]}">
 													</h:selectBooleanCheckbox>
-													
-												</div>
-												<div class="col-md-9 mt-1 w-100 p-3">
 													Do you need us to pickup your vehicle from anywhere in the United States? 
-													<a href="#"  data-toggle="tooltip" data-placement="right" title="This is some information for our tooltip. ">
+													<a   data-toggle="tooltip" data-placement="right" title="This is some information for our tooltip. ">
 														<span title="More">
 															<font color="blue" style="font-weight:bold;">
 																<img src="/resources/Image/help-icon-16.png"/>
 															</font>
 														</span>
 													</a>
-													<br></br>
-													(additional fee will apply to deliver your vehicle to NY or CA warehouse)
+													
 												</div>
+												
 											</div>
 											
 										
@@ -543,7 +536,7 @@ z-index: 9999;
 								    <div class="box row mt-4" id="us_citizen" style="display: flex;">
 								        <div class="title_box  col-md-4">
 								            <div class="description importantly">EIN Number<span>*  </span>
-								            <a href="#" title="Recently, a change was implemented by the U.S. Government that requires customers to use an EIN (Employer Identification Number) tax number in place of the social security number. This is to protect private information connected to your social security number."  data-toggle="tooltip" data-placement="right">
+								            <a  title="Recently, a change was implemented by the U.S. Government that requires customers to use an EIN (Employer Identification Number) tax number in place of the social security number. This is to protect private information connected to your social security number."  data-toggle="tooltip" data-placement="right">
 								            <span title="More"><font color="blue" style="font-weight:bold;">
 								            <img src="/resources/Image/help-icon-16.png"/></font>
 								            </span>
@@ -560,7 +553,7 @@ z-index: 9999;
 								    <div class="box row mt-4" id="non_us_citizen" style="display: none;">
 								        <div class="title_box  col-md-4">
 								            <div class="description importantly" id="3">Passport ID  
-								            <a href="#" title="This is some information for our tooltip. "  data-toggle="tooltip" data-placement="right">
+								            <a  title="This is some information for our tooltip. "  data-toggle="tooltip" data-placement="right">
 								            <span title="More"><font color="blue" style="font-weight:bold;">
 								            <img src="/resources/Image/help-icon-16.png"/>
 								            </font>
@@ -1755,7 +1748,7 @@ z-index: 9999;
 								    <div class="box row mt-4">
 								        <div class="title_box  col-md-4">
 								            <div class="description importantly">Agent <span>*  </span>
-									            <a href="#" title="This is some information for our tooltip. " data-toggle="tooltip" data-placement="right">
+									            <a  title="This is some information for our tooltip. " data-toggle="tooltip" data-placement="right">
 										            <span title="More">
 											            <font color="blue" style="font-weight:bold;">
 											            	<img src="/resources/Image/help-icon-16.png"/>

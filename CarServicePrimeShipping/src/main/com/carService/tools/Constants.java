@@ -2401,8 +2401,8 @@ public class Constants {
 			public void run() {
 				
 				
-				String from = "carmarshipping@gmail.com";
-		        String pass = "Imran2012";
+				String from = "support@primeshippingllc.com";
+		        String pass = "isaefdyvgpvhximl";
 				
 				// TODO Auto-generated method stub
 				 Properties props = System.getProperties();

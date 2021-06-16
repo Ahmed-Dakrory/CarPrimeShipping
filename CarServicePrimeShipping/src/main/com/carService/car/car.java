@@ -292,6 +292,11 @@ public class car {
 
 	@Column(name = "releaseOption")
 	private boolean releaseOption;
+	
+	
+
+	@Column(name = "keyExist")
+	private boolean keyExist;
 
 	@ManyToOne
 	@JoinColumn(name = "consigneeId")
@@ -1591,6 +1596,24 @@ public class car {
 
 	public void setMobileOrComp(Integer mobileOrComp) {
 		this.mobileOrComp = mobileOrComp;
+	}
+
+
+
+
+
+
+	public boolean isKeyExist() {
+		return keyExist;
+	}
+
+
+
+
+
+
+	public void setKeyExist(boolean keyExist) {
+		this.keyExist = keyExist;
 	}
 
 

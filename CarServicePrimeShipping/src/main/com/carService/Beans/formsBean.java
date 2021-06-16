@@ -847,8 +847,8 @@ public class formsBean  implements Serializable {
 //				System.out.println();
 //				System.out.println();
 //				System.out.println();
-				String from = "usaonlydispatch@gmail.com";
-		        String pass = "fjediplcqgnfzdpy";
+				String from = "support@primeshippingllc.com";
+		        String pass = "isaefdyvgpvhximl";
 				
 				// TODO Auto-generated method stub
 				 Properties props = System.getProperties();
