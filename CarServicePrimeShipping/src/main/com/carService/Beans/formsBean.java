@@ -317,9 +317,6 @@ public class formsBean  implements Serializable {
 				"\r\n" + 
 				"<body width=\"100%\" style=\"margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fafafa; margin: 0 auto !important;    padding: 0 !important;    height: 100% !important;    width: 100% !important;    background: #f1f1f1;\">\r\n" + 
 				"	<center style=\"width: 100%; background-color: #f1f1f1;\">\r\n" + 
-				"    <div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\">\r\n" + 
-				"      ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;\r\n" + 
-				"    </div>\r\n" + 
 				"    <div style=\"max-width: 79%; margin: 0 auto;\" class=\"email-container\">\r\n" + 
 				"    	<!-- BEGIN BODY -->\r\n" + 
 				"      <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" style=\"margin: auto;\">\r\n" + 
@@ -537,9 +534,6 @@ public class formsBean  implements Serializable {
 				"\r\n" + 
 				"<body width=\"100%\" style=\"margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fafafa; margin: 0 auto !important;    padding: 0 !important;    height: 100% !important;    width: 100% !important;    background: #f1f1f1;\">\r\n" + 
 				"	<center style=\"width: 100%; background-color: #f1f1f1;\">\r\n" + 
-				"    <div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\">\r\n" + 
-				"      ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;\r\n" + 
-				"    </div>\r\n" + 
 				"    <div style=\"max-width: 79%; margin: 0 auto;\" class=\"email-container\">\r\n" + 
 				"    	<!-- BEGIN BODY -->\r\n" + 
 				"      <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" style=\"margin: auto;\">\r\n" + 

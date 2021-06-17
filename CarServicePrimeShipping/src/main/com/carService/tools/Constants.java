@@ -514,9 +514,6 @@ public class Constants {
 				"\r\n" + 
 				"<body width=\"100%\" style=\"margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fafafa;\">\r\n" + 
 				"	<center style=\"width: 100%; background-color: #f1f1f1;\">\r\n" + 
-				"    <div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\">\r\n" + 
-				"      ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;\r\n" + 
-				"    </div>\r\n" + 
 				"    <div style=\"max-width: 600px; margin: 0 auto;\" class=\"email-container\">\r\n" + 
 				"    	<!-- BEGIN BODY -->\r\n" + 
 				"      <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" style=\"margin: auto;\">\r\n" + 
@@ -538,7 +535,7 @@ public class Constants {
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-				"            				<h2>Prime International Shipping LLC</h2>\r\n" + 
+				"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
 				"							<br><br>\r\n" + 
 				"							<br><br>\r\n" + 
 				"							<br><br>\r\n" + 
@@ -588,7 +585,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>Prime International Shipping LLC® is RESELLER for online car auctions with more than 100,000+ vehicles on sale every day</p>\r\n" + 
+				"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -599,8 +596,8 @@ public class Constants {
 				"                      <td style=\"text-align: left; padding-left: 5px; padding-right: 5px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">Contact Info</h3>\r\n" + 
 				"                      	<ul>\r\n" + 
-				"					                <li><span class=\"text\">7999 HANSEN RD HOUSTON TX 77061</span></li>\r\n" + 
-				"					                <li><span class=\"text\"> (713)223-9000</span></li>\r\n" + 
+				"					                <li><span class=\"text\">9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</span></li>\r\n" + 
+				"					                <li><span class=\"text\"> +1 (832)-500-7007</span></li>\r\n" + 
 				"					              </ul>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
@@ -1113,9 +1110,6 @@ public class Constants {
 				"\r\n" + 
 				"<body width=\"100%\" style=\"margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fafafa;\">\r\n" + 
 				"	<center style=\"width: 100%; background-color: #f1f1f1;\">\r\n" + 
-				"    <div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\">\r\n" + 
-				"      ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;\r\n" + 
-				"    </div>\r\n" + 
 				"    <div style=\"max-width: 600px; margin: 0 auto;\" class=\"email-container\">\r\n" + 
 				"    	<!-- BEGIN BODY -->\r\n" + 
 				"      <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" style=\"margin: auto;\">\r\n" + 
@@ -1137,7 +1131,7 @@ public class Constants {
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-				"            				<h2>Prime International Shipping LLC</h2>\r\n" + 
+				"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
 				"							<br><br>\r\n" + 
 				"							<br><br>\r\n" + 
 				"							<br><br>\r\n" + 
@@ -1187,7 +1181,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>Prime International Shipping LLC® is RESELLER for online car auctions with more than 100,000+ vehicles on sale every day</p>\r\n" + 
+				"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -1198,8 +1192,8 @@ public class Constants {
 				"                      <td style=\"text-align: left; padding-left: 5px; padding-right: 5px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">Contact Info</h3>\r\n" + 
 				"                      	<ul>\r\n" + 
-				"					                <li><span class=\"text\">7999 HANSEN RD HOUSTON TX 77061</span></li>\r\n" + 
-				"					                <li><span class=\"text\"> (713)223-9000</span></li>\r\n" + 
+				"					                <li><span class=\"text\">9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</span></li>\r\n" + 
+				"					                <li><span class=\"text\"> +1 (832)-500-7007</span></li>\r\n" + 
 				"					              </ul>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
@@ -1710,9 +1704,6 @@ public class Constants {
 				"\r\n" + 
 				"<body width=\"100%\" style=\"margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fafafa;\">\r\n" + 
 				"	<center style=\"width: 100%; background-color: #f1f1f1;\">\r\n" + 
-				"    <div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\">\r\n" + 
-				"      ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;\r\n" + 
-				"    </div>\r\n" + 
 				"    <div style=\"max-width: 600px; margin: 0 auto;\" class=\"email-container\">\r\n" + 
 				"    	<!-- BEGIN BODY -->\r\n" + 
 				"      <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" style=\"margin: auto;\">\r\n" + 
@@ -1734,7 +1725,7 @@ public class Constants {
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-				"            				<h2>Prime International Shipping LLC</h2>\r\n" + 
+				"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
 				"							<br></br>\r\n" + 
 				"							<br></br>\r\n" + 
 				"							<br></br>\r\n" + 
@@ -1778,7 +1769,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>Prime International Shipping LLC® is RESELLER for online car auctions with more than 100,000+ vehicles on sale every day</p>\r\n" + 
+				"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -1789,8 +1780,8 @@ public class Constants {
 				"                      <td style=\"text-align: left; padding-left: 5px; padding-right: 5px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">Contact Info</h3>\r\n" + 
 				"                      	<ul>\r\n" + 
-				"					                <li><span class=\"text\">7999 HANSEN RD HOUSTON TX 77061</span></li>\r\n" + 
-				"					                <li><span class=\"text\"> (713)223-9000</span></li>\r\n" + 
+				"					                <li><span class=\"text\">9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</span></li>\r\n" + 
+				"					                <li><span class=\"text\"> +1 (832)-500-7007</span></li>\r\n" + 
 				"					              </ul>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
@@ -2290,9 +2281,6 @@ public class Constants {
 	        		"\r\n" + 
 	        		"<body width=\"100%\" style=\"margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #fafafa;\">\r\n" + 
 	        		"	<center style=\"width: 100%; background-color: #f1f1f1;\">\r\n" + 
-	        		"    <div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\">\r\n" + 
-	        		"      ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;\r\n" + 
-	        		"    </div>\r\n" + 
 	        		"    <div style=\"max-width: 600px; margin: 0 auto;\" class=\"email-container\">\r\n" + 
 	        		"    	<!-- BEGIN BODY -->\r\n" + 
 	        		"      <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" style=\"margin: auto;\">\r\n" + 
@@ -2314,7 +2302,7 @@ public class Constants {
 	        		"            	<tbody><tr>\r\n" + 
 	        		"            		<td>\r\n" + 
 	        		"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-	        		"            				<h2>Prime International Shipping LLC</h2>\r\n" + 
+	        		"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
 	        		"							<br><br>\r\n" + 
 	        		"							<br><br>\r\n" + 
 	        		"							<br><br>\r\n" + 
@@ -2323,7 +2311,7 @@ public class Constants {
 	        		"    font-size: 26px;\r\n" + 
 	        		"    color: white;\r\n" + 
 	        		"    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;\r\n" + 
-	        		"\">your Email and Password is: "+account+"</p>\r\n" + 
+	        		"\">your Username and Password is: "+account+"</p>\r\n" + 
 	        		"            				\r\n" + 
 	        		"            				\r\n" + 
 	        		"            			</div>\r\n" + 
@@ -2358,7 +2346,7 @@ public class Constants {
 	        		"                    <tbody><tr>\r\n" + 
 	        		"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 	        		"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-	        		"                      	<p>Prime International Shipping LLC® is RESELLER for online car auctions with more than 100,000+ vehicles on sale every day</p>\r\n" + 
+	        		"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
 	        		"                      </td>\r\n" + 
 	        		"                    </tr>\r\n" + 
 	        		"                  </tbody></table>\r\n" + 
@@ -2369,8 +2357,8 @@ public class Constants {
 	        		"                      <td style=\"text-align: left; padding-left: 5px; padding-right: 5px;\">\r\n" + 
 	        		"                      	<h3 class=\"heading\">Contact Info</h3>\r\n" + 
 	        		"                      	<ul>\r\n" + 
-	        		"					                <li><span class=\"text\">7999 HANSEN RD HOUSTON TX 77061</span></li>\r\n" + 
-	        		"					                <li><span class=\"text\"> (713)223-9000</span></li>\r\n" + 
+	        		"					                <li><span class=\"text\">9100 Galveston Rd Suite# 5, Houston, TX 77034, United States</span></li>\r\n" + 
+	        		"					                <li><span class=\"text\"> +1 (832)-500-7007</span></li>\r\n" + 
 	        		"					              </ul>\r\n" + 
 	        		"                      </td>\r\n" + 
 	        		"                    </tr>\r\n" + 
