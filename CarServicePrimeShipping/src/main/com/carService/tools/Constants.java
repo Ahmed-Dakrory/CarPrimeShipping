@@ -522,23 +522,19 @@ public class Constants {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1><a href=\"#\">Prime International Shipping LLC</a></h1>\r\n" + 
+				"			            <h1><a href=\"http://primeshippingllc.com/\">Prime International Shipping LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
 				"          </td>\r\n" + 
 				"	      </tr><!-- end tr -->\r\n" + 
 				"	      <tr>\r\n" + 
-				"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-image: url(http://cargomarin.com/resources/images/public/img/emailBack.jpg);background-size: cover;height: 263px;\">\r\n" + 
+				"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-color: #555c61;box-shadow: 0px 3px 21px 5px grey;background-size:cover;height:263px;\">\r\n" + 
 				"          	<div class=\"overlay\"></div>\r\n" + 
 				"            <table>\r\n" + 
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-				"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
-				"							<br><br>\r\n" + 
-				"							<br><br>\r\n" + 
-				"							<br><br>\r\n" + 
 				"\r\n" + 
 				"<p style=\"\r\n" + 
 				"    font-size: 22px;\r\n" + 
@@ -561,8 +557,8 @@ public class Constants {
 				"	      </tr><!-- end tr -->\r\n" + 
 				"	      <tr>\r\n" + 
 				"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
-				"          	<div class=\"heading-section heading-section-white\">\r\n" + 
-				"          		<span class=\"subheading\">Welcome</span>\r\n" + 
+				"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
+				"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
 				"            	<h2>Prime International Shipping LLC</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
@@ -1118,23 +1114,19 @@ public class Constants {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1><a href=\"#\">Prime International Shipping LLC</a></h1>\r\n" + 
+				"			            <h1><a href=\"http://primeshippingllc.com/\">Prime International Shipping LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
 				"          </td>\r\n" + 
 				"	      </tr><!-- end tr -->\r\n" + 
 				"	      <tr>\r\n" + 
-				"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-image: url(http://cargomarin.com/resources/images/public/img/emailBack.jpg);background-size: cover;height: 263px;\">\r\n" + 
+				"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-color: #555c61;box-shadow: 0px 3px 21px 5px grey;background-size:cover;height:263px;\">\r\n" + 
 				"          	<div class=\"overlay\"></div>\r\n" + 
 				"            <table>\r\n" + 
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-				"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
-				"							<br><br>\r\n" + 
-				"							<br><br>\r\n" + 
-				"							<br><br>\r\n" + 
 				"\r\n" + 
 				"<p style=\"\r\n" + 
 				"    font-size: 26px;\r\n" + 
@@ -1157,8 +1149,8 @@ public class Constants {
 				"	      </tr><!-- end tr -->\r\n" + 
 				"	      <tr>\r\n" + 
 				"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
-				"          	<div class=\"heading-section heading-section-white\">\r\n" + 
-				"          		<span class=\"subheading\">Welcome</span>\r\n" + 
+				"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
+				"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
 				"            	<h2>Prime International Shipping LLC</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
@@ -1712,23 +1704,19 @@ public class Constants {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1><a href=\"#\">Prime International Shipping LLC</a></h1>\r\n" + 
+				"			            <h1><a href=\"http://primeshippingllc.com/\">Prime International Shipping LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
 				"          </td>\r\n" + 
 				"	      </tr><!-- end tr -->\r\n" + 
 				"	      <tr>\r\n" + 
-				"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-image: url(http://cargomarin.com/resources/images/public/img/emailBack.jpg);background-size: cover;height: 263px;\">\r\n" + 
+				"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-color: #555c61;box-shadow: 0px 3px 21px 5px grey;background-size:cover;height:263px;\">\r\n" + 
 				"          	<div class=\"overlay\"></div>\r\n" + 
 				"            <table>\r\n" + 
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-				"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
-				"							<br></br>\r\n" + 
-				"							<br></br>\r\n" + 
-				"							<br></br>\r\n" + 
 				"\r\n" + 
 				"<p style=\"\r\n" + 
 				"    font-size: 26px;\r\n" + 
@@ -1745,8 +1733,8 @@ public class Constants {
 				"	      </tr><!-- end tr -->\r\n" + 
 				"	      <tr>\r\n" + 
 				"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
-				"          	<div class=\"heading-section heading-section-white\">\r\n" + 
-				"          		<span class=\"subheading\">Welcome</span>\r\n" + 
+				"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
+				"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
 				"            	<h2>Prime International Shipping LLC</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
@@ -2289,23 +2277,19 @@ public class Constants {
 	        		"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 	        		"          		<tbody><tr>\r\n" + 
 	        		"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-	        		"			            <h1><a href=\"#\">Prime International Shipping LLC</a></h1>\r\n" + 
+	        		"			            <h1><a href=\"http://primeshippingllc.com/\">Prime International Shipping LLC</a></h1>\r\n" + 
 	        		"			          </td>\r\n" + 
 	        		"          		</tr>\r\n" + 
 	        		"          	</tbody></table>\r\n" + 
 	        		"          </td>\r\n" + 
 	        		"	      </tr><!-- end tr -->\r\n" + 
 	        		"	      <tr>\r\n" + 
-	        		"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-image: url(http://cargomarin.com/resources/images/public/img/emailBack.jpg);background-size: cover;height: 263px;\">\r\n" + 
+	        		"          <td valign=\"middle\" class=\"hero bg_white\" style=\"background-color: #555c61;box-shadow: 0px 3px 21px 5px grey;background-size:cover;height:263px;\">\r\n" + 
 	        		"          	<div class=\"overlay\"></div>\r\n" + 
 	        		"            <table>\r\n" + 
 	        		"            	<tbody><tr>\r\n" + 
 	        		"            		<td>\r\n" + 
 	        		"            			<div class=\"text\" style=\"padding: 0 4em; text-align: center;\">\r\n" + 
-	        		"            				<h2 style=\"color:white;\">Prime International Shipping LLC</h2>\r\n" + 
-	        		"							<br><br>\r\n" + 
-	        		"							<br><br>\r\n" + 
-	        		"							<br><br>\r\n" + 
 	        		"\r\n" + 
 	        		"<p style=\"\r\n" + 
 	        		"    font-size: 26px;\r\n" + 
@@ -2322,8 +2306,8 @@ public class Constants {
 	        		"	      </tr><!-- end tr -->\r\n" + 
 	        		"	      <tr>\r\n" + 
 	        		"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
-	        		"          	<div class=\"heading-section heading-section-white\">\r\n" + 
-	        		"          		<span class=\"subheading\">Welcome</span>\r\n" + 
+	        		"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
+	        		"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
 	        		"            	<h2>Prime International Shipping LLC</h2>\r\n" + 
 	        		"            	\r\n" + 
 	        		"          	</div>\r\n" + 

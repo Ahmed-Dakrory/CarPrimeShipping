@@ -325,7 +325,7 @@ public class formsBean  implements Serializable {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1 style=\"margin: 0;\"><a href=\"#\" style=\"color: #000000;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">Prime International Shipping</a></h1>\r\n" + 
+				"			            <h1 style=\"margin: 0;\"><a href=\"http://primeshippingllc.com/\" style=\"color: #3c64f5;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">Prime International Shipping</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -338,7 +338,6 @@ public class formsBean  implements Serializable {
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 1em; text-align: center;\">\r\n" + 
-				"            				<h2>Prime International Shipping</h2>\r\n" + 
 				"							<div class=\"mainContainer\">\r\n" + 
 				"						\r\n" + 
 				"								\r\n" + 
@@ -542,7 +541,7 @@ public class formsBean  implements Serializable {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1 style=\"margin: 0;\"><a href=\"#\" style=\"color: #000000;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">Prime International Shipping</a></h1>\r\n" + 
+				"			            <h1 style=\"margin: 0;\"><a href=\"http://primeshippingllc.com/\" style=\"color: #3c64f5;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">Prime International Shipping</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -555,7 +554,6 @@ public class formsBean  implements Serializable {
 				"            	<tbody><tr>\r\n" + 
 				"            		<td>\r\n" + 
 				"            			<div class=\"text\" style=\"padding: 0 1em; text-align: center;\">\r\n" + 
-				"            				<h2>Prime International Shipping</h2>\r\n" + 
 				"							<div class=\"mainContainer\">\r\n" + 
 				"								<table id=\"carTables\" style=\"width:100%;font-size:15px;border: 1px solid black;  text-align: center;  text-align: center;  table-layout: auto;\">\r\n" + 
 					allCars+
