@@ -707,8 +707,16 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
 											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.commision}</span></td>
 											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.valueOfGood}</span></td>
 											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.commision+data.fees+data.seacost+data.landcost+data.valueOfGood}</span></td>
-											<td class="center hidden-phone"><img style="display:#{data.photoExist==true?'block':'none'} ;     box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 25px;" src = "/resources/images/img/no-photo.jpg"/></td>
-											<td class="center hidden-phone"><img style="display:#{data.docExist==true?'block':'none'} ;     width: 25px;" src = "/resources/images/public/img/membership-choice-step/membership-choice__premier-step-1.png"/></td>
+											<td class="center hidden-phone">
+											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.photoExist==true?'block':'none'} ;">
+												<img style=" box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 25px;" src = "/resources/images/img/no-photo.jpg"/>
+											</a>
+											</td>
+											<td class="center hidden-phone">
+											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.docExist==true?'block':'none'} ; ">
+												<img style="    width: 25px;" src = "/resources/images/public/img/membership-choice-step/membership-choice__premier-step-1.png"/>
+											</a>
+											</td>
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.mobileOrComp==0?'Computer':'Mobile'}</span></td>
 										</tr>
 									</ui:repeat>

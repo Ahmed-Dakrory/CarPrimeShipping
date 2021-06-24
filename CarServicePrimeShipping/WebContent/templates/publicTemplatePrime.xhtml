@@ -31,6 +31,50 @@
 			<style>
 			
 			
+			
+			.icon-bar {
+      position: fixed;
+    right: 0%;
+    top: 39%;
+    z-index: 9999;
+    -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 13px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 33px;
+}
+
+.icon-bar a:hover {
+  background-color: #269be0f2;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.instgram {
+  background: #55ACEE;
+  color: white;
+}
+
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+
+
+
+			
 			</style>
 	<script type="text/javascript">
 	function scrollToPosition(element){  
@@ -52,6 +96,8 @@
 			</ui:insert>
 		</title>
 	
+	
+		
 		<section id="loading">
 
 
@@ -73,6 +119,13 @@
 		<header>
 
 
+
+		<div class="icon-bar">
+		  <a href="https://www.facebook.com/primeshippingllc" class="facebook"><i class="fa fa-facebook"></i></a> 
+		  <a href="https://www.instagram.com/primeshippingllc/" class="instgram"><i class="fa fa-instagram"></i></a> 
+		  <a href="https://www.linkedin.com/in/yaser-salem-5a920469/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+		</div>
+		
 
 
 		<section id="mainHeadChange">
@@ -221,6 +274,9 @@
 					   
 			</ui:insert>
 		
+	   
+	   
+	   
 	   
 	   
 	</h:body>

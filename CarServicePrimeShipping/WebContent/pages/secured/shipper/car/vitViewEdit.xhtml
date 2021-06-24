@@ -15,7 +15,9 @@
 
  <ui:define name="mainHead"> 
 			       <ul class="mn-sub"><li class="mn-sub-item mn-item-vendors"><a href="vitView.jsf" class="mn-sub-item-current"><b>Vehicle List</b></a></li></ul>
-           
+            <link rel="stylesheet" href="#{resource['css:dashboardPrime/all.min.css']}" />
+		<link rel="stylesheet" href="#{resource['css:dashboardPrime/bootstrap.min.css']}" />
+		
 			</ui:define>
 
 	<ui:define name="content">
@@ -53,6 +55,47 @@
     right: 17px;
 }
 					</style>
+					
+					
+					    	<style>
+					    	
+ 	.ui-fileupload-content .ui-progressbar .ui-progressbar-value {
+    background: gray;
+    height: 100%;
+}
+
+.ui-fileupload-content .ui-progressbar {
+    width: 200px;
+    height: 20px;
+    margin: 0;
+    top: 5px;
+    border-style: solid;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+
+    input, select {
+    font-family: arial;
+    height: 29px!important;
+    padding: 1px 1px 1px 9px;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 15px!important;
+    font-family: calibri;
+}
+
+td {
+    /* font-weight: 400; */
+    font-size: 15px;
+    font-family: calibri;
+}
+
+.tbltxt {
+    font: 16px 'calibri';
+    color: #000;
+}
+    	</style>
 	
     <link rel="stylesheet" href="#{resource['css:dashboard/mailMultiple/jquerysctipttop.css']}" />
     <link rel="stylesheet" href="#{resource['css:dashboard/mailMultiple/email.multiple.css']}" />
@@ -5785,98 +5828,67 @@
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr height="23">
-                                                                                                <td>
-                                                                                                </td>
+                                                                                               
                                                                                                 <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
                                                                                                     <div id="picDiv" style="display: inline; margin-left: 6px">
-                                                                                                     	<p:fileUpload id="FileUploaded" fileUploadListener="#{carBean.previewImage}" dragDropSupport="true" sizeLimit="99999999" fileLimit="20" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
+                                                                                                     	<p:fileUpload id="FileUploaded" fileUploadListener="#{carBean.previewImage}" dragDropSupport="true" sizeLimit="10000000" fileLimit="100" multiple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
         
         
         
-               <h:panelGroup id="imagesPanel">
-                                     
-<table border="1" style="    border: unset;">
-   <tr>
-        <td colspan="2">
-            <table id="ctl00_BodyHolder_imageList_imageList" cellspacing="0" border="0" style="border-collapse:collapse;">
-	<tr>
-                
-                
-	
-		<ui:repeat var="var" value="#{carBean.images}">
-			<td style="border: black;padding: 14px;border-right-style: solid;border-width: 1px;">
-			<div class="containerDevCloseButtonNew">
+               <p:panel id="imagesPanel" class="container">
+       
+					<div class="row">
+					
+							<ui:repeat var="var" value="#{carBean.images}">
+    <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;">			
+				<div class="containerDevCloseButtonNew">
 						<div class="devCloseButtonNew" onclick="deleteImageNum('#{var}')">
 	                                	<div href="#"  class="closeButtonNew">
 	                                	</div>
 	                    </div>
 					</div>
-                    <table>
-                        <tr>
-                            <td align="center">
-                                <div>
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
                                     <a href="#" onclick='ViewDocById("#{var}")'>
-                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
+                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;"/></a>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                        
+                        <div class="row">
                                 <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
                                     <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
                                 
-                            </td>
-                        </tr>
-                        <tr>
-                            
-                        </tr>
-                    </table>
-                </td>
+                           </div>
+                   </div>
+               </div>
                 
                 
                
 		</ui:repeat>
              
+             <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;padding-top: 16px;">
              
-              <td style="border: black;padding: 14px;border-width: 1px;">
-                    <table>
-                        <tr>
-                            <td align="center">
-                                <div>
+                     <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
                                     <label for="aspnetForm:FileUploaded_input">
-                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" alt="image#{var}" style="border-width:0px;    width: 50px;" />
+                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;" />
                                     </label>
                                         
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                        
+                        <div class="row">
                                 <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
                                     <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">click to select Image</span></a>
                                 
-                            </td>
-                        </tr>
-                        <tr>
-                            
-                        </tr>
-                    </table>
-                </td>
+                               </div>
+                   </div>
+             
+              </div>
 	   
-               
-	</tr>
-</table>
-
-</td>
-    </tr>
-    <tr>
-    </tr>
-        
-</table>
-
-</h:panelGroup>
-
-                                                                                                    </div>
+					</div>
+				</p:panel>
+				</div>
                                                                                                 </td>
 
                                                                                                 <td>
@@ -5897,7 +5909,7 @@
                                                                                                 </td>
                                                                                                 <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
                                                                                                     <div id="docDiv" style="display: inline; margin-left: 6px">
-                                                                                                     	<p:fileUpload id="docUploaded" fileUploadListener="#{carBean.previewFile}"  dragDropSupport="true" sizeLimit="99999999" fileLimit="20" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
+                                                                                                     	<p:fileUpload id="docUploaded" fileUploadListener="#{carBean.previewFile}"  dragDropSupport="true" sizeLimit="10000000" fileLimit="100" multiple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
         
         
         
@@ -6008,7 +6020,7 @@
                                                                                                 </td>
                                                                                                 <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
                                                                                                     <div id="pdfdocDiv" style="display: inline; margin-left: 6px">
-                                                                                                     	<p:fileUpload id="pdfdocUploaded" fileUploadListener="#{carBean.previewFilePdf}"  dragDropSupport="true" sizeLimit="99999999" fileLimit="20" allowTypes="/(\.|\/)(pdf)$/"></p:fileUpload>
+                                                                                                     	<p:fileUpload id="pdfdocUploaded" fileUploadListener="#{carBean.previewFilePdf}"  dragDropSupport="true" sizeLimit="10000000" fileLimit="100" multiple="true" allowTypes="/(\.|\/)(pdf)$/"></p:fileUpload>
         
         
         
@@ -6664,6 +6676,10 @@
 	                    
         </h:form>
         
+        
+		<h:outputScript name="js/dashboardPrime/popper.min.js"/>
+		<h:outputScript name="js/dashboardPrime/bootstrap.min.js"/>
+		
       
 	</ui:define>
 	

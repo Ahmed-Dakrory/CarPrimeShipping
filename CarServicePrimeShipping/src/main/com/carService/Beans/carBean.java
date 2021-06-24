@@ -33,6 +33,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
@@ -330,6 +331,59 @@ public class carBean implements Serializable{
 		
 	}
 	
+	
+	public void openImageLink() {
+		HttpServletRequest origRequest = (HttpServletRequest)FacesContext
+				.getCurrentInstance()
+				.getExternalContext()
+				.getRequest();
+		
+		try{
+			Integer id=Integer.parseInt(origRequest.getParameterValues("imagesOfCarId")[0]);
+				if(id!=null){
+					selectedCar=carFacade.getById(id);
+					
+
+					images=new ArrayList<String>();
+					docs=new ArrayList<String>();
+					pdfs=new ArrayList<String>();
+					
+
+					images_deleted=new ArrayList<String>();
+					docs_deleted=new ArrayList<String>();
+					pdfs_deleted=new ArrayList<String>();
+					
+					List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
+					List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
+					List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+					
+					if(imagesOfCar!=null) {
+						for(int i=0;i<imagesOfCar.size();i++) {
+							images.add(imagesOfCar.get(i).getUrl());
+						}
+					}
+					if(docsOfCar!=null){
+						for(int i=0;i<docsOfCar.size();i++) {
+							docs.add(docsOfCar.get(i).getUrl());
+						}
+					}
+					
+					
+					if(pdfsOfCar!=null){
+						for(int i=0;i<pdfsOfCar.size();i++) {
+							pdfs.add(pdfsOfCar.get(i).getUrl());
+						}
+					}
+					
+					FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("mainPanel");
+					
+				}
+			}
+		catch(Exception ex){
+			 
+		}
+		
+	}
 	
 	public void theloaderFirst() {
 		
