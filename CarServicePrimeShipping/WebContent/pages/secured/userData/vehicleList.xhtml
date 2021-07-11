@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
 	
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css"/>
 	
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -543,6 +544,10 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
                                                                         
                                                                         <tr height="2">
                                                                             <td colspan="4">
+                                                                            
+                                                                            <div id="btnSelectedRows">
+																			  Get Selected Rows
+																			</div>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -558,6 +563,8 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
                                             <table id="example" class="table table-bordered table-striped mb-none" style="width:100%">
 									<thead>
 										<tr style="    box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;">
+											<th></th>
+											<th style="display:none;">VIN</th>
 											<th>State</th>
 											<th>UID</th>
 											<th>Car_Type</th>
@@ -593,6 +600,8 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
         <tbody>
 									<ui:repeat var="data" value="#{carBean.allCars}">
 										<tr class="gradeX">
+											<td></td>
+											<td style="display:none">#{data.uuid}</td>
 											<td style="overflow: hidden;height: 15px;width: 112.087px; font-size: 11px;   text-align: center;">
 											
 											<h:panelGroup rendered="#{(data.state==0)?'true':'false'}"  >
@@ -729,6 +738,7 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
 											
     </table>
 	
+	<script type="text/javascript" src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 	<script>
 
 	$(document).ready(function() {
@@ -747,7 +757,6 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
             }
         } );
     } );
- 
     var table = $('#example').DataTable( {
         orderCellsTop: true,
         fixedHeader: true,
@@ -756,6 +765,22 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
     "bLengthChange": true,
     "bFilter": true,
     "bInfo": true,
+    columnDefs: [{
+        orderable: false,
+        className: 'select-checkbox',
+        targets: 0
+      }, {
+        "targets": [2],
+        "visible": false,
+        "searchable": false
+      }],
+      select: {
+        style: 'multi',
+        selector: 'td:first-child'
+      },
+      order: [
+        [1, 'asc']
+      ],
 	lengthMenu: [
             [ 10, 25, 50, -1 ],
             [ '10 rows', '25 rows', '50 rows', 'Show all' ]
@@ -766,8 +791,37 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
             'colvis', 'pageLength', 'csv', 'excel', 'pdf', 'print'
         ]
     } );
+    
+    
+    
+    
+    
+    
+    
+
+	$('#btnSelectedRows').on('click', function() {
+
+		  var tblData = table.rows('.selected').data();
+		  var tmpData = "";
+		  var i=0;
+		  let str = "How are you doing today?";
+		const myArr = str.split(" ");
+
+		  $.each(tblData, function(i, val) {
+		 
+		  if(i!=0){
+		  tmpData  =tmpData +", ";
+		  }
+		    tmpData  = tmpData + tblData[i][1];
+		    
+		  }); 
+		  console.log(tmpData);
+		});
 } );
 
+
+	
+	
 
 	</script>
                                             	
