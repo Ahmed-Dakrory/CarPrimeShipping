@@ -159,6 +159,14 @@ public class carBean implements Serializable{
 	private String pdfView="";
 	
 	
+	private List<car> allCarsToContainer;
+	private String containerName;
+	private String containerLink;
+	private String countryForContainer;
+	private String portForContainer;
+	private String stateForContainer;
+	private Integer shipperIdOFContainer;
+	
 	@PostConstruct
 	public void init() {
 		distinationMap=new LinkedHashMap<Integer,String>();
@@ -176,6 +184,8 @@ public class carBean implements Serializable{
 
 		selectedCarState=0;
 	}
+	
+	
 	
 	public void releaseVariablesForMain() {
 		images=new ArrayList<String>();
@@ -1703,6 +1713,57 @@ private void sendUpdateToAll(car selectedCar2) {
 			Constants.sendEmailUpdateFormatCar(selectedCar2,customerIdMail.getUserId().getFirstName(), customerIdMail.getUserId().getEmail(), customerIdMail.getUserId().getEmail());
 	}
 
+
+public void setCarsContainerDetails() {
+	shipper shipper=shipperFacade.getById(Integer.valueOf(shipperIdOFContainer));
+	
+	for(car car: allCarsToContainer) {
+		car.setContainer(containerName);
+		car.setContainerLink(containerLink);
+		car.setDestination(Integer.valueOf(countryForContainer));
+		car.setShipperId(shipper);
+		car.setState(Integer.valueOf(stateForContainer));
+		carFacade.addcar(car);
+	}
+	
+	
+	PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Cars Has Been Modified\", \"success\");");
+	
+	 try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/pages/secured/userData/vehicleList.jsf?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+}
+public void openDialogForVins() {
+	FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 String carsId = (String) map.get("carsId");
+	 String[] carsIdArray = carsId.split(",");
+	 allCarsToContainer =new ArrayList<car>();
+	 containerName="";
+	 containerLink="";
+	 shipperIdOFContainer=-1;
+	 countryForContainer="";
+	 stateForContainer="";
+	 for (String a : carsIdArray) {
+		 System.out.println(a);
+		 car newCar = carFacade.getById(Integer.valueOf(a));
+		 allCarsToContainer.add(newCar);
+		 
+		 
+		 
+	 }
+	 FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("formOfDialog");
+		
+	 PrimeFaces.current().executeScript("runFromBackEndToReloadDialog();");
+		
+	 
+}
+
+
 public void deleteCar() {
 	 FacesContext context = FacesContext.getCurrentInstance();
 	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -2183,6 +2244,67 @@ public void deleteCar() {
 
 	public void setPdfs_deleted(List<String> pdfs_deleted) {
 		this.pdfs_deleted = pdfs_deleted;
+	}
+
+	public List<car> getAllCarsToContainer() {
+		return allCarsToContainer;
+	}
+
+	public void setAllCarsToContainer(List<car> allCarsToContainer) {
+		this.allCarsToContainer = allCarsToContainer;
+	}
+
+	public String getContainerName() {
+		return containerName;
+	}
+
+	public void setContainerName(String containerName) {
+		this.containerName = containerName;
+	}
+
+	public String getContainerLink() {
+		return containerLink;
+	}
+
+	public void setContainerLink(String containerLink) {
+		this.containerLink = containerLink;
+	}
+
+	public String getCountryForContainer() {
+		return countryForContainer;
+	}
+
+	public void setCountryForContainer(String countryForContainer) {
+		this.countryForContainer = countryForContainer;
+	}
+
+	public String getPortForContainer() {
+		return portForContainer;
+	}
+
+	public void setPortForContainer(String portForContainer) {
+		this.portForContainer = portForContainer;
+	}
+
+	
+	public String getStateForContainer() {
+		return stateForContainer;
+	}
+
+
+
+	public void setStateForContainer(String stateForContainer) {
+		this.stateForContainer = stateForContainer;
+	}
+
+
+
+	public Integer getShipperIdOFContainer() {
+		return shipperIdOFContainer;
+	}
+
+	public void setShipperIdOFContainer(Integer shipperIdOFContainer) {
+		this.shipperIdOFContainer = shipperIdOFContainer;
 	}
 
 	public void fillMap() {
