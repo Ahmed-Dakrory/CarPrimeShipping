@@ -119,7 +119,7 @@ color:#ffec08;
 	     <div class="card-header w-100" id="headingOne">
 	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
 	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-	          All Documents
+	          All Images Document
 	        </a>
 	      </h5>
 	    </div>
@@ -161,6 +161,56 @@ color:#ffec08;
 	      </div>
 	    </div>
 	  </div>
+	
+		
+	  <div class="card row">
+	     <div class="card-header w-100" id="headingOne">
+	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
+	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+	          All PDF Documents
+	        </a>
+	      </h5>
+	    </div>
+	    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+	      <div class="card-body">
+	      		<div class="row mt-1">
+				 	<div class="col-md-2">
+					 	<a onclick="downloadAllPDFDocs();" href="javascript:void(0)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default">Download All PDFs</a>
+					 </div>
+				 </div>
+	 			<div class="row mt-1">
+	      	 		<!-- All images -->
+	 
+	 					<ui:repeat var="var" value="#{carBean.pdfs}">
+    <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;">			
+				
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <a href="#" onclick='ViewPDFById("#{var}")'>
+                                        <h:graphicImage value="/resources/images/pdf.png" alt="image#{var}" style="border-width:0px; width:50px;"/></a>
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="#" onclick='ViewPDFById("#{var}")'>
+                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{status.index+1}</span></a>
+                                
+                           </div>
+                   </div>
+               </div>
+                
+                
+               
+		</ui:repeat>
+					 <!-- All images -->
+					</div>
+		
+		 
+	      </div>
+	    </div>
+	  </div>
+	 
+	
 	 </div>
 	
 		
@@ -174,7 +224,7 @@ color:#ffec08;
 		<script>
 		
 		
-		function downloadEachImage(urlFileName){
+function downloadEachImage(urlFileName){
 			
 			const imageUrl = '/images/?file='+urlFileName;
 
@@ -184,6 +234,19 @@ color:#ffec08;
 			return imageBlob;
 			
 		}
+		
+
+function downloadEachPDF(urlFileName){
+	
+	const imageUrl = '/images/?file='+urlFileName+"&amp;Pdf=1";
+
+	// Fetch the image and parse the response stream as a blob
+	const imageBlob = fetch(imageUrl).then(response => Promise.resolve(response.blob()));
+
+	return imageBlob;
+	
+}
+
 function downloadAllImages(){
 			
 			var zip = new JSZip();
@@ -220,7 +283,24 @@ function downloadAllDocs(){
 	});
 
 }
-		
+	
+
+function downloadAllPDFDocs(){
+	
+	var zip = new JSZip();
+	var img = zip.folder("PDFs");
+	<ui:repeat var="variable" value="#{carBean.pdfs}">
+	filename="#{variable}";
+	imgData = downloadEachPDF(filename);
+	img.file(filename, imgData);
+	</ui:repeat>
+	zip.generateAsync({type:"blob"})
+	.then(function(content) {
+	    // see FileSaver.js
+	    saveAs(content, "All PDF Of freight with Vin #{carBean.selectedCar.uuid}.zip");
+	});
+
+}
 		
 		function downloadAllFiles(){
 			var zip = new JSZip();
@@ -240,6 +320,16 @@ function downloadAllDocs(){
 			imgData = downloadEachImage(filename);
 			img.file(filename, imgData);
 			</ui:repeat>
+			
+			
+			var img = zip.folder("PDFs");
+			<ui:repeat var="variable" value="#{carBean.pdfs}">
+			filename="#{variable}";
+			imgData = downloadEachPDF(filename);
+			img.file(filename, imgData);
+			</ui:repeat>
+			
+			
 			zip.generateAsync({type:"blob"})
 			.then(function(content) {
 			    // see FileSaver.js
