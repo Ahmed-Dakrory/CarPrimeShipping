@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -13,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -21,6 +23,7 @@ import main.com.carService.moneyBox.moneybox;
 import main.com.carService.moneyBox.moneyboxAppServiceImpl;
 import main.com.carService.moneyTransactionDetails.moneybox_transaction_detailsAppServiceImpl;
 import main.com.carService.security.AuthenticationService;
+import main.com.carService.tools.Constants;
 
 
 @ManagedBean(name = "loginBean")
@@ -35,6 +38,7 @@ public class loginBean implements Serializable{
 	private String userNameOfUserLoggedIn;
 	private String passwordOfUserLoggedIn;
 	private String passwordConfirm;
+	private boolean passwordRequestChange = false;
 	private user theUserOfThisAccount;
 	private int type;
 	
@@ -77,6 +81,34 @@ public class loginBean implements Serializable{
 		
 	}
 	
+	
+	public void resetPassword() {
+		
+	    user userForget = userDataFacede.getByUserName(userNameOfUserLoggedIn);
+	    if(userForget==null) {
+		    PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Check this ',\r\n" + 
+					"			text: 'No user registered with this Username!',\r\n" + 
+					"			left:\"2%\"\r\n" + 
+					"		});");
+	    }else {
+
+	    	final String uuid = UUID.randomUUID().toString().replace("-", "");
+	    	passwordConfirm = RandomStringUtils.random( 15, uuid );
+		     
+		     System.out.println(passwordConfirm);
+		     passwordRequestChange = true;
+		     
+		     Constants.sendEmailForgetAccount(userForget.getUserName(), userForget.getEmail(), passwordConfirm);
+		     
+		     PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Success',\r\n" + 
+						"			text: 'Mail Sent with your new password.',\r\n" + 
+						"			type: 'success'\r\n" + 
+						"		});");
+
+	    }
+	}
 	public void refreshTheDataMain() {
 
 		listOfAllUsersMoneyBox = moneyBoxDataFacede.getAll();
@@ -115,6 +147,16 @@ public class loginBean implements Serializable{
 	}
 	public void login(){
 
+		if(passwordRequestChange) {
+			
+			 String hashedPassword= new  Md5PasswordEncoder().encodePassword(passwordConfirm,userNameOfUserLoggedIn);
+
+				theUserOfThisAccount = userDataFacede.getByUserName(userNameOfUserLoggedIn);
+				theUserOfThisAccount.setPassword(hashedPassword);
+				userDataFacede.adduser(theUserOfThisAccount);
+		}
+		
+		passwordRequestChange = false;
 		 String hashedPassword= new  Md5PasswordEncoder().encodePassword(passwordOfUserLoggedIn,userNameOfUserLoggedIn);
 
 		theUserOfThisAccount = userDataFacede.getByUserNameAndPassword(userNameOfUserLoggedIn,hashedPassword);
@@ -305,6 +347,18 @@ public void onRowEdit(RowEditEvent event) {
 	public void setType(int type) {
 		this.type = type;
 	}
+
+	
+	
+	public boolean isPasswordRequestChange() {
+		return passwordRequestChange;
+	}
+
+
+	public void setPasswordRequestChange(boolean passwordRequestChange) {
+		this.passwordRequestChange = passwordRequestChange;
+	}
+
 
 	public userAppServiceImpl getUserDataFacede() {
 		return userDataFacede;

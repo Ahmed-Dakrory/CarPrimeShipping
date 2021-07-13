@@ -859,6 +859,7 @@ body .ui-icon {
 	<h:form>
 	
 	<p:remoteCommand name="openDialog" actionListener="#{carBean.openDialogForVins()}"/>
+	<p:remoteCommand name="setVisibilityForTable" actionListener="#{carBean.visiblityShowing()}"/>
 	</h:form>
 	
 	
@@ -900,7 +901,17 @@ body .ui-icon {
         orderable: false,
         className: 'select-checkbox',
         targets: 0
-      }],
+      }
+    <ui:repeat var="varOfVisibility" value="#{carBean.visibilityOptions}" varStatus="status">
+    ,
+    {
+        "targets": [ #{status.index} ],
+        "visible": #{varOfVisibility}
+    }
+    </ui:repeat>
+   
+      
+      ],
       select: {
         style: 'multi',
         selector: 'td:first-child'
@@ -920,7 +931,12 @@ body .ui-icon {
     } );
     
     
-    
+    $('#example').on( 'column-visibility.dt', function ( e, settings, column, state ) {
+    	
+
+    	setVisibilityForTable([{name: 'key', value: column},{name: 'value', value: (state ? 'true' : 'false')}]);
+        
+    } );
     
     
     

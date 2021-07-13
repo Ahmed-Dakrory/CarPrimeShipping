@@ -143,12 +143,19 @@ public class carBean implements Serializable{
 	private List<String> docs;
 	private List<String> pdfs;
 	
+	
+	
 	private List<String> images_deleted;
 	private List<String> docs_deleted;
 	private List<String> pdfs_deleted;
 
 	private Map<Integer, String> distinationMap;
 	private Map<Integer, String> origineMap;
+	
+	
+
+	private List<String> visibilityOptions;
+	
 	
 	private int consigneeId;
 	private consignee selectedConsignee;
@@ -173,6 +180,11 @@ public class carBean implements Serializable{
 		origineMap=new LinkedHashMap<Integer,String>();
 		fillMap();
 		
+		visibilityOptions = new ArrayList<String>();
+		
+		for(int i=0;i<29;i++) {
+			visibilityOptions.add("true");
+		}
 		
 		carStates = new ArrayList<String>();
 		for(int i=0;i<car.stateString.length;i++) {
@@ -1737,6 +1749,18 @@ public void setCarsContainerDetails() {
 		}
 	
 }
+
+
+
+public void visiblityShowing() {
+	FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 String key = (String) map.get("key");
+	 String value = (String) map.get("value");
+	 visibilityOptions.set(Integer.valueOf(key),value);
+}
+
+
 public void openDialogForVins() {
 	FacesContext context = FacesContext.getCurrentInstance();
 	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -2306,6 +2330,20 @@ public void deleteCar() {
 	public void setShipperIdOFContainer(Integer shipperIdOFContainer) {
 		this.shipperIdOFContainer = shipperIdOFContainer;
 	}
+
+	
+	
+	public List<String> getVisibilityOptions() {
+		return visibilityOptions;
+	}
+
+
+
+	public void setVisibilityOptions(List<String> visibilityOptions) {
+		this.visibilityOptions = visibilityOptions;
+	}
+
+
 
 	public void fillMap() {
 		fillMap1();
