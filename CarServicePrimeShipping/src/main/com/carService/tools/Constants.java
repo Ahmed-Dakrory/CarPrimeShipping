@@ -581,7 +581,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+				"                      	<p>Prime International Shipping LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -1132,7 +1132,7 @@ public class Constants {
 				"    font-size: 26px;\r\n" + 
 				"    color: white;\r\n" + 
 				"    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;\r\n" + 
-				"\">Please Check the Update to Car With Vin <p style=\"\r\n" + 
+				"\">Please Check Updated Vin <p style=\"\r\n" + 
 				"    font-size: 26px;\r\n" + 
 				"    color: white;\r\n" + 
 				"    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;\r\n" + 
@@ -1173,7 +1173,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+				"                      	<p>Prime International Shipping LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -1757,7 +1757,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+				"                      	<p>Prime International Shipping LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -2333,7 +2333,7 @@ public class Constants {
         		"                    <tbody><tr>\r\n" + 
         		"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
         		"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-        		"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+        		"                      	<p>Prime International Shipping LLC®</p>\r\n" + 
         		"                      </td>\r\n" + 
         		"                    </tr>\r\n" + 
         		"                  </tbody></table>\r\n" + 
@@ -2913,7 +2913,7 @@ public class Constants {
 	        		"                    <tbody><tr>\r\n" + 
 	        		"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 	        		"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-	        		"                      	<p>Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+	        		"                      	<p>Prime International Shipping LLC®</p>\r\n" + 
 	        		"                      </td>\r\n" + 
 	        		"                    </tr>\r\n" + 
 	        		"                  </tbody></table>\r\n" + 

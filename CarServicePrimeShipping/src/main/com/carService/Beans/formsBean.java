@@ -424,7 +424,7 @@ public class formsBean  implements Serializable {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p style=\"margin-top: 0;\">Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+				"                      	<p style=\"margin-top: 0;\">Prime International Shipping LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -791,7 +791,7 @@ public class formsBean  implements Serializable {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p style=\"margin-top: 0;\">Prime International Shipping LLC® is a shipping vehicles company</p>\r\n" + 
+				"                      	<p style=\"margin-top: 0;\">Prime International Shipping LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 

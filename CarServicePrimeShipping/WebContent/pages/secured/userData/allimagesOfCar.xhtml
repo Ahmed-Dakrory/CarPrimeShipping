@@ -213,7 +213,17 @@ color:#ffec08;
 	
 	 </div>
 	
-		
+		<hr></hr>
+		<div class="row mt-2">
+			 <h1 class="w-100 text-center"> 360 View of the Car </h1>
+			  	 <br></br>
+			  	 
+			  	 <div id="container"> <!-- Use this container to position, size or style the widget. -->
+			<div class="sts-spin"> <!-- This container allows the widget's "full screen" button to work. -->
+			<iframe id="spinCar" style="width: 100%;height: 751px; " />
+			</div>
+			</div>
+		</div>
 		
 		<h:outputScript name="js/dashboardPrime/popper.min.js"/>
 		<h:outputScript name="js/dashboardPrime/bootstrap.min.js"/>
@@ -339,6 +349,29 @@ function downloadAllPDFDocs(){
 		}
 		</script>
 		
+		
+		
+		 <script>
+     $.ajax({
+         url: "https://find-spin-api.spincar.com/provider-api/smartopal/primeshippingllc.com/#{carBean.selectedCar.uuid}?auth=524491e15e7340e6f3963a14988a846d0b2e99f4ef024386d77590f389b4403ab424b06d317a29f4b8bc7e92f78897244faa0120d3e8d1d0bbc4ba17fede1da2",
+         type: "GET",
+         datatype: 'json',
+         success: function( data, status, xhttp) {
+              // data will be true or false if you returned a json bool
+              if(data.status=="ok"){
+            	  console.log(data.vehicle.url);
+            	  
+            	  var $iframe = $('#spinCar');
+            	    if ($iframe.length) {
+            	        $iframe.attr('src',data.vehicle.url);
+            	    }
+            	    
+              }
+              
+         },
+         async: false // this is generally bad, it will lock up your browser while it returns, but the only way to fit it into your pattern.
+     });
+     </script>
 		<!-- End of All Images -->
 	 </p:panel>
      
