@@ -92,6 +92,10 @@
 .nano-content{
 margin-right: 0!important;
 }
+
+a:hover{
+cursor: pointer;
+}
 </style>
 		
 		
@@ -356,7 +360,7 @@ margin-right: 0!important;
 											</ul>
 											
 										</li>
-										<li style="display:#{(loginBean.theUserOfThisAccount.role==1)?'block':'none'};">
+										<!-- <li style="display:#{(loginBean.theUserOfThisAccount.role==1)?'block':'none'};">
 											<a href="/pages/secured/vendor/QuoteList.jsf?faces-redirect=true">
 												<i class="fa fa-list-alt" aria-hidden="true"></i>
 												<span>Quote List</span>
@@ -386,7 +390,7 @@ margin-right: 0!important;
 												<span>Add Vehicle</span>
 											</a>
 											
-										</li>
+										</li> -->
 										
 										<li  style="display:#{(loginBean.theUserOfThisAccount.role==0)?'block':'none'};">
 											<a href="/pages/secured/shipper/car/vitView.jsf?faces-redirect=true">
@@ -436,7 +440,7 @@ margin-right: 0!important;
 										<li class="nav-parent" style="display:#{(loginBean.theUserOfThisAccount.role==1)?'block':'none'};">
 											<a>
 												<i class="fa fa-calendar-o" aria-hidden="true"></i>
-												<span>Accounting</span>
+												<span>Invoices</span>
 											</a>
 											<ul class="nav nav-children">
 												<li>

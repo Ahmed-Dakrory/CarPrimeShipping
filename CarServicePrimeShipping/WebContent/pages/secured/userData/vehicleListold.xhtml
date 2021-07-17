@@ -5,200 +5,1040 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition template="/templates/dashboard2.xhtml">
 
 
 	<ui:define name="title"> Prime International Shipping LLC</ui:define>
- <ui:define name="mainHead"> 
-			      <ul class="mn-sub"><li class="mn-sub-item mn-item-addinventory"><a href="AddNewInventory.jsf" class="mn-sub-item-current"><b>Add Inventory</b></a></li></ul>
+	
+	 <ui:define name="mainHead"> 
+			       <ul class="mn-sub"><li class="mn-sub-item mn-item-freight"><a href="vehicleList.jsf" class="mn-sub-item-current"><b>Inventory List</b></a></li></ul>
            
 			</ui:define>
 
 	<ui:define name="content">
-        <h:form name="aspnetForm" method="post" action="./AddNewInventory.jsf" id="aspnetForm">
+	
+		
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
+	
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css"/>
+	
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>
+	
+	
+		<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+		
+	
+    	<style>
+    	button, input, optgroup, select, textarea {
+    color: black;
+    font: inherit;
+    margin: 0;
+}
+    	</style>
+    	
+    	<style>
+		
+		.datatableinputSearch{
+		height: 16px;
+    width: 100%;
+    font-size: 11px;
+    text-align: center;
+		}
+		
+		table.dataTable thead .sorting {
+    background-image: none;
+}
+	.table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+	vertical-align: middle;
+    border: 1px solid #dddddd;
+    font-size: 11px;
+    text-align: center;
+    font-family: sans-serif;
+	
+	}
+	
+	table.dataTable {
+    /* width: 100%; */
+    /* margin: 0 auto; */
+    clear: both;
+    border-collapse: collapse;
+    /* border-spacing: 0; */
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 3px 5px;
+}
+div.dt-button-collection {
+          max-height: 319px;
+    overflow: auto;
+	
+	}
+table.dataTable thead th, table.dataTable thead td {
+    padding: 3px 5px;
+    border-bottom: 1px solid #111;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: initial;
+    text-align: left;
+}
+
+body .ui-button {
+    background-color: #007ad9;
+    color: #ffffff;
+    border: 1px solid #007ad9;
+    font-size: 14px;
+    margin: 0;
+    margin-right: .1em;
+    outline: 0 none;
+    -moz-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+
+.ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        display: none;
+    }
+    
+    body .ui-chkbox .ui-chkbox-box .ui-chkbox-icon.ui-icon-check:before {
+    content: "\f046";
+    font-family: FontAwesome;
+}
+	
+
+a:hover {
+    color: #F26D00 !important;
+    text-decoration: none;
+}
+
+.arrivingSoon {
+	    -moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
+    box-shadow: inset 0px 1px 0px 0px #f5978e;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+    background: -moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+    background: -webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+    background: -o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+    background: -ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+    background: linear-gradient(to bottom, #d6382c 29%, #af2e24 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+    background-color: #f24537;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #86231a;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 112px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #810e05;
+}
+
+.transportinProcess {
+
+moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
+    box-shadow: inset 0px 1px 0px 0px #2a5ab3;
+    background: -moz-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: -o-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: -ms-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: linear-gradient(to bottom, #99b6ec 4%, #3c69bd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa3a3', endColorstr='#ffa3a3',GradientType=0);
+    background-color: #2a5ab3;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #2a5ab3;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 112px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #f9f7f7;
+    text-shadow: 0px 1px 0px #2a5ab3;
+
+	
+}
+
+
+.noTitle {
+	    -moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
+    box-shadow: inset 0px 1px 0px 0px #ffa3a3;
+    background: -moz-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: -o-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: -ms-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: linear-gradient(to bottom, #f5505a 4%, #bb1f27 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa3a3', endColorstr='#ffa3a3',GradientType=0);
+    background-color: #f5505a;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #f5505a;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #f3f3f3;
+    text-shadow: 0px 1px 0px #f5505a;
+}
+
+.billOfSale {
+	      -moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
+    box-shadow: inset 0px 1px 0px 0px #325765;
+    background: -moz-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: -o-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: -ms-linear-gradient(top, #ffa3a3 5%, #ffa3a3 100%);
+    background: linear-gradient(to bottom, #5245bd 4%, #1f6cbb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa3a3', endColorstr='#ffa3a3',GradientType=0);
+    background-color: #4e2a2c;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #422aa5;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #3e46a7;
+}
+
+.documentCheck {
+	    -moz-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c7aa37), color-stop(1, #c7aa37));
+    background: -moz-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -webkit-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -o-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -ms-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: linear-gradient(to bottom, #eacd5a 5%, #a08a32 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c7aa37', endColorstr='#c7aa37',GradientType=0);
+    background-color: #c7aa37;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #c7aa37;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 112px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+
+.titlePending {
+	    -moz-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c7aa37), color-stop(1, #c7aa37));
+    background: -moz-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -webkit-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -o-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -ms-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: linear-gradient(to bottom, #e6b452 5%, #ce8a23 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c7aa37', endColorstr='#c7aa37',GradientType=0);
+    background-color: #e6b452;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #e6b452;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #777977;
+}
+
+.RequestedTitle {
+    -moz-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    box-shadow: inset 0px 1px 0px 0px #4ca9d8;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c7aa37), color-stop(1, #c7aa37));
+    background: -moz-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -webkit-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -o-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -ms-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: linear-gradient(to bottom, #1696d6 5%, #1f6386 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c7aa37', endColorstr='#c7aa37',GradientType=0);
+    background-color: #4ca9d8;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #4ca9d8;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #40474e;
+}
+.paid{
+
+    -moz-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    box-shadow: inset 0px 1px 0px 0px #8a80cb;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c7aa37), color-stop(1, #c7aa37));
+    background: -moz-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -webkit-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -o-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -ms-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: linear-gradient(to bottom, #b1b3e8 5%, #1184a7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c7aa37', endColorstr='#c7aa37',GradientType=0);
+    background-color: #4c8fb5;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #a0a3c3;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #707a84;
+}
+.lienOnTitle {
+   -moz-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #bcc21b;
+    box-shadow: inset 0px 1px 0px 0px #a2728d;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c7aa37), color-stop(1, #c7aa37));
+    background: -moz-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -webkit-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -o-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: -ms-linear-gradient(top, #c7aa37 5%, #c7aa37 100%);
+    background: linear-gradient(to bottom, #e4aada 5%, #d24091 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c7aa37', endColorstr='#c7aa37',GradientType=0);
+    background-color: #c184a6;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #c184a6;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #707a84;
+}
+
+.readyforShipping {
+	-moz-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4aa760), color-stop(1, #4aa760));
+    background: -moz-linear-gradient(top, #4aa760 5%, #4aa760 100%);
+    background: -webkit-linear-gradient(top, #4aa760 5%, #4aa760 100%);
+    background: -o-linear-gradient(top, #4aa760 5%, #4aa760 100%);
+    background: -ms-linear-gradient(top, #5cc976 5%, #4aa760 100%);
+    background: linear-gradient(to bottom, #4ce470 5%, #0a7925 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cc976', endColorstr='#8ad164',GradientType=0);
+    background-color: #5cc976;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 112px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.titleOk {
+	-moz-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4aa760), color-stop(1, #4aa760));
+    background: -moz-linear-gradient(top, #4aa760 5%, #4aa760 100%);
+    background: -webkit-linear-gradient(top, #4aa760 5%, #4aa760 100%);
+    background: -o-linear-gradient(top, #4aa760 5%, #4aa760 100%);
+    background: -ms-linear-gradient(top, #5cc976 5%, #4aa760 100%);
+    background: linear-gradient(to bottom, #4ce470 5%, #0a7925 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cc976', endColorstr='#8ad164',GradientType=0);
+    background-color: #5cc976;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 80px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.intransit {
+	-moz-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #39523f), color-stop(1, #448521));
+    background: -moz-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: -webkit-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: -o-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: -ms-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: linear-gradient(to bottom, #5ca96e 5%, #132f13 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#39523f', endColorstr='#448521',GradientType=0);
+    background-color: #39523f;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 112px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.sentForPayment{
+    -moz-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3dc21b;
+    box-shadow: inset 0px 1px 0px 0px #604c9c;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #39523f), color-stop(1, #448521));
+    background: -moz-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: -webkit-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: -o-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: -ms-linear-gradient(top, #39523f 5%, #448521 100%);
+    background: linear-gradient(to bottom, #a490e2 5%, #867ec7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#39523f', endColorstr='#448521',GradientType=0);
+    background-color: #9c9e9c;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #9d89c5;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    width: 112px;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px #151313;
+}
+.classStyle{
+
+}
+
+
+
+.ui-dialog {
+    position: fixed;
+    padding: 0;
+    overflow: hidden;
+    display: none;
+    background: white;
+}
+
+
+.inputDialog{
+border-radius: 5px;
+    height: 32px!important;
+    width: 79%;
+}
+
+
+.ui-draggable .ui-dialog-titlebar {
+    cursor: move;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon {
+    border: 0 none;
+    padding: 0;
+    margin-left: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    background: transparent;
+    color: #6c757d;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 50%;
+    border: 0 none;
+    text-align: center;
+    line-height: 2rem;
+    padding: 0;
+    user-select: none;
+}
+
+
+
+.ui-dialog .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-titlebar-minimize, .ui-dialog .ui-dialog-titlebar-maximize {
+    float: right;
+    margin: 0;
+    top: 0;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.ui-dialog-mask {
+    background: #00000094;
+}
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon .ui-icon-closethick {
+    font-family: 'primeicons' !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none;
+}
+body .ui-icon {
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: baseline;
+    margin: 0;
+    position: static;
+    text-indent: 0;
+    overflow: visible;
+    background-repeat: no-repeat;
+}
+.ui-icon {
+    display: block;
+    vertical-align: baseline;
+    margin-top: 0;
+}
+.ui-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -.25em;
+    position: relative;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+	
+	.ui-dialog{
+	
+	z-index:1031!important;
+	
+	border-style: solid;
+    border-width: 2px;
+    border-radius: 11px;
+    padding: 10px;
+	}
+
+	</style>
+        <form name="aspnetForm" method="post" action="./vehicleList.jsf" id="aspnetForm">
+
+
+#{carBean.refresh()}
+
+
 
             <div id="content">
                 
-
-
+    <input name="ctl00$BodyHolder$hdClient_ID" type="hidden" id="ctl00_BodyHolder_hdClient_ID" value="47089" />
     <!-- page src -->
     <table border="0" class="content-table" cellspacing="0" cellpadding="5" >
-        <tr valign="top">
-            <td width="100%" style="min-height: 500px;">
-                <table width="100%" cellspacing="0" cellpadding="1" border="0" bgcolor="#003399">
-                    <tr>
-                        <td>
-                            <table width="100%" cellspacing="0" cellpadding="8" border="0" bgcolor="#f7f7f7">
-                                <tr>
-                                    <td class="tbltxt" valign="top">
-                                        <span><b>Please select freight type:</b></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        
-                                        <h:selectOneMenu disabled="true" name="ctl00$BodyHolder$ddlType" value="#{carBean.selectedCar.type}" id="ctl00_BodyHolder_ddlType" style="width:120px;">
-											<f:selectItem itemValue="0" itemLabel="Vehicle"/>
-											<f:selectItem itemValue="1" itemLabel="Dry Cargo"/>
-										
-										</h:selectOneMenu>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top">
-                                        &nbsp;
-                                                <table cellspacing="0" cellpadding="1" width="98%" bgcolor="#f7f7f7" border="0">
-                                                    <tr height="23">
-                                                        <td class="tbltxt" width="150">
-                                                            <div style="margin-left: 6px">
-                                                                * VIN :</div>
-                                                        </td>
-                                                        <td>
-                                                            <h:inputText readonly="true" name="ctl00$BodyHolder$txtVIN" type="text" value="#{carBean.selectedCar.uuid}" maxlength="17" id="ctl00_BodyHolder_txtVIN"  style="font-size:11px;height:19px;width:250px;" />
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                
-                                                
-                                                
-                                                <div id="ctl00_BodyHolder_pnlVehicle" style="height:100%;width:98%;">
+        <tbody>
+            <tr valign="top">
+                <td width="100%">
+                    <!-- Table 1 -->
+                    <table width="100%" cellspacing="0" cellpadding="1" border="0" bgcolor="#003399">
+                        <tr>
+                            <td>
+                                <table width="100%" cellspacing="0" cellpadding="8" border="0" bgcolor="#ffffff">
+                                    <tr>
+                                        <td>
+                                            <!-- Table name block -->
+                                            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                <tr>
+                                                    <td class="blkname" style="width: 20%; height: 22px;">
+                                                        <nobr>&nbsp;Inventory List<span id="ctl00_BodyHolder_lblCount">: #{carBean.allCars.size()}</span></nobr>
+                                                    </td>
+                                                    <td style="height: 22px">
+                                                        
+                                                    </td>
+                                                    <td style="height: 22px">
+                                                        &nbsp;
+                                                    </td>
+                                                   
+                                                </tr>
+                                            </table>
+                                            <img src="#{resource['images:dumb.gif']}" width="1" height="3"/><br></br>
+                                            <table cellspacing="4" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <table width="100%" cellspacing="0" cellpadding="1" border="0" bgcolor="#cccccc">
+                                                            <tr>
+                                                                <td>
+                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#f7f7f7">
+                                                                        <tr height="25" bgcolor="#dcdcdc" >
+                                                                            <td>
+                                                                                &nbsp; <font class="tblhdr">Filter</font><a href="editlist?group=-1" class="navlink">
+                                                                                </a>
+                                                                            </td>
+                                                                            <td colspan="4">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr height="2">
+                                                                            <td colspan="5" bgcolor="#ffffff">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr height="23">
+                                                                            <td class="tbltxt" style="width: 103px;">
+                                                                                <div style="margin-left: 6px">
+                                                                                    Location:</div>
+                                                                            </td>
+                                                                            <td >
+                                                                            <h:form id="formOfSelectionCarState">
+                                                                                <h:selectOneMenu value="#{carBean.selectedCarState}" name="ctl00$BodyHolder$ddlLoadStatus" id="ctl00_BodyHolder_ddlLoadStatus"  style="font-size:11px;height:19px;width:180px;">
+																					<f:ajax listener="#{carBean.filterCarBySelect}"/>
+																					<f:selectItem itemValue="0" itemLabel="Prime International Shipping LLC WAREHOUSE"/>
+																					<f:selectItem itemValue="1" itemLabel="Dry Cargo"/>
+																					<f:selectItem itemValue="2" itemLabel="Freight In Transit"/>
+																					<f:selectItem itemValue="4" itemLabel="Sent For Payment"/>
+																					<f:selectItem itemValue="3" itemLabel="Show All"/>
+																				
+																				</h:selectOneMenu>
+																			</h:form>
+                                                                            </td>
+                                                                            
+                                                                            
+                                                                            <td colspan="4">
+                                                                            
+                                                                            <button type="button" id="btnSelectedRows" style=" height: 30px; font-size: 13px; font-weight: 600; margin-top: 12px; background: #34495e; color: white!important; border-radius: 5px; ">
+																			  Assign Container Details
+																			</button>
+																			
+																			 </td>
+                                                                            
+                                                                            
+                                                                           </tr>
+                                                                        
+                                                                        
+                                                                        <tr height="2">
+                                                                            <td colspan="4">
+                                                                            
+                                                                            
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <img src="#{resource['images:dumb.gif']}" width="1" height="3"/><br></br>
+                                            <!-- Client DataGrid-->
+                                            <section class="panel">
+                                            <table id="example" class="table table-bordered table-striped mb-none" style="width:100%">
+									<thead>
+										<tr style="    box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;">
+											<th></th>
+											<th style="display:none;">ID</th>
+											<th>State</th>
+											<th>UID</th>
+											<th>Car_Type</th>
+											<th class="hidden-phone">Year</th>
+											<th class="hidden-phone">Shipper</th>
+											<th class="hidden-phone">Vendor</th>
+											<!-- <th class="hidden-phone">Follower</th> -->
+											<th class="hidden-phone">Keys</th>
+											<!--<th class="hidden-phone">Release</th> -->
+											<th class="hidden-phone">Container#</th>
+											<th class="hidden-phone">No. Days</th>
+											<!--<th class="hidden-phone">Inland Status</th> -->
+											<th class="hidden-phone">Cargo Received</th>
+											<th class="hidden-phone">Title Received</th>
+											<th class="hidden-phone">Origin</th>
+											<!--<th class="hidden-phone">Destination</th> -->
+											<!--<th class="hidden-phone">ETD</th> -->
+											<!--<th class="hidden-phone">ETA</th> -->
+											<!--<th class="hidden-phone">Consignee</th> -->
+											<!--<th class="hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};">Land Cost</th> -->
+											<!--<th class="hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};">Sea Cost</th> -->
+											<!--<th class="hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};">Fees Cost</th> -->
+											<!--<th class="hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};">Commision Cost</th> -->
+											<!--<th class="hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};">Price</th> -->
+											<!--<th class="hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};">Total Cost</th> -->
+
+											<th class="hidden-phone">Image</th>
+											<th class="hidden-phone">Docs</th>
+											<!--<th class="hidden-phone">Mobile or Comp</th> -->
+
+										</tr>
+									</thead>
+        <tbody>
+									<ui:repeat var="data" value="#{carBean.allCars}">
+										<tr class="gradeX">
+											<td></td>
+											<td style="display:none">#{data.id}</td>
+											<td style="overflow: hidden;height: 15px;width: 112.087px; font-size: 11px;   text-align: center;">
+											
+											<h:panelGroup rendered="#{(data.state==0)?'true':'false'}"  >
+											<div  class="documentCheck">On Hand</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==1)?'true':'false'}"  >
+											<div  class="readyforShipping">Ready</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==2)?'true':'false'}"  >
+											<div  class="intransit">In Transit</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==3)?'true':'false'}"  style="width: 150px;height: 71px;">
+											<div  class="transportinProcess">Transport</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==4)?'true':'false'}"  >
+											<div  class="documentCheck">On Hand</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==5)?'true':'false'}"  >
+											<div  class="readyforShipping">Ready</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==6)?'true':'false'}"  >
+											<div  class="intransit">In Transit</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==7)?'true':'false'}"  >
+											<div  class="arrivingSoon">Arriving Soon</div>
+											</h:panelGroup>
+											
+											<h:panelGroup rendered="#{(data.state==8)?'true':'false'}"  >
+											<div  class="sentForPayment">Sent For Payment</div>
+											</h:panelGroup>
+
+											</td>
+											
+											<td style="overflow: hidden;height: 15px;width: 117.087px;font-size: 11px;   text-align: center;">
+											
+													<h:form>
+													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==0?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForMain(data.id)}"/>
+													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==5?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForMainTwo(data.id)}"/>
+													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==1?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForShipper(data.id)}"/>
+													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==2?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForVendor(data.id)}"/>
+													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==3?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForCustomerOrConsignee(data.id)}"/>
+													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==4?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForCustomerOrConsignee(data.id)}"/>
+												</h:form>
+											</td>
+											
+											<td class="center hidden-phone"><span style="overflow: hidden;display: inline-flex;height: 15px;width: max-content;">#{data.make} #{data.model}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.year}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.shipperId.userId.company}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.vendorId.userId.company}</span></td>
+											<!--<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.mainTwoId.userId.company}</span></td>-->
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.keyExist?'Yes':'No'}</span></td>
+
+
+											<!--<td class="center hidden-phone" style="display:table-cell;"><span style="overflow: hidden; display: inline-flex; height: 15px;"><img src="/resources/images/#{data.releaseOption?'check_on.gif':'check_off.gif'}"></img></span></td>-->
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;"><a  style="color: #371cc3;" onclick="openThisSite('#{data.containerLink}');">#{data.container}</a></span></td>
+											
+											<script>
+											function openThisSite(url){
+												window.open(url,'_blank');
+											}
+											</script>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carBean.getNumberOfDays(data.storageStartDate,data.storageEndDate)}</span></td>
+											<!--<td class="center hidden-phone" style="background:#{carBean.isLandStatuesDiffMoreThan15Day(data.storageStartDate,data.storageEndDate,data.inlandStatus)?'#ffe271':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.inlandStatus}</span></td>-->
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carBean.getFormatedDate(data.cargoRecieved)}</span></td>
+											<td class="center hidden-phone" style="vertical-align: middle;">
+
+												<h:panelGroup rendered="#{(data.titleRecieved==0)?'true':'false'}">
+												<div  class="noTitle">Missing</div>
+												</h:panelGroup>
+												
+												<h:panelGroup rendered="#{(data.titleRecieved==1)?'true':'false'}">
+												<div  class="titlePending">Pending</div>
+												</h:panelGroup>
+												
+												<h:panelGroup rendered="#{(data.titleRecieved==2)?'true':'false'}">
+												<div  class="RequestedTitle">Requested</div>
+												</h:panelGroup>
+												
+												<h:panelGroup rendered="#{(data.titleRecieved==3)?'true':'false'}">
+												<div  class="titleOk">YES</div>
+												</h:panelGroup>
+												
+												<h:panelGroup rendered="#{(data.titleRecieved==4)?'true':'false'}">
+												<div  class="lienOnTitle">In Lien</div>
+												</h:panelGroup>
+												
+												<h:panelGroup rendered="#{(data.titleRecieved==5)?'true':'false'}">
+												<div  class="paid">Paid</div>
+												</h:panelGroup>
+												
+												<h:panelGroup rendered="#{(data.titleRecieved==6)?'true':'false'}">
+												<div  class="billOfSale">Bill Of Sale</div>
+												</h:panelGroup>
+												</td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carBean.getTheOrigin(data.origin)}</span></td>
+											<!--<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carBean.getTheDestination(data.destination)}</span>
+											</td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carBean.getFormatedDate(data.etd)}</span></td>
+
+											<td class="center hidden-phone" style="background:#{carBean.isTheRemainingDays30Day(data.eta)?'linear-gradient(to bottom, #c7898d 4%, #d42029 100%)':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carBean.getFormatedDate(data.eta)}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.consigneeId.userId.firstName}</span></td>
+											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.landcost}</span></td>
+											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.seacost}</span></td>
+											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.fees}</span></td>
+											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.commision}</span></td>
+											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.valueOfGood}</span></td>
+											<td class="center hidden-phone" style="display:#{(loginBean.theUserOfThisAccount.role==0 || loginBean.theUserOfThisAccount.role==1 )?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.commision+data.fees+data.seacost+data.landcost+data.valueOfGood}</span></td>
+											-->
+											<td class="center hidden-phone">
+											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.photoExist==true?'block':'none'} ;">
+												<img style=" box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 25px;" src = "/resources/images/img/no-photo.jpg"/>
+											</a>
+											</td>
+											<td class="center hidden-phone">
+											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.docExist==true?'block':'none'} ; ">
+												<img style="    width: 25px;" src = "/resources/images/public/img/membership-choice-step/membership-choice__premier-step-1.png"/>
+											</a>
+											</td>
+											<!--<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.mobileOrComp==0?'Computer':'Mobile'}</span></td>-->
+										</tr>
+									</ui:repeat>
+
+
+									</tbody>
+												
+												
+											
+											
+    </table>
+    
+   
 	
-                                                    <table id="VehicleTable" cellspacing="0" cellpadding="1" width="100%" bgcolor="#f7f7f7"
-                                                        border="0" style="float: left;">
-                                                        
-                                                        <tr height="23">
-                                                            <td class="tbltxt" width="150">
-                                                                <div style="margin-left: 6px">
-                                                                  * Customer:</div>
-                                                            </td>
-                                                            <td class="tbltxt" style="height: 23px;">
-                                                                <h:selectOneMenu value="#{carBean.selectedCar.customerId.id}" name="ctl00$BodyHolder$ddlVendorVehicle" id="ctl00_BodyHolder_ddlVendorVehicle" class="tbltxt" style="width:250px;">
-																	<f:selectItem itemValue="#{null}" itemLabel="-SELECT-"/>
-																	<f:selectItems value="#{carBean.allcustomer}" var="var" itemValue="#{var.id}" itemLabel="#{var.userId.company}"/>
-																</h:selectOneMenu>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Make:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtMake" value="#{carBean.selectedCar.make}" id="ctl00_BodyHolder_txtMake" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Model:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtModel" value="#{carBean.selectedCar.model}" id="ctl00_BodyHolder_txtModel" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Year:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtYear" value="#{carBean.selectedCar.year}" id="ctl00_BodyHolder_txtYear" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Assembly Country:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtAssemblyCountry" value="#{carBean.selectedCar.assemlyCountry}" id="ctl00_BodyHolder_txtAssemblyCountry" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Body Style:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtBodyStyle" value="#{carBean.selectedCar.bodyStyle}" id="ctl00_BodyHolder_txtBodyStyle" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Engine Type:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtEngineType" value="#{carBean.selectedCar.engineType}" id="ctl00_BodyHolder_txtEngineType" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt">
-                                                                <div style="margin-left: 6px">
-                                                                    Engine Liters:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$txtEngineLiters" value="#{carBean.selectedCar.engineLiters}" id="ctl00_BodyHolder_txtEngineLiters" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        
-                                                        <tr height="23">
-                                                            <td class="tbltxt" width="150">
-                                                                <div style="margin-left: 6px">
-                                                                    Color:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputText disabled="true" name="ctl00$BodyHolder$tbColor" value="#{carBean.selectedCar.color}" id="ctl00_BodyHolder_tbColor" style="font-size:11px;height:19px;width:250px;" />
-                                                            </td>
-                                                        </tr>
-                                                        
-                                                        
-                                                        
-                                                         <tr height="23">
-				                                        	<td  class="tbltxt">
-				                                               <div style="margin-left: 6px">
-				                                                   Keys are Exists:</div>
-				                                           </td>
-				                                           <td  align="left">
-				                                               <h:selectBooleanCheckbox  type="text" value="#{carBean.selectedCar.keyExist}" style="font-size:11px;height:19px;width:20px;" />
-				                                               
-				                                           </td>
-				                                        </tr>   
-				                                        
-				                                        
-                                                        <tr>
-                                                            <td class="tbltxt" width="174" valign="top" colspan="2">
-                                                                <div style="margin-left: 6px">
-                                                                    <b>
-                                                                        <br />
-                                                                        Port of Destination:</b></div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding-left: 0px;" colspan="2">
-                                                                <div id="ctl00_BodyHolder_ucOriginSelectorVehicle_UpdatePanel1">
+	
+	<h:form>
+	
+	<p:remoteCommand name="openDialog" actionListener="#{carBean.openDialogForVins()}"/>
+	<p:remoteCommand name="setVisibilityForTable" actionListener="#{carBean.visiblityShowing()}"/>
+	</h:form>
+	
+	
+	
+	
+	
+	
+
+
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
+	<script>
+
+	$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#example thead tr').clone(true).appendTo( '#example thead' );
+    $('#example thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" class="datatableinputSearch" placeholder=".." />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+    var table = $('#example').DataTable( {
+        orderCellsTop: true,
+        fixedHeader: true,
+		dom: 'Bfrtip',
+		"bPaginate": true,
+    "bLengthChange": true,
+    "bFilter": true,
+    "bInfo": true,
+    columnDefs: [{
+        orderable: false,
+        className: 'select-checkbox',
+        targets: 0
+      }
+    <ui:repeat var="varOfVisibility" value="#{carBean.visibilityOptions}" varStatus="status">
+    ,
+    {
+        "targets": [ #{status.index} ],
+        "visible": #{varOfVisibility}
+    }
+    </ui:repeat>
+   
+      
+      ],
+      select: {
+        style: 'multi',
+        selector: 'td:first-child'
+      },
+      order: [
+        [1, 'asc']
+      ],
+	lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+    "bAutoWidth": false,
+        colReorder: true,
+        buttons: [
+            'colvis', 'pageLength', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+    
+    
+    $('#example').on( 'column-visibility.dt', function ( e, settings, column, state ) {
+    	
+
+    	setVisibilityForTable([{name: 'key', value: column},{name: 'value', value: (state ? 'true' : 'false')}]);
+        
+    } );
+    
+    
+    
+    
+
+	$('#btnSelectedRows').on('click', function() {
+
+		  var tblData = table.rows('.selected').data();
+		  var tmpData = "";
+		 
+
+		  $.each(tblData, function(i, val) {
+		 
+		  if(i!=0){
+		  tmpData  =tmpData +",";
+		  }
+		    tmpData  = tmpData + tblData[i][1];
+		    
+		  }); 
+		  openDialog([{name: 'carsId', value: tmpData}]);
+		  console.log(tmpData);
 		
-        <table class="EditTable" bgcolor="#f7f7f7" border="0" cellspacing="0" style="padding-left: 6px;
-            margin: 0px;">
-            <tr>
-                <td class="tbltxt" style="height: 23px; width: 164px; padding-left: 6px;">
-                    Country:</td>
-                <td class="tbltxt" style="height: 23px;">
-                    <h:selectOneMenu disabled="true"  value="#{carBean.selectedCar.destination}" name="ctl00$BodyHolder$ucOriginSelectorVehicle$ddlCountry" id="ctl00_BodyHolder_ucOriginSelectorVehicle_ddlCountry"  style="width:250px;">
+		});
+} );
+
+
+	
+	
+
+	</script>
+                                            	
+							
+						</section>
+                                       
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- End of Table 1 -->
+                    <img src="#{resource['images:dumb.gif']}" width="1" height="3"/><br></br>
+                    <p>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+            </div>
+            
+              
+        </form>
+        
+     
+     
+     
+	</ui:define>
+	
+		
+		<ui:define name="endOfContent">
+		
+		
+		
+			<p:dialog  header="Load to Container" widgetVar="dlg2" minHeight="700"  width="1300" showEffect="fade" modal="true" >
+    
+			<h:form class="container" id="formOfDialog" style=" width: 100%; ">
+				<div class="row" >
+					<div class="form-group col-md-4">
+						<label>Container</label>
+						<br></br>
+						<h:inputText class="inputDialog" value="#{carBean.containerName}"/>
+					</div>
+					
+					<div class="form-group col-md-4">
+						<label>Container Link</label>
+						<br></br>
+						<h:inputText class="inputDialog" value="#{carBean.containerLink}"/>
+					</div>
+					
+					<div class="form-group col-md-4">
+						<label>Shipper</label>
+						<br></br>
+						<h:selectOneMenu value="#{carBean.shipperIdOFContainer}" name="ctl00$BodyHolder$ddlVendors" id="ctl00_BodyHolder_ddlVendors" class="inputDialog">
+							<f:selectItem itemValue="#{null}" itemLabel="-SELECT-"/>
+							<f:selectItems value="#{carBean.allshipper}" var="var" itemLabel="#{var.userId.company}" itemValue="#{var.id}"/>
+						</h:selectOneMenu>
+					</div>
+				
 			
-			<f:selectItem itemValue="1" itemLabel=" SELECT DESTINATION -  - "/>
+				
+				</div>
+				
+				
+				
+				<div class="row" >
+					<div class="form-group col-md-4">
+						<label>Country</label>
+						<br></br>
+						    <h:selectOneMenu class="inputDialog" value="#{carBean.countryForContainer}" >
+                                                                                                       	<f:selectItem itemValue="1" itemLabel=" SELECT DESTINATION -  - "/>
 	<f:selectItem itemValue="1531" itemLabel="Aabenraa - Denmark - 40901"/>
 	<f:selectItem itemValue="1412" itemLabel="Aagotnes - Norway - 40311"/>
 	<f:selectItem itemValue="1532" itemLabel="Aalborg - Denmark - 40903"/>
@@ -5156,579 +5996,86 @@
 	<f:selectItem itemValue="1840" itemLabel="Zwyndrecht - Belgium - 42300"/>
 
 
-				</h:selectOneMenu>		
-</td>
-            </tr>
-           
-           
-        </table>
-    
-	</div>
-&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="tbltxt" width="150" valign="top" colspan="2">
-                                                                <div style="margin-left: 6px">
-                                                                    <b>
-                                                                        <br />
-                                                                        Origin:</b></div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding-left: 0px;" colspan="2">
-                                                                <div id="ctl00_BodyHolder_DestinationSelectorVehicle_UpdatePanel1">
+                                                                                                     
+                                                                                                     </h:selectOneMenu>                                                                            
+                                                                                                 
+					</div>
+					
+					
+					
+					<div class="form-group col-md-4">
+						<label>State</label>
+						<br></br>
+						
+						  <h:selectOneMenu  class="inputDialog" value="#{carBean.stateForContainer}">
+                           	<c:forEach items="#{carBean.carStates}" var="var" varStatus="idx">
+                           	<f:selectItem itemLabel="#{var}" itemValue="#{idx.index}"/>
+                           	</c:forEach>
+                           </h:selectOneMenu>                                                                          
+					</div>
+				
+				</div>
+				
+				<br></br>
+				<br></br>
+						
+						
+				<div class="row">
+					<div class="col-md-6">
+						
+					</div>
+					
+					
+					<div class="col-md-3">
+						<p:commandButton value="Cancel" onclick="PF('dlg2').hide();" style=" width: 100%; height: 39px; font-weight: 700;font-size: 19px; background: #aeaeae; border-radius: 8px; color: white!important; "/>
+					</div>
+					<div class="col-md-3">
+						<p:commandButton value="Ok" action="#{carBean.setCarsContainerDetails()}"  style="width: 100%;height: 39px;font-weight: 700;font-size: 19px;background: #5fbc6a;border-radius: 8px;color: white!important;"/>
+					</div>
+				</div>
+				
+				<br></br>
+				<br></br>
+				<hr></hr>
+				<div class="row" style="width: 100%;height: 150px;overflow: auto;">
+				
+					<div class="row" style="width: 100%;margin-bottom: -10px;font-size: 19px;font-weight: 700;">
+							<div class="col-md-3">Vin </div>
+							<div class="col-md-3">Shipper </div>
+							<div class="col-md-3">Year/Make/Model </div>
+							<div class="col-md-3">Location </div>
+						</div>
+						<hr></hr>
+					<ui:repeat var="var" value="#{carBean.allCarsToContainer}">
+						<div class="row" style="width: 100%;margin-bottom: 8px;font-size: 19px;">
+							<div class="col-md-3">#{var.uuid} </div>
+							<div class="col-md-3">#{var.shipperId.userId.firstName} #{var.shipperId.userId.lastName} </div>
+							<div class="col-md-3">#{var.year}/#{var.make}/#{var.model} </div>
+							<div class="col-md-3">#{carBean.getTheDestination(var.destination)} </div>
+						</div>
+					
+					</ui:repeat>
+				</div>
+				
+				
+			</h:form>
+			
+			
+			
+			
+			
+			</p:dialog>
+		<script>
 		
-<table class="EditTable" bgColor="#f7f7f7" border="0" cellspacing="0" style="padding-left: 6px; margin: 0px;">
-    <tr>
-        <td class="tbltxt" style="height: 23px; width: 164px; padding-left: 6px;">
-            Country:</td>
-        <td class="tbltxt" style="height: 23px;">
-            <h:selectOneMenu disabled="true" value="#{carBean.selectedCar.origin}" name="ctl00$BodyHolder$DestinationSelectorVehicle$ddlCountry" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$BodyHolder$DestinationSelectorVehicle$ddlCountry\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_BodyHolder_DestinationSelectorVehicle_ddlCountry" style="width:250px;">
-			<f:selectItem itemValue="-1" itemLabel="--SELECT--"/>
-																										<f:selectItem itemValue="381" itemLabel="HOUSTON, TX (5301)"/>
-																										<f:selectItem itemValue="117" itemLabel="LOS ANGELES, CA (2704)"/>
-																										<f:selectItem itemValue="371" itemLabel="MIAMI, FL (5201)"/>
-																										<f:selectItem itemValue="1" itemLabel="NEW YORK, NY (1001)"/>
-																										<f:selectItem itemValue="39" itemLabel="SAVANNAH, GA (1703)"/>
-																									
-
-		</h:selectOneMenu>
-		</td>
-    </tr>
-    
-    
-</table>
-    
-	</div>
-&nbsp;
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="23">
-                                                            <td class="tbltxt" width="150" colspan="2">
-                                                                <div style="margin-left: 6px">
-                                                                    <b>Consignee Info:</b></div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2" style="margin-left: 6px">
-                                                                
-<h:panelGroup id="consigneePanel">
- <table  width="100%" cellpadding="0" cellspacing="0"> 
- 			<tr>
-                <td class="tbltxt"  >
-                    <div style="margin-left: 6px;">
-                        Company Name:</div>
-                </td>
-                <td >
-                    <h:selectOneMenu disabled="true" value="#{carBean.consigneeId}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$ddlConsigneeCompanyName" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$BodyHolder$ucConsigneeViewVehicle$ddlConsigneeCompanyName\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_BodyHolder_ucConsigneeViewVehicle_ddlConsigneeCompanyName" style="font-size:11px;width:250px;">
-						<f:ajax listener="#{carBean.selectConsignee()}"/>
-						<f:selectItem itemValue="#{null}" itemLabel="-SELECT-"/>
-						<f:selectItems value="#{carBean.allconsignees}" var="var" itemValue="#{var.id}" itemLabel="#{var.userId.company}"/>
-					</h:selectOneMenu>
-                    
-                </td>
-                <td style="height: 23px">
-                </td>
-                <td class="tbltxt" style="height: 23px">
-                    <div style="margin-left: 6px">
-                    </div>
-                </td>
-                <td style="height: 23px">
-                </td>
-                <td style="height: 23px">
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            <tr height="23">
-                <td class="tbltxt">
-                    <div style="margin-left: 6px">
-                        First Name:</div>
-                </td>
-                <td>
-                    <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.firstName}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeFirstName" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeFirstName" style="font-size:11px;height:19px;width:250px;" /></td>
-                <td>
-                </td>
-                <td class="tbltxt">
-                    <div style="margin-left: 6px">
-                        Phone:</div>
-                </td>
-                <td>
-                    <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.phone}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneePhone" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneePhone" style="font-size:11px;height:19px;width:200px;" /></td>
-                <td>
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            <tr height="23">
-                <td class="tbltxt">
-                    <div style="margin-left: 6px">
-                        Last Name:</div>
-                </td>
-                <td>
-                    <h:inputText disabled="true" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeLastName" value="#{carBean.selectedConsignee.userId.lastName}" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeLastName" style="font-size:11px;height:19px;width:250px;" /></td>
-                <td>
-                </td>
-                <td class="tbltxt">
-                    <div style="margin-left: 6px">
-                        Email:</div>
-                </td>
-                <td>
-                    <h:inputText disabled="true" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeEmail" value="#{carBean.selectedConsignee.userId.email}" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeEmail" style="font-size:11px;height:19px;width:200px;" /></td>
-                <td>
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            <tr height="23">
-                <td class="tbltxt">
-                   <div style="margin-left: 6px">
-                        Country:</div>
-                </td>
-                <td>
-                
-                <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.country}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeCountry" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeCountry" style="font-size:11px;height:19px;width:250px;" />
-                    </td>
-                <td>
-                </td>
-                <td class="tbltxt">
-                    <div style="margin-left: 6px">
-                        Phone 2:</div>
-                </td>
-                <td>
-                    <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.phone2}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtPhone2" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtPhone2" style="font-size:11px;height:19px;width:200px;" /></td>
-                <td>
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            <tr height="23">
-                <td class="tbltxt" style="height: 23px">
-                    <div style="margin-left: 6px">
-                        Address 1:</div>
-                </td>
-                <td style="height: 23px">
-                <h:inputText disabled="true" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeAddress" value="#{carBean.selectedConsignee.userId.address1}" type="text" maxlength="32" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeAddress" style="font-size:11px;height:19px;width:250px;" />
-                
-                    </td>
-                <td style="height: 23px">
-                </td>
-                <td class="tbltxt" style="height: 23px">
-                    <div style="margin-left: 6px">
-                        Mobile:</div>
-                </td>
-                <td style="height: 23px">
-                    <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.mobilePhone}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtMobile" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtMobile" style="font-size:11px;height:19px;width:200px;" /></td>
-                <td style="height: 23px">
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6" style="height: 2px">
-                </td>
-            </tr>
-            <tr height="23">
-                <td class="tbltxt" style="height: 23px">
-                    
-                     <div style="margin-left: 6px">
-                        Address 2:</div>
-                    
-                </td>
-                <td style="height: 23px">
-                     <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.address2}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeAddress2" type="text" maxlength="32" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeAddress2" style="font-size:11px;height:19px;width:250px;" />
-                    </td>
-                <td style="height: 23px">
-                </td>
-                <td class="tbltxt" style="height: 23px">
-                    <div style="margin-left: 6px">
-                        Fax:</div>
-                </td>
-                <td style="height: 23px">
-                    <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.fax}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtFax" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtFax" style="font-size:11px;height:19px;width:200px;" /></td>
-                <td style="height: 23px">
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            <tr height="23">
-                <td class="tbltxt">
-                   <div style="margin-left: 6px">
-                        City:</div>
-                   
-                </td>
-                <td>
-                    <h:inputText disabled="true" value="#{carBean.selectedConsignee.userId.city}" name="ctl00$BodyHolder$ucConsigneeViewVehicle$txtConsigneeCity" type="text" readonly="true" id="ctl00_BodyHolder_ucConsigneeViewVehicle_txtConsigneeCity" style="font-size:11px;height:19px;width:250px;" />                   
-                   </td>
-                <td>
-                </td>
-                <td class="tbltxt">
-                    <div style="margin-left: 6px">
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            
-            <tr height="2">
-                <td bgcolor="#ffffff" colspan="6">
-                </td>
-            </tr>
-            
-           
-           <tr height="23">
-                                                            <td class="tbltxt" width="150">
-                                                                <div style="margin-left: 6px">
-                                                                    Notes:</div>
-                                                            </td>
-                                                            <td>
-                                                                <h:inputTextarea disabled="true" readonly="true" value="#{carBean.selectedConsignee.notes}" name="ctl00$BodyHolder$tbVehicleNotes" rows="5" cols="20" id="ctl00_BodyHolder_tbVehicleNotes" style="width:510px;">
-</h:inputTextarea>
-                                                            </td>
-                                                        </tr>
-            </table>
-              </h:panelGroup>
-                                                            </td>
-                                                        </tr>
-                                                     
-
-
-
-
-  <tr id="car360">
-  	 <td colspan="6" class="tbltxt">
-  	 <hr></hr>
-  	 <h1> 360 View of the Car </h1>
-  	 <br></br>
-  	 
-  	 <div id="container"> <!-- Use this container to position, size or style the widget. -->
-<div class="sts-spin"> <!-- This container allows the widget's "full screen" button to work. -->
-<iframe id="spinCar" style="width: 751px;height: 751px; " />
-</div>
-</div>
-
-          
-           
-        </td>
-           
-  </tr>
-  
-  
-  <tr height="23">
-                                                                                                <td colspan="6" class="tbltxt">
-                                                                                                    <div style="margin-left: 6px">
-                                                                                                    <br></br>
-                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
-                                                                                                            onclick="ChangeVisibillity('picDiv','picExpand')">
-                                                                                                            <img id="picExpand" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Enclosed
-                                                                                                                Pictures:</b></a></div>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr height="23">
-                                                                                                <td>
-                                                                                                </td>
-                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
-                                                                                                    <div id="picDiv" style="display: inline; margin-left: 6px">
-                                                                                                     	
-        
-        
-        
-               <h:panelGroup id="imagesPanel">
-                                     
-<table border="1" style="    border: unset;">
-   <tr>
-        <td colspan="2">
-            <table id="ctl00_BodyHolder_imageList_imageList" cellspacing="0" border="0" style="border-collapse:collapse;">
-	<tr>
-                
-                
-	
-		<ui:repeat var="var" value="#{carBean.images}">
-			<td style="border: black;padding: 14px;border-right-style: solid;border-width: 1px;">
-                    <table>
-                        <tr>
-                            <td align="center">
-                                <div>
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
-                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
-                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            
-                        </tr>
-                    </table>
-                </td>
-                
-                
-               
-		</ui:repeat>
-             
-             
-            
-	   
-               
-	</tr>
-</table>
-
-</td>
-    </tr>
-    <tr>
-    </tr>
-        
-</table>
-
-</h:panelGroup>
-
-                                                                                                    </div>
-                                                                                                </td>
-
-                                                                                                <td>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr height="23">
-                                                                                                <td colspan="6" class="tbltxt">
-                                                                                                    <div style="margin-left: 6px">
-                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
-                                                                                                            onclick="ChangeVisibillity('docDiv','docExpand')">
-                                                                                                            <img id="docExpand" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" />
-                                                                                                            <b>Enclosed Documents:</b></a></div>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr height="23">
-                                                                                                <td>
-                                                                                                </td>
-                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
-                                                                                                    <div id="docDiv" style="display: inline; margin-left: 6px">
-                       
-        
-        
-               <h:panelGroup id="docsPanel">
-                                     
-<table border="1" style="    border: unset;">
-   <tr>
-        <td colspan="2">
-            <table id="ctl00_BodyHolder_imageList_imageList" cellspacing="0" border="0" style="border-collapse:collapse;">
-	<tr>
-                
-                
-	
-		<ui:repeat var="var" value="#{carBean.docs}">
-			<td style="border: black;padding: 14px;border-right-style: solid;border-width: 1px;">
-                    <table>
-                        <tr>
-                            <td align="center">
-                                <div>
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
-                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
-                                    <span id="ctl00_BodyHolder_imageList_fileList_ctl00_docName">#{var}</span></a>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            
-                        </tr>
-                    </table>
-                </td>
-                
-                
-               
-		</ui:repeat>
-                     
-	</tr>
-</table>
-
-</td>
-    </tr>
-    <tr>
-    </tr>
-        
-</table>
-
-</h:panelGroup>
-
-                                                                                                    </div>
-                                                                                                </td>
-
-                                                                                                <td>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            
-                                                                                            
-                                                                                            
-                                                                                            <tr height="23">
-                                                                                                <td colspan="6" class="tbltxt">
-                                                                                                    <div style="margin-left: 6px">
-                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
-                                                                                                            onclick="ChangeVisibillity('pdfDiv','pdfExpand')">
-                                                                                                            <img id="pdfExpand" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" />
-                                                                                                            <b>PDF Documents:</b></a></div>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr height="23">
-                                                                                                <td>
-                                                                                                </td>
-                                                                                                <td id="pdfctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
-                                                                                                    <div id="pdfDiv" style="display: inline; margin-left: 6px">
-                       
-        
-        
-               <h:panelGroup id="pdfsPanel">
-                                     
-<table border="1" style="    border: unset;">
-   <tr>
-        <td colspan="2">
-            <table id="pdfctl00_BodyHolder_imageList_imageList" cellspacing="0" border="0" style="border-collapse:collapse;">
-	<tr>
-                
-                
-	
-		<ui:repeat var="var" varStatus="status" value="#{carBean.pdfs}">
-			<td style="border: black;padding: 14px;border-right-style: solid;border-width: 1px;">
-                    <table>
-                        <tr>
-                            <td align="center">
-                                <div>
-                                    <a href="#" onclick='ViewPDFById("#{var}")'>
-                                        <h:graphicImage value="/resources/images/pdf.png" alt="pdfs#{var}" style="border-width:0px; width:50px;" />
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                <a style="color: Black;" href="#" onclick='ViewPDFById("#{var}")'>
-                                    <span id="pdfctl00_BodyHolder_imageList_fileList_ctl00_docName">#{status.index+1}</span></a>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            
-                        </tr>
-                    </table>
-                </td>
-                
-                
-               
-		</ui:repeat>
-                     
-	</tr>
-</table>
-
-</td>
-    </tr>
-    <tr>
-    </tr>
-        
-</table>
-
-</h:panelGroup>
-
-                                                                                                    </div>
-                                                                                                </td>
-
-                                                                                                <td>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            
-                                                                                            
-                                                                                        
-                                                                                        
-                                                                                        
-                                                                                        
-                                                                                        
-                                                                                        
-                                                        
-                                                        <tr height="2">
-                                                            <td colspan="1">
-                                                                <p:commandButton action="#{carBean.updateCarForCustomer()}" class="btn btn-default" name="ctl00$BodyHolder$btnVehicleSave" value="Update" id="ctl00_BodyHolder_btnVehicleSave" style="font-family:Verdana;font-size:10px;font-weight:bold;width:120px;" />
-                                                            </td>
-                                                            
-                                                            
-                                                             <td colspan="1">
-                                                                <p:commandButton  action="#{carBean.cancel()}" class="btn btn-default" name="ctl00$BodyHolder$btnVehicleBack" value="Cancel" id="ctl00_BodyHolder_btnVehicleBack" style="font-family:Verdana;font-size:10px;font-weight:bold;width:120px;" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                
-</div>
-                                                <br />
-                                                
-                                                
-                                                <br />
-                                            
-                                        
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-            </div>  
-        </h:form>
-     
-     
-     <script>
-     $.ajax({
-         url: "https://find-spin-api.spincar.com/provider-api/smartopal/primeshippingllc.com/#{carBean.selectedCar.uuid}?auth=524491e15e7340e6f3963a14988a846d0b2e99f4ef024386d77590f389b4403ab424b06d317a29f4b8bc7e92f78897244faa0120d3e8d1d0bbc4ba17fede1da2",
-         type: "GET",
-         datatype: 'json',
-         success: function( data, status, xhttp) {
-              // data will be true or false if you returned a json bool
-              if(data.status=="ok"){
-            	  console.log(data.vehicle.url);
-            	  
-            	  var $iframe = $('#spinCar');
-            	    if ($iframe.length) {
-            	        $iframe.attr('src',data.vehicle.url);
-            	    }
-            	    
-              }else{
-            	  $('#car360').hide();
-            	  
-              }
-              
-         },
-         async: false // this is generally bad, it will lock up your browser while it returns, but the only way to fit it into your pattern.
-     });
-     </script>
-	
-	</ui:define>
-	
+		$('.ui-icon-closethick').removeClass().addClass('fa fa-times');
 		
+		function runFromBackEndToReloadDialog(){
+			PF('dlg2').show();
+			
+		}
+		</script>	
+			
+		</ui:define>
 	
 </ui:composition>
 </html>

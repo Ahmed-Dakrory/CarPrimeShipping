@@ -13,10 +13,53 @@
 	<ui:define name="title"> Prime International Shipping LLC</ui:define>
  <ui:define name="mainHead"> 
 			      <ul class="mn-sub"><li class="mn-sub-item mn-item-addinventory"><a href="AddNewInventory.jsf" class="mn-sub-item-current"><b>Add Inventory</b></a></li></ul>
-           
+               <link rel="stylesheet" href="#{resource['css:dashboardPrime/all.min.css']}" />
+		<link rel="stylesheet" href="#{resource['css:dashboardPrime/bootstrap.min.css']}" />
+		
 			</ui:define>
 
 	<ui:define name="content">
+	
+	<style>
+					    	
+ 	.ui-fileupload-content .ui-progressbar .ui-progressbar-value {
+    background: gray;
+    height: 100%;
+}
+
+.ui-fileupload-content .ui-progressbar {
+    width: 200px;
+    height: 20px;
+    margin: 0;
+    top: 5px;
+    border-style: solid;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+
+    input, select {
+    font-family: arial;
+    height: 29px!important;
+    padding: 1px 1px 1px 9px;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 15px!important;
+    font-family: calibri;
+}
+
+td {
+    /* font-weight: 400; */
+    font-size: 15px;
+    font-family: calibri;
+}
+
+.tbltxt {
+    font: 16px 'calibri';
+    color: #000;
+}
+    	</style>
+	
         <h:form name="aspnetForm" method="post" action="./AddNewInventory.jsf" id="aspnetForm">
 
             <div id="content">
@@ -5442,23 +5485,7 @@
 
 
 
-  <tr >
-  	 <td colspan="6" class="tbltxt">
-  	 <hr></hr>
-  	 <h1> 360 View of the Car </h1>
-  	 <br></br>
-  	 
-  	 <div id="container"> <!-- Use this container to position, size or style the widget. -->
-<div class="sts-spin"> <!-- This container allows the widget's "full screen" button to work. -->
-<iframe id="spinCar" style="width: 751px;height: 751px; " />
-</div>
-</div>
-
-          
-           
-        </td>
-           
-  </tr>
+ 
   <tr height="23">
                                                                                                 <td colspan="6" class="tbltxt">
                                                                                                     <div style="margin-left: 6px">
@@ -5727,6 +5754,9 @@
 
             </div>  
         </h:form>
+        
+		<h:outputScript name="js/dashboardPrime/popper.min.js"/>
+		<h:outputScript name="js/dashboardPrime/bootstrap.min.js"/>
      
      <script>
      $.ajax({
@@ -5743,6 +5773,9 @@
             	        $iframe.attr('src',data.vehicle.url);
             	    }
             	    
+              }else{
+            	  $('#car360').hide();
+            	  
               }
               
          },
