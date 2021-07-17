@@ -718,7 +718,7 @@ body .ui-icon {
 											<th class="hidden-phone">Year</th>
 											<th class="hidden-phone">Color</th>
 											<th class="hidden-phone">Shipper</th>
-											<th class="hidden-phone">Vendor</th>
+											<th class="hidden-phone">Buyer</th>
 											<th class="hidden-phone">Keys</th>
 											<th class="hidden-phone" style="display:#{carBean.selectedCarState==2?'table-cell':'none'};">Container#</th>
 											<th class="hidden-phone">No. Days</th>
@@ -750,11 +750,11 @@ body .ui-icon {
 											</td>
 											
 											<td class="center hidden-phone"><span style="overflow: hidden;display: inline-flex;width: max-content;">#{data.make} #{data.model}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{data.year}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{data.color}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{data.shipperId.userId.company}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{data.vendorId.userId.company}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{data.keyExist?'Yes':'No'}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.year}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.color}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.shipperId.userId.company}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.vendorId.userId.company}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.keyExist?'Yes':'No'}</span></td>
 
 
 											<td class="center hidden-phone" style="display:#{carBean.selectedCarState==2?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; "><a  style="color: #371cc3; " onclick="openThisSite('#{data.containerLink}');">#{data.container}</a></span></td>
@@ -764,8 +764,8 @@ body .ui-icon {
 												window.open(url,'_blank');
 											}
 											</script>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{carBean.getNumberOfDays(data.storageStartDate,data.storageEndDate)}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{carBean.getFormatedDate(data.cargoRecieved)}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; width: max-content;">#{carBean.getNumberOfDays(data.storageStartDate,data.storageEndDate)}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{carBean.getFormatedDate(data.cargoRecieved)}</span></td>
 											<td class="center hidden-phone" style="vertical-align: middle;">
 
 												<h:panelGroup rendered="#{(data.titleRecieved==0)?'true':'false'}">

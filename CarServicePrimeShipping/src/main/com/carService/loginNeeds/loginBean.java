@@ -184,7 +184,7 @@ public class loginBean implements Serializable{
 					theMainUserOfThisAccount = userDataFacede.getById(theUserOfThisAccount.getMainUserId().getId());
 					thisAccountMoneyBox = moneyBoxDataFacede.getByUserId(theMainUserOfThisAccount.getId());
 					FacesContext.getCurrentInstance()
-					   .getExternalContext().redirect("/pages/secured/userData/userProfile.jsf?faces-redirect=true");
+					   .getExternalContext().redirect("/pages/secured/userData/vehicleList.jsf?faces-redirect=true");
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
