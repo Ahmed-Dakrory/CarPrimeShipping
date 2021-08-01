@@ -142,12 +142,15 @@ public class carBean implements Serializable{
 	private List<String> images;
 	private List<String> docs;
 	private List<String> pdfs;
+	private List<String> loadingImages;
 	
 	
 	
 	private List<String> images_deleted;
 	private List<String> docs_deleted;
 	private List<String> pdfs_deleted;
+	private List<String> loadingImages_deleted;
+	
 
 	private Map<Integer, String> distinationMap;
 	private Map<Integer, String> origineMap;
@@ -203,10 +206,12 @@ public class carBean implements Serializable{
 		images=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
+		loadingImages=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
+		loadingImages_deleted=new ArrayList<String>();
 		cargoRecievedDate="";
 		titleRecievedSelected=0;
 		releaseDate="";
@@ -232,10 +237,12 @@ public class carBean implements Serializable{
 		images=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
+		loadingImages=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
+		loadingImages_deleted=new ArrayList<>();
 		cargoRecievedDate="";
 		titleRecievedSelected=0;
 		releaseDate="";
@@ -261,11 +268,12 @@ public class carBean implements Serializable{
 		images=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
-		
+		loadingImages=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
+		loadingImages_deleted=new ArrayList<>();
 		cargoRecievedDate="";
 		titleRecievedSelected=0;
 		releaseDate="";
@@ -291,11 +299,12 @@ public class carBean implements Serializable{
 		images=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
-		
+		loadingImages=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
+		loadingImages_deleted=new ArrayList<>();
 		consigneeId=-1;
 		
 		
@@ -369,15 +378,17 @@ public class carBean implements Serializable{
 					images=new ArrayList<String>();
 					docs=new ArrayList<String>();
 					pdfs=new ArrayList<String>();
-					
+					loadingImages=new ArrayList<String>();
 
 					images_deleted=new ArrayList<String>();
 					docs_deleted=new ArrayList<String>();
 					pdfs_deleted=new ArrayList<String>();
+					loadingImages_deleted=new ArrayList<>();
 					
 					List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 					List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 					List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+					List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
 					
 					if(imagesOfCar!=null) {
 						for(int i=0;i<imagesOfCar.size();i++) {
@@ -394,6 +405,13 @@ public class carBean implements Serializable{
 					if(pdfsOfCar!=null){
 						for(int i=0;i<pdfsOfCar.size();i++) {
 							pdfs.add(pdfsOfCar.get(i).getUrl());
+						}
+					}
+					
+					
+					if(imageLoadingOfCar!=null){
+						for(int i=0;i<imageLoadingOfCar.size();i++) {
+							loadingImages.add(imageLoadingOfCar.get(i).getUrl());
 						}
 					}
 					
@@ -786,6 +804,7 @@ public class carBean implements Serializable{
 			List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 			List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 			List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+			List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
 			
 			if(imagesOfCar!=null) {
 				for(int i=0;i<imagesOfCar.size();i++) {
@@ -802,6 +821,12 @@ public class carBean implements Serializable{
 			if(pdfsOfCar!=null){
 				for(int i=0;i<pdfsOfCar.size();i++) {
 					pdfs.add(pdfsOfCar.get(i).getUrl());
+				}
+			}
+			
+			if(imageLoadingOfCar!=null){
+				for(int i=0;i<imageLoadingOfCar.size();i++) {
+					loadingImages.add(imageLoadingOfCar.get(i).getUrl());
 				}
 			}
 			
@@ -845,9 +870,11 @@ public class carBean implements Serializable{
 		 * Select Car For Main Two
 		 */
 		public void refreshSelectedCarMainTwo() {
+			
 			List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 			List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 			List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+			List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
 			
 			if(imagesOfCar!=null) {
 				for(int i=0;i<imagesOfCar.size();i++) {
@@ -859,11 +886,20 @@ public class carBean implements Serializable{
 					docs.add(docsOfCar.get(i).getUrl());
 				}
 			}
+			
+			
 			if(pdfsOfCar!=null){
 				for(int i=0;i<pdfsOfCar.size();i++) {
 					pdfs.add(pdfsOfCar.get(i).getUrl());
 				}
 			}
+			
+			if(imageLoadingOfCar!=null){
+				for(int i=0;i<imageLoadingOfCar.size();i++) {
+					loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+				}
+			}
+			
 			
 			cargoRecievedDate=getStringFromCalendar(selectedCar.getCargoRecieved());
 			releaseDate=getStringFromCalendar(selectedCar.getReleaseDate());
@@ -916,6 +952,7 @@ public class carBean implements Serializable{
 			List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 			List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 			List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+			List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
 			
 			if(imagesOfCar!=null) {
 				for(int i=0;i<imagesOfCar.size();i++) {
@@ -927,11 +964,20 @@ public class carBean implements Serializable{
 					docs.add(docsOfCar.get(i).getUrl());
 				}
 			}
+			
+			
 			if(pdfsOfCar!=null){
 				for(int i=0;i<pdfsOfCar.size();i++) {
 					pdfs.add(pdfsOfCar.get(i).getUrl());
 				}
 			}
+			
+			if(imageLoadingOfCar!=null){
+				for(int i=0;i<imageLoadingOfCar.size();i++) {
+					loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+				}
+			}
+			
 				
 		}
 	public void selectCarForShipper(int idcar) {
@@ -997,6 +1043,8 @@ public void updateCarForCustomer() {
 	boolean checkCustomer=checkCustomerIsExist(selectedCar.getCustomerId());
 	if(isValid&&checkCustomer) {
 		
+	customer customerMain = customerFacade.getById(selectedCar.getCustomerId().getId());
+	selectedCar.setCustomerId(customerMain);
 	consignee consigneeNew=consigneeFacade.getById(consigneeId);
 	selectedCar.setConsigneeId(consigneeNew);
 	carFacade.addcar(selectedCar);
@@ -1050,6 +1098,7 @@ public void refreshSelectedCarVendor() {
 	List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 	List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 	List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+	List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
 	
 	if(imagesOfCar!=null) {
 		for(int i=0;i<imagesOfCar.size();i++) {
@@ -1061,11 +1110,20 @@ public void refreshSelectedCarVendor() {
 			docs.add(docsOfCar.get(i).getUrl());
 		}
 	}
+	
+	
 	if(pdfsOfCar!=null){
 		for(int i=0;i<pdfsOfCar.size();i++) {
 			pdfs.add(pdfsOfCar.get(i).getUrl());
 		}
 	}
+	
+	if(imageLoadingOfCar!=null){
+		for(int i=0;i<imageLoadingOfCar.size();i++) {
+			loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+		}
+	}
+	
 	
 }
 	public void selectCarForVendor(int idcar) {
@@ -1135,6 +1193,7 @@ public void refreshSelectedCarVendor() {
 		List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 		List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 		List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
+		List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
 		
 		if(imagesOfCar!=null) {
 			for(int i=0;i<imagesOfCar.size();i++) {
@@ -1146,11 +1205,20 @@ public void refreshSelectedCarVendor() {
 				docs.add(docsOfCar.get(i).getUrl());
 			}
 		}
+		
+		
 		if(pdfsOfCar!=null){
 			for(int i=0;i<pdfsOfCar.size();i++) {
 				pdfs.add(pdfsOfCar.get(i).getUrl());
 			}
 		}
+		
+		if(imageLoadingOfCar!=null){
+			for(int i=0;i<imageLoadingOfCar.size();i++) {
+				loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+			}
+		}
+		
 	}
 	public void selectCarForCustomerOrConsignee(int idcar) {
 		refresh();
@@ -1232,6 +1300,16 @@ public void refreshSelectedCarVendor() {
 		}
 		
 		
+		for(int i=0;i<loadingImages_deleted.size();i++) {
+			carimage cPDFs=new carimage();
+			cPDFs.setCarId(addNewCar);
+			cPDFs.setUrl(loadingImages_deleted.get(i));
+			cPDFs.setType(carimage.TYPE_Loading);
+			cPDFs.setDeleted(true);
+			carimageFacade.addcarimage(cPDFs);
+		}
+		
+		
 		for(int i=0;i<images.size();i++) {
 			carimage cImage=new carimage();
 			cImage.setCarId(addNewCar);
@@ -1258,6 +1336,15 @@ public void refreshSelectedCarVendor() {
 			cPDFs.setType(carimage.TYPE_PDFS);
 			carimageFacade.addcarimage(cPDFs);
 			addNewCar.setDocExist(true);
+		}
+		
+		
+		for(int i=0;i<loadingImages.size();i++) {
+			carimage cPDFs=new carimage();
+			cPDFs.setCarId(addNewCar);
+			cPDFs.setUrl(loadingImages.get(i));
+			cPDFs.setType(carimage.TYPE_Loading);
+			carimageFacade.addcarimage(cPDFs);
 		}
 		
 		
@@ -1493,6 +1580,13 @@ public void refreshSelectedCarVendor() {
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:pdfdocsPanel");
 	}
 	
+	public void previewLoadingImage(FileUploadEvent event) {
+		byte[] image =event.getFile().getContents();
+		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
+		loadingImages.add(fileName);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:LoadingimagesPanel");
+	}
+	
 	public void cancel() {
 		System.out.println("Cancel");
 		try {
@@ -1603,6 +1697,15 @@ public void refreshSelectedCarVendor() {
 			carimageFacade.addcarimage(cPDFs);
 			selectedCar.setDocExist(false);
 		}
+		for(int i=0;i<loadingImages_deleted.size();i++) {
+			carimage cImage=new carimage();
+			cImage.setCarId(selectedCar);
+			cImage.setUrl(loadingImages_deleted.get(i));
+			cImage.setType(carimage.TYPE_Loading);
+			cImage.setDeleted(true);
+			carimageFacade.addcarimage(cImage);
+
+		}
 		
 		for(int i=0;i<images.size();i++) {
 			carimage cImage=new carimage();
@@ -1631,8 +1734,17 @@ public void refreshSelectedCarVendor() {
 			selectedCar.setDocExist(true);
 		}
 		
-
 		
+		for(int i=0;i<loadingImages.size();i++) {
+			carimage cpdfs=new carimage();
+			cpdfs.setCarId(selectedCar);
+			cpdfs.setUrl(loadingImages.get(i));
+			cpdfs.setType(carimage.TYPE_Loading);
+			carimageFacade.addcarimage(cpdfs);
+		}
+		
+
+
 		carFacade.addcar(selectedCar);
 			
 		
@@ -1643,8 +1755,14 @@ public void refreshSelectedCarVendor() {
 				"			type: 'success'\r\n" + 
 				"		});");
 
+
+		System.out.println("Ahmed Mail Old 1");
+		if(selectedCar.isSendMailUpdate()) {
+
 		sendUpdateToAll(selectedCar);
-		
+		}else {
+			System.out.println("Ahmed Mail");
+		}
 		try {
 			FacesContext.getCurrentInstance()
 			   .getExternalContext().redirect("/pages/secured/userData/vehicleList.jsf?faces-redirect=true");
@@ -1662,6 +1780,24 @@ public void refreshSelectedCarVendor() {
 		}
 	}
 
+	
+	
+	public void previewImageMain(FileUploadEvent event) {
+		byte[] image =event.getFile().getContents();
+		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
+		selectedCar.setMainUrl(fileName);
+		selectedCar.setPhotoExist(true);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
+	}
+	
+	
+	public void addImageMain(FileUploadEvent event) {
+		byte[] image =event.getFile().getContents();
+		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
+		addNewCar.setMainUrl(fileName);
+		addNewCar.setPhotoExist(true);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
+	}
 private void sendUpdateToAll(car selectedCar2) {
 		
 		shipper shipperObject =selectedCar2.getShipperId();
@@ -1826,9 +1962,14 @@ public void deleteCar() {
 			PrimeFaces.current().executeScript("swal(\"Action Done\", \"The PDF Has Been Deleted\", \"success\");");
 		}else if(typeOfFile==carimage.TYPE_PIC) {
 			
-				removeFileFromImages(fileURL);
-			FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanel");
-			PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Image Has Been Deleted\", \"success\");");
+			removeFileFromImages(fileURL);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanel");
+		PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Image Has Been Deleted\", \"success\");");
+		}else if(typeOfFile==carimage.TYPE_Loading) {
+			
+			removeFileFromLoadingImages(fileURL);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:LoadingimagesPanel");
+		PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Loading Image Has Been Deleted\", \"success\");");
 		}
 		
 	}
@@ -1854,6 +1995,17 @@ public void deleteCar() {
 			}
 		}
 	}
+	
+	private void removeFileFromLoadingImages(String fileURL) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<loadingImages.size();i++) {
+			if(loadingImages.get(i).equalsIgnoreCase(fileURL)) {
+				loadingImages.remove(i);
+				loadingImages_deleted.add(fileURL);
+				return;
+			}
+		}
+	}
 
 	private void removeFileFromDoc(String fileURL) {
 		// TODO Auto-generated method stub
@@ -1865,6 +2017,8 @@ public void deleteCar() {
 			}
 		}
 	}
+	
+	
 
 	public void refreshDataForCarDependsOnRole() {
 		refresh();
@@ -2157,6 +2311,32 @@ public void deleteCar() {
 	public void setPdfs(List<String> pdfs) {
 		this.pdfs = pdfs;
 	}
+
+	
+	
+	public List<String> getLoadingImages() {
+		return loadingImages;
+	}
+
+
+
+	public void setLoadingImages(List<String> loadingImages) {
+		this.loadingImages = loadingImages;
+	}
+
+
+
+	public List<String> getLoadingImages_deleted() {
+		return loadingImages_deleted;
+	}
+
+
+
+	public void setLoadingImages_deleted(List<String> loadingImages_deleted) {
+		this.loadingImages_deleted = loadingImages_deleted;
+	}
+
+
 
 	public carimageAppServiceImpl getCarimageFacade() {
 		return carimageFacade;

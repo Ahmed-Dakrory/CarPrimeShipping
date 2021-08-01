@@ -629,6 +629,24 @@ public class Constants {
 	
 	
 	public static String getMessageUpdateCar(car selectedCar) {
+		String note ="";
+		if(!selectedCar.getNote().equalsIgnoreCase("")) {
+			 note = "\r\n" + 
+					"<p style=\"\r\n" + 
+					"    font-size: 26px;\r\n" + 
+					"    color: white;\r\n" + 
+					"    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;\r\n" + 
+					"\">Note <p style=\"\r\n" + 
+					"    font-size: 26px;\r\n" + 
+					"    color: white;\r\n" + 
+					"    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px #cacaca;\r\n" + 
+					"\"> "+selectedCar.getNote()+"</p></p>\r\n" + 
+					"\r\n" + 
+					"							<br>\r\n" + 
+					"            				\r\n" + 
+					"            				\r\n" ;
+		}
+		
 		return "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\r\n" + 
 				"    <meta charset=\"utf-8\"> <!-- utf-8 works for most cases -->\r\n" + 
 				"    <meta name=\"viewport\" content=\"width=device-width\"> <!-- Forcing initial-scale shouldn't be necessary -->\r\n" + 
@@ -1141,6 +1159,10 @@ public class Constants {
 				"							<br>\r\n" + 
 				"            				\r\n" + 
 				"            				\r\n" + 
+				
+				
+				note+
+				
 				"            			</div>\r\n" + 
 				"            		</td>\r\n" + 
 				"            	</tr>\r\n" + 

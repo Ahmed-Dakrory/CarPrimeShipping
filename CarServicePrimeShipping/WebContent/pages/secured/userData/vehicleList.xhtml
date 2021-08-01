@@ -713,6 +713,7 @@ body .ui-icon {
 										<tr style="    box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;">
 											<th></th>
 											<th style="display:none;">ID</th>
+											<th>Image</th>
 											<th>UID</th>
 											<th>Car_Type</th>
 											<th class="hidden-phone">Year</th>
@@ -725,8 +726,7 @@ body .ui-icon {
 											<th class="hidden-phone">Cargo Received</th>
 											<th class="hidden-phone">Title Received</th>
 											<th class="hidden-phone">Origin</th>
-											<th class="hidden-phone">360 View</th>
-											<th class="hidden-phone">Image</th>
+											<th class="hidden-phone">All Images</th>
 											<th class="hidden-phone">Docs</th>
 
 										</tr>
@@ -735,6 +735,15 @@ body .ui-icon {
 									<ui:repeat var="data" value="#{carBean.allCars}">
 										<tr class="gradeX">
 											<td></td>
+											
+											
+											
+											
+											<td style="    margin: 0;    padding: 2px;    width: 88px;">
+											<a  onclick='ViewDocById("#{data.mainUrl}")' style="display:#{data.photoExist==true?'block':'none'} ;">
+												<img style="box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;border-radius: 15%;max-width: 113px;max-height: 113px;margin: 3px;" src = "/images/?file=#{data.mainUrl}"/>
+											</a>
+											</td>
 											<td style="display:none">#{data.id}</td>
 																						
 											<td style="overflow: hidden;width: 117.087px;font-size: 14px;   text-align: center;">
@@ -797,19 +806,15 @@ body .ui-icon {
 												</h:panelGroup>
 												</td>
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; ">#{carBean.getTheOrigin(data.origin)}</span></td>
-																						<td class="center hidden-phone">
-											<a href="/pages/secured/userData/all360OfCar.jsf?imagesOfCarId=#{data.id}" >
-												<img style="height:35px; box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 51px;" src = "/resources/images/img/360v.png"/>
+											
+											<td class="center hidden-phone">
+											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.photoExist==true?'block':'none'} ;">
+												<img style=" box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 41px;" src = "/resources/images/img/no-photo.jpg"/>
 											</a>
 											</td>
 											
 											<td class="center hidden-phone">
-											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.photoExist==true?'block':'none'} ;">
-												<img style=" box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 35px;" src = "/resources/images/img/no-photo.jpg"/>
-											</a>
-											</td>
-											<td class="center hidden-phone">
-											<a href="/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.docExist==true?'block':'none'} ; ">
+											<a href="/pages/secured/userData/allDocOfCar.jsf?imagesOfCarId=#{data.id}" style="display:#{data.docExist==true?'block':'none'} ; ">
 												<img style="    width: 40px;" src = "/resources/images/public/img/membership-choice-step/membership-choice__premier-step-1.png"/>
 											</a>
 											</td>

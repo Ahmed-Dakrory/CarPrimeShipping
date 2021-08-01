@@ -49,11 +49,13 @@ $(document).ready(function() {
                if(wScroll >  200-0)
                {
                 $("#btnUp").fadeIn(500);
+                $("#btnDown").fadeOut(500);
                 $("#navbar").css("backgroundColor","rgb(32, 32, 32)");
                }
                else
                {
                 $("#btnUp").fadeOut(500);
+                $("#btnDown").fadeIn(500);
                 $("#navbar").css("backgroundColor","transparent");
             
                }
@@ -63,6 +65,12 @@ $(document).ready(function() {
             $("#btnUp").click(function(){
             
                 $("html,body").animate( {scrollTop:'0'}, 1000)
+            })
+            
+            
+            $("#btnDown").click(function(){
+            
+               $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             })
 
             $(".nav a").click(function(){

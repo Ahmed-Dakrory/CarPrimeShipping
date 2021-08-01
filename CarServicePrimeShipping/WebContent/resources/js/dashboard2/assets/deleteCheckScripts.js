@@ -51,7 +51,31 @@ function deleteImageNum(filename){
 	                                			});
 	                                	}
 	                                	
-	                                	
+	             function deleteLoadingImageNum(filename){
+	                                		swal("Are You Sure You want To Delete this Image?", {
+	                                			  buttons: {
+	                                			    cancel: "Cancel",
+	                                			    catch: {
+	                                			      text: "Yes Sure, Delete it",
+	                                			      value: "catch",
+	                                			    }
+	                                			  },
+	                                			})
+	                                			.then((value) => {
+	                                			  switch (value) {
+	                                			 
+	                                			 
+	                                			    case "catch":
+	                                			    var dataNewOfString = filename;
+	                                			      deleteFile([{name: 'fileURL', value: dataNewOfString}, {name: 'typeOfFile', value: '3'}]);
+	                                			      break;
+	                                			 
+	                                			    default:
+	                                			      
+	                                			  }
+	                                			});
+	                                	}
+	                                	                   	
 	       	                                	                         	
 function deleteDocsNum(filename){
 	                                		swal("Are You Sure You want To Delete the Document?", {

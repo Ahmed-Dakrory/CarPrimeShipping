@@ -205,6 +205,12 @@ public class car {
 	@JoinColumn(name = "mainTwoId")
 	private mainTwo mainTwoId;
 	
+	
+
+	@Column(name = "mainUrl")
+	private String mainUrl;
+	
+	
 	@Column(name = "uuid")
 	private String uuid;
 	
@@ -292,6 +298,10 @@ public class car {
 
 	@Column(name = "releaseOption")
 	private boolean releaseOption;
+	
+
+	@Column(name = "sendMailUpdate")
+	private boolean sendMailUpdate;
 	
 	
 
@@ -1614,6 +1624,42 @@ public class car {
 
 	public void setKeyExist(boolean keyExist) {
 		this.keyExist = keyExist;
+	}
+
+
+
+
+
+
+	public boolean isSendMailUpdate() {
+		return sendMailUpdate;
+	}
+
+
+
+
+
+
+	public void setSendMailUpdate(boolean sendMailUpdate) {
+		this.sendMailUpdate = sendMailUpdate;
+	}
+
+
+
+
+
+
+	public String getMainUrl() {
+		return mainUrl;
+	}
+
+
+
+
+
+
+	public void setMainUrl(String mainUrl) {
+		this.mainUrl = mainUrl;
 	}
 
 

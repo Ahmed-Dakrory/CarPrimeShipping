@@ -31,6 +31,40 @@
 			<style>
 			
 			
+			@bg: #2d2d37; // Dark blue
+@primary: #fd6b21; // Orange
+
+
+.arrow {
+  text-align: center;
+  margin: 8% 0;
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+			#btnDown {
+    position: fixed;
+    bottom: 15px;
+    left: 115px;
+    display: none;
+    z-index: 99;
+    font-size: 1.5rem;
+}
 			
 			.icon-bar {
       position: fixed;
@@ -111,6 +145,10 @@
         </section>
 		
         
+        
+        <div class="arrow bounce btn btn-dark" id="btnDown"  style="display: inline-block;">
+		  <a class="fa fa-arrow-down fa-2x" href="#"></a>
+		</div>
 
         <button id="btnUp" class="btn btn-dark">
             <i class="fas fa-arrow-alt-circle-up"></i>

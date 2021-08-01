@@ -5581,13 +5581,7 @@ td {
                                                                                                     <h:inputText name="ctl00$BodyHolder$txtColor" type="text" value="#{carBean.selectedCar.color}" id="ctl00_BodyHolder_txtColor" style="font-size:11px;height:19px;width:200px;" />
                                                                                                 </td>
                                                                                                 
-                                                                                                <td class="tbltxt">
-                                                                                                    <div style="margin-left: 6px">
-                                                                                                        Note #:</div>
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    <h:inputText name="ctl00$BodyHolder$txtTitleTrackNumber" type="text" value="#{carBean.selectedCar.note}" id="ctl00_BodyHolder_txtTitleTrackNumber" style="font-size:11px;height:19px;width:200px;" />
-                                                                                                </td>
+                                                                                                
                                                                                                 
                                                                                                 <td>
                                                                                                 </td>
@@ -5718,6 +5712,15 @@ td {
                                                                                                     <h:selectBooleanCheckbox  type="text" value="#{carBean.selectedCar.keyExist}" style="font-size:11px;height:19px;width:20px;" />
                                                                                                     
                                                                                                 </td>
+                                                                                                
+                                                                                                <td style="width: 250px" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Allow Send Mail when Update:</div>
+                                                                                                </td>
+                                                                                                <td style="width: 250px" align="left">
+                                                                                                    <h:selectBooleanCheckbox  type="text" value="#{carBean.selectedCar.sendMailUpdate}" style="font-size:11px;height:19px;width:20px;" />
+                                                                                                    
+                                                                                                </td>
                                                                                             
                                                                                             </tr>
                                                                                             
@@ -5728,6 +5731,25 @@ td {
                                                                                             </tr>
                                                                                             
                                                                                              
+                                                                                             
+                                                                                             
+                                                                                              <tr height="23">
+                                                                                             <td style="width: 250px" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Allow Send Mail when Update:</div>
+                                                                                                </td>
+                                                                                                <td style="width: 250px" align="left">
+                                                                                                    <h:selectBooleanCheckbox  type="text" value="#{carBean.selectedCar.sendMailUpdate}" style="font-size:11px;height:19px;width:20px;" />
+                                                                                                    
+                                                                                                </td>
+                                                                                                </tr>
+                                                                                                
+                                                                                                
+                                                                                              <tr height="23">
+                                                                                                <td bgcolor="#ffffff" colspan="6">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            
                                                                                             <tr height="23">
                                                                                               
                                                                                                 
@@ -5799,6 +5821,30 @@ td {
                                                                                                 <td bgcolor="#ffffff" colspan="6">
                                                                                                 </td>
                                                                                             </tr>
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                             <tr  height="23">
+                                                                                            <td style="vertical-align: initial;width: 250px;" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Notes:</div>
+                                                                                                </td>
+                                                                                                <td colspan="3" style="width: 250px" align="left">
+                                                                                                    <h:inputTextarea value="#{carBean.selectedCar.note}" style="height:150px;width:100%;" />
+                                                                                                    
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            
+                                                                                             <tr height="2">
+                                                                                                <td bgcolor="#ffffff" colspan="6">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
                                                                                              <tr height="23">
                                                                                               
                                                                                                 
@@ -5837,6 +5883,44 @@ td {
            
   </tr>
   
+  
+  
+  
+  
+  
+   
+                                                                                             <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('picDivMain','picExpandMain')">
+                                                                                                            <img id="picExpandMain" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Main
+                                                                                                                Pictures:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                              <tr height="23">
+                                                                                                <td>
+                                                                                                </td>
+                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
+                                                                                                     <div id="picDivMain" style="display: inline; margin-left: 6px">
+                                                                                                     	
+                                                                                                     	 <h:panelGroup id="imagesPanelMain">
+																	                                 <p:fileUpload id="FileUploadedMain" fileUploadListener="#{carBean.previewImageMain}" dragDropSupport="true" sizeLimit="99999999" fileLimit="20" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
+        
+																	                                    <label for="aspnetForm:FileUploadedMain_input">
+																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.mainUrl!=null?'false':'true'}" alt="imageMain3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage value="/images/?file=#{carBean.selectedCar.mainUrl}" rendered="#{carBean.selectedCar.mainUrl!=null?'true':'false'}" alt="imageMain" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
+																	                                    </label>
+																	                                     </h:panelGroup>   
+                                                                                                     	
+                                                                                                     	</div>
+                                                                                                </td>
+                                                                                              </tr>
+                                                                                                  
+                                                                                            
+                                                                                            
+                                                                                            
   
                                                                                             <tr height="23">
                                                                                                 <td colspan="6" class="tbltxt">
@@ -5916,6 +6000,104 @@ td {
                                                                                                 </td>
                                                                                             </tr>
                                                                                             
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+
+
+
+ <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 11px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('LoadingpicDiv','LoadingpicExpand')">
+                                                                                                            <img id="LoadingpicExpand" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Loading
+                                                                                                                Pictures:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                           <tr height="23">
+                                                                                               
+                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
+                                                                                                    <div id="LoadingpicDiv" style=" margin-left: 47px">
+                                                                                                     	<p:fileUpload id="FileUploadedLoading" style=" margin-left: 100px; " fileUploadListener="#{carBean.previewLoadingImage}" dragDropSupport="true" sizeLimit="10000000" fileLimit="100" multiple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
+        
+        
+        
+               <p:panel id="LoadingimagesPanel" class="container">
+       
+					<div class="row">
+					
+							<ui:repeat var="var" value="#{carBean.loadingImages}">
+    <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;">			
+				<div class="containerDevCloseButtonNew">
+						<div class="devCloseButtonNew" onclick="deleteLoadingImageNum('#{var}')">
+	                                	<div href="#"  class="closeButtonNew">
+	                                	</div>
+	                    </div>
+					</div>
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <a href="#" onclick='ViewDocById("#{var}")'>
+                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;"/></a>
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                    <span >#{var}</span></a>
+                                
+                           </div>
+                   </div>
+               </div>
+                
+                
+               
+		</ui:repeat>
+             
+             <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;padding-top: 16px;">
+             
+                     <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <label for="aspnetForm:FileUploadedLoading_input">
+                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" alt="image#{var}" style="border-width:0px;    width: 50px;" />
+                                    </label>
+                                        
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">click to select Image</span></a>
+                                
+                               </div>
+                   </div>
+             
+              </div>
+	   
+					</div>
+				</p:panel>
+				</div>
+                                                                                                </td>
+
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                           
+  
+  
+  
+  
+  
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
                                                                                             <tr height="23">
                                                                                                 <td colspan="6" class="tbltxt">
                                                                                                     <div style="margin-left: 6px">
@@ -5958,7 +6140,7 @@ td {
                             <td align="center">
                                 <div>
                                     <a href="#" onclick='ViewDocById("#{var}")'>
-                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
+                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:113px;" /></a>
                                 </div>
                             </td>
                         </tr>
@@ -6071,7 +6253,7 @@ td {
                                 <div>	
 			
                                     <a href="#" onclick='ViewPDFById("#{var}")'>
-                                     <h:graphicImage value="/resources/images/pdf.png" alt="pdfs#{var}" style="border-width:0px; width:50px;" />
+                                     <h:graphicImage value="/resources/images/pdf.png" alt="pdfs#{var}" style="border-width:0px; width:113px;" />
                                     </a>
                                 </div>
                             </td>
@@ -6100,7 +6282,7 @@ td {
                             <td align="center">
                                 <div>
                                     <label for="aspnetForm:pdfdocUploaded_input">
-                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" alt="image#{var}" style="border-width:0px;    width: 50px;" />
+                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" alt="image#{var}" style="border-width:0px;    width: 113px;" />
                                     </label>
                                         
                                 </div>

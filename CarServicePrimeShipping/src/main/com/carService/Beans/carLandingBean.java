@@ -436,6 +436,9 @@ private void removeFileFromImages(String fileURL) {
 	
 	public void updateCarDataMain() {
 		selectedFreight.setSaleDate(setCalendarFromString(saleDate));
+		
+		//Here Added
+		selectedFreight.setShowenInLanding(true);
 		carLandingFacade.addcarLanding(selectedFreight);
 		
 		

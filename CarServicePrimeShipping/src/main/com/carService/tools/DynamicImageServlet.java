@@ -44,8 +44,13 @@ public class DynamicImageServlet extends HttpServlet{
 			String mainDirectory="";
 			if(typePdf==null) {
 				mainDirectory =System.getProperty("catalina.base")+"/images/";
+				response.setContentType("image/jpeg");
+				response.addHeader("Content-Disposition", "inline; filename="+ file);
+			       
 			}else {
 				mainDirectory =System.getProperty("catalina.base")+"/pdfs/";
+				response.setContentType("application/pdf");
+				response.addHeader("Content-Disposition", "inline; filename="+ file);
 					
 			}
 			FileInputStream fileInputStream = new FileInputStream(mainDirectory + file);

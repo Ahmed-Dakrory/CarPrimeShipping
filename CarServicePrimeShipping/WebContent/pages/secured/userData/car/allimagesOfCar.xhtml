@@ -44,7 +44,7 @@ color:#ffec08;
 	 
 	 <div class="row">
 	 	<div class="col-md-12">
-	 	<h1>All Images for the freight: #{carBean.selectedCar.uuid}</h1>
+	 	<h1>All Images and Docs for the freight: #{carBean.selectedCar.uuid}</h1>
 	 	</div>
 	 	
  	</div>
@@ -71,13 +71,13 @@ color:#ffec08;
 	  <div class="card row">
 	    <div class="card-header w-100" id="headingOne">
 	       <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
-	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 	         	All Images
 	        </a>
 	      </h5>
 	    </div>
 	
-	    <div id="collapseOne" class="collapse show in" aria-labelledby="headingOne" data-parent="#accordionExample">
+	    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 	      <div class="card-body">
 	      		<div class="row mt-1">
 				 	<div class="col-md-2">
@@ -118,22 +118,22 @@ color:#ffec08;
 	  <div class="card row">
 	     <div class="card-header w-100" id="headingOne">
 	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
-	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-	          All Images Loading
+	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	          All Images Document
 	        </a>
 	      </h5>
 	    </div>
-	    <div id="collapseTwo" class="collapse show in" aria-labelledby="headingTwo" data-parent="#accordionExample">
+	    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 	      <div class="card-body">
 	      		<div class="row mt-1">
 				 	<div class="col-md-2">
-					 	<a onclick="downloadAllLoading();" href="javascript:void(0)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default">Download All Loading Images</a>
+					 	<a onclick="downloadAllDocs();" href="javascript:void(0)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default">Download All Documents</a>
 					 </div>
 				 </div>
 	 			<div class="row mt-1">
 	      	 		<!-- All images -->
 	 
-	 					<ui:repeat var="var" value="#{carBean.loadingImages}">
+	 					<ui:repeat var="var" value="#{carBean.docs}">
     <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;">			
 				
                     <div class="row" style=" text-align: center; ">
@@ -162,50 +162,54 @@ color:#ffec08;
 	    </div>
 	  </div>
 	
-	
+		
 	  <div class="card row">
-	     <div class="card-header w-100" >
+	     <div class="card-header w-100" id="headingOne">
 	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
-	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-	          All Images 360
+	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+	          All PDF Documents
 	        </a>
 	      </h5>
 	    </div>
-	    <div id="collapseThree" class="collapse show in" aria-labelledby="headingThree" data-parent="#accordionExample">
+	    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
 	      <div class="card-body">
 	      		<div class="row mt-1">
 				 	<div class="col-md-2">
-					 	<a onclick="downloadAll360();" href="javascript:void(0)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default">Download All 360D Images</a>
+					 	<a onclick="downloadAllPDFDocs();" href="javascript:void(0)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default">Download All PDFs</a>
 					 </div>
 				 </div>
 	 			<div class="row mt-1">
 	      	 		<!-- All images -->
 	 
-		
-		<div id="spinCarContainer" class="row mt-2">
-
-			  	 <br></br>
-			  	 
-			  	 <div id="container"> <!-- Use this container to position, size or style the widget. -->
-			<div class="sts-spin"> <!-- This container allows the widget's "full screen" button to work. -->
-			<iframe id="spinCar" style="width: 100%;height: 751px; " />
-			</div>
-			</div>
-		</div>
-		
-		<div id="spinCarContainerFalse" style="display:none;">
-		 <h1 class="w-100 text-center"> No 360 View Available for this car </h1>
-		</div>
-		
-	 				 <!-- All images -->
+	 					<ui:repeat var="var" value="#{carBean.pdfs}">
+    <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;">			
+				
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <a href="#" onclick='ViewPDFById("#{var}")'>
+                                        <h:graphicImage value="/resources/images/pdf.png" alt="image#{var}" style="border-width:0px; width:50px;"/></a>
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="#" onclick='ViewPDFById("#{var}")'>
+                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{status.index+1}</span></a>
+                                
+                           </div>
+                   </div>
+               </div>
+                
+                
+               
+		</ui:repeat>
+					 <!-- All images -->
 					</div>
 		
 		 
 	      </div>
 	    </div>
 	  </div>
-	
-	
+	 
 	
 	 </div>
 	
@@ -232,7 +236,16 @@ function downloadEachImage(urlFileName){
 		}
 		
 
+function downloadEachPDF(urlFileName){
+	
+	const imageUrl = '/images/?file='+urlFileName+"&amp;Pdf=1";
 
+	// Fetch the image and parse the response stream as a blob
+	const imageBlob = fetch(imageUrl).then(response => Promise.resolve(response.blob()));
+
+	return imageBlob;
+	
+}
 
 function downloadAllImages(){
 			
@@ -254,11 +267,11 @@ function downloadAllImages(){
 		
 		
 		
-function downloadAllLoading(){
+function downloadAllDocs(){
 	
 	var zip = new JSZip();
-	var img = zip.folder("Loading Images");
-	<ui:repeat var="variable" value="#{carBean.loadingImages}">
+	var img = zip.folder("Docs");
+	<ui:repeat var="variable" value="#{carBean.docs}">
 	filename="#{variable}";
 	imgData = downloadEachImage(filename);
 	img.file(filename, imgData);
@@ -266,11 +279,28 @@ function downloadAllLoading(){
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 	    // see FileSaver.js
-	    saveAs(content, "All Loading Images Of freight with Vin #{carBean.selectedCar.uuid}.zip");
+	    saveAs(content, "All Documents Of freight with Vin #{carBean.selectedCar.uuid}.zip");
 	});
 
 }
 	
+
+function downloadAllPDFDocs(){
+	
+	var zip = new JSZip();
+	var img = zip.folder("PDFs");
+	<ui:repeat var="variable" value="#{carBean.pdfs}">
+	filename="#{variable}";
+	imgData = downloadEachPDF(filename);
+	img.file(filename, imgData);
+	</ui:repeat>
+	zip.generateAsync({type:"blob"})
+	.then(function(content) {
+	    // see FileSaver.js
+	    saveAs(content, "All PDF Of freight with Vin #{carBean.selectedCar.uuid}.zip");
+	});
+
+}
 		
 		function downloadAllFiles(){
 			var zip = new JSZip();
@@ -284,14 +314,20 @@ function downloadAllLoading(){
 			</ui:repeat>
 			
 			
-			var img = zip.folder("Loading Images");
-			<ui:repeat var="variable" value="#{carBean.loadingImages}">
+			var img = zip.folder("Docs");
+			<ui:repeat var="variable" value="#{carBean.docs}">
 			filename="#{variable}";
 			imgData = downloadEachImage(filename);
 			img.file(filename, imgData);
 			</ui:repeat>
 			
 			
+			var img = zip.folder("PDFs");
+			<ui:repeat var="variable" value="#{carBean.pdfs}">
+			filename="#{variable}";
+			imgData = downloadEachPDF(filename);
+			img.file(filename, imgData);
+			</ui:repeat>
 			
 			
 			zip.generateAsync({type:"blob"})
@@ -304,32 +340,6 @@ function downloadAllLoading(){
 		</script>
 		
 		
-		
-		
-		 <script>
-     $.ajax({
-         url: "https://find-spin-api.spincar.com/provider-api/smartopal/primeshippingllc.com/#{carBean.selectedCar.uuid}?auth=524491e15e7340e6f3963a14988a846d0b2e99f4ef024386d77590f389b4403ab424b06d317a29f4b8bc7e92f78897244faa0120d3e8d1d0bbc4ba17fede1da2",
-         type: "GET",
-         datatype: 'json',
-         success: function( data, status, xhttp) {
-              // data will be true or false if you returned a json bool
-              if(data.status=="ok"){
-            	  console.log(data.vehicle.url);
-            	  
-            	  var $iframe = $('#spinCar');
-            	    if ($iframe.length) {
-            	        $iframe.attr('src',data.vehicle.url);
-            	    }
-            	    
-              }else{
-            	  $('#spinCarContainer').hide();
-            	  $('#spinCarContainerFalse').show();
-              }
-              
-         },
-         async: false // this is generally bad, it will lock up your browser while it returns, but the only way to fit it into your pattern.
-     });
-     </script>
 		
 		
 		<!-- End of All Images -->

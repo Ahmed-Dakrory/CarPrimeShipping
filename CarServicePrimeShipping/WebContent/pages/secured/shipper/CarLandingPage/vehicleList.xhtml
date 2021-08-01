@@ -31,6 +31,57 @@
 
 
 	</style>
+	
+	
+	<style>
+div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+    margin: 5px;
+    float: left;
+    width: 23.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
         <form name="aspnetForm" method="post" action="./vehicleList.jsf" id="aspnetForm">
 
 
@@ -54,7 +105,7 @@
                                             <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                                 <tr>
                                                     <td class="blkname" style="width: 20%; height: 22px;">
-                                                        <nobr>&nbsp;Freight List<span id="ctl00_BodyHolder_lblCount">: #{carLandingBean.listOfAddedCars.size()}</span></nobr>
+                                                        <nobr>&nbsp;Gallery List<span id="ctl00_BodyHolder_lblCount">: #{carLandingBean.listOfAddedCars.size()}</span></nobr>
                                                     </td>
                                                     <td style="height: 22px">
                                                         
@@ -103,62 +154,47 @@
                                             <img src="#{resource['images:dumb.gif']}" width="1" height="3"/><br></br>
                                             <!-- Client DataGrid-->
                                             <section class="panel">
-                                            
-							<div class="panel-body">
-							   <h:form>
-									<h:commandButton value="Add New Freight" action="#{carLandingBean.addCarForMain()}" class="btn btn-default" ></h:commandButton>
+                                            		
+						   <h:form>
+									<h:commandButton value="Add New Image to Gallery" action="#{carLandingBean.addCarForMain()}" class="btn btn-default" ></h:commandButton>
 								</h:form>
-								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
-									<thead>
-										<tr style="    box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;">
-											
-											<th class="hidden-phone">Image</th>
-											<th class="hidden-phone">Serial</th>
-											<th class="hidden-phone">Description</th>
-											<th class="hidden-phone">Year</th>
-											<th class="hidden-phone">Transmission</th>
-											<th class="hidden-phone">Date</th>
-											<th class="hidden-phone">Bid</th>
-											<th class="hidden-phone">Statue</th>
-											<th class="hidden-phone">Distance</th>
-											<th class="hidden-phone">Body Style</th>
-											<th class="hidden-phone">Categories</th>
-											
-										</tr>
-									</thead>
-									<tbody>
-									<ui:repeat var="data" value="#{carLandingBean.listOfAddedCars}">
-										<tr class="gradeX">
-											<td style="    margin: 0;    padding: 2px;    width: 88px;">
-											<h:graphicImage value="/images/?file=#{data.mainImage}" alt="image#{data.mainImage}" style="box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d;border-radius: 15%;max-width: 79px;max-height: 79px;width: auto;height: auto;margin-right: 4%;"/>
-										
-											</td>
-											<td>
-												
-												<h:form>
-													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==0?'true':'false'}" value="#{data.uuid}" action="#{carLandingBean.selectCarForMain(data.id)}"/>
-												</h:form>
-											</td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.description}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.year}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carLandingBean.getTransmissionTypesEnum(data.transmission).name}</span></td>
+								
+							<div class="panel-body">
+							
+							
+					
+								
+								
+								
+								
+															<!-- Photo Grid -->
+
+	<ui:repeat var="data" value="#{carLandingBean.listOfAddedCars}">
+	
+	
+	<div class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="/images/?file=#{data.mainImage}">
+      <img src="/images/?file=#{data.mainImage}" alt="image#{data.mainImage}" style="width:100%;height:200px;"/>
+    </a>
+   
+    <div class="desc">
+		 <h:form>
+			<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==0?'true':'false'}" value="#{data.uuid}" action="#{carLandingBean.selectCarForMain(data.id)}" style="font-size:15px;"/>
+		</h:form>
+	</div>
+  </div>
+</div>
+
 											
 											
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{carLandingBean.getFormatedDate(data.saleDate)}</span></td>
-											
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">$#{data.currentBid}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.saleStatues}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.kiloDistance}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.bodyStyle}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex; height: 15px;">#{data.category}</span></td>
-										</tr>
 									</ui:repeat>
-										
-										
-									</tbody>
-								</table>
+  
+  
 							
-							
+	
+	
+								
 							</div>
 						</section>
                                        
