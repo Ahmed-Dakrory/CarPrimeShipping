@@ -1349,7 +1349,7 @@ public void refreshSelectedCarVendor() {
 		
 		
 		
-		
+		addNewCar.setStorageStartDate(Calendar.getInstance());
 		carFacade.addcar(addNewCar);
 		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
 				"			title: 'Success',\r\n" + 

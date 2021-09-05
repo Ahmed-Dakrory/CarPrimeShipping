@@ -191,10 +191,34 @@ public class shipperBean implements Serializable{
 			carinvoice.setInvoiceId(invoiceData);
 			
 			invoiceCarFacade.addinvoiceCar(carinvoice);
-			float landCost=carsForInvoice.get(i).getLandcost();
-			float Seacost=carsForInvoice.get(i).getSeacost();
-			float Commision=carsForInvoice.get(i).getCommision();
-			float Fees=carsForInvoice.get(i).getFees();
+			float landCost = 0;
+			float Seacost=0;
+			float Commision=0;
+			float Fees=0;
+			try {
+				landCost=carsForInvoice.get(i).getLandcost();
+			}catch(Exception ee) {
+				
+			}
+			
+			try {
+				Seacost=carsForInvoice.get(i).getSeacost();
+			}catch(Exception ee) {
+				
+			}
+			
+			try {
+				Commision=carsForInvoice.get(i).getCommision();
+			}catch(Exception ee) {
+				
+			}
+			
+			try {
+				Fees=carsForInvoice.get(i).getFees();
+			}catch(Exception ee) {
+				
+			}
+			
 					
 			float totalForCar=(float) (landCost+Seacost
 					+Commision+Fees);
