@@ -231,6 +231,19 @@ function downloadEachImage(urlFileName){
 			
 		}
 		
+		
+		
+function downloadEachImageOutSide(urlFileName){
+			
+			const imageUrl = urlFileName;
+
+			// Fetch the image and parse the response stream as a blob
+			const imageBlob = fetch(imageUrl).then(response => Promise.resolve(response.blob()));
+
+			return imageBlob;
+			
+		}
+		
 
 
 
@@ -255,50 +268,48 @@ function downloadAllImages(){
 function downloadAll360(){
 	
 	
+	var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://find-spin-api.spincar.com/image-syndication/v2/customer/6628",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+    "client-id": "Primeshippingimages",
+    "auth": "a3648405a4447e6ef7f2cf9ef9af4f6e6ba8402d0d8e0470490a5faefebbfe4de86a2714e97d90dfed8869b24b90612454fceb266c42f8b37d6fe77aada04287",
+    "cache-control": "no-cache",
+    "postman-token": "03908bd6-6ebd-97ba-fdc1-b7fea156f87f"
+  },
+  "processData": false,
+  "data": "\n{\n\"ids\" : \n[\"1Z87482434326\",\"#{carBean.selectedCar.uuid}\"]\n,\n\"allow_no_exterior\": true,\n\"include_third_party_closeups\": false,\n\"include_image_type\": false,\n\"include_raw_images\": false\n}"
+}
+
+$.ajax(settings).done(function (response) {
+var zip = new JSZip();
+	var img = zip.folder("Images3D");
 	
+images3D = response['vehicles'][0]['images'];
+  
+  $.each(images3D, function (key, val) {
+		filename=val['url'];
+	imgData = downloadEachImageOutSide(filename);
+	img.file(val['label']+".jpg", imgData);
 	
-	$.ajax({
-        url: "https://find-spin-api.spincar.com/image-syndication/v2/customer/6628",
-        type: "POST",
-        datatype: 'json',
-        headers: {
-		    "content-type": "application/json",
-		    "client-id": "Primeshippingimages",
-		    "auth": "a3648405a4447e6ef7f2cf9ef9af4f6e6ba8402d0d8e0470490a5faefebbfe4de86a2714e97d90dfed8869b24b90612454fceb266c42f8b37d6fe77aada04287",
-		    "region": "US"
-		  },
-	  data: {
-		  "ids" : ["1Z87482434326","KNDPB3A27D7483221"],
-		  "allow_no_exterior": true,
-		  "include_third_party_closeups": false,
-		  "include_image_type": false,
-		  "include_raw_images": false
-		  },
-        success: function( data, status, xhttp) {
-             // data will be true or false if you returned a json bool
-         
-           	  console.log(data);
-           	  
-           	 
-        },
-        async: false // this is generally bad, it will lock up your browser while it returns, but the only way to fit it into your pattern.
     });
-    
 	
-	/*
-	var zip = new JSZip();
-	var img = zip.folder("Images");
-	<ui:repeat var="variable" value="#{carBean.images}">
-	filename="#{variable}";
-	imgData = downloadEachImage(filename);
-	img.file(filename, imgData);
-	</ui:repeat>
+	
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 	    // see FileSaver.js
-	    saveAs(content, "All ImagesOf freight with Vin #{carBean.selectedCar.uuid}.zip");
+	    saveAs(content, "All Images3D Of freight with Vin #{carBean.selectedCar.uuid}.zip");
 	});
-	*/
+	
+});
+
+	
+	
+	
+	
 
 }
 		
@@ -324,10 +335,42 @@ function downloadAllLoading(){
 	
 		
 		function downloadAllFiles(){
-			var zip = new JSZip();
-			
-			
-			var img = zip.folder("Images");
+		
+		
+		
+		
+	var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://find-spin-api.spincar.com/image-syndication/v2/customer/6628",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+    "client-id": "Primeshippingimages",
+    "auth": "a3648405a4447e6ef7f2cf9ef9af4f6e6ba8402d0d8e0470490a5faefebbfe4de86a2714e97d90dfed8869b24b90612454fceb266c42f8b37d6fe77aada04287",
+    "cache-control": "no-cache",
+    "postman-token": "03908bd6-6ebd-97ba-fdc1-b7fea156f87f"
+  },
+  "processData": false,
+  "data": "\n{\n\"ids\" : \n[\"1Z87482434326\",\"#{carBean.selectedCar.uuid}\"]\n,\n\"allow_no_exterior\": true,\n\"include_third_party_closeups\": false,\n\"include_image_type\": false,\n\"include_raw_images\": false\n}"
+}
+
+$.ajax(settings).done(function (response) {
+var zip = new JSZip();
+	var img = zip.folder("Images3D");
+	
+images3D = response['vehicles'][0]['images'];
+  
+  $.each(images3D, function (key, val) {
+		filename=val['url'];
+	imgData = downloadEachImageOutSide(filename);
+	img.file(val['label']+".jpg", imgData);
+	
+    });
+	
+	
+	
+var img = zip.folder("Images");
 			<ui:repeat var="variable" value="#{carBean.images}">
 			filename="#{variable}";
 			imgData = downloadEachImage(filename);
@@ -350,6 +393,18 @@ function downloadAllLoading(){
 			    // see FileSaver.js
 			    saveAs(content, "#{carBean.selectedCar.uuid}.zip");
 			});
+			
+	
+	
+});
+
+	
+	
+	
+	
+
+	
+	
 			
 		}
 		</script>
