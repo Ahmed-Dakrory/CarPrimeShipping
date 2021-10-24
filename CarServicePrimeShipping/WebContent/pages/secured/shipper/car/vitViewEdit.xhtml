@@ -185,6 +185,31 @@ td {
                                                                                 <td>
                                                                                     <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f7f7f7" border="0">
                                                                                         <tbody>
+                                                                                        
+                                                                                         <tr height="23">
+                                                                                               
+                                                                                                <td class="tbltxt" width="130">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Car Type:</div>
+                                                                                                </td>
+                                                                                                <td width="200">
+                                                                                                    <h:selectOneMenu value="#{carBean.selectedCar.carType}"  name="cartype" id="cartype" style="font-size:11px;width:200px;">
+																										
+																										<f:selectItem itemLabel="SUV" itemValue="SUV"/>
+																										<f:selectItem itemLabel="Sedan" itemValue="Sedan"/>
+																										<f:selectItem itemLabel="Coupe" itemValue="Coupe"/>
+																										<f:selectItem itemLabel="Motor Cycle" itemValue="Motor Cycle"/>
+																										<f:selectItem itemLabel="Pickup 2 Doors" itemValue="Pickup 2 Doors"/>
+																										<f:selectItem itemLabel="Pickup 4 Doors" itemValue="Pickup 4 Doors"/>
+																										<f:selectItem itemLabel="Truck (day cab)" itemValue="Truck (day cab)"/>
+																										<f:selectItem itemLabel="Truck (With Sleeper)" itemValue="Truck (With Sleeper)"/>
+																										<f:selectItem itemLabel="Van" itemValue="Van"/>
+																										<f:selectItem itemLabel="Other" itemValue="Other"/>
+																									</h:selectOneMenu>
+                                                                                                    
+                                                                                                </td>
+                                                                                                
+                                                                                                </tr>
                                                                                             <tr height="23">
                                                                                                 <td class="tbltxt" width="130">
                                                                                                     <div style="margin-left: 6px">
@@ -373,21 +398,21 @@ td {
                                                                                                     <div style="margin-left: 6px">
                                                                                                         Freight Type:</div>
                                                                                                 </td>
-                                                                                                <td>
+                                                                                                <td >
                                                                                                     <h:selectOneMenu name="ctl00$BodyHolder$txtMake" type="text" value="#{carBean.selectedCar.type}" id="ctl00_BodyHolder_txttype" style="font-size:11px;height:19px;width:200px;" >
                                                                                                     <f:selectItem itemLabel="Vehcile" itemValue="0"/>
                                                                                                     <f:selectItem itemLabel="Dry Cargo" itemValue="1"/>
                                                                                                     </h:selectOneMenu>
                                                                                                 </td>
-                                                                                                <td>
-                                                                                                </td>
-                                                                                                <td class="tbltxt">
+                                                                                                
+                                                                                                
+
+																								<td class="tbltxt">
                                                                                                     <div style="margin-left: 6px">
-                                                                                                    </div>
+                                                                                                        OdOMeter:</div>
                                                                                                 </td>
                                                                                                 <td>
-                                                                                                </td>
-                                                                                                <td>
+                                                                                                    <h:inputText name="odoMeter" type="text" value="#{carBean.selectedCar.odometer}" id="odometer" style="font-size:11px;height:19px;width:200px;" />
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr height="2">
@@ -5572,6 +5597,8 @@ td {
                                                                                                 <td bgcolor="#ffffff" colspan="6">
                                                                                                 </td>
                                                                                             </tr>
+                                                                                            
+                                                                                            
                                                                                             <tr height="23">
                                                                                                 <td class="tbltxt">
                                                                                                     <div style="margin-left: 6px">
@@ -5713,14 +5740,7 @@ td {
                                                                                                     
                                                                                                 </td>
                                                                                                 
-                                                                                                <td style="width: 250px" class="tbltxt">
-                                                                                                    <div style="margin-left: 6px">
-                                                                                                        Allow Send Mail when Update:</div>
-                                                                                                </td>
-                                                                                                <td style="width: 250px" align="left">
-                                                                                                    <h:selectBooleanCheckbox  type="text" value="#{carBean.selectedCar.sendMailUpdate}" style="font-size:11px;height:19px;width:20px;" />
-                                                                                                    
-                                                                                                </td>
+                                                                                                
                                                                                             
                                                                                             </tr>
                                                                                             
@@ -6322,6 +6342,138 @@ td {
                                                                                             </tr>
                                                            
                                                                                             
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            
+   
+                                                                                             <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('picDivSign','picExpandSign')">
+                                                                                                            <img id="picExpandSign" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Driver Signature at Origin:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                              <tr height="23">
+                                                                                                <td>
+                                                                                                </td>
+                                                                                                <td  colspan="4" class="tbltxt" valign="top">
+                                                                                                     <div id="picDivSign" style="display: inline; margin-left: 6px">
+                                                                                                     	
+                                                                                                     	 <h:panelGroup id="imagesPanelSign" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}">
+																	                                 
+																	                                    <label  onclick='ViewDocById("#{carBean.selectedCar.urlOfDriverSignture}")'>
+																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'false':'true'}" alt="imageMain3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSignture}" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}" alt="imageMain" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
+																	                                    <br></br>
+																	                                    <span style="font-size:11px;height:19px;">At </span>
+																	                                    <h:outputText value="#{carBean.selectedCar.dateOfDriverSignture.time}" name="signdate" type="text" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}"  id="signDate" style="font-size:11px;height:19px;width:200px;" >
+																	                                    <f:convertDateTime pattern="hh:mm EEEE, MMMM d yyyy" />
+																	                                    </h:outputText>
+																	                                    
+																	                                    </label>
+																	                                     </h:panelGroup>   
+                                                                                                     	
+                                                                                                     	<h:panelGroup rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'false':'true'}" >
+                                                                                                     		<h3 style=" font-size: 19px; border-style: solid; width: fit-content; padding: 22px; border-width: 1px; border-radius: 7px; font-style: oblique; box-shadow: 3px 3px 10px 4px grey; font-weight: 700; ">No Signature Available</h3>
+                                                                                                     	</h:panelGroup>
+                                                                                                     	</div>
+                                                                                                </td>
+                                                                                              </tr>
+
+
+
+
+
+                                                                                            
+   
+                                                                                             <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('picDivSignDestination','picExpandSignDestination')">
+                                                                                                            <img id="picExpandSignDestination" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Driver Signature at Destination:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                              <tr height="23">
+                                                                                                <td>
+                                                                                                </td>
+                                                                                                <td  colspan="4" class="tbltxt" valign="top">
+                                                                                                     <div id="picDivSignDestination" style="display: inline; margin-left: 6px">
+                                                                                                     	
+                                                                                                     	 <h:panelGroup id="imagesPanelSignDestination" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}">
+																	                                 
+																	                                    <label  onclick='ViewDocById("#{carBean.selectedCar.urlOfDriverSigntureDestination}")'>
+																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'false':'true'}" alt="imageMainDestination3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSigntureDestination}" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}" alt="imageMainDestination" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
+																	                                    <br></br>
+																	                                    <span style="font-size:11px;height:19px;">At </span>
+																	                                    <h:outputText value="#{carBean.selectedCar.dateOfDriverSigntureDestination.time}" name="signdateDestination" type="text" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}"  id="signDateDestination" style="font-size:11px;height:19px;width:200px;" >
+																	                                    <f:convertDateTime pattern="hh:mm EEEE, MMMM d yyyy" />
+																	                                    </h:outputText>
+																	                                    
+																	                                    </label>
+																	                                     </h:panelGroup>   
+                                                                                                     	
+                                                                                                     	<h:panelGroup rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'false':'true'}" >
+                                                                                                     		<h3 style=" font-size: 19px; border-style: solid; width: fit-content; padding: 22px; border-width: 1px; border-radius: 7px; font-style: oblique; box-shadow: 3px 3px 10px 4px grey; font-weight: 700; ">No Signature Available</h3>
+                                                                                                     	</h:panelGroup>
+                                                                                                     	</div>
+                                                                                                </td>
+                                                                                              </tr>
+
+
+
+
+
+
+	                                                                                          
+   
+                                                                                             <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('picDivCrash','picExpandCrash')">
+                                                                                                            <img id="picExpandCrash" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> All Notes in Pics:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                              <tr height="23">
+                                                                                                <td>
+                                                                                                </td>
+                                                                                                <td  colspan="4" class="tbltxt" valign="top">
+                                                                                                     <div id="picDivCrash" style="display: inline; margin-left: 6px">
+                                                                                                     	
+                                                                                                     	 <h:panelGroup rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'true':'false'}"  id="imagesPanelCrash">
+																	                                 
+																	                                    <label  onclick='ViewDocById("#{carBean.selectedCar.urlOfCrashImage}")'>
+																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'false':'true'}" alt="imageCrash3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfCrashImage}" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
+																	                                    <br></br>
+																	                                    <span style="font-size:11px;height:19px;">At </span>
+																	                                    <h:outputText value="#{carBean.selectedCar.dateOfCrashImage.time}" name="Crashdate" type="text" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'true':'false'}"  id="CrashDate" style="font-size:11px;height:19px;width:200px;" >
+																	                                    <f:convertDateTime pattern="hh:mm EEEE, MMMM d yyyy" />
+																	                                    </h:outputText>
+																	                                    
+																	                                    </label>
+																	                                     </h:panelGroup>   
+                                                                                                     	
+                                                                                                     	
+                                                                                                     	<h:panelGroup rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'false':'true'}" >
+                                                                                                     		<h3 style=" font-size: 19px; border-style: solid; width: fit-content; padding: 22px; border-width: 1px; border-radius: 7px; font-style: oblique; box-shadow: 3px 3px 10px 4px grey; font-weight: 700; ">Not Pic Available</h3>
+                                                                                                     	</h:panelGroup>
+                                                                                                     	</div>
+                                                                                                </td>
+                                                                                              </tr>
+                                                                                                  
+                                                
+                                                                                            
+                                                                
                                                                                             
                                                                                             <tr height="23">
                                                                                                 <td colspan="6" class="tbltxt">

@@ -221,6 +221,10 @@ public class car {
 	private String model;
 	
 
+	@Column(name = "odometer")
+	private String odometer;
+	
+
 	@Column(name = "assemlyCountry")
 	private String assemlyCountry;
 	
@@ -271,9 +275,45 @@ public class car {
 	
 	@Column(name = "titleRecieved")
 	private Integer titleRecieved;
-	
+
 	@Column(name = "titleNumber")
 	private String titleNumber;
+	
+
+
+	@Column(name = "dateOfDriverSignture")
+	private Calendar dateOfDriverSignture;
+	
+
+	@Column(name = "urlOfDriverSignture")
+	private String urlOfDriverSignture;
+	
+	
+
+
+	@Column(name = "dateOfDriverSigntureDestination")
+	private Calendar dateOfDriverSigntureDestination;
+	
+
+	@Column(name = "urlOfDriverSigntureDestination")
+	private String urlOfDriverSigntureDestination;
+	
+
+	@Column(name = "dateOfCrashImage")
+	private Calendar dateOfCrashImage;
+	
+
+	@Column(name = "urlOfCrashImage")
+	private String urlOfCrashImage;
+	
+
+	@Column(name = "crashPointsJson")
+	private String crashPointsJson;
+	
+	
+
+	@Column(name = "CarType")
+	private String carType;
 	
 	@Column(name = "stRecieved")
 	private Calendar stRecieved;
@@ -836,6 +876,115 @@ public class car {
 	}
 
 
+
+	
+
+
+
+
+
+	public Calendar getDateOfDriverSignture() {
+		return dateOfDriverSignture;
+	}
+
+
+
+
+
+
+	public void setDateOfDriverSignture(Calendar dateOfDriverSignture) {
+		this.dateOfDriverSignture = dateOfDriverSignture;
+	}
+
+
+
+
+
+
+	public String getUrlOfDriverSignture() {
+		return urlOfDriverSignture;
+	}
+
+
+
+
+
+
+	public void setUrlOfDriverSignture(String urlOfDriverSignture) {
+		this.urlOfDriverSignture = urlOfDriverSignture;
+	}
+
+
+
+
+
+
+	public Calendar getDateOfCrashImage() {
+		return dateOfCrashImage;
+	}
+
+
+
+
+
+
+	public void setDateOfCrashImage(Calendar dateOfCrashImage) {
+		this.dateOfCrashImage = dateOfCrashImage;
+	}
+
+
+
+
+
+
+	public String getUrlOfCrashImage() {
+		return urlOfCrashImage;
+	}
+
+
+
+
+
+
+	public void setUrlOfCrashImage(String urlOfCrashImage) {
+		this.urlOfCrashImage = urlOfCrashImage;
+	}
+
+
+
+
+
+
+	public String getCrashPointsJson() {
+		return crashPointsJson;
+	}
+
+
+
+
+
+
+	public void setCrashPointsJson(String crashPointsJson) {
+		this.crashPointsJson = crashPointsJson;
+	}
+
+
+
+
+
+
+	public String getCarType() {
+		return carType;
+	}
+
+
+
+
+
+
+	public void setCarType(String carType) {
+		this.carType = carType;
+	}
 
 
 
@@ -1541,6 +1690,24 @@ public class car {
 
 
 
+	public String getOdometer() {
+		return odometer;
+	}
+
+
+
+
+
+
+	public void setOdometer(String odometer) {
+		this.odometer = odometer;
+	}
+
+
+
+
+
+
 	public boolean isDeleted() {
 		return deleted;
 	}
@@ -1660,6 +1827,42 @@ public class car {
 
 	public void setMainUrl(String mainUrl) {
 		this.mainUrl = mainUrl;
+	}
+
+
+
+
+
+
+	public Calendar getDateOfDriverSigntureDestination() {
+		return dateOfDriverSigntureDestination;
+	}
+
+
+
+
+
+
+	public void setDateOfDriverSigntureDestination(Calendar dateOfDriverSigntureDestination) {
+		this.dateOfDriverSigntureDestination = dateOfDriverSigntureDestination;
+	}
+
+
+
+
+
+
+	public String getUrlOfDriverSigntureDestination() {
+		return urlOfDriverSigntureDestination;
+	}
+
+
+
+
+
+
+	public void setUrlOfDriverSigntureDestination(String urlOfDriverSigntureDestination) {
+		this.urlOfDriverSigntureDestination = urlOfDriverSigntureDestination;
 	}
 
 

@@ -336,6 +336,31 @@ td {
 					</script>	
                                                                                     <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f7f7f7" border="0">
                                                                                         <tbody>
+                                                                                                                                                                                 <tr height="23">
+                                                                                               
+                                                                                                <td class="tbltxt" width="130">
+                                                                                                    <div style="margin-left: 47px">
+                                                                                                        Car Type:</div>
+                                                                                                </td>
+                                                                                                <td width="200">
+                                                                                                    <h:selectOneMenu value="#{carBean.addNewCar.carType}"  name="cartype" id="cartype" style="font-size:11px;width:200px;">
+																										
+																										<f:selectItem itemLabel="SUV" itemValue="SUV"/>
+																										<f:selectItem itemLabel="Sedan" itemValue="Sedan"/>
+																										<f:selectItem itemLabel="Coupe" itemValue="Coupe"/>
+																										<f:selectItem itemLabel="Motor Cycle" itemValue="Motor Cycle"/>
+																										<f:selectItem itemLabel="Pickup 2 Doors" itemValue="Pickup 2 Doors"/>
+																										<f:selectItem itemLabel="Pickup 4 Doors" itemValue="Pickup 4 Doors"/>
+																										<f:selectItem itemLabel="Truck (day cab)" itemValue="Truck (day cab)"/>
+																										<f:selectItem itemLabel="Truck (With Sleeper)" itemValue="Truck (With Sleeper)"/>
+																										<f:selectItem itemLabel="Van" itemValue="Van"/>
+																										<f:selectItem itemLabel="Other" itemValue="Other"/>
+																									</h:selectOneMenu>
+                                                                                                    
+                                                                                                </td>
+                                                                                                
+                                                                                                </tr>
+                                                                                                
                                                                                             <tr height="23">
                                                                                                 <td class="tbltxt" width="130">
                                                                                                     <div style="margin-left: 47px">
@@ -550,16 +575,19 @@ td {
                                                                                                     <f:selectItem itemLabel="Dry Cargo" itemValue="1"/>
                                                                                                     </h:selectOneMenu>
                                                                                                 </td>
-                                                                                                <td>
-                                                                                                </td>
-                                                                                                <td class="tbltxt">
-                                                                                                    <div style="margin-left: 47px">
-                                                                                                    </div>
-                                                                                                </td>
-                                                                                                <td>
+
+                                                                                                
+																								<td class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        OdOMeter:</div>
                                                                                                 </td>
                                                                                                 <td>
+                                                                                                    <h:inputText name="odoMeter" type="text" value="#{carBean.addNewCar.odometer}" id="odometer" style="font-size:11px;height:19px;width:200px;" />
                                                                                                 </td>
+                                 
+
+                                                             
+
                                                                                             </tr>
                                                                                             <tr height="2">
                                                                                                 <td bgcolor="#ffffff" colspan="6">

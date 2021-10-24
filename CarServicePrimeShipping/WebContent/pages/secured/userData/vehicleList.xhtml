@@ -714,7 +714,7 @@ body .ui-icon {
 											<th></th>
 											<th style="display:none;">ID</th>
 											<th>Image</th>
-											<th>UID</th>
+											<th>UID/Bill Of Lading</th>
 											<th>Car_Type</th>
 											<th class="hidden-phone">Year</th>
 											<th class="hidden-phone">Color</th>
@@ -756,6 +756,8 @@ body .ui-icon {
 													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==3?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForCustomerOrConsignee(data.id)}"/>
 													<p:commandLink rendered="#{loginBean.theUserOfThisAccount.role==4?'true':'false'}" value="#{data.uuid}" action="#{carBean.selectCarForCustomerOrConsignee(data.id)}"/>
 												</h:form>
+												<br></br>
+												<a href="/pages/secured/userData/BillOfLanding.jsf?imagesOfCarId=#{data.id}" target="other">BILL OF LADING</a>
 											</td>
 											
 											<td class="center hidden-phone"><span style="overflow: hidden;display: inline-flex;width: max-content;">#{data.make} #{data.model}</span></td>
