@@ -22,16 +22,41 @@
 <h:body>
 <style>
 
+.fontForCirules {
+	font-size: 15px;
+    margin: 0px;
+    padding: 0px!important;
+    padding-left: 1%!important;
+}
+
+
+@media (max-width:960px) { 
+	.fontForPrint{
+		font-size:9px!important;
+	}
+	
+	.fontForCirules {
+	font-size: 14px;
+    margin: 0px;
+    padding: 0px!important;
+    padding-left: 1%!important;
+}
+
+}
 @media screen and (max-width:8.5in) { /* resize your window until the event is triggered */
     html { width:8.5in; }
     body { font: 9pt/1.5 Arial, sans-serif; } /* Roughly 12px font */
 
 }
+
+
 </style>
 #{carBean.openImageLink()} 
 <p:panel id="mainPanel" class="container w-100" >
 <div class="row" >
-<h3 style="margin-top:49px;">#{carBean.selectedCar.shipperId.userId.company}</h3>
+<div class="col-md-1 text-left mt-3 col-1"><img src="/resources/Image/logo.png" alt="logo" style="width: 100%;" /></div>
+<div class="col-md-10 mt-2 text-left col-10 mt-md-4"><h5 style="margin-top:19px;">#{carBean.selectedCar.mainId.company}</h5></div>
+
 </div>
 
 <div class="row mt-3">
@@ -44,7 +69,7 @@
 <p class="mt-0 mb-0">Email: #{carBean.selectedCar.mainId.email}</p>
 </div>
 <div class="row">
-<h2>BILL OF LADING  /  VEHICLE INSPECTION REPORT</h2>
+<h4>BILL OF LADING  /  VEHICLE INSPECTION REPORT</h4>
 </div>
 
 <div class="row">
@@ -56,92 +81,100 @@
       
     </tr>
     <tr>
-      <td class="text-center" colspan="2" ><p class="fs-5 fw-bold">ORIGIN</p></td>
-      <td class="text-center" colspan="3" ><p class="fs-5 fw-bold">DESTINATION</p></td>
+      <td class="text-center" colspan="2" ><p class=" fw-bold fontForCirules ">ORIGIN</p></td>
+      <td class="text-center" colspan="3" ><p class=" fw-bold fontForCirules ">DESTINATION</p></td>
     </tr>
     <tr style=" border-top-style: hidden; ">
-      <td colspan="2" >Contact:  #{carBean.getTheOrigin(carBean.selectedCar.origin)}</td>
-      <td colspan="3" >Contact:  #{carBean.getTheDestination(carBean.selectedCar.destination)}</td>
+      <td colspan="2" class="fontForCirules " >Contact:  #{carBean.getTheOrigin(carBean.selectedCar.origin)}</td>
+      <td colspan="3" class="fontForCirules " >Contact:  #{carBean.getTheDestination(carBean.selectedCar.destination)}</td>
     </tr>
     
     
     
     <tr>
-      <td class="text-center" colspan="1" ><p class="fs-5 fw-bold">VIN</p></td>
-      <td class="text-center" colspan="1" ><p class="fs-5 fw-bold">Year / Make / Model</p></td>
-      <td class="text-center" colspan="1" ><p class="fs-5 fw-bold">Type</p></td>
-      <td class="text-center" colspan="1" ><p class="fs-5 fw-bold">Color</p></td>
-      <td class="text-center" colspan="1" ><p class="fs-5 fw-bold">ODOmeter</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">VIN</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Year / Make / Model</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Type</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Color</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">ODOmeter</p></td>
     </tr>
     <tr style=" border-top-style: hidden; ">
-      <td colspan="1" class="text-center">#{carBean.selectedCar.uuid}</td>
-      <td colspan="1" class="text-center">#{carBean.selectedCar.year} #{carBean.selectedCar.make} #{carBean.selectedCar.model}</td>
-      <td colspan="1" class="text-center">#{carBean.selectedCar.carType}</td>
-      <td colspan="1" class="text-center">#{carBean.selectedCar.color}</td>
-      <td colspan="1" class="text-center">#{carBean.selectedCar.odometer}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.uuid}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.year} #{carBean.selectedCar.make} #{carBean.selectedCar.model}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.carType}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.color}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.odometer}</td>
     </tr>
     <tr>
-      <td colspan="5">Inspection Notes: #{carBean.selectedCar.note}</td>
+      <td colspan="5" class=" fontForCirules ">Inspection Notes: #{carBean.selectedCar.note}</td>
       
     </tr>
     
     <tr>
       <td colspan="5">
       <div class="row">
-			<div class="col-md-4">
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">BR-Broken</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">CH-Chipped</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">CR-Cracked</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">D-Dented</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">F-Faded</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">FF-Foreign Fluid</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">FT-Flat Tire</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">G-Gouge</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">HD-Hail Damage</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">LC-Loose Contents</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">M-Missing</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">MD-Major Damage</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">MS-Multiple Scratches</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">O-Other</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">PC-Paint Chip</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">R-Rubbed</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">RU-Rust</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">S-Scratched</div>
-				<div class="row  m-3 mt-0 mb-0  fs-5 fw-bold">SC-Scuffed</div>
+			<div class="col-md-4 col-4">
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">BR-Broken</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">CH-Chipped</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">CR-Cracked</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">D-Dented</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">F-Faded</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">FF-Foreign Fluid</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">FT-Flat Tire</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">G-Gouge</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">HD-Hail Damage</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">LC-Loose Contents</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">M-Missing</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">MD-Major Damage</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">MS-Multiple Scratches</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">O-Other</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">PC-Paint Chip</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">R-Rubbed</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">RU-Rust</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">S-Scratched</div>
+				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">SC-Scuffed</div>
 			</div>
-			<div class="col-md-7">
-			<h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'false':'true'}" alt="imageCrash3" style="border-width:0px;width: 100%;height: 100%;"/>
-			<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfCrashImage}" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;width: 100%;height: 100%;"/>
+			<div class="col-md-7 text-center col-8">
+			<h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'false':'true'}" alt="imageCrash3" style="border-width:0px;height: 266px;margin-top: 17%;"/>
+			<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfCrashImage}" rendered="#{carBean.selectedCar.urlOfCrashImage!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;width: 100%;margin-top: 0%;"/>
 			</div>	
 			</div>	
 			
-			<div class="row w-100 m-3 p-3">
-				<span class="text-center" style=" height: 54px; padding-top: 13px; background: #eddb5c; font-size: 17px; font-weight: 700; border-radius: 6px; width: fit-content; margin-left: 9%; "> See inspection photos and details: 
+			<div class="row w-100 mt-3 mb-3 text-center">
+			<div class="col-md-1 col-0">
+			
+			</div>
+			
+			<div class="col-md-10 col-12">
+				<span class="text-center  fontForCirules fontForPrint" style="padding: 11px!important;padding-top: 13px;background: #eddb5c;font-weight: 700;border-radius: 6px;width: max-content;"> See inspection photos and details: 
 					<a href="https://primeshippingllc.com/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{carBean.selectedCar.id}" target="photos">https://primeshippingllc.com/pages/secured/userData/allimagesOfCar.jsf?imagesOfCarId=#{carBean.selectedCar.id}</a>
 				</span>
+			</div>
+			
+				
 			</div>												                                    
 	  </td>
 	</tr>
 	
      <tr>
-      <td class="" colspan="2" ><p class="fs-7">Notes:</p></td>
-      <td class="" colspan="3" ><p class="fs-7">Notes</p></td>
+      <td class="" colspan="2" ><p class="fontForCirules ">Notes:</p></td>
+      <td class="" colspan="3" ><p class="fontForCirules ">Notes</p></td>
     </tr>
     <tr>
-      <td class="" colspan="2" ><p class="fs-6 fw-bold">I Agree with the Driver's assessment of the condition of this vehicle.</p></td>
-      <td class="" colspan="3" ><p class="fs-6 fw-bold">Vehicle received in good condition except as noted above</p></td>
+      <td class="" colspan="2" ><p class="fw-bold fontForCirules ">I Agree with the Driver's assessment of the condition of this vehicle.</p></td>
+      <td class="" colspan="3" ><p class="fw-bold fontForCirules ">Vehicle received in good condition except as noted above</p></td>
     </tr>
     <tr style=" border-top-style: hidden; ">
-      <td colspan="2" >Origin Signature</td>
-      <td colspan="3" >Destination Signature</td>
+      <td colspan="2" class=" fontForCirules " >Origin Signature</td>
+      <td colspan="3" class=" fontForCirules " >Destination Signature</td>
     </tr>
     
      <tr>
       <td colspan="2" >Driver Signature/ 			
-      		<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSignture}" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 56px;"/>
+      		<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSignture}" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 49px;width: 177px;"/>
   	  </td>
       <td colspan="3" >Driver Signature/ 		
-      	<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSigntureDestination}" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 56px;"/>
+      	<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSigntureDestination}" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 49px;width: 177px;"/>
   	  </td>
     </tr>
     
