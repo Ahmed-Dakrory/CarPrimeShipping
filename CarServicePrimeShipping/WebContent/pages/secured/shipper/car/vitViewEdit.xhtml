@@ -261,6 +261,61 @@ td {
                                                                                                 </td>
                                                                                               
                                                                                             </tr>
+
+	
+                                                                                            <tr height="23">
+                                                                                               
+                                                                                                <td class="tbltxt" width="130">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Transportation Company Name:</div>
+                                                                                                </td>
+                                                                                                <td width="200">
+                                                                                                     <h:inputText  type="text" value="#{carBean.selectedCar.companyTransName}"  style="font-size:11px;height:19px;width:200px;" />
+                                                                                                    
+                                                                                                </td>
+              																					
+              																					
+              																					 <td class="tbltxt" width="130">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Driver Name:</div>
+                                                                                                </td>
+                                                                                                <td width="200">
+                                                                                                     <h:inputText  type="text" value="#{carBean.selectedCar.driverName}"  style="font-size:11px;height:19px;width:200px;" />
+                                                                                                    
+                                                                                                </td>
+                                                                                              
+                                                                                            </tr>
+                                                                                            <tr height="2">
+                                                                                                <td bgcolor="#ffffff" colspan="6">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            
+                                                                                            
+                                                                                                                                                                                        <tr height="23">
+                                                                                               
+                                                                                                <td class="tbltxt" width="130">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                        Driver Phone:</div>
+                                                                                                </td>
+                                                                                                <td width="200">
+                                                                                                     <h:inputText  type="text" value="#{carBean.selectedCar.driverPhone}"  style="font-size:11px;height:19px;width:200px;" />
+                                                                                                    
+                                                                                                </td>
+              																					
+              																					
+              																					 <td class="tbltxt" width="130">
+                                                                                                    
+                                                                                                </td>
+                                                                                                <td width="200">
+                                                                                                    
+                                                                                                </td>
+                                                                                              
+                                                                                            </tr>
+                                                                                            <tr height="2">
+                                                                                                <td bgcolor="#ffffff" colspan="6">
+                                                                                                </td>
+                                                                                            </tr>
+
                                                                                             <tr height="2">
                                                                                                 <td bgcolor="#ffffff" colspan="6">
                                                                                                 </td>
@@ -6391,42 +6446,7 @@ td {
 
                                                                                             
    
-                                                                                             <tr height="23">
-                                                                                                <td colspan="6" class="tbltxt">
-                                                                                                    <div style="margin-left: 6px">
-                                                                                                    <br></br>
-                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
-                                                                                                            onclick="ChangeVisibillity('picDivSignDestination','picExpandSignDestination')">
-                                                                                                            <img id="picExpandSignDestination" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Driver Signature at Destination:</b></a></div>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                              <tr height="23">
-                                                                                                <td>
-                                                                                                </td>
-                                                                                                <td  colspan="4" class="tbltxt" valign="top">
-                                                                                                     <div id="picDivSignDestination" style="display: inline; margin-left: 6px">
-                                                                                                     	
-                                                                                                     	 <h:panelGroup id="imagesPanelSignDestination" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}">
-																	                                 
-																	                                    <label  onclick='ViewDocById("#{carBean.selectedCar.urlOfDriverSigntureDestination}")'>
-																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'false':'true'}" alt="imageMainDestination3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
-																	                                    <h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSigntureDestination}" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}" alt="imageMainDestination" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
-																	                                    <br></br>
-																	                                    <span style="font-size:11px;height:19px;">At </span>
-																	                                    <h:outputText value="#{carBean.selectedCar.dateOfDriverSigntureDestination.time}" name="signdateDestination" type="text" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}"  id="signDateDestination" style="font-size:11px;height:19px;width:200px;" >
-																	                                    <f:convertDateTime pattern="hh:mm EEEE, MMMM d yyyy" />
-																	                                    </h:outputText>
-																	                                    
-																	                                    </label>
-																	                                     </h:panelGroup>   
-                                                                                                     	
-                                                                                                     	<h:panelGroup rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'false':'true'}" >
-                                                                                                     		<h3 style=" font-size: 19px; border-style: solid; width: fit-content; padding: 22px; border-width: 1px; border-radius: 7px; font-style: oblique; box-shadow: 3px 3px 10px 4px grey; font-weight: 700; ">No Signature Available</h3>
-                                                                                                     	</h:panelGroup>
-                                                                                                     	</div>
-                                                                                                </td>
-                                                                                              </tr>
-
+                                                                                            
 
 
 

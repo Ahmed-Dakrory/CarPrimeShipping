@@ -210,9 +210,23 @@ public class car {
 	@Column(name = "mainUrl")
 	private String mainUrl;
 	
-	
+
 	@Column(name = "uuid")
 	private String uuid;
+	
+
+	@Column(name = "companyTransName")
+	private String companyTransName;
+	
+
+	@Column(name = "driverName")
+	private String driverName;
+	
+
+	@Column(name = "driverPhone")
+	private String driverPhone;
+	
+
 	
 	@Column(name = "make")
 	private String make;
@@ -291,12 +305,6 @@ public class car {
 	
 
 
-	@Column(name = "dateOfDriverSigntureDestination")
-	private Calendar dateOfDriverSigntureDestination;
-	
-
-	@Column(name = "urlOfDriverSigntureDestination")
-	private String urlOfDriverSigntureDestination;
 	
 
 	@Column(name = "dateOfCrashImage")
@@ -1834,8 +1842,21 @@ public class car {
 
 
 
-	public Calendar getDateOfDriverSigntureDestination() {
-		return dateOfDriverSigntureDestination;
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	public String getCompanyTransName() {
+		return companyTransName;
 	}
 
 
@@ -1843,8 +1864,8 @@ public class car {
 
 
 
-	public void setDateOfDriverSigntureDestination(Calendar dateOfDriverSigntureDestination) {
-		this.dateOfDriverSigntureDestination = dateOfDriverSigntureDestination;
+	public void setCompanyTransName(String companyTransName) {
+		this.companyTransName = companyTransName;
 	}
 
 
@@ -1852,8 +1873,8 @@ public class car {
 
 
 
-	public String getUrlOfDriverSigntureDestination() {
-		return urlOfDriverSigntureDestination;
+	public String getDriverName() {
+		return driverName;
 	}
 
 
@@ -1861,8 +1882,26 @@ public class car {
 
 
 
-	public void setUrlOfDriverSigntureDestination(String urlOfDriverSigntureDestination) {
-		this.urlOfDriverSigntureDestination = urlOfDriverSigntureDestination;
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+
+
+
+
+
+
+	public String getDriverPhone() {
+		return driverPhone;
+	}
+
+
+
+
+
+
+	public void setDriverPhone(String driverPhone) {
+		this.driverPhone = driverPhone;
 	}
 
 

@@ -157,25 +157,40 @@
 	</tr>
 	
      <tr>
-      <td class="" colspan="2" ><p class="fontForCirules ">Notes:</p></td>
-      <td class="" colspan="3" ><p class="fontForCirules ">Notes</p></td>
+      <td class="" colspan="5" ><p class="fontForCirules ">Notes</p></td>
     </tr>
     <tr>
-      <td class="" colspan="2" ><p class="fw-bold fontForCirules ">I Agree with the Driver's assessment of the condition of this vehicle.</p></td>
-      <td class="" colspan="3" ><p class="fw-bold fontForCirules ">Vehicle received in good condition except as noted above</p></td>
+      <td class="" colspan="5" ><p class="fw-bold fontForCirules ">I Agree with the Driver's assessment of the condition of this vehicle.</p></td>
     </tr>
-    <tr style=" border-top-style: hidden; ">
-      <td colspan="2" class=" fontForCirules " >Origin Signature</td>
-      <td colspan="3" class=" fontForCirules " >Destination Signature</td>
-    </tr>
+   
     
-     <tr>
-      <td colspan="2" >Driver Signature/ 			
-      		<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSignture}" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 49px;width: 177px;"/>
-  	  </td>
-      <td colspan="3" >Driver Signature/ 		
-      	<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSigntureDestination}" rendered="#{carBean.selectedCar.urlOfDriverSigntureDestination!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 49px;width: 177px;"/>
-  	  </td>
+     <tr style=" border-top-style: hidden; ">
+      <td colspan="5" class=" fontForCirules " ><span style="font-weight:700;">Transportation Company:</span>  #{carBean.selectedCar.companyTransName}
+      
+      <br></br>		
+      <span style="font-weight:700;">Driver's Name:</span>  #{carBean.selectedCar.driverName}
+      <br></br>		
+      <span style="font-weight:700;">Driver's Phone:</span>  #{carBean.selectedCar.driverPhone}
+      <br></br>
+      
+      <div class="row">
+      	<div class="col-md-6 col-6" style="margin-bottom: 15px;">
+      	
+      		<span style="font-weight:700;">Signature: </span>
+      		<h:graphicImage  value="/images/?file=#{carBean.selectedCar.urlOfDriverSignture}" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}" alt="imageCrash" style="border-width:0px;height: 39px;width: 177px;"/>
+  	  
+      	</div>
+      	
+      	<div class="col-md-6 col-6">
+      		<span style="font-weight:700;">Signature Date: </span>  
+			<h:outputText value="#{carBean.selectedCar.dateOfDriverSignture.time}" name="signdate" type="text" rendered="#{carBean.selectedCar.urlOfDriverSignture!=null?'true':'false'}"  id="signDate" style="" >
+			 <f:convertDateTime pattern="hh:mm EEEE, MMMM d yyyy" />
+			 </h:outputText>
+      	</div>
+      </div>
+      
+      </td>
+     
     </tr>
     
   </tbody>
