@@ -77,15 +77,15 @@
 <table class="table table-bordered">
   <tbody>
     <tr>
-      <td colspan="5">LOAD ID: #{carBean.selectedCar.id}</td>
+      <td colspan="6">LOAD ID: #{carBean.selectedCar.id}</td>
       
     </tr>
     <tr>
-      <td class="text-center" colspan="2" ><p class=" fw-bold fontForCirules ">ORIGIN</p></td>
+      <td class="text-center" colspan="3" ><p class=" fw-bold fontForCirules ">ORIGIN</p></td>
       <td class="text-center" colspan="3" ><p class=" fw-bold fontForCirules ">DESTINATION</p></td>
     </tr>
     <tr style=" border-top-style: hidden; ">
-      <td colspan="2" class="fontForCirules " >Contact:  #{carBean.getTheOrigin(carBean.selectedCar.origin)}</td>
+      <td colspan="3" class="fontForCirules " >Contact:  #{carBean.getTheOrigin(carBean.selectedCar.origin)}</td>
       <td colspan="3" class="fontForCirules " >Contact:  #{carBean.getTheDestination(carBean.selectedCar.destination)}</td>
     </tr>
     
@@ -94,6 +94,7 @@
     <tr>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">VIN</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Year / Make / Model</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Key</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Type</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Color</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">ODOmeter</p></td>
@@ -101,17 +102,18 @@
     <tr style=" border-top-style: hidden; ">
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.uuid}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.year} #{carBean.selectedCar.make} #{carBean.selectedCar.model}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.keyExist?'Keys are Exists':'Keys are Not Exists'}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.carType}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.color}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.odometer}</td>
     </tr>
     <tr>
-      <td colspan="5" class=" fontForCirules ">Inspection Notes: #{carBean.selectedCar.note}</td>
+      <td colspan="6" class=" fontForCirules ">Inspection Notes: #{carBean.selectedCar.note}</td>
       
     </tr>
     
     <tr>
-      <td colspan="5">
+      <td colspan="6">
       <div class="row">
 			<div class="col-md-4 col-4">
 				<div class="row  m-3 mt-0 mb-0  fontForCirules fw-bold">BR-Broken</div>
@@ -157,15 +159,13 @@
 	</tr>
 	
      <tr>
-      <td class="" colspan="5" ><p class="fontForCirules ">Notes</p></td>
+      <td class="" colspan="6" ><p class="fontForCirules ">Notes</p></td>
     </tr>
-    <tr>
-      <td class="" colspan="5" ><p class="fw-bold fontForCirules ">I Agree with the Driver's assessment of the condition of this vehicle.</p></td>
-    </tr>
+    
    
     
      <tr style=" border-top-style: hidden; ">
-      <td colspan="5" class=" fontForCirules " ><span style="font-weight:700;">Transportation Company:</span>  #{carBean.selectedCar.companyTransName}
+      <td colspan="6" class=" fontForCirules " ><span style="font-weight:700;">Transportation Company:</span>  #{carBean.selectedCar.companyTransName}
       
       <br></br>		
       <span style="font-weight:700;">Driver's Name:</span>  #{carBean.selectedCar.driverName}
