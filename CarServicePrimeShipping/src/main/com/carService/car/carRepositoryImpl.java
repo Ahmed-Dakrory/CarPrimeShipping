@@ -3,6 +3,7 @@
  */
 package main.com.carService.car;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import main.com.carService.loginNeeds.user;
 
 /**
  * @author A7med Al-Dakrory
@@ -49,6 +52,163 @@ public class carRepositoryImpl implements carRepository{
 			}
 	}
 
+	
+	
+
+	@Override
+	public long getAllCountSearch(int start, int number,String searchValue,int role,int state,int useridAny) {
+		try {
+			session = sessionFactory.openSession();
+			Transaction tx1 = session.beginTransaction();
+			
+			Query query =null;
+			String stateQuery = "";
+			if(state==0) {
+				stateQuery = " (state = 0 or state = 1 or state = 2 or state = 3 ) ";
+			}else if(state==1) {
+				stateQuery = " (state = 4 or state = 5) ";
+			}else if(state==2) {
+				stateQuery = " (state = 6 or state = 7) ";
+			}else if(state==4) {
+				stateQuery = " ( state = 8) ";
+			}else if(state==3) {
+				stateQuery = " id != null ";
+			}
+			String searchQuery = "";
+			searchQuery = " uuid like '%"+searchValue+"%' or "
+					+ " model like '%"+searchValue+"%' or "
+					+ " make like '%"+searchValue+"%' or "
+					+ " color like '%"+searchValue+"%' or "
+					+ " year like '%"+searchValue+"%' ";
+			
+			if(searchValue.equalsIgnoreCase("")) {
+				if(role==user.ROLE_MAIN) {
+					 query = session.createQuery("select count(*) FROM car where mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+				}else if(role==user.ROLE_MAIN2) {
+					 query = session.createQuery("select count(*) FROM car where mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_SHIPPER) {
+					 query = session.createQuery("select count(*) FROM car where shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_VENDOR) {
+					 query = session.createQuery("select count(*) FROM car where vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_CONGSIGNEE) {
+					 query = session.createQuery("select count(*) FROM car where consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_CUSTOMER) {
+					 query = session.createQuery("select count(*) FROM car where customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}
+			}else {
+				if(role==user.ROLE_MAIN) {
+					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" and mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+				}else if(role==user.ROLE_SHIPPER) {
+					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_MAIN2) {
+					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_VENDOR) {
+					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_CONGSIGNEE) {
+					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}else if(role==user.ROLE_CUSTOMER) {
+					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+				}
+			}
+			System.out.println("-----------------------------------");
+			System.out.println(query.getQueryString());
+			
+
+			
+			Number results=(Number) (query).uniqueResult();
+
+			tx1.commit();
+			session.close();
+			return (long) results;
+		} catch (Exception ex) {
+			return 0;
+		}
+		
+
+	}
+
+	
+	
+
+	@Override
+	public List<car> getAllWithPagination(int start, int number,String searchValue,int role,int state,int useridAny) {
+		
+			 
+			 try {
+					session = sessionFactory.openSession();
+					Transaction tx1 = session.beginTransaction();
+					
+					
+					Query query =null;
+					String stateQuery = "";
+					if(state==0) {
+						stateQuery = " (state = 0 or state = 1 or state = 2 or state = 3 ) ";
+					}else if(state==1) {
+						stateQuery = " (state = 4 or state = 5) ";
+					}else if(state==2) {
+						stateQuery = " (state = 6 or state = 7) ";
+					}else if(state==4) {
+						stateQuery = " ( state = 8) ";
+					}else if(state==3) {
+						stateQuery = " id != null ";
+					}
+					String searchQuery = "";
+					searchQuery = " uuid like '%"+searchValue+"%' or "
+							+ " model like '%"+searchValue+"%' or "
+							+ " make like '%"+searchValue+"%' or "
+							+ " color like '%"+searchValue+"%' or "
+							+ " year like '%"+searchValue+"%' ";
+					
+					if(searchValue.equalsIgnoreCase("")) {
+						if(role==user.ROLE_MAIN) {
+							 query = session.createQuery("FROM car where mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+						}else if(role==user.ROLE_MAIN2) {
+							 query = session.createQuery("FROM car where mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_SHIPPER) {
+							 query = session.createQuery("FROM car where shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_VENDOR) {
+							 query = session.createQuery("FROM car where vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_CONGSIGNEE) {
+							 query = session.createQuery("FROM car where consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_CUSTOMER) {
+							 query = session.createQuery("FROM car where customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}
+					}else {
+						if(role==user.ROLE_MAIN) {
+							 query = session.createQuery("FROM car where "+searchQuery+" and mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+						}else if(role==user.ROLE_MAIN2) {
+							 query = session.createQuery("FROM car where "+searchQuery+" mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_SHIPPER) {
+							 query = session.createQuery("FROM car where "+searchQuery+" shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_VENDOR) {
+							 query = session.createQuery("FROM car where "+searchQuery+" vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_CONGSIGNEE) {
+							 query = session.createQuery("FROM car where "+searchQuery+" consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}else if(role==user.ROLE_CUSTOMER) {
+							 query = session.createQuery("FROM car where "+searchQuery+" customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+						}
+					}
+					System.out.println("-----------------------------------");
+					System.out.println(query.getQueryString());
+					
+					 query.setFirstResult(start);
+					 query.setMaxResults(number);
+					 
+					 @SuppressWarnings("unchecked")
+					List<car> results=query.list();
+
+					tx1.commit();
+					session.close();
+					return results;
+				} catch (Exception ex) {
+					return new ArrayList<car>();
+				}
+		
+	}
+
+	
+	
+	
 	@Override
 	public List<car> getAll() {
 				 Query query 	=sessionFactory.getCurrentSession().getNamedQuery("car.getAll");

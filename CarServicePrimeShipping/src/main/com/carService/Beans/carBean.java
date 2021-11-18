@@ -177,6 +177,8 @@ public class carBean implements Serializable{
 	private String stateForContainer;
 	private Integer shipperIdOFContainer;
 	
+	
+	private int numberOfAny = 0;
 	@PostConstruct
 	public void init() {
 		distinationMap=new LinkedHashMap<Integer,String>();
@@ -484,7 +486,8 @@ public class carBean implements Serializable{
 
 		allCars=new ArrayList<car>();
 		if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_MAIN) {
-			if(selectedCarState==0) {
+			numberOfAny = loginBean.getTheUserOfThisAccount().getId();
+			/*if(selectedCarState==0) {
 				//This for warehouse
 
 				allCars = carFacade.getAllWareHouseForMainUser(loginBean.getTheUserOfThisAccount().getId());
@@ -528,11 +531,12 @@ public class carBean implements Serializable{
 				
 				
 
-			}
+			}*/
 		}else if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_SHIPPER) {
 
 			shipper shipperNewId=shipperFacade.getByUserId(loginBean.getTheUserOfThisAccount().getId());
-			if(selectedCarState==0) {
+			numberOfAny = shipperNewId.getId();
+			/*if(selectedCarState==0) {
 				//This for warehouse
 				allCars = carFacade.getAllWareHouseForShipper(shipperNewId.getId());
 
@@ -566,11 +570,12 @@ public class carBean implements Serializable{
 				allCars = carFacade.getAllForShipper(shipperNewId.getId());
 				
 
-			}
+			}*/
 		}else if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_MAIN2) {
 
 			mainTwo mainTwoId=mainTwoFacade.getByUserId(loginBean.getTheUserOfThisAccount().getId());
-			if(selectedCarState==0) {
+			numberOfAny = mainTwoId.getId();
+			/*if(selectedCarState==0) {
 				//This for warehouse
 				allCars = carFacade.getAllWareHouseForMainUserTwo(mainTwoId.getId());
 
@@ -599,11 +604,12 @@ public class carBean implements Serializable{
 
 				allCars = carFacade.getAllForMainUserTwo(mainTwoId.getId());
 				
-			}
+			}*/
 		}else if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_VENDOR) {
 
 			vendor vendorNewId=vendorFacade.getByUserId(loginBean.getTheUserOfThisAccount().getId());
-			if(selectedCarState==0) {
+			numberOfAny = vendorNewId.getId();
+			/*if(selectedCarState==0) {
 				//This for warehouse
 				allCars = carFacade.getAllWareHouseForVendor(vendorNewId.getId());
 
@@ -628,11 +634,12 @@ public class carBean implements Serializable{
 
 				allCars = carFacade.getAllForVendor(vendorNewId.getId());
 				
-			}
+			}*/
 		}else if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_CUSTOMER) {
 
 			customer customerNewId=customerFacade.getByUserId(loginBean.getTheUserOfThisAccount().getId());
-			if(selectedCarState==0) {
+			numberOfAny = customerNewId.getId();
+			/*if(selectedCarState==0) {
 				//This for warehouse
 				allCars = carFacade.getAllWareHouseForCustomer(customerNewId.getId());
 
@@ -656,12 +663,15 @@ public class carBean implements Serializable{
 
 				allCars = carFacade.getAllForCustomer(customerNewId.getId());
 				
-			}
+			}*/
 		}else if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_CONGSIGNEE) {
 
 			List<consignee> consigneeNewId=consigneeFacade.getAllByUserId(loginBean.getTheUserOfThisAccount().getId());
+			
+			
 			for(int i=0;i<consigneeNewId.size();i++ ) {
-			if(selectedCarState==0) {
+				numberOfAny = consigneeNewId.get(i).getId();
+			/*if(selectedCarState==0) {
 				//This for warehouse
 				allCars = carFacade.getAllWareHouseForConsignee(consigneeNewId.get(i).getId());
 
@@ -685,7 +695,7 @@ public class carBean implements Serializable{
 
 				allCars = carFacade.getAllForConsignee(consigneeNewId.get(i).getId());
 				
-			}
+			}*/
 			
 		}
 		}
@@ -1424,6 +1434,23 @@ public void refreshSelectedCarVendor() {
 		
 	}
 	
+private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
+	
+	public String getTheOrigin2(Integer codeCountry) {
+		origineMap2.put(-1, "----");
+		origineMap2.put(381, "TX");
+		origineMap2.put(117, "CA");
+		origineMap2.put(371, "FL");
+		origineMap2.put(1, "NY");
+		origineMap2.put(39, "GA");
+		origineMap2.put(391, "IN");
+		
+		String country=origineMap2.get(codeCountry);
+		
+		return country;
+		
+	}
+	
 	
 	public String getTheOrigin(Integer codeCountry) {
 		String country=origineMap.get(codeCountry);
@@ -1896,7 +1923,28 @@ public void visiblityShowing() {
 	 visibilityOptions.set(Integer.valueOf(key),value);
 }
 
-
+public void openUUID() {
+	FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 int id = Integer.parseInt((String) map.get("carUUID"));
+	 
+	 
+	 if(loginBean.getTheUserOfThisAccount().getRole().equals(0)) {
+		 selectCarForMain(id);
+	 }else if(loginBean.getTheUserOfThisAccount().getRole().equals(5)) {
+		 selectCarForMainTwo(id);
+	 }else if(loginBean.getTheUserOfThisAccount().getRole().equals(1)) {
+		 selectCarForShipper(id);
+	 }else if(loginBean.getTheUserOfThisAccount().getRole().equals(2)) {
+		 selectCarForVendor(id);
+	 }else if(loginBean.getTheUserOfThisAccount().getRole().equals(3)) {
+		 selectCarForCustomerOrConsignee(id);
+	 }else if(loginBean.getTheUserOfThisAccount().getRole().equals(4)) {
+		 selectCarForCustomerOrConsignee(id);
+	 }
+	 
+	 
+}
 public void openDialogForVins() {
 	FacesContext context = FacesContext.getCurrentInstance();
 	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -2334,6 +2382,18 @@ public void deleteCar() {
 
 	public void setLoadingImages_deleted(List<String> loadingImages_deleted) {
 		this.loadingImages_deleted = loadingImages_deleted;
+	}
+
+
+
+	public int getNumberOfAny() {
+		return numberOfAny;
+	}
+
+
+
+	public void setNumberOfAny(int numberOfAny) {
+		this.numberOfAny = numberOfAny;
 	}
 
 

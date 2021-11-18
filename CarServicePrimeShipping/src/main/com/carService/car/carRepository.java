@@ -5,6 +5,7 @@ package main.com.carService.car;
 
 import java.util.List;
 
+
 /**
  * 
  * @author Ahmed.Dakrory
@@ -13,6 +14,8 @@ import java.util.List;
 public interface carRepository {
 
 	public List<car> getAll();
+	public List<car> getAllWithPagination(int start, int number,String searchValue,int role,int state,int useridAny);
+	public long getAllCountSearch(int start, int number,String searchValue,int role,int state,int useridAny);
 	public List<car> getAllWithAllowSendState(boolean state);
 	
 	

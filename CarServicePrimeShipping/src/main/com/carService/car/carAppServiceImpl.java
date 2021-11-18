@@ -595,6 +595,41 @@ public class carAppServiceImpl implements IcarAppService{
 				return null;
 			}
 	}
+
+
+
+	@Override
+	public List<car> getAllWithPagination(int start, int number, String searchValue, int role, int state,
+			int useridAny) {
+		try{
+			List<car> course=carDataRepository.getAllWithPagination( start,  number,  searchValue,  role,  state,
+					 useridAny);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return null;
+			}
+	}
+
+
+
+	@Override
+	public long getAllCountSearch(int start, int number, String searchValue, int role, int state, int useridAny) {
+		try{
+			long course=carDataRepository.getAllCountSearch( start,  number,  searchValue,  role,  state,
+					 useridAny);
+			
+			return course;
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				return 0;
+			}
+	}
 	
 	
 }

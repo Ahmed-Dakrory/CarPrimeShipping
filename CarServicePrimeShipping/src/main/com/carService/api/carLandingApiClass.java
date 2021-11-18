@@ -16,6 +16,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import main.com.carService.car.car;
+import main.com.carService.car.carAppServiceImpl;
 import main.com.carService.carLanding.carLanding;
 import main.com.carService.carLanding.carLandingAppServiceImpl;
 @Controller
@@ -25,6 +27,10 @@ public class carLandingApiClass {
 
 	@Inject
 	private carLandingAppServiceImpl carLandingFacade;
+	
+
+	@Inject
+	private carAppServiceImpl carFacade;
 	
 
 	
@@ -64,6 +70,37 @@ public class carLandingApiClass {
     }
 	
 	
+	
+	@RequestMapping(value = "/allCarsDependsOnStateAndRole" ,method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> allCarsDependsOnStateAndRole(@RequestParam(value="start",required=false) Integer start,
+    		@RequestParam(value="length",required=false) Integer length,
+    		@RequestParam(value="draw",required=false) Integer draw,
+    		@RequestParam(value="state",required=false) Integer state,
+    		@RequestParam(value="role",required=false) Integer role,
+    		@RequestParam(value="useridAny",required=false) Integer useridAny,
+    		@RequestParam(value="search[value]",required=false) String search_value) {
+
+		Gson gson = new Gson();
+//			int pageNumber = (start/length + 1);
+			List<car> list = carFacade.getAllWithPagination(start, length,search_value,role,state,useridAny);
+		
+	      JsonArray allCars = new JsonArray();
+	      for(int i=0;i<list.size();i++) {
+	    	  allCars.add(list.get(i).toJson());
+	      }
+	      
+	      
+	      JsonObject obj =new JsonObject();
+	      obj.add("data", allCars);
+	      obj.addProperty("draw", draw);
+	      obj.addProperty("recordsTotal", carFacade.getAllCountSearch(start, length,search_value,role,state,useridAny));
+	      obj.addProperty("recordsFiltered", carFacade.getAllCountSearch(start, length,search_value,role,state,useridAny));
+	    	return new ResponseEntity<>(gson.toJson(obj), HttpStatus.CREATED); 
+	
+
+     
+    }
+
 	
 	@RequestMapping(value = "/allSearch" ,method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> allSearch(@RequestParam(value="start",required=false) Integer start,
