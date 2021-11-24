@@ -785,12 +785,17 @@ vertical-align: middle;
 	function openThisSite(url){
 		window.open(url,'_blank');
 	}
-	
+	var selected = [];
 	$(document).ready(function() {
-
+		
     var table = $('#example').DataTable( {
     	processing: true,
         serverSide: true,
+        "rowCallback": function( row, data ) {
+			if ( $.inArray(data.id, selected) !== -1 ) {
+                $(row).addClass('selected');
+            }
+        },
         orderCellsTop: true,
         fixedHeader: true,
 		dom: 'Bfrtip',
@@ -1027,7 +1032,7 @@ vertical-align: middle;
 
 	$('#btnSelectedRows').on('click', function() {
 
-		  var tblData = table.rows('.selected').data();
+		  /*var tblData = table.rows('.selected').data();
 		 
 		  var tmpData = "";
 		 
@@ -1038,14 +1043,50 @@ vertical-align: middle;
 			  tmpData  =tmpData +",";
 			  }
 			  tmpData  = tmpData + tblData[i]['id'];
+			  
+			  
+			  
+		  }); */
+		  
+		  
+		  var tmpDataId = "";
+		 
+
+		  $.each(selected, function(i, val) {
+		 
+			  if(i!=0){
+			  tmpDataId  =tmpDataId +",";
+			  }
+			  tmpDataId  = tmpDataId + selected[i];
+			  
+			  
+			  
 		  }); 
-		  openDialog([{name: 'carsId', value: tmpData}]);
-		  console.log(tmpData);
+		  
+		  
+		  openDialog([{name: 'carsId', value: tmpDataId}]);
+		  //console.log(tmpData);
+		  console.log(tmpDataId);
 		
 		});
 } );
 
 
+
+$('#example tbody').on('click', 'tr', function () {
+        
+		var id = $($(this).find('td')[1]).html();
+		console.log(id);
+        var index = $.inArray(id, selected);
+ 
+        if ( index === -1 ) {
+            selected.push( id );
+        } else {
+            selected.splice( index, 1 );
+        }
+ 
+        $(this).toggleClass('selected');
+    } );
 	
 	
 function opencarUUID(carId){
