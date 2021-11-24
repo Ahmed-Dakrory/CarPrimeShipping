@@ -64,50 +64,52 @@ public class carRepositoryImpl implements carRepository{
 			Query query =null;
 			String stateQuery = "";
 			if(state==0) {
-				stateQuery = " (state = 0 or state = 1 or state = 2 or state = 3 ) ";
+				stateQuery = " (vehicle.state = 0 or vehicle.state = 1 or vehicle.state = 2 or vehicle.state = 3 ) ";
 			}else if(state==1) {
-				stateQuery = " (state = 4 or state = 5) ";
+				stateQuery = " (vehicle.state = 4 or vehicle.state = 5) ";
 			}else if(state==2) {
-				stateQuery = " (state = 6 or state = 7) ";
+				stateQuery = " (vehicle.state = 6 or vehicle.state = 7) ";
 			}else if(state==4) {
-				stateQuery = " ( state = 8) ";
+				stateQuery = " ( vehicle.state = 8) ";
 			}else if(state==3) {
-				stateQuery = " id != null ";
+				stateQuery = " vehicle.id != 0 ";
 			}
 			String searchQuery = "";
-			searchQuery = " uuid like '%"+searchValue+"%' or "
-					+ " model like '%"+searchValue+"%' or "
-					+ " make like '%"+searchValue+"%' or "
-					+ " color like '%"+searchValue+"%' or "
-					+ " year like '%"+searchValue+"%' ";
+			searchQuery = " vehicle.uuid like '%"+searchValue+"%' or "
+					+ " vehicle.model like '%"+searchValue+"%' or "
+					+ " vehicle.make like '%"+searchValue+"%' or "
+					+ " vehicle.color like '%"+searchValue+"%' or "
+					+ " userShipper.company like '%"+searchValue+"%' or "
+					+ " userVendor.company like '%"+searchValue+"%' or "
+					+ " vehicle.year like '%"+searchValue+"%' ";
 			
 			if(searchValue.equalsIgnoreCase("")) {
 				if(role==user.ROLE_MAIN) {
-					 query = session.createQuery("select count(*) FROM car where mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where vehicle.mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false  order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_MAIN2) {
-					 query = session.createQuery("select count(*) FROM car where mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where vehicle.mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_SHIPPER) {
-					 query = session.createQuery("select count(*) FROM car where shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where vehicle.shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_VENDOR) {
-					 query = session.createQuery("select count(*) FROM car where vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where vehicle.vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_CONGSIGNEE) {
-					 query = session.createQuery("select count(*) FROM car where consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where vehicle.consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_CUSTOMER) {
-					 query = session.createQuery("select count(*) FROM car where customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where vehicle.customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}
 			}else {
 				if(role==user.ROLE_MAIN) {
-					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" and mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where "+searchQuery+" and vehicle.mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false  order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_SHIPPER) {
-					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where "+searchQuery+" and vehicle.shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_MAIN2) {
-					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where "+searchQuery+" and vehicle.mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_VENDOR) {
-					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where "+searchQuery+" and vehicle.vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_CONGSIGNEE) {
-					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where "+searchQuery+" and vehicle.consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+"and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}else if(role==user.ROLE_CUSTOMER) {
-					 query = session.createQuery("select count(*) FROM car where "+searchQuery+" customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+					 query = session.createQuery("select count(*) FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor  where "+searchQuery+" and vehicle.customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 				}
 			}
 			System.out.println("-----------------------------------");
@@ -142,50 +144,52 @@ public class carRepositoryImpl implements carRepository{
 					Query query =null;
 					String stateQuery = "";
 					if(state==0) {
-						stateQuery = " (state = 0 or state = 1 or state = 2 or state = 3 ) ";
+						stateQuery = " (vehicle.state = 0 or vehicle.state = 1 or vehicle.state = 2 or vehicle.state = 3 ) ";
 					}else if(state==1) {
-						stateQuery = " (state = 4 or state = 5) ";
+						stateQuery = " (vehicle.state = 4 or vehicle.state = 5) ";
 					}else if(state==2) {
-						stateQuery = " (state = 6 or state = 7) ";
+						stateQuery = " (vehicle.state = 6 or vehicle.state = 7) ";
 					}else if(state==4) {
-						stateQuery = " ( state = 8) ";
+						stateQuery = " ( vehicle.state = 8) ";
 					}else if(state==3) {
-						stateQuery = " id != null ";
+						stateQuery = " vehicle.id != 0 ";
 					}
 					String searchQuery = "";
-					searchQuery = " uuid like '%"+searchValue+"%' or "
-							+ " model like '%"+searchValue+"%' or "
-							+ " make like '%"+searchValue+"%' or "
-							+ " color like '%"+searchValue+"%' or "
-							+ " year like '%"+searchValue+"%' ";
+					searchQuery = " vehicle.uuid like '%"+searchValue+"%' or "
+							+ " vehicle.model like '%"+searchValue+"%' or "
+							+ " vehicle.make like '%"+searchValue+"%' or "
+							+ " vehicle.color like '%"+searchValue+"%' or "
+							+ " userShipper.company like '%"+searchValue+"%' or "
+							+ " userVendor.company like '%"+searchValue+"%' or "
+							+ " vehicle.year like '%"+searchValue+"%' ";
 					
 					if(searchValue.equalsIgnoreCase("")) {
 						if(role==user.ROLE_MAIN) {
-							 query = session.createQuery("FROM car where mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false  order by cargoRecieved desc");
 						}else if(role==user.ROLE_MAIN2) {
-							 query = session.createQuery("FROM car where mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by cargoRecieved desc");
 						}else if(role==user.ROLE_SHIPPER) {
-							 query = session.createQuery("FROM car where shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by cargoRecieved desc");
 						}else if(role==user.ROLE_VENDOR) {
-							 query = session.createQuery("FROM car where vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by cargoRecieved desc");
 						}else if(role==user.ROLE_CONGSIGNEE) {
-							 query = session.createQuery("FROM car where consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by cargoRecieved desc");
 						}else if(role==user.ROLE_CUSTOMER) {
-							 query = session.createQuery("FROM car where customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by cargoRecieved desc");
 						}
 					}else {
 						if(role==user.ROLE_MAIN) {
-							 query = session.createQuery("FROM car where "+searchQuery+" and mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and deleted = false  order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where "+searchQuery+" and vehicle.mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false  order by vehicle.cargoRecieved desc");
 						}else if(role==user.ROLE_MAIN2) {
-							 query = session.createQuery("FROM car where "+searchQuery+" mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where "+searchQuery+" vehicle.mainTwoId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 						}else if(role==user.ROLE_SHIPPER) {
-							 query = session.createQuery("FROM car where "+searchQuery+" shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where "+searchQuery+" vehicle.shipperId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 						}else if(role==user.ROLE_VENDOR) {
-							 query = session.createQuery("FROM car where "+searchQuery+" vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where "+searchQuery+" vehicle.vendorId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 						}else if(role==user.ROLE_CONGSIGNEE) {
-							 query = session.createQuery("FROM car where "+searchQuery+" consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where "+searchQuery+" vehicle.consigneeId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 						}else if(role==user.ROLE_CUSTOMER) {
-							 query = session.createQuery("FROM car where "+searchQuery+" customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" deleted = false order by cargoRecieved desc");
+							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where "+searchQuery+" vehicle.customerId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false order by vehicle.cargoRecieved desc");
 						}
 					}
 					System.out.println("-----------------------------------");

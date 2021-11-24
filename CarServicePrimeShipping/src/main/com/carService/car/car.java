@@ -1963,7 +1963,7 @@ public class car {
 			      }
 		      
 		      if(this.getShipperId()!=null) {
-			      obj.addProperty("shipperCompanyName", String.valueOf(this.getShipperId().getParentId().getCompany()));
+			      obj.addProperty("shipperCompanyName", String.valueOf(this.getShipperId().getUserId().getCompany()));
 			      }else {
 				      obj.addProperty("shipperCompanyName", String.valueOf("null"));
 			    	  
