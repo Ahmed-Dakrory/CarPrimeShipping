@@ -75,13 +75,13 @@ public class carRepositoryImpl implements carRepository{
 				stateQuery = " vehicle.id != 0 ";
 			}
 			String searchQuery = "";
-			searchQuery = " vehicle.uuid like '%"+searchValue+"%' or "
+			searchQuery = " ( vehicle.uuid like '%"+searchValue+"%' or "
 					+ " vehicle.model like '%"+searchValue+"%' or "
 					+ " vehicle.make like '%"+searchValue+"%' or "
 					+ " vehicle.color like '%"+searchValue+"%' or "
 					+ " userShipper.company like '%"+searchValue+"%' or "
 					+ " userVendor.company like '%"+searchValue+"%' or "
-					+ " vehicle.year like '%"+searchValue+"%' ";
+					+ " vehicle.year like '%"+searchValue+"%' ) ";
 			
 			if(searchValue.equalsIgnoreCase("")) {
 				if(role==user.ROLE_MAIN) {
@@ -155,14 +155,16 @@ public class carRepositoryImpl implements carRepository{
 						stateQuery = " vehicle.id != 0 ";
 					}
 					String searchQuery = "";
-					searchQuery = " vehicle.uuid like '%"+searchValue+"%' or "
+					searchQuery = " ( vehicle.uuid like '%"+searchValue+"%' or "
 							+ " vehicle.model like '%"+searchValue+"%' or "
 							+ " vehicle.make like '%"+searchValue+"%' or "
 							+ " vehicle.color like '%"+searchValue+"%' or "
 							+ " userShipper.company like '%"+searchValue+"%' or "
 							+ " userVendor.company like '%"+searchValue+"%' or "
-							+ " vehicle.year like '%"+searchValue+"%' ";
+							+ " vehicle.year like '%"+searchValue+"%' ) ";
 					
+					
+					System.out.println(stateQuery);
 					if(searchValue.equalsIgnoreCase("")) {
 						if(role==user.ROLE_MAIN) {
 							 query = session.createQuery("select vehicle FROM car vehicle  left JOIN vehicle.shipperId shipper left JOIN shipper.userId userShipper left JOIN vehicle.vendorId vendor  left JOIN vendor.userId userVendor   where vehicle.mainId = "+String.valueOf(useridAny)+" and "+stateQuery+" and vehicle.deleted = false  order by cargoRecieved desc");

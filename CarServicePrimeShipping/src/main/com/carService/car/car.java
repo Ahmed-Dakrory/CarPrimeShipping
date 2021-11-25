@@ -267,9 +267,13 @@ public class car {
 	
 	@Column(name = "year")
 	private String year;
-	
+
 	@Column(name = "container")
 	private String container;
+	
+
+	@Column(name = "titleExist")
+	private boolean titleExist;
 	
 	@Column(name = "containerLink")
 	private String containerLink;
@@ -563,6 +567,24 @@ public class car {
 
 
 	
+	public boolean isTitleExist() {
+		return titleExist;
+	}
+
+
+
+
+
+
+	public void setTitleExist(boolean titleExist) {
+		this.titleExist = titleExist;
+	}
+
+
+
+
+
+
 	public Integer getStateOut() {
 		return stateOut;
 	}
