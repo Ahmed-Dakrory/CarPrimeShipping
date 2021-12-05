@@ -94,7 +94,7 @@
     <tr>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">VIN</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Year / Make / Model</p></td>
-      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Key</p></td>
+      <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Key / Title</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Type</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">Color</p></td>
       <td class="text-center" colspan="1" ><p class="fw-bold fontForCirules ">ODOmeter</p></td>
@@ -102,7 +102,7 @@
     <tr style=" border-top-style: hidden; ">
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.uuid}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.year} #{carBean.selectedCar.make} #{carBean.selectedCar.model}</td>
-      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.keyExist?'Keys are Exists':'Keys are Not Exists'}</td>
+      <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.keyExist?'Keys are Exists':'Keys are Not Exists'} / #{carBean.selectedCar.titleExist?'Titles are Exists':'Titles are Not Exists'}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.carType}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.color}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.odometer}</td>
