@@ -94,8 +94,7 @@
 
 
 	
-	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 
 		<beans:property name="driverClassName" value="${database.driverClassName}" />
 		<beans:property name="url" value="${database.url}" />
