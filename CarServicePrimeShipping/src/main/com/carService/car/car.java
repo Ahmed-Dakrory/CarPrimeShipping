@@ -390,6 +390,10 @@ public class car {
 	@Column(name = "valueOfGood")
 	private Integer valueOfGood;
 	
+
+	@Column(name = "numberOfKeys")
+	private Integer numberOfKeys;
+	
 	
 
 	@Column(name = "weight")
@@ -1947,6 +1951,25 @@ public class car {
 	}
 	
 	
+	
+	public Integer getNumberOfKeys() {
+		return numberOfKeys;
+	}
+
+
+
+
+
+
+	public void setNumberOfKeys(Integer numberOfKeys) {
+		this.numberOfKeys = numberOfKeys;
+	}
+
+
+
+
+
+
 	public int getNumberOfDays(Calendar storeStart,Calendar storeEnd) {
 		int difference= 0;
 		if(storeStart!=null) {
@@ -1994,6 +2017,7 @@ public class car {
 		      obj.addProperty("make", String.valueOf(this.make));
 		      obj.addProperty("model", String.valueOf(this.model));
 		      obj.addProperty("year", String.valueOf(this.year));
+		      obj.addProperty("numberOfKeys", String.valueOf(this.numberOfKeys));
 		      obj.addProperty("mainImage", String.valueOf(this.mainUrl));
 		      obj.addProperty("keyExist", String.valueOf(this.keyExist?"Yes":"No"));
 		      obj.addProperty("containerLink", String.valueOf(this.containerLink));

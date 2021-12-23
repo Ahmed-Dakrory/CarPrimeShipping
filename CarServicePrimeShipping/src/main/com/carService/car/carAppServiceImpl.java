@@ -600,10 +600,10 @@ public class carAppServiceImpl implements IcarAppService{
 
 	@Override
 	public List<car> getAllWithPagination(int start, int number, String searchValue, int role, int state,
-			int useridAny) {
+			int useridAny ,int col_order_number, String col_ordering) {
 		try{
 			List<car> course=carDataRepository.getAllWithPagination( start,  number,  searchValue,  role,  state,
-					 useridAny);
+					 useridAny,col_order_number,  col_ordering);
 			
 			return course;
 			}
@@ -617,10 +617,10 @@ public class carAppServiceImpl implements IcarAppService{
 
 
 	@Override
-	public long getAllCountSearch(int start, int number, String searchValue, int role, int state, int useridAny) {
+	public long getAllCountSearch(int start, int number, String searchValue, int role, int state, int useridAny ,int col_order_number, String col_ordering) {
 		try{
 			long course=carDataRepository.getAllCountSearch( start,  number,  searchValue,  role,  state,
-					 useridAny);
+					 useridAny,col_order_number,  col_ordering);
 			
 			return course;
 			}

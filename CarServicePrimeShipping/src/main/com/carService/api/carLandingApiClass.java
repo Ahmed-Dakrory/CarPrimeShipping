@@ -78,23 +78,25 @@ public class carLandingApiClass {
     		@RequestParam(value="state",required=false) Integer state,
     		@RequestParam(value="role",required=false) Integer role,
     		@RequestParam(value="useridAny",required=false) Integer useridAny,
-    		@RequestParam(value="search[value]",required=false) String search_value) {
+    		@RequestParam(value="search[value]",required=false) String search_value,
+    		@RequestParam(value="order[0][column]",required=false) int col_order_number,
+    		@RequestParam(value="order[0][dir]",required=false) String col_ordering) {
 
 		Gson gson = new Gson();
 //			int pageNumber = (start/length + 1);
-			List<car> list = carFacade.getAllWithPagination(start, length,search_value,role,state,useridAny);
+			List<car> list = carFacade.getAllWithPagination(start, length,search_value,role,state,useridAny,col_order_number,col_ordering);
 		
 	      JsonArray allCars = new JsonArray();
 	      for(int i=0;i<list.size();i++) {
 	    	  allCars.add(list.get(i).toJson());
 	      }
 	      
-	      
+	      long numberOfCarsTotal =  carFacade.getAllCountSearch(start, length,search_value,role,state,useridAny,col_order_number,col_ordering);
 	      JsonObject obj =new JsonObject();
 	      obj.add("data", allCars);
 	      obj.addProperty("draw", draw);
-	      obj.addProperty("recordsTotal", carFacade.getAllCountSearch(start, length,search_value,role,state,useridAny));
-	      obj.addProperty("recordsFiltered", carFacade.getAllCountSearch(start, length,search_value,role,state,useridAny));
+	      obj.addProperty("recordsTotal",numberOfCarsTotal);
+	      obj.addProperty("recordsFiltered", numberOfCarsTotal);
 	    	return new ResponseEntity<>(gson.toJson(obj), HttpStatus.CREATED); 
 	
 

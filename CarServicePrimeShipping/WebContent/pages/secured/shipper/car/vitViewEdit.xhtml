@@ -5811,6 +5811,23 @@ td {
                                                                                                     <h:selectBooleanCheckbox  type="text" value="#{carBean.selectedCar.titleExist}" style="font-size:11px;height:19px;width:20px;" />
                                                                                                     
                                                                                                 </td>
+                                                                                                
+                                                                                                
+                                                                                                <td style="width: 250px" class="tbltxt">
+                                                                                                    <div style="margin-left: 1px">
+                                                                                                        Number of Keys:</div>
+                                                                                                </td>
+                                                                                                <td style="width: 250px" align="left">
+                                                                                                    <h:selectOneMenu value="#{carBean.selectedCar.numberOfKeys}"  name="numberOfKeys" id="numberOfKeys" style="font-size:11px;width:200px;">
+																										
+																										<f:selectItem itemLabel="No Keys" itemValue="0"/>
+																										<f:selectItem itemLabel="1 Key" itemValue="1"/>
+																										<f:selectItem itemLabel="2 Keys" itemValue="2"/>
+																										<f:selectItem itemLabel="3 Keys" itemValue="3"/>
+																										<f:selectItem itemLabel="4 Keys" itemValue="4"/>
+																									</h:selectOneMenu>
+                                                                                                </td>
+                                                                                                
                                                                                              </tr>
                                                                                             
                                                                                               <tr height="23">
