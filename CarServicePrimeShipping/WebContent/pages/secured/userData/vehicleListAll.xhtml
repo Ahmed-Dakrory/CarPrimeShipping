@@ -765,7 +765,7 @@ body .ui-icon {
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.color}</span></td>
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.shipperId.userId.company}</span></td>
 											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.vendorId.userId.company}</span></td>
-											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.keyExist?'Yes':'No'}</span></td>
+											<td class="center hidden-phone"><span style="overflow: hidden; display: inline-flex;width: max-content; ">#{data.numberOfKeys==0?'No Keys':data.numberOfKeys}</span></td>
 
 
 											<td class="center hidden-phone" style="display:#{carBean.selectedCarState==2?'table-cell':'none'};"><span style="overflow: hidden; display: inline-flex; "><a  style="color: #371cc3; " onclick="openThisSite('#{data.containerLink}');">#{data.container}</a></span></td>
