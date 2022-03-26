@@ -96,7 +96,36 @@ td {
     color: #000;
 }
     	</style>
-	
+	       <style>
+        	.radiobtn {
+    position: absolute;
+    display: block;
+    text-align: center;
+    top: 1%;
+    width: 18%;
+}
+.radiobtn label {
+    display: block;
+    background: #f0f6ef;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 7px 0px;
+    border: 2px solid #01a7e100;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input[type="radio"] {
+    display: none;
+    position: absolute;
+    width: 100%;
+    appearance: none;
+}
+input[type="radio"]:checked + label {
+    background: #b4e101;
+    color: #fff;
+}
+        </style>
     <link rel="stylesheet" href="#{resource['css:dashboard/mailMultiple/jquerysctipttop.css']}" />
     <link rel="stylesheet" href="#{resource['css:dashboard/mailMultiple/email.multiple.css']}" />
     	
@@ -5676,7 +5705,7 @@ td {
                                                                                                         Weight:</div>
                                                                                                 </td>
                                                                                                 <td>
-                                                                                                    <h:inputText  type="text" value="#{carBean.selectedCar.weight}" style="font-size:11px;height:19px;width:200px;" /> Kg
+                                                                                                    <h:inputText id="weight_of_vehicle"  type="text" value="#{carBean.selectedCar.weight}" style="font-size:11px;height:19px;width:200px;" /> Kg
                                                                                                 </td>
                                                                                                 
                                                                                                 <td class="tbltxt">
@@ -6044,7 +6073,7 @@ td {
                                                                                                      	<p:fileUpload id="FileUploaded" fileUploadListener="#{carBean.previewImage}" dragDropSupport="true" sizeLimit="10000000" fileLimit="100" multiple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
         
         
-        
+ 
                <p:panel id="imagesPanel" class="container">
        
 					<div class="row">
@@ -6057,6 +6086,12 @@ td {
 	                                	</div>
 	                    </div>
 					</div>
+					<div class="radiobtn" onclick="selectThisCarAsMainPic([{name: 'fileURL', value: '#{var}'}])">
+					    <input type="radio" id="#{var}"
+					                     name="main_pic_car" value="#{var}"  />
+					    <label for="#{var}"><i class="fa fa-check"></i></label>
+					  </div>
+  
                     <div class="row" style=" text-align: center; ">
                         
                              <div class="row">
@@ -7070,8 +7105,10 @@ td {
 	        	  });
 	        	});
 					</script>	
-					
 				
+										<p:remoteCommand name="selectThisCarAsMainPic" action="#{carBean.setAsMainPic()}"> 
+	                                	</p:remoteCommand>
+	                                	
 	                                	<p:remoteCommand name="deleteFile" action="#{carBean.deleteFile()}"> 
 	                                	</p:remoteCommand>
 	                                	

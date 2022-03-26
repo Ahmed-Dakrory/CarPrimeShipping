@@ -442,6 +442,7 @@ public class carBean implements Serializable{
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtBodyStyle");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtEngineType");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtEngineLiters");
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:weight_of_vehicle");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:searchButton");
 	}
 	
@@ -453,6 +454,7 @@ public class carBean implements Serializable{
 	        try {
 	        	OrderOutDetails car= call.execute().body();
 
+	        	addNewCar.setWeight("");
 	        	addNewCar.setMake(car.Results.get(0).Make);
 	        	addNewCar.setModel(car.Results.get(0).Model);
 	        	addNewCar.setYear(car.Results.get(0).ModelYear);
@@ -460,8 +462,18 @@ public class carBean implements Serializable{
 	        	addNewCar.setBodyStyle(car.Results.get(0).DriveType);
 	        	addNewCar.setEngineLiters(car.Results.get(0).DisplacementL);
 	        	addNewCar.setEngineType(car.Results.get(0).EngineConfiguration+"- "+car.Results.get(0).EngineCylinders+" Cylinders");
+	        	try {
+		        	String weight = car.Results.get(0).GVWR;
+		        	System.out.println(weight);
+		        	weight = weight.substring(weight.lastIndexOf("("));
 
-
+		        	System.out.println(weight);
+		        	addNewCar.setWeight(weight);
+	        	}catch(Error err) {
+	        		
+	        	}catch(Exception exc) {
+	        		
+	        	}
 				progress=false;
 				refreshUpdatecCarData();
 	          	  
@@ -1816,6 +1828,49 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 		selectedCar.setPhotoExist(true);
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
 	}
+	
+	
+	public void setAsMainPic() {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+		 String imageUrl = (String) map.get("fileURL");
+		 
+		 selectedCar.setMainUrl(imageUrl);
+		selectedCar.setPhotoExist(true);
+		
+		 
+			PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Image Has Been set\", \"success\");");
+			
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
+			
+		
+		 
+		}
+	
+	
+	
+	
+
+	public void setAsMainPicFirstTime() {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+		 String imageUrl = (String) map.get("fileURL");
+		 
+		addNewCar.setMainUrl(imageUrl);
+		addNewCar.setPhotoExist(true);
+		 
+			PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Image Has Been set\", \"success\");");
+			
+			FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
+			
+		
+		 
+		}
+	
+	
+	
 	
 	
 	public void addImageMain(FileUploadEvent event) {

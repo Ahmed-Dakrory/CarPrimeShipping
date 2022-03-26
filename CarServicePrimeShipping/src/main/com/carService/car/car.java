@@ -397,7 +397,7 @@ public class car {
 	
 
 	@Column(name = "weight")
-	private Integer weight;
+	private String weight;
 	
 	
 	public static int STATE_WARE_HOUSE_1=0;
@@ -1783,7 +1783,7 @@ public class car {
 
 
 
-	public Integer getWeight() {
+	public String getWeight() {
 		return weight;
 	}
 
@@ -1792,7 +1792,7 @@ public class car {
 
 
 
-	public void setWeight(Integer weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
 

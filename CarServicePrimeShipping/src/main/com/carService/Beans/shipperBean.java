@@ -89,6 +89,7 @@ public class shipperBean implements Serializable{
 	private String dateLower;
 	private String dateHigh;
 	private float totalFees;
+	private car selectedCarNowForAllSystem;
 	
 	
 	@PostConstruct
@@ -454,6 +455,26 @@ public class shipperBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void refreshCarDetails() {
+		carFacade.addcar(selectedCarNowForAllSystem);
+		
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    try {
+			ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void modifyCarPrices(int indexInList) {
+		selectedCarNowForAllSystem = carsForInvoice.get(indexInList);
+		PrimeFaces.current().executeScript("runFromBackEndToReloadDialog();");
+		
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("form-prices");
+		
 	}
 	
 	
@@ -923,6 +944,14 @@ public class shipperBean implements Serializable{
 
 	public void setTotalFees(float totalFees) {
 		this.totalFees = totalFees;
+	}
+
+	public car getSelectedCarNowForAllSystem() {
+		return selectedCarNowForAllSystem;
+	}
+
+	public void setSelectedCarNowForAllSystem(car selectedCarNowForAllSystem) {
+		this.selectedCarNowForAllSystem = selectedCarNowForAllSystem;
 	}
 
 	
