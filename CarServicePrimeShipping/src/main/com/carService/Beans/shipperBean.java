@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.primefaces.PrimeFaces;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
+import main.com.carService.bank_account.bank_account;
+import main.com.carService.bank_account.bank_accountAppServiceImpl;
 import main.com.carService.car.car;
 import main.com.carService.car.carAppServiceImpl;
 import main.com.carService.invoice.invoice;
@@ -65,9 +67,13 @@ public class shipperBean implements Serializable{
 
 	@ManagedProperty(value = "#{shipperFacadeImpl}")
 	private shipperAppServiceImpl shipperFacade;
-	
+
 	@ManagedProperty(value = "#{invoiceFacadeImpl}")
 	private invoiceAppServiceImpl invoiceFacade;
+	
+
+	@ManagedProperty(value = "#{bank_accountFacadeImpl}")
+	private bank_accountAppServiceImpl bank_accountFacade;
 	
 	@ManagedProperty(value = "#{invoiceCarFacadeImpl}")
 	private invoiceCarAppServiceImpl invoiceCarFacade;
@@ -90,6 +96,9 @@ public class shipperBean implements Serializable{
 	private String dateHigh;
 	private float totalFees;
 	private car selectedCarNowForAllSystem;
+	
+	private List<bank_account> allMyBanks;
+	private int selectedBank;
 	
 	
 	@PostConstruct
@@ -398,7 +407,73 @@ public class shipperBean implements Serializable{
 			carsForthisAccount.addAll(allMain);
 		
 		
+		allMyBanks = bank_accountFacade.getAllByUserId(loginBean.getTheUserOfThisAccount().getId());
+		
+		
+		if(allMyBanks !=null) {
+			if(allMyBanks.size()>0) {
+				invoiceData = new invoice();
+				bank_account b1= allMyBanks.get(0);
+				invoiceData.setBankAccountNumber(b1.getBank_account_number());
+				invoiceData.setBankAddress(b1.getBank_address());
+				invoiceData.setBankName(b1.getBank_name());
+				invoiceData.setBankTelephone(b1.getBank_tel());
+			}
+		}
+		
 	}
+	
+	
+	public void setTheBankToTheSelectedtoFields() {
+		
+		bank_account b1 = bank_accountFacade.getById(selectedBank);
+		invoiceData.setBankAccountNumber(b1.getBank_account_number());
+		invoiceData.setBankAddress(b1.getBank_address());
+		invoiceData.setBankName(b1.getBank_name());
+		invoiceData.setBankTelephone(b1.getBank_tel());
+
+		 FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm");
+	}
+	
+	
+	public void addBankToMyList() {
+		bank_account b1 = bank_accountFacade.getByBank_account(invoiceData.getBankAccountNumber());
+		if(b1==null) {
+			b1=new bank_account();
+			b1.setBank_account_number(invoiceData.getBankAccountNumber());
+			b1.setBank_address(invoiceData.getBankAddress());
+			b1.setBank_name(invoiceData.getBankName());
+			b1.setBank_tel(invoiceData.getBankTelephone());
+			b1.setDeleted(false);
+			b1.setUserId(loginBean.getTheUserOfThisAccount());
+			bank_accountFacade.addbank_account(b1);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'Your Bank has been added.',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+		}else {
+			b1.setBank_account_number(invoiceData.getBankAccountNumber());
+			b1.setBank_address(invoiceData.getBankAddress());
+			b1.setBank_name(invoiceData.getBankName());
+			b1.setBank_tel(invoiceData.getBankTelephone());
+			b1.setDeleted(false);
+			b1.setUserId(loginBean.getTheUserOfThisAccount());
+			bank_accountFacade.addbank_account(b1);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'This Bank is Updated',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+		}
+
+		allMyBanks = bank_accountFacade.getAllByUserId(loginBean.getTheUserOfThisAccount().getId());
+		
+		 FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm");
+		
+		
+	}
+	
 	
 	private Calendar setCalendarFromString(String cargoRecievedDate2) {
 
@@ -952,6 +1027,30 @@ public class shipperBean implements Serializable{
 
 	public void setSelectedCarNowForAllSystem(car selectedCarNowForAllSystem) {
 		this.selectedCarNowForAllSystem = selectedCarNowForAllSystem;
+	}
+
+	public bank_accountAppServiceImpl getBank_accountFacade() {
+		return bank_accountFacade;
+	}
+
+	public void setBank_accountFacade(bank_accountAppServiceImpl bank_accountFacade) {
+		this.bank_accountFacade = bank_accountFacade;
+	}
+
+	public List<bank_account> getAllMyBanks() {
+		return allMyBanks;
+	}
+
+	public void setAllMyBanks(List<bank_account> allMyBanks) {
+		this.allMyBanks = allMyBanks;
+	}
+
+	public int getSelectedBank() {
+		return selectedBank;
+	}
+
+	public void setSelectedBank(int selectedBank) {
+		this.selectedBank = selectedBank;
 	}
 
 	

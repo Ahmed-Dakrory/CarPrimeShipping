@@ -421,6 +421,29 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
                                                                                 </td>
                                                                             </tr>
                                                                             
+                                                                            
+                                                                            
+                                                                            <tr height="23">
+                                                                                <td class="tbltxt">
+                                                                                    <div style="margin-left: 6px">
+                                                                                        Select the bank:</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <p:selectOneMenu  value="#{shipperBean.selectedBank}" 
+													                                style="width:200px" effect="fade" var="c"
+													                                filter="true" filterMatchMode="startsWith">
+													                                
+													                                <p:ajax event="change" update="aspnetForm" listener="#{shipperBean.setTheBankToTheSelectedtoFields()}" />
+													                                	<f:selectItems value="#{shipperBean.allMyBanks}" var="bank" itemLabel="#{bank.bank_name}" itemValue="#{bank.id}"/>
+													                                
+													                                </p:selectOneMenu>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr height="2">
+                                                                                <td  colspan="2">
+                                                                                </td>
+                                                                            </tr>
+                                                                            
                                                                              <tr height="23">
                                                                                 <td class="tbltxt">
                                                                                     <div style="margin-left: 6px">
@@ -466,7 +489,11 @@ moz-box-shadow: inset 0px 1px 0px 0px #ffa3a3;
                                                                                 </td>
                                                                                 <td>
                                                                                     <h:inputText name="ctl00$BodyHolder$txtSalesRep" type="text" id="ctl11_BodyHolder_txtSalesRep"  value="#{shipperBean.invoiceData.bankAccountNumber}" style="font-size:11px;height:19px;width:200px;" />
+                                                                                    <p:commandButton value="Add/Edit this bank" style="font-size:11px;height: 19px;width:200px;margin-left: 29px;border-radius: 9px;background: #3c83b6;color: white!important;" actionListener="#{shipperBean.addBankToMyList()}" />
+                                                                               
                                                                                 </td>
+                                                                                
+                                                                                
                                                                             </tr>
                                                                             
                                                                              <tr height="23">
