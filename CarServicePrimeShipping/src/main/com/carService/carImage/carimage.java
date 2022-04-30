@@ -85,6 +85,7 @@ public class carimage {
 	public static int TYPE_DOC=1;
 	public static int TYPE_PDFS=2;
 	public static int TYPE_Loading=3;
+	public static int TYPE_3D=4;
 	
 	@Column(name = "type")
 	private Integer type;

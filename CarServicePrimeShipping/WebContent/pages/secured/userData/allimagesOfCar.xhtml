@@ -93,12 +93,12 @@ color:#ffec08;
                     <div class="row" style=" text-align: center; ">
                         
                              <div class="row">
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
+                                    <a href="javascript:void(0)" onclick='ViewDocById("#{var}")'>
                                         <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;"/></a>
                                 </div>
                         
                         <div class="row">
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewDocById("#{var}")'>
                                     <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
                                 
                            </div>
@@ -139,12 +139,88 @@ color:#ffec08;
                     <div class="row" style=" text-align: center; ">
                         
                              <div class="row">
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
+                                    <a href="javascript:void(0)" onclick='ViewDocById("#{var}")'>
                                         <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;"/></a>
                                 </div>
                         
                         <div class="row">
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewDocById("#{var}")'>
+                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
+                                
+                           </div>
+                   </div>
+               </div>
+                
+                
+               
+		</ui:repeat>
+					 <!-- All images -->
+					</div>
+		
+		 
+	      </div>
+	    </div>
+	  </div>
+
+
+
+
+
+
+
+
+	<div class="card row">
+	     <div class="card-header w-100" id="headingOne">
+	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
+	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+	          All Images 3D 
+	        </a>
+	      </h5>
+	    </div>
+	    <div id="collapseFour" class="collapse show in" aria-labelledby="headingFour" data-parent="#accordionExample">
+	      <div class="card-body" style="padding:30px;">
+	      		
+	      	<p:panel id="panelToreload">
+	      		<div class="row" style="width: 100%;margin-bottom: 19px;/* padding: 27px; */box-shadow: 4px -2px 27px 6px grey;border-radius: 15px;">
+					<div class="card-header w-100" >
+				      <h3 class="mb-0 bg-white" style="  text-align: center; font-size: 23px;">
+				      Your Selection
+				      </h3>
+			      </div>
+					<div class="w-100 border rounded">
+						<div id="panoImage" style="background-color: rgb(0, 0, 0);width: 100%;height: 559px;"></div>
+					</div>
+				</div>
+				
+				<script>
+
+					panoImage = document.querySelector('#panoImage');
+	
+					panorama = new PANOLENS.ImagePanorama('/images?file=#{carBean.image3DLink}');
+					viewer = new PANOLENS.Viewer({
+						container:panoImage
+					}
+					);
+					viewer.add( panorama );
+				</script>
+				</p:panel>
+	
+	
+	 			<div class="row mt-1">
+	      	 		<!-- All images -->
+	 
+	 					<ui:repeat var="var" value="#{carBean.images3D}">
+    <div class="col-md-3" style="border: black;/* border-style: solid; */border-width: 1px;margin: 7px;">			
+				
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <a href="javascript:void(0)" onclick='View3DyId("#{var}")'>
+                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border: black;box-shadow: 5px 2px 11px 1px grey;border-radius: 11px;height: 110px;"/></a>
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewDocById("#{var}")'>
                                     <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
                                 
                            </div>
@@ -162,6 +238,9 @@ color:#ffec08;
 	    </div>
 	  </div>
 	
+	
+	
+		
 	
 	  <div class="card row">
 	     <div class="card-header w-100" >
@@ -209,14 +288,25 @@ color:#ffec08;
 	
 	 </div>
 	
-		
-		
+		<h:form>
+			<p:remoteCommand name="open3DImage" action="#{carBean.open3DImage()}"> 
+	                                	</p:remoteCommand>
+        </h:form>
+                    	
 		<h:outputScript name="js/dashboardPrime/popper.min.js"/>
 		<h:outputScript name="js/dashboardPrime/bootstrap.min.js"/>
 		<h:outputScript name="js/dashboardPrime/FileSaver.js"/>
 		<h:outputScript name="js/dashboardPrime/jszip.js"/>
 		
+		<script src="https://pchen66.github.io/js/three/three.min.js"></script>
+<script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
 		
+		
+		<script>
+
+$('#panelToreload').hide();
+</script>
+
 		<script>
 		
 		

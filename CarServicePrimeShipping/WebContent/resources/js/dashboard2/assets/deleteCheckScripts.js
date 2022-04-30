@@ -75,6 +75,37 @@ function deleteImageNum(filename){
 	                                			  }
 	                                			});
 	                                	}
+	                                	
+	                                	
+	                                	
+	                                	
+	                                	
+	                                	
+	                                	
+	                                	function delete3DImageNum(filename){
+	                                		swal("Are You Sure You want To Delete this Image?", {
+	                                			  buttons: {
+	                                			    cancel: "Cancel",
+	                                			    catch: {
+	                                			      text: "Yes Sure, Delete it",
+	                                			      value: "catch",
+	                                			    }
+	                                			  },
+	                                			})
+	                                			.then((value) => {
+	                                			  switch (value) {
+	                                			 
+	                                			 
+	                                			    case "catch":
+	                                			    var dataNewOfString = filename;
+	                                			      deleteFile([{name: 'fileURL', value: dataNewOfString}, {name: 'typeOfFile', value: '4'}]);
+	                                			      break;
+	                                			 
+	                                			    default:
+	                                			      
+	                                			  }
+	                                			});
+	                                	}
 	                                	                   	
 	       	                                	                         	
 function deleteDocsNum(filename){

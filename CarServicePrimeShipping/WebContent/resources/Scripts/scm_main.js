@@ -364,6 +364,15 @@ function ViewDocById(strID) {
     }
 }
 
+
+function View3DyId(strID) {
+    if (strID != '-1') {
+    	open3DImage([{name: 'fileURL', value: strID}, {name: 'typeOfFile', value: '4'}]);
+	                                			      
+	}
+}
+
+
 function ViewPDFById(strID) {
     if (strID != '-1') {
     	window.open('/images/?file='+strID+'&Pdf=1','_blank', 'fullscreen=yes');

@@ -143,6 +143,7 @@ public class carBean implements Serializable{
 	private List<String> docs;
 	private List<String> pdfs;
 	private List<String> loadingImages;
+	private List<String> images3D;
 	
 	
 	
@@ -150,6 +151,7 @@ public class carBean implements Serializable{
 	private List<String> docs_deleted;
 	private List<String> pdfs_deleted;
 	private List<String> loadingImages_deleted;
+	private List<String> images3D_deleted;
 	
 
 	private Map<Integer, String> distinationMap;
@@ -176,7 +178,7 @@ public class carBean implements Serializable{
 	private String portForContainer;
 	private String stateForContainer;
 	private Integer shipperIdOFContainer;
-	
+	private String image3DLink="";
 	
 	private int numberOfAny = 0;
 	@PostConstruct
@@ -209,11 +211,14 @@ public class carBean implements Serializable{
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
+		images3D = new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<String>();
+		images3D_deleted = new ArrayList<String>();
+		
 		cargoRecievedDate="";
 		titleRecievedSelected=0;
 		releaseDate="";
@@ -240,11 +245,14 @@ public class carBean implements Serializable{
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
+		images3D=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<>();
+		images3D_deleted=new ArrayList<String>();
+		
 		cargoRecievedDate="";
 		titleRecievedSelected=0;
 		releaseDate="";
@@ -271,11 +279,14 @@ public class carBean implements Serializable{
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
+		images3D=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<>();
+		images3D_deleted=new ArrayList<String>();
+		
 		cargoRecievedDate="";
 		titleRecievedSelected=0;
 		releaseDate="";
@@ -302,11 +313,14 @@ public class carBean implements Serializable{
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
+		images3D=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<>();
+		images3D_deleted=new ArrayList<String>();
+		
 		consigneeId=-1;
 		
 		
@@ -381,16 +395,20 @@ public class carBean implements Serializable{
 					docs=new ArrayList<String>();
 					pdfs=new ArrayList<String>();
 					loadingImages=new ArrayList<String>();
+					images3D=new ArrayList<String>();
 
 					images_deleted=new ArrayList<String>();
 					docs_deleted=new ArrayList<String>();
 					pdfs_deleted=new ArrayList<String>();
 					loadingImages_deleted=new ArrayList<>();
+					images3D_deleted=new ArrayList<String>();
 					
 					List<carimage> imagesOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PIC);
 					List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 					List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
 					List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
+					List<carimage> image3DOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_3D);
+					
 					
 					if(imagesOfCar!=null) {
 						for(int i=0;i<imagesOfCar.size();i++) {
@@ -416,6 +434,14 @@ public class carBean implements Serializable{
 							loadingImages.add(imageLoadingOfCar.get(i).getUrl());
 						}
 					}
+					
+					if(image3DOfCar!=null){
+						for(int i=0;i<image3DOfCar.size();i++) {
+							images3D.add(image3DOfCar.get(i).getUrl());
+						}
+					}
+					
+
 					
 					FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("mainPanel");
 					
@@ -827,7 +853,7 @@ public class carBean implements Serializable{
 			List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 			List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
 			List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
-			
+			List<carimage> image3DOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_3D);
 			if(imagesOfCar!=null) {
 				for(int i=0;i<imagesOfCar.size();i++) {
 					images.add(imagesOfCar.get(i).getUrl());
@@ -849,6 +875,13 @@ public class carBean implements Serializable{
 			if(imageLoadingOfCar!=null){
 				for(int i=0;i<imageLoadingOfCar.size();i++) {
 					loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+				}
+			}
+			
+			
+			if(image3DOfCar!=null){
+				for(int i=0;i<image3DOfCar.size();i++) {
+					images3D.add(image3DOfCar.get(i).getUrl());
 				}
 			}
 			
@@ -897,6 +930,7 @@ public class carBean implements Serializable{
 			List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 			List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
 			List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
+			List<carimage> image3DOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_3D);
 			
 			if(imagesOfCar!=null) {
 				for(int i=0;i<imagesOfCar.size();i++) {
@@ -922,6 +956,12 @@ public class carBean implements Serializable{
 				}
 			}
 			
+			
+			if(image3DOfCar!=null){
+				for(int i=0;i<image3DOfCar.size();i++) {
+					images3D.add(image3DOfCar.get(i).getUrl());
+				}
+			}
 			
 			cargoRecievedDate=getStringFromCalendar(selectedCar.getCargoRecieved());
 			releaseDate=getStringFromCalendar(selectedCar.getReleaseDate());
@@ -975,6 +1015,7 @@ public class carBean implements Serializable{
 			List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 			List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
 			List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
+			List<carimage> image3DOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_3D);
 			
 			if(imagesOfCar!=null) {
 				for(int i=0;i<imagesOfCar.size();i++) {
@@ -997,6 +1038,13 @@ public class carBean implements Serializable{
 			if(imageLoadingOfCar!=null){
 				for(int i=0;i<imageLoadingOfCar.size();i++) {
 					loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+				}
+			}
+			
+			
+			if(image3DOfCar!=null){
+				for(int i=0;i<image3DOfCar.size();i++) {
+					images3D.add(image3DOfCar.get(i).getUrl());
 				}
 			}
 			
@@ -1121,6 +1169,7 @@ public void refreshSelectedCarVendor() {
 	List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 	List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
 	List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
+	List<carimage> image3DOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_3D);
 	
 	if(imagesOfCar!=null) {
 		for(int i=0;i<imagesOfCar.size();i++) {
@@ -1143,6 +1192,12 @@ public void refreshSelectedCarVendor() {
 	if(imageLoadingOfCar!=null){
 		for(int i=0;i<imageLoadingOfCar.size();i++) {
 			loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+		}
+	}
+	
+	if(image3DOfCar!=null){
+		for(int i=0;i<image3DOfCar.size();i++) {
+			images3D.add(image3DOfCar.get(i).getUrl());
 		}
 	}
 	
@@ -1216,6 +1271,8 @@ public void refreshSelectedCarVendor() {
 		List<carimage> docsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_DOC);
 		List<carimage> pdfsOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_PDFS);
 		List<carimage> imageLoadingOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_Loading);
+		List<carimage> image3DOfCar =carimageFacade.getAllByCarIdAndType(selectedCar.getId(), carimage.TYPE_3D);
+		
 		
 		if(imagesOfCar!=null) {
 			for(int i=0;i<imagesOfCar.size();i++) {
@@ -1238,6 +1295,13 @@ public void refreshSelectedCarVendor() {
 		if(imageLoadingOfCar!=null){
 			for(int i=0;i<imageLoadingOfCar.size();i++) {
 				loadingImages.add(imageLoadingOfCar.get(i).getUrl());
+			}
+		}
+		
+		
+		if(image3DOfCar!=null){
+			for(int i=0;i<image3DOfCar.size();i++) {
+				images3D.add(image3DOfCar.get(i).getUrl());
 			}
 		}
 		
@@ -1332,6 +1396,18 @@ public void refreshSelectedCarVendor() {
 		}
 		
 		
+		for(int i=0;i<images3D_deleted.size();i++) {
+			carimage cPDFs=new carimage();
+			cPDFs.setCarId(addNewCar);
+			cPDFs.setUrl(images3D_deleted.get(i));
+			cPDFs.setType(carimage.TYPE_3D);
+			cPDFs.setDeleted(true);
+			carimageFacade.addcarimage(cPDFs);
+		}
+		
+		
+		
+		
 		for(int i=0;i<images.size();i++) {
 			carimage cImage=new carimage();
 			cImage.setCarId(addNewCar);
@@ -1366,6 +1442,16 @@ public void refreshSelectedCarVendor() {
 			cPDFs.setCarId(addNewCar);
 			cPDFs.setUrl(loadingImages.get(i));
 			cPDFs.setType(carimage.TYPE_Loading);
+			carimageFacade.addcarimage(cPDFs);
+		}
+		
+		
+		for(int i=0;i<images3D_deleted.size();i++) {
+			carimage cPDFs=new carimage();
+			cPDFs.setCarId(addNewCar);
+			cPDFs.setUrl(images3D_deleted.get(i));
+			cPDFs.setType(carimage.TYPE_3D);
+			cPDFs.setDeleted(true);
 			carimageFacade.addcarimage(cPDFs);
 		}
 		
@@ -1626,6 +1712,15 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:LoadingimagesPanel");
 	}
 	
+	public void preview3DImage(FileUploadEvent event) {
+		byte[] image =event.getFile().getContents();
+		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
+		images3D.add(fileName);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:images3DPanel");
+	}
+	
+	
+	
 	public void cancel() {
 		System.out.println("Cancel");
 		try {
@@ -1746,6 +1841,17 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 
 		}
 		
+		
+		for(int i=0;i<images3D_deleted.size();i++) {
+			carimage cImage=new carimage();
+			cImage.setCarId(selectedCar);
+			cImage.setUrl(images3D_deleted.get(i));
+			cImage.setType(carimage.TYPE_3D);
+			cImage.setDeleted(true);
+			carimageFacade.addcarimage(cImage);
+
+		}
+		
 		for(int i=0;i<images.size();i++) {
 			carimage cImage=new carimage();
 			cImage.setCarId(selectedCar);
@@ -1781,6 +1887,17 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 			cpdfs.setType(carimage.TYPE_Loading);
 			carimageFacade.addcarimage(cpdfs);
 		}
+		
+		for(int i=0;i<images3D.size();i++) {
+			carimage cpdfs=new carimage();
+			cpdfs.setCarId(selectedCar);
+			cpdfs.setUrl(images3D.get(i));
+			cpdfs.setType(carimage.TYPE_3D);
+			carimageFacade.addcarimage(cpdfs);
+		}
+		
+		
+		
 		
 
 
@@ -2046,6 +2163,32 @@ public void deleteCar() {
 		}
 	 
 }
+
+
+
+public void open3DImageother() {
+	FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 Integer typeOfFile = Integer.valueOf((String) map.get("typeOfFile"));
+	 image3DLink = (String) map.get("fileURL");
+	 
+	 
+	FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:panelToreload");
+	PrimeFaces.current().executeScript("$('#aspnetForm:panelToreload').show();");
+	
+}
+
+public void open3DImage() {
+	FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 Integer typeOfFile = Integer.valueOf((String) map.get("typeOfFile"));
+	 image3DLink = (String) map.get("fileURL");
+	 
+	 
+	FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("panelToreload");
+	PrimeFaces.current().executeScript("$('#panelToreload').show();");
+	
+}
 	public void deleteFile() {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -2073,6 +2216,11 @@ public void deleteCar() {
 			removeFileFromLoadingImages(fileURL);
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:LoadingimagesPanel");
 		PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Loading Image Has Been Deleted\", \"success\");");
+		}else if(typeOfFile==carimage.TYPE_3D) {
+			
+			removeFileFromImages3D(fileURL);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:images3DPanel");
+		PrimeFaces.current().executeScript("swal(\"Action Done\", \"The 3D Image Has Been Deleted\", \"success\");");
 		}
 		
 	}
@@ -2105,6 +2253,17 @@ public void deleteCar() {
 			if(loadingImages.get(i).equalsIgnoreCase(fileURL)) {
 				loadingImages.remove(i);
 				loadingImages_deleted.add(fileURL);
+				return;
+			}
+		}
+	}
+	
+	private void removeFileFromImages3D(String fileURL) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<images3D.size();i++) {
+			if(images3D.get(i).equalsIgnoreCase(fileURL)) {
+				images3D.remove(i);
+				images3D_deleted.add(fileURL);
 				return;
 			}
 		}
@@ -2504,6 +2663,32 @@ public void deleteCar() {
 	public void setConsigneeId(int consigneeId) {
 		this.consigneeId = consigneeId;
 	}
+	
+	
+
+	public List<String> getImages3D() {
+		return images3D;
+	}
+
+
+
+	public void setImages3D(List<String> images3d) {
+		images3D = images3d;
+	}
+
+
+
+	public List<String> getImages3D_deleted() {
+		return images3D_deleted;
+	}
+
+
+
+	public void setImages3D_deleted(List<String> images3d_deleted) {
+		images3D_deleted = images3d_deleted;
+	}
+
+
 
 	public Map<Integer, String> getOrigineMap() {
 		return origineMap;
@@ -2614,6 +2799,18 @@ public void deleteCar() {
 
 	public void setStateForContainer(String stateForContainer) {
 		this.stateForContainer = stateForContainer;
+	}
+
+
+
+	public String getImage3DLink() {
+		return image3DLink;
+	}
+
+
+
+	public void setImage3DLink(String image3dLink) {
+		image3DLink = image3dLink;
 	}
 
 

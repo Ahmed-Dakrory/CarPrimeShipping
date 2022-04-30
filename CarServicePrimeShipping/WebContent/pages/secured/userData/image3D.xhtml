@@ -1,0 +1,58 @@
+
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	
+	
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>How to display a 360 image in HTML?</title>
+</head>
+<body>
+<style>
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.panorama-360-view {
+    background-color: rgb(0, 0, 0); width:100%;height:100%;
+}
+
+</style>
+    
+	
+	
+	<div class="panorama-360-view"></div>
+
+	
+	<!-- Pannellum library -->
+		<script src="https://pchen66.github.io/js/three/three.min.js"></script>
+<script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+<!-- 
+<h:outputScript name="js/public/panolens.min.js"/>
+		<h:outputScript name="js/public/three.min.js"/>
+	 -->
+	 	
+<!-- End Pannellum library -->
+<script>
+
+const panoImage = document.querySelector('.panorama-360-view');
+
+const panorama = new PANOLENS.ImagePanorama('http://localhost:8083/images?file=1651268335038.jpeg');
+const viewer = new PANOLENS.Viewer({
+	container:panoImage
+}
+);
+viewer.add( panorama );
+
+</script>
+</body>
+</html>

@@ -6232,6 +6232,103 @@ input[type="radio"]:checked + label {
   
   
   
+  
+  
+  
+  
+  
+  
+
+ 																						<tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 11px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('pic3DDiv','pic3DExpand')">
+                                                                                                            <img id="pic3DExpand" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> 3D
+                                                                                                                Pictures:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                           <tr height="23">
+                                                                                               
+                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
+                                                                                                    <div id="pic3DDiv" style=" margin-left: 47px">
+        
+        
+        
+               <p:panel id="images3DPanel" class="container">
+       					<p:panel id="panelToreload">
+	      		<div class="row" style="width: 100%;margin-bottom: 19px;/* padding: 27px; */box-shadow: 4px -2px 27px 6px grey;border-radius: 15px;">
+					<div class="card-header w-100" >
+				      <h3 class="mb-0 bg-white" style="  text-align: center; font-size: 23px;">
+				      Your Selection
+				      </h3>
+			      </div>
+					<div class="w-100 border rounded">
+						<div id="panoImage" style="background-color: rgb(0, 0, 0);width: 100%;height: 559px;"></div>
+					</div>
+				</div>
+				
+				<script>
+
+					panoImage = document.querySelector('#panoImage');
+	
+					panorama = new PANOLENS.ImagePanorama('/images?file=#{carBean.image3DLink}');
+					viewer = new PANOLENS.Viewer({
+						container:panoImage
+					}
+					);
+					viewer.add( panorama );
+				</script>
+				</p:panel>
+       				
+       				
+					<div class="row">
+					
+							<ui:repeat var="var" value="#{carBean.images3D}">
+    <div class="col-md-3" style="border-width: 1px;margin: 7px;">			
+				<div class="containerDevCloseButtonNew">
+						<div class="devCloseButtonNew" onclick="delete3DImageNum('#{var}')">
+	                                	<div href="#"  class="closeButtonNew">
+	                                	</div>
+	                    </div>
+					</div>
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <a href="javascript:void(0)" onclick='View3DyId("#{var}")'>
+                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="height: 109px;margin-bottom: 9px;box-shadow: 3px 3px 9px 4px grey;border-radius: 9px;"/></a>
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="javascript:void(0)" onclick='View3DyId("#{var}")'>
+                                    <span >#{var}</span></a>
+                                
+                           </div>
+                   </div>
+               </div>
+                
+                
+               
+		</ui:repeat>
+	   
+					</div>
+				</p:panel>
+				</div>
+                                                                                                </td>
+
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                           
+  
+  
+  
+  
+  
+  
+  
+  
                                                                                             
                                                                                             
                                                                                             
@@ -6921,6 +7018,15 @@ input[type="radio"]:checked + label {
     </table>
 
             </div> 
+           <script src="https://pchen66.github.io/js/three/three.min.js"></script>
+<script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+		
+		
+		<script>
+
+
+		$('#aspnetForm\\:panelToreload').hide();
+</script>
            
             <script>
 				
@@ -7116,6 +7222,9 @@ input[type="radio"]:checked + label {
 	                                	<p:remoteCommand name="deleteCar" action="#{carBean.deleteCar()}"> 
 	                                	</p:remoteCommand>
 	                    
+	                    
+			<p:remoteCommand name="open3DImage" action="#{carBean.open3DImageother()}"> 
+	                                	</p:remoteCommand>
         </h:form>
         
         
