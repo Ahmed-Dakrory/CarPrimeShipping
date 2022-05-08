@@ -123,8 +123,14 @@ class FileHandler
 
 	
 	
-    public function saveFile($file, $extension, $carId,$type)
+    public function saveFile($mainfile, $extension, $carId,$type)
     {
+		
+		$file = $mainfile['image']['tmp_name'];
+		$filenameMain = $mainfile['image']['name'];
+		
+		
+		
 		
 		if($extension == "pdf"){
 			 $name = round(microtime(true) * 1000) . '.' . 'pdf';
@@ -138,25 +144,78 @@ class FileHandler
 		
         $stmt->bind_param("isi", $carId, $name,$type);
 		
-        if ($stmt->execute())
-            return true;
+        if ($stmt->execute()){
+			$stmt2 = $this->con->prepare("UPDATE `car` SET `docExist` = 1 where id = ? ");
+		
+			$stmt2->bind_param("i", $carId);
+			if ($stmt2->execute()){
+				return true;
+			}
+			
+		}
+            
 		
 		
 		}else{
-        $name = round(microtime(true) * 1000) . '.' . 'jpeg';
+			if($type==9){
+				$name = round(microtime(true) * 1000) .$filenameMain;
+				
+				
+
+					$stmt3 = $this->con->prepare("UPDATE `car` SET `exteriorExists` = 1 where id = ? ");
+				
+					$stmt3->bind_param("i", $carId);
+					if ($stmt3->execute()){
+						
+						$stmt4 = $this->con->prepare("UPDATE `car` SET `exteriorImg` = ? where id = ? ");
+				
+						$stmt4->bind_param("si", $name,$carId);
+						if ($stmt4->execute()){
+							
+						}else{
+							return false;
+						}
+					
+					}else{
+						return false;
+					}
+					
+			}else{
+				
+				$name = round(microtime(true) * 1000) . '.' . 'jpeg'; 
+			}
         $filedest = UPLOAD_PATH . $name;
         //move_uploaded_file($file, $filedest);
-		$this->changeImageSize($file,$filedest);
+		if($type==4||$type==9){
+			$result = move_uploaded_file($file, $filedest);
+        	if(!$result){
+				return false;
+			}
+			
+			if($type==9){
+				return true;
+			}
+		}else{
+			$this->changeImageSize($file,$filedest);
+
+		}
 		
-		
+		if($type!=9){
         $url = $server_ip = gethostbyname(gethostname());
         $stmt = $this->con->prepare("INSERT INTO carimage (carId, url, type) VALUES (?, ?, ?)");
 		
         $stmt->bind_param("isi", $carId, $name,$type);
 		
-        if ($stmt->execute())
-            return true;
+        if ($stmt->execute()){
+			$stmt2 = $this->con->prepare("UPDATE `car` SET `photoExist` = 1 where id = ? ");
 		
+			$stmt2->bind_param("i", $carId);
+			if ($stmt2->execute()){
+				return true;
+			}
+			
+		}
+		}
 		}
         return false;
     }
@@ -165,51 +224,54 @@ class FileHandler
 	public function changeImageSize($f1,$upload_path) {
 		
 		
-    $image_resource_id = imagecreatefromjpeg($f1); 
+		$image_resource_id = imagecreatefromjpeg($f1); 
+	
+		$source_properties = getimagesize($f1);
+		
+		$target_width =640;
+		$target_height =410; 
+		$target_layer=imagecreatetruecolor($target_width,$target_height);
+		imagecopyresampled($target_layer,$image_resource_id,0,0,0,0,$target_width,$target_height,$source_properties[0],$source_properties[1]);
+	
+		imagejpeg($target_layer,$upload_path );
+		
+		
+		$exif = exif_read_data($f1);
+		/*
+		$file = fopen("newfile.txt","w");
+		
+		fwrite($file,"Ahmed\n");
+		
+		fwrite($file,$exif['Orientation']);
+		
+		fclose($file);
+	*/
+	
+		$ort = $exif['Orientation'];
+	
+		$orientation = $ort;
+		
+		// Fix Orientation
+		switch($orientation) {
+			case 3:
+				$target_layer = imagerotate($target_layer, 180, 0);
+				break;
+			case 6:
+				$target_layer = imagerotate($target_layer, -90, 0);
+				break;
+			case 8:
+				$target_layer = imagerotate($target_layer, 90, 0);
+				break;
+		}
+		
+		 // Output
+		imagejpeg($target_layer,$upload_path, 90);
+		
+		}
 
-	$source_properties = getimagesize($f1);
-	
-	$target_width =850;
-	$target_height =640;
-	$target_layer=imagecreatetruecolor($target_width,$target_height);
-	imagecopyresampled($target_layer,$image_resource_id,0,0,0,0,$target_width,$target_height,$source_properties[0],$source_properties[1]);
-
-    imagejpeg($target_layer,$upload_path );
-	
-	
-	$exif = exif_read_data($f1);
-	/*
-	$file = fopen("newfile.txt","w");
-	
-	fwrite($file,"Ahmed\n");
-	
-	fwrite($file,$exif['Orientation']);
-    
-	fclose($file);
-*/
-
-	$ort = $exif['Orientation'];
-
-	$orientation = $ort;
-	
-	// Fix Orientation
-    switch($orientation) {
-        case 3:
-            $target_layer = imagerotate($target_layer, 180, 0);
-            break;
-        case 6:
-            $target_layer = imagerotate($target_layer, -90, 0);
-            break;
-        case 8:
-            $target_layer = imagerotate($target_layer, 90, 0);
-            break;
-    }
-	
-	 // Output
-    imagejpeg($target_layer,$upload_path, 90);
-	
-	}
-
+		
+		
+		
 	
 	
     public function getAllFiles()
@@ -517,6 +579,30 @@ class FileHandler
 		return $AllDocs;
 	}
 	
+
+	public function getCar3D($id)
+    {
+		
+        $data = array();
+		
+		$stmt = $this->con->prepare("SELECT url FROM carimage where carId=? and type = 4 and deleted = 0");
+		
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+		
+        $stmt->bind_result($url);
+
+        $AllDocs = array();
+
+        while ($stmt->fetch()) {
+            $docs = array();
+            $docs['url'] = $url;
+            $docs['type'] = 1;
+            array_push($AllDocs, $docs);
+        }
+		return $AllDocs;
+	}
+
 	
 	public function getCarPdf($id)
     {
@@ -581,12 +667,12 @@ class FileHandler
 		
 		
         $data = array();
-        $stmt = $this->con->prepare("SELECT  car.titleExist,car.keyExist,car.companyTransName,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.id=? and car.deleted = 0");
+        $stmt = $this->con->prepare("SELECT  car.titleExist,car.keyExist,car.exteriorExists,car.companyTransName,car.exteriorImg,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.numberOfKeys,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.id=? and car.deleted = 0");
 		
         $stmt->bind_param("s", $id);
         $stmt->execute();
 		
-        $stmt->bind_result($titleExist,$keyExist,$companyTransName,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
+        $stmt->bind_result($titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$numberOfKeys,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
 
 
         while ($stmt->fetch()) {
@@ -594,6 +680,7 @@ class FileHandler
 			$temp['dateOfDriverSigntureDestination'] = $dateOfDriverSigntureDestination;
 			$temp['urlOfDriverSigntureDestination'] = $urlOfDriverSigntureDestination;
 			$temp['CarType']=$CarType;
+			$temp['numberOfKeys']=$numberOfKeys;
 			
 			if($titleExist==0){
 				
@@ -613,8 +700,19 @@ class FileHandler
 			}
 			
 			
+			
+			if($exteriorExists==0){
+				
+			$temp['exteriorExists']=false;
+			}else{
+				
+			$temp['exteriorExists']=true;
+			}
+			
+			
 			$temp['companyTransName'] = $companyTransName;
 			$temp['driverName'] = $driverName;
+			$temp['exteriorImg'] = $exteriorImg;
 			$temp['driverPhone']=$driverPhone;
 			$temp['crashPointsJson'] = $crashPointsJson;
 			$temp['dateOfCrashImage'] = $dateOfCrashImage;
@@ -665,7 +763,7 @@ class FileHandler
     }
 	
 	
-	public function insertNewCar($titleExist,$keyExist,$companyTransName,$driverName,$driverPhone,$CarType,$idOfCar,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd)
+	public function insertNewCar($weight,$titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$idOfCar,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd)
     {
 		if($releaseDate == '')
 			$releaseDate = null;
@@ -684,6 +782,17 @@ class FileHandler
 			$keyExist = 1;
 		}else{
 			$keyExist = 0;
+		}
+		
+		
+		if($exteriorExists){
+			$exteriorExists = 1;
+		}else{
+			$exteriorExists = 0;
+		}
+
+		if($shipperId== -1){
+			$shipperId = null;
 		}
 		/*
 		echo $make."\n";
@@ -725,13 +834,13 @@ class FileHandler
 		}
 		
 		if($dataIdCheck  > 0){
-			$stmt = $this->con->prepare("UPDATE car set titleExist=(?), keyExist=(?), companyTransName = (?),  driverName = (?),  driverPhone = (?),  CarType = (?), mainId = (?), mainTwoId = (?),shipperId = (?),vendorId = (?),customerId = (?),consigneeId = (?),make = (?),model = (?),year = (?),bodyStyle = (?),engineType = (?),engineLiters = (?),assemlyCountry = (?),color = (?),seacost = (?),landcost = (?),state = (?),releaseOption = (?), stateOut = (?),releaseDate = (?),uuid = (?),description = (?),containerLink = (?),eta = (?),etd = (?),lastUpdate = (?),mobileOrComp = 1 where id  = (?);");
-			$stmt->bind_param("iissssiiiiiissssssssssiiisssssssi",$titleExist,$keyExist,$companyTransName,$driverName,$driverPhone,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate,$dataIdCheck);
+			$stmt = $this->con->prepare("UPDATE car set titleExist=(?), keyExist=(?),exteriorExists=(?), companyTransName = (?),  weight = (?) ,exteriorImg = (?),driverName = (?),  driverPhone = (?),numberOfKeys = (?),  CarType = (?), mainId = (?), mainTwoId = (?),shipperId = (?),vendorId = (?),customerId = (?),consigneeId = (?),make = (?),model = (?),year = (?),bodyStyle = (?),engineType = (?),engineLiters = (?),assemlyCountry = (?),color = (?),seacost = (?),landcost = (?),state = (?),releaseOption = (?), stateOut = (?),releaseDate = (?),uuid = (?),description = (?),containerLink = (?),eta = (?),etd = (?),lastUpdate = (?),mobileOrComp = 1 where id  = (?);");
+			$stmt->bind_param("iiisssssssiiiiiissssssssssiiisssssssi",$titleExist,$keyExist,$exteriorExists,$companyTransName,$weight,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate,$dataIdCheck);
       
 			
 		}else{
-			$stmt = $this->con->prepare("INSERT INTO car (titleExist,keyExist,cargoRecieved,companyTransName,driverName,driverPhone,CarType,mainId,mainTwoId,shipperId,vendorId,customerId,consigneeId,make,model,year,bodyStyle,engineType,engineLiters,assemlyCountry,color,seacost,landcost,state,releaseOption,stateOut,releaseDate,uuid,description,containerLink,eta,etd,lastUpdate,mobileOrComp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1);");
-			$stmt->bind_param("iisssssiiiiiissssssssssiiisssssss",$titleExist,$keyExist,$lastUpdate,$companyTransName,$driverName,$driverPhone,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate);
+			$stmt = $this->con->prepare("INSERT INTO car (storageStartDate,titleExist,weight,keyExist,exteriorExists,cargoRecieved,companyTransName,exteriorImg,driverName,driverPhone,numberOfKeys,CarType,mainId,mainTwoId,shipperId,vendorId,customerId,consigneeId,make,model,year,bodyStyle,engineType,engineLiters,assemlyCountry,color,seacost,landcost,state,releaseOption,stateOut,releaseDate,uuid,description,containerLink,eta,etd,lastUpdate,mobileOrComp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1);");
+			$stmt->bind_param("sisiisssssssiiiiiissssssssssiiisssssss",$lastUpdate,$titleExist,$weight,$keyExist,$exteriorExists,$lastUpdate,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate);
       
 		}
         
@@ -740,23 +849,34 @@ class FileHandler
 		 $stmt->execute();
 		
         $data = array();
-        $stmt = $this->con->prepare("SELECT car.titleExist,car.keyExist,car.companyTransName,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.id,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.uuid=(?) and car.deleted = 0");
+        $stmt = $this->con->prepare("SELECT car.titleExist,car.keyExist,car.exteriorExists,car.companyTransName,car.exteriorImg,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.numberOfKeys,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.id,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.uuid=(?) and car.deleted = 0");
 		
         $stmt->bind_param("s", $uuid);
         $stmt->execute();
 		
-        $stmt->bind_result($titleExist,$keyExist,$companyTransName,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$id,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
+        $stmt->bind_result($titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$numberOfKeys,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$id,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
 
 
         while ($stmt->fetch()) {
             $temp['id'] = $this->getIdData($id);
 			$temp['CarType']=$CarType;
+			$temp['numberOfKeys']=$numberOfKeys;
+			
 			if($keyExist==0){
 				
 			$temp['keyExist']=false;
 			}else{
 				
 			$temp['keyExist']=true;
+			}
+			
+			
+			if($exteriorExists==0){
+				
+			$temp['exteriorExists']=false;
+			}else{
+				
+			$temp['exteriorExists']=true;
 			}
 			
 			if($titleExist==0){
@@ -772,6 +892,8 @@ class FileHandler
 			$temp['crashPointsJson'] = $crashPointsJson;
 			$temp['companyTransName'] = $companyTransName;
 			$temp['driverName'] = $driverName;
+			$temp['exteriorImg'] = $exteriorImg;
+			
 			$temp['driverPhone'] = $driverPhone;
 			$temp['dateOfCrashImage'] = $dateOfCrashImage;
 			$temp['urlOfCrashImage'] = $urlOfCrashImage;

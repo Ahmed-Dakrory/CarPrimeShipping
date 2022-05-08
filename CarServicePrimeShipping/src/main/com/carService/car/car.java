@@ -278,6 +278,15 @@ public class car {
 	@Column(name = "containerLink")
 	private String containerLink;
 	
+
+	@Column(name = "exteriorImg")
+	private String exteriorImg;
+	
+
+	
+	@Column(name = "exteriorExists")
+	private boolean exteriorExists;
+	
 	
 	@Column(name = "stateOut")
 	private Integer stateOut;
@@ -1963,6 +1972,44 @@ public class car {
 
 	public void setNumberOfKeys(Integer numberOfKeys) {
 		this.numberOfKeys = numberOfKeys;
+	}
+
+
+	
+	
+
+
+
+
+	public String getExteriorImg() {
+		return exteriorImg;
+	}
+
+
+
+
+
+
+	public void setExteriorImg(String exteriorImg) {
+		this.exteriorImg = exteriorImg;
+	}
+
+
+
+
+
+
+	public boolean isExteriorExists() {
+		return exteriorExists;
+	}
+
+
+
+
+
+
+	public void setExteriorExists(boolean exteriorExists) {
+		this.exteriorExists = exteriorExists;
 	}
 
 

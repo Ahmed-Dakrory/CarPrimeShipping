@@ -18,7 +18,7 @@ if (isset($_GET['apicall'])) {
                 $file = $_FILES['image']['tmp_name'];
  
 
-                if ($upload->saveFile($file, getFileExtension($_FILES['image']['name']),$_POST['carId'],$_POST['type'])) {
+                if ($upload->saveFile($_FILES, getFileExtension($_FILES['image']['name']),$_POST['carId'],$_POST['type'])) {
                     $response['error'] = false;
                     $response['message'] = 'File Uploaded Successfullly';
 					
@@ -120,6 +120,7 @@ if (isset($_GET['apicall'])) {
             $response['images'] = $upload->getCarImages($_POST['id']);
             $response['docs'] = $upload->getCarDoc($_POST['id']);
             $response['pdfs'] = $upload->getCarPdf($_POST['id']);
+            $response['images3D'] = $upload->getCar3D($_POST['id']);
             $response['data'] = $upload->getCarData($_POST['id']);
             $response['allshippers'] = $upload->getShippersAllData($response['data']['mainId']);
 			}
@@ -151,11 +152,12 @@ if (isset($_GET['apicall'])) {
 			if (isset($data->uuid) && strlen($data->uuid) > 0 ){ 
 			$upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->insertNewCar($data->titleExist,$data->keyExist,$data->companyTransName,$data->driverName,$data->driverPhone,$data->CarType,$data->id,$data->mainId,$data->mainTwoId,$data->shipperId,$data->vendorId,$data->customerId,$data->consigneeId,$data->make,$data->model,$data->year,$data->bodyStyle,$data->engineType,$data->engineLiters,$data->assemlyCountry,$data->color,$data->seacost,$data->landcost,$data->state,$data->releaseOption,$data->stateOut,$data->releaseDate,$data->uuid,$data->description,$data->containerLink,$data->eta,$data->etd);
+            $response['data'] = $upload->insertNewCar($data->weight,$data->titleExist,$data->keyExist,$data->exteriorExists,$data->companyTransName,$data->exteriorImg,$data->driverName,$data->driverPhone,$data->numberOfKeys,$data->CarType,$data->id,$data->mainId,$data->mainTwoId,$data->shipperId,$data->vendorId,$data->customerId,$data->consigneeId,$data->make,$data->model,$data->year,$data->bodyStyle,$data->engineType,$data->engineLiters,$data->assemlyCountry,$data->color,$data->seacost,$data->landcost,$data->state,$data->releaseOption,$data->stateOut,$data->releaseDate,$data->uuid,$data->description,$data->containerLink,$data->eta,$data->etd);
             
 			$response['images'] = $upload->getCarImages($response['data']['id']);
             $response['docs'] = $upload->getCarDoc($response['data']['id']);
             $response['pdfs'] = $upload->getCarPdf($response['data']['id']);
+            $response['images3D'] = $upload->getCar3D($response['data']['id']);
             $response['allshippers'] = $upload->getShippersAllData($response['data']['mainId']);
 			}
             break;

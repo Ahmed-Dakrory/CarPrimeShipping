@@ -170,7 +170,7 @@ color:#ffec08;
 
 
 	<div class="card row">
-	     <div class="card-header w-100" id="headingOne">
+	     <div class="card-header w-100" id="headingFour">
 	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
 	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
 	          All Images 3D 
@@ -237,7 +237,51 @@ color:#ffec08;
 	      </div>
 	    </div>
 	  </div>
+
+
+
+
+
+
+
+	<p:panel class="card row" rendered="#{carBean.selectedCar.exteriorExists}">
+	<div class="card row">
+	     <div class="card-header w-100" id="headingFive">
+	      <h5 class="mb-0 bg-primary" style=" padding: 14px; border-bottom-style: double; ">
+	        <a  class="aForHead" href="javascript:void(0)" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+	          Exterior View
+	        </a>
+	      </h5>
+	    </div>
+	    <div id="collapseFive" class="collapse show in" aria-labelledby="headingFive" data-parent="#accordionExample">
+	      <div class="card-body" style="padding:30px;">
+	      
+	 			<div class="row mt-1">
+	      	 		<!-- All images -->
+	 				<canvas id="exteriorImg" width="640" height="480" style="border-radius: 15px;border: 1px solid rgb(211, 211, 211);box-shadow: 2px 5px 10px 5px grey;">
+						Your browser does not support the HTML5 canvas tag.
+					</canvas>
+	 				 <!-- All images -->
+				</div>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
+<script>
+$.noConflict();
+</script>
+		<h:outputScript name="js/dashboard2/assets/jquery-ui.min.js"/>
+		<h:outputScript name="js/dashboard2/assets/threed_exterior.js"/>
+<script>
+
+
+createElement3d("exteriorImg","https://primeshippingllc.com/images?file=#{carBean.selectedCar.exteriorImg}")
+</script>
+		 
+	      </div>
+	    </div>
+	  </div>
 	
+	</p:panel>
+		
 	
 	
 		
