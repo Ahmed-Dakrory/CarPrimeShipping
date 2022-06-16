@@ -5399,7 +5399,21 @@
         
         
                <h:panelGroup id="imagesPanel">
-                                     
+                    
+                    <div class="demo-gallery " style="display:none;">
+			            <ul id="img_holder_to_open_picDiv" class="list-unstyled row">
+			            
+							<ui:repeat var="var" value="#{carBean.images}">
+			                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="/images/?file=#{var}" data-src="/images/?file=#{var}" >
+			                    <a id="img_holder_to_open_picDiv_#{var}" href="">
+			                        <img class="img-responsive" src="/images/?file=#{var}" />
+			                    </a>
+			                </li>
+			                </ui:repeat>
+			            </ul>
+			        </div>
+			        
+			                         
 <table border="1" style="    border: unset;">
    <tr>
         <td colspan="2">
@@ -5414,14 +5428,14 @@
                         <tr>
                             <td align="center">
                                 <div>
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
+                                    <a href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_picDiv_#{var}")'>
                                         <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_picDiv_#{var}")'>
                                     <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
                                 
                             </td>
@@ -5484,7 +5498,20 @@
         
         
                <h:panelGroup id="LoadingimagesPanel">
-                                     
+                           
+                           <div class="demo-gallery " style="display:none;">
+			            <ul id="img_holder_to_open_LoadingpicDiv" class="list-unstyled row">
+			            
+							<ui:repeat var="var" value="#{carBean.loadingImages}">
+			                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="/images/?file=#{var}" data-src="/images/?file=#{var}" >
+			                    <a id="img_holder_to_open_LoadingpicDiv_#{var}" href="">
+			                        <img class="img-responsive" src="/images/?file=#{var}" />
+			                    </a>
+			                </li>
+			                </ui:repeat>
+			            </ul>
+			        </div>
+			                  
 <table border="1" style="    border: unset;">
    <tr>
         <td colspan="2">
@@ -5499,14 +5526,14 @@
                         <tr>
                             <td align="center">
                                 <div>
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
+                                    <a href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_LoadingpicDiv_#{var}")'>
                                         <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_LoadingpicDiv_#{var}")'>
                                     <span >#{var}</span></a>
                                 
                             </td>
@@ -5688,7 +5715,20 @@
         
         
                <h:panelGroup id="docsPanel">
-                                     
+                  
+                  <div class="demo-gallery " style="display:none;">
+	<ul id="img_holder_to_open_docDiv" class="list-unstyled row">
+	
+		<ui:repeat var="var" value="#{carBean.docs}">
+		<li class="col-xs-6 col-sm-4 col-md-3" data-responsive="/images/?file=#{var}" data-src="/images/?file=#{var}" >
+			<a id="img_holder_to_open_docDiv_#{var}" href="">
+				<img class="img-responsive" src="/images/?file=#{var}" />
+			</a>
+		</li>
+		</ui:repeat>
+	</ul>
+</div>
+                   
 <table border="1" style="    border: unset;">
    <tr>
         <td colspan="2">
@@ -5703,14 +5743,14 @@
                         <tr>
                             <td align="center">
                                 <div>
-                                    <a href="#" onclick='ViewDocById("#{var}")'>
+                                    <a href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_docDiv_#{var}")'>
                                         <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px; width:50px;" /></a>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style="color: Black;" href="#" onclick='ViewDocById("#{var}")'>
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_docDiv_#{var}")'>
                                     <span id="ctl00_BodyHolder_imageList_fileList_ctl00_docName">#{var}</span></a>
                                 
                             </td>
@@ -5779,7 +5819,7 @@
                         <tr>
                             <td align="center">
                                 <div>
-                                    <a href="#" onclick='ViewPDFById("#{var}")'>
+                                    <a href="javascript:void(0)" onclick='ViewPDFById("#{var}")'>
                                         <h:graphicImage value="/resources/images/pdf.png" alt="pdfs#{var}" style="border-width:0px; width:50px;" />
                                     </a>
                                 </div>
@@ -5787,7 +5827,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: center;">
-                                <a style="color: Black;" href="#" onclick='ViewPDFById("#{var}")'>
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewPDFById("#{var}")'>
                                     <span id="pdfctl00_BodyHolder_imageList_fileList_ctl00_docName">#{status.index+1}</span></a>
                                 
                             </td>
@@ -5891,6 +5931,18 @@ createElement3d("exteriorImg","https://primeshippingllc.com/images?file=#{carBea
 	</ui:define>
 	
 		
-	
+		
+		 <ui:define name="endOfContent"> 
+ <script>
+ lightGallery(document.getElementById('img_holder_to_open_picDiv'));
+ lightGallery(document.getElementById('img_holder_to_open_LoadingpicDiv'));
+ lightGallery(document.getElementById('img_holder_to_open_docDiv'));
+ 
+ function ViewImage_Gallery(image_ID){
+	 
+	 document.getElementById(image_ID).click();
+ }
+ </script>
+ </ui:define>
 </ui:composition>
 </html>
