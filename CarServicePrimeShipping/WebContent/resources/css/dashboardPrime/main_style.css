@@ -33,7 +33,7 @@ body{
 #navbar{
     z-index: 959;
     width: 100%;
-    background-color: rgba(32, 32, 32, 0);
+    background-color: rgb(255 255 255 / 50%);
     padding: 0rem !important;
     margin: 0;
     position: fixed;
@@ -44,7 +44,7 @@ nav::after
     position: absolute;
     top: 100%;
     left: 5%;
-    background-color: rgba(255, 255, 255, 0.459);
+    background-color: rgb(14 71 85 / 38%);
     opacity: 0.7;
     width: 90%;
     height: 1px;
@@ -78,10 +78,10 @@ nav::after
 }
 
 #head-slider .layer{
-    background-color: rgba(32, 32, 32, 0.719);
+    background-color: rgb(255 255 255 / 59%);
     height: 100vh;
     width: 100%;
-    color: white;
+    color: #0e4755;
 }
 
 #head-slider .layer .row .text-head{
@@ -93,15 +93,15 @@ nav::after
     text-align: center;
 }
 .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
-    color: #fff;
-    font-size: 1.3rem;
+    color: #0e4755;
+    font-size: 1.4rem;
     font-weight: 500;
 }
 .btn-primary {
-    color: #fff;
+    color: #0e4755;
     background-color: #007bff00;
     border-color: #007bff00;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 500;
 }
 .img-item{
@@ -996,7 +996,19 @@ color: white;
     display: inline-block;
 }
 
+.navbar-dark .navbar-nav .active>.nav-link:hover , .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link:hover {
+    color: #3c98c8!important;
+}
 
+#navbar.active{
+	background-color:#0e4755;
+}
+
+
+.active .navbar .container #navbarSupportedContent .navbar-nav .nav-item .nav-link{
+	color: #d5d5d5;
+    
+}
 .searchList.carlist .preview-photo a {
     display: none;
     position: absolute;

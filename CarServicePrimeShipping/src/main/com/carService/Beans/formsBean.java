@@ -267,7 +267,7 @@ public class formsBean  implements Serializable {
 	}
 	
 	public void sendEmailNotificationForThisEmailWithMessage() {
-		String[] to = {"support@primeshippingllc.com" }; // list of recipient email addresses 
+		String[] to = {"support@nycargollc.com" }; // list of recipient email addresses 
 
 //		String[] to = {"ahmedsonic1993@gmail.com" }; // list of recipient email addresses 
         String subject = "Form Message ";
@@ -282,7 +282,7 @@ public class formsBean  implements Serializable {
 	
 	public void sendEmailNotificationForThisEmailWithMessageContact() {
 		
-		String[] to = {"support@primeshippingllc.com" }; // list of recipient email addresses 
+		String[] to = {"support@nycargollc.com" }; // list of recipient email addresses 
 //		String[] to = {"ahmedsonic1993@gmail.com" }; // list of recipient email addresses 
         String subject = "Message From the website ";
         String htmlText = getMessageforEmailWithMessageContact();
@@ -325,7 +325,7 @@ public class formsBean  implements Serializable {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1 style=\"margin: 0;\"><a href=\"http://primeshippingllc.com/\" style=\"color: #3c64f5;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">Prime International Shipping</a></h1>\r\n" + 
+				"			            <h1 style=\"margin: 0;\"><a href=\"http://nycargollc.com/\" style=\"color: #3c64f5;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">NY GARGO LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -402,7 +402,7 @@ public class formsBean  implements Serializable {
 				"          	<div class=\"heading-section heading-section-white\" >\r\n" + 
 				"          		<span class=\"subheading\" id=\"headerCarOld\" style=\"margin-bottom: 20px !important;	display: inline-block;	font-size: 13px;	text-transform: uppercase;	letter-spacing: 2px;	color: rgba(0,0,0,.4);	position: relative;margin-bottom: 0;	display: inline-block;	font-size: 13px;	text-transform: uppercase;	letter-spacing: 2px;	color: rgba(255,255,255,.4);\">Welcome</span>\r\n" + 
 				"            	\r\n" + 
-				"				<h2 style=\"color: #ffffff;\">Prime International Shipping LLC®</h2>\r\n" + 
+				"				<h2 style=\"color: #ffffff;\">NY GARGO LLC®</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
 				"          </td>\r\n" + 
@@ -424,7 +424,7 @@ public class formsBean  implements Serializable {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p style=\"margin-top: 0;\">Prime International Shipping LLC®</p>\r\n" + 
+				"                      	<p style=\"margin-top: 0;\">NY GARGO LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -541,7 +541,7 @@ public class formsBean  implements Serializable {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1 style=\"margin: 0;\"><a href=\"http://primeshippingllc.com/\" style=\"color: #3c64f5;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">Prime International Shipping</a></h1>\r\n" + 
+				"			            <h1 style=\"margin: 0;\"><a href=\"http://nycargollc.com/\" style=\"color: #3c64f5;	font-size: 20px;	font-weight: 700;	font-family: 'Work Sans', sans-serif;\">NY GARGO LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -769,7 +769,7 @@ public class formsBean  implements Serializable {
 				"          	<div class=\"heading-section heading-section-white\" >\r\n" + 
 				"          		<span class=\"subheading\" id=\"headerCarOld\" style=\"margin-bottom: 20px !important;	display: inline-block;	font-size: 13px;	text-transform: uppercase;	letter-spacing: 2px;	color: rgba(0,0,0,.4);	position: relative;margin-bottom: 0;	display: inline-block;	font-size: 13px;	text-transform: uppercase;	letter-spacing: 2px;	color: rgba(255,255,255,.4);\">Welcome</span>\r\n" + 
 				"            	\r\n" + 
-				"				<h2 style=\"color: #ffffff;\">Prime International Shipping LLC®</h2>\r\n" + 
+				"				<h2 style=\"color: #ffffff;\">NY GARGO LLC®</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
 				"          </td>\r\n" + 
@@ -791,7 +791,7 @@ public class formsBean  implements Serializable {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p style=\"margin-top: 0;\">Prime International Shipping LLC®</p>\r\n" + 
+				"                      	<p style=\"margin-top: 0;\">NY GARGO LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -839,7 +839,7 @@ public class formsBean  implements Serializable {
 //				System.out.println();
 //				System.out.println();
 //				System.out.println();
-				String from = "support@primeshippingllc.com";
+				String from = "support@nycargollc.com";
 		        String pass = "tqtqwruxkwiqnvgh";
 				
 				// TODO Auto-generated method stub

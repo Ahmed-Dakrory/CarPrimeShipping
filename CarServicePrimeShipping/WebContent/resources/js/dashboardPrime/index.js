@@ -46,17 +46,17 @@ $(document).ready(function() {
             $(window).scroll(function () {  
                let wScroll=  $(window).scrollTop();
                //console.log(featuresOffset,"     ",wScroll);
-               if(wScroll >  200-0)
+               if(wScroll >  15-0)
                {
                 $("#btnUp").fadeIn(500);
                 $("#btnDown").fadeOut(500);
-                $("#navbar").css("backgroundColor","rgb(32, 32, 32)");
+                $("#navbar").addClass("active");
                }
                else
                {
                 $("#btnUp").fadeOut(500);
                 $("#btnDown").fadeIn(500);
-                $("#navbar").css("backgroundColor","transparent");
+                $("#navbar").removeClass("active");
             
                }
                 
