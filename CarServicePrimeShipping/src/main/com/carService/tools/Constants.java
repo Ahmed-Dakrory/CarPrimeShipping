@@ -25,7 +25,7 @@ public class Constants {
 	public static void sendEmailNotificationForThisEmailWithMessage(car selectedCar2, String message,String mail) {
 		
         String[] to = {mail }; // list of recipient email addresses 
-        String subject = "NY GARGO LLC "+selectedCar2.getUuid();
+        String subject = "NY CARGO LLC "+selectedCar2.getUuid();
         String htmlText = getMessageforEmailWithMessage(selectedCar2, message);
 
         System.out.println("Email Sent To: "+message+" With Mail: "+mail);
@@ -522,7 +522,7 @@ public class Constants {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1><a href=\"http://nycargollc.com/\">NY GARGO LLC</a></h1>\r\n" + 
+				"			            <h1><a href=\"http://nycargollc.com/\">NY CARGO LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -559,7 +559,7 @@ public class Constants {
 				"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
 				"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
 				"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
-				"            	<h2>NY GARGO LLC</h2>\r\n" + 
+				"            	<h2>NY CARGO LLC</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
 				"          </td>\r\n" + 
@@ -581,7 +581,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>NY GARGO LLC®</p>\r\n" + 
+				"                      	<p>NY CARGO LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -617,7 +617,7 @@ public class Constants {
 	public static void sendEmailUpdateFormatCar(car selectedCar2, String name,String mail, String string) {
 		
         String[] to = {mail }; // list of recipient email addresses 
-        String subject = "NY GARGO LLC "+selectedCar2.getUuid()+" Update";
+        String subject = "NY CARGO LLC "+selectedCar2.getUuid()+" Update";
         String htmlText = getMessageUpdateCar(selectedCar2);
 
         System.out.println("Email Sent To: "+name+" With Mail: "+mail);
@@ -1132,7 +1132,7 @@ public class Constants {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1><a href=\"http://nycargollc.com/\">NY GARGO LLC</a></h1>\r\n" + 
+				"			            <h1><a href=\"http://nycargollc.com/\">NY CARGO LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -1173,7 +1173,7 @@ public class Constants {
 				"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
 				"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
 				"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
-				"            	<h2>NY GARGO LLC</h2>\r\n" + 
+				"            	<h2>NY CARGO LLC</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
 				"          </td>\r\n" + 
@@ -1195,7 +1195,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>NY GARGO LLC®</p>\r\n" + 
+				"                      	<p>NY CARGO LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -1231,7 +1231,7 @@ public class Constants {
 	public static void sendEmailUpdateFormat(String name,String mail, String string) {
 		
 	        String[] to = {mail }; // list of recipient email addresses 
-	        String subject = "NY GARGO LLC";
+	        String subject = "NY CARGO LLC";
 	        String htmlText = getMessageUpdate();
 
 	        System.out.println("Email Sent To: "+name+" With Mail: "+mail);
@@ -1726,7 +1726,7 @@ public class Constants {
 				"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 				"          		<tbody><tr>\r\n" + 
 				"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-				"			            <h1><a href=\"http://nycargollc.com/\">NY GARGO LLC</a></h1>\r\n" + 
+				"			            <h1><a href=\"http://nycargollc.com/\">NY CARGO LLC</a></h1>\r\n" + 
 				"			          </td>\r\n" + 
 				"          		</tr>\r\n" + 
 				"          	</tbody></table>\r\n" + 
@@ -1757,7 +1757,7 @@ public class Constants {
 				"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
 				"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
 				"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
-				"            	<h2>NY GARGO LLC</h2>\r\n" + 
+				"            	<h2>NY CARGO LLC</h2>\r\n" + 
 				"            	\r\n" + 
 				"          	</div>\r\n" + 
 				"          </td>\r\n" + 
@@ -1779,7 +1779,7 @@ public class Constants {
 				"                    <tbody><tr>\r\n" + 
 				"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 				"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-				"                      	<p>NY GARGO LLC®</p>\r\n" + 
+				"                      	<p>NY CARGO LLC®</p>\r\n" + 
 				"                      </td>\r\n" + 
 				"                    </tr>\r\n" + 
 				"                  </tbody></table>\r\n" + 
@@ -1816,7 +1816,7 @@ public class Constants {
 	public static void sendEmailForgetAccount(String name,String mail, String account) {
 		
         String[] to = {mail }; // list of recipient email addresses 
-        String subject = "NY GARGO LLC";
+        String subject = "NY CARGO LLC";
         String htmlText = "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\r\n" + 
         		"    <meta charset=\"utf-8\"> <!-- utf-8 works for most cases -->\r\n" + 
         		"    <meta name=\"viewport\" content=\"width=device-width\"> <!-- Forcing initial-scale shouldn't be necessary -->\r\n" + 
@@ -2302,7 +2302,7 @@ public class Constants {
         		"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
         		"          		<tbody><tr>\r\n" + 
         		"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-        		"			            <h1><a href=\"http://nycargollc.com/\">NY GARGO LLC</a></h1>\r\n" + 
+        		"			            <h1><a href=\"http://nycargollc.com/\">NY CARGO LLC</a></h1>\r\n" + 
         		"			          </td>\r\n" + 
         		"          		</tr>\r\n" + 
         		"          	</tbody></table>\r\n" + 
@@ -2333,7 +2333,7 @@ public class Constants {
         		"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
         		"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
         		"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
-        		"            	<h2>NY GARGO LLC</h2>\r\n" + 
+        		"            	<h2>NY CARGO LLC</h2>\r\n" + 
         		"            	\r\n" + 
         		"          	</div>\r\n" + 
         		"          </td>\r\n" + 
@@ -2355,7 +2355,7 @@ public class Constants {
         		"                    <tbody><tr>\r\n" + 
         		"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
         		"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-        		"                      	<p>NY GARGO LLC®</p>\r\n" + 
+        		"                      	<p>NY CARGO LLC®</p>\r\n" + 
         		"                      </td>\r\n" + 
         		"                    </tr>\r\n" + 
         		"                  </tbody></table>\r\n" + 
@@ -2396,7 +2396,7 @@ public class Constants {
 	public static void sendEmailNewAccount(String name,String mail, String account) {
 		
 	        String[] to = {mail }; // list of recipient email addresses 
-	        String subject = "NY GARGO LLC";
+	        String subject = "NY CARGO LLC";
 	        String htmlText = "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"><head>\r\n" + 
 	        		"    <meta charset=\"utf-8\"> <!-- utf-8 works for most cases -->\r\n" + 
 	        		"    <meta name=\"viewport\" content=\"width=device-width\"> <!-- Forcing initial-scale shouldn't be necessary -->\r\n" + 
@@ -2882,7 +2882,7 @@ public class Constants {
 	        		"          	<table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n" + 
 	        		"          		<tbody><tr>\r\n" + 
 	        		"          			<td class=\"logo\" style=\"text-align: center;\">\r\n" + 
-	        		"			            <h1><a href=\"http://nycargollc.com/\">NY GARGO LLC</a></h1>\r\n" + 
+	        		"			            <h1><a href=\"http://nycargollc.com/\">NY CARGO LLC</a></h1>\r\n" + 
 	        		"			          </td>\r\n" + 
 	        		"          		</tr>\r\n" + 
 	        		"          	</tbody></table>\r\n" + 
@@ -2913,7 +2913,7 @@ public class Constants {
 	        		"          <td class=\"bg_dark email-section\" style=\"text-align:center;\">\r\n" + 
 	        		"          	<div style=\" margin-top: 31px; \" class=\"heading-section heading-section-white\">\r\n" + 
 	        		"          		<span style=\"font-size: 25px;color: #8c7c0e;font-weight: 900;\" class=\"subheading\">Welcome</span>\r\n" + 
-	        		"            	<h2>NY GARGO LLC</h2>\r\n" + 
+	        		"            	<h2>NY CARGO LLC</h2>\r\n" + 
 	        		"            	\r\n" + 
 	        		"          	</div>\r\n" + 
 	        		"          </td>\r\n" + 
@@ -2935,7 +2935,7 @@ public class Constants {
 	        		"                    <tbody><tr>\r\n" + 
 	        		"                      <td style=\"text-align: left; padding-right: 10px;\">\r\n" + 
 	        		"                      	<h3 class=\"heading\">About</h3>\r\n" + 
-	        		"                      	<p>NY GARGO LLC®</p>\r\n" + 
+	        		"                      	<p>NY CARGO LLC®</p>\r\n" + 
 	        		"                      </td>\r\n" + 
 	        		"                    </tr>\r\n" + 
 	        		"                  </tbody></table>\r\n" + 

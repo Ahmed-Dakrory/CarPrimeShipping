@@ -11,7 +11,7 @@
 <ui:composition template="/templates/dashboard2.xhtml">
 
 
-	<ui:define name="title"> NY GARGO LLC</ui:define>
+	<ui:define name="title"> NY CARGO LLC</ui:define>
 	
 	 <ui:define name="mainHead"> 
 			       <ul class="mn-sub"><li class="mn-sub-item mn-item-freight"><a href="vehicleList.jsf" class="mn-sub-item-current"><b>Inventory List</b></a></li></ul>
@@ -669,7 +669,7 @@ body .ui-icon {
                                                                             <h:form id="formOfSelectionCarState" >
                                                                                 <h:selectOneMenu value="#{carBean.selectedCarState}" name="ctl00$BodyHolder$ddlLoadStatus" id="ctl00_BodyHolder_ddlLoadStatus"  style="font-size: 17px;margin-top: 5px;padding: 3px;">
 																					<f:ajax listener="#{carBean.filterCarBySelect}"/>
-																					<f:selectItem itemValue="0" itemLabel="NY GARGO LLC WAREHOUSE"/>
+																					<f:selectItem itemValue="0" itemLabel="NY CARGO LLC WAREHOUSE"/>
 																					<f:selectItem itemValue="1" itemLabel="READY TO LOAD"/>
 																					<f:selectItem itemValue="2" itemLabel="Freight In Transit"/>
 																					<f:selectItem itemValue="4" itemLabel="Sent For Payment"/>
