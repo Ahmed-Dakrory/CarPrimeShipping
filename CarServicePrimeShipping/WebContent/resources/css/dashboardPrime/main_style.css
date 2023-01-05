@@ -244,11 +244,11 @@ right: -5%;
 #footer-contact{
     background-image: url(/resources/Image/bg-1.jpg.webp);
     background-repeat: no-repeat;
-    color: white;
+    color: #6e6e6e;
     margin-top: 0 !important;
 }
 #footer-contact .layout{
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(220 220 220 / 3%);
     margin-top: 0;
 }
 
@@ -259,10 +259,9 @@ right: -5%;
 }
 
 #footer-contact .container h5{
-    color: white;
+    color: #4a4141;
     padding-bottom: 0.3rem;
     margin: 2rem 0 1rem;
-
 }
 
 #footer-contact .info ul{
