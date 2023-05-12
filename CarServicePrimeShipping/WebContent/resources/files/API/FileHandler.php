@@ -667,16 +667,18 @@ class FileHandler
 		
 		
         $data = array();
-        $stmt = $this->con->prepare("SELECT  car.titleExist,car.keyExist,car.exteriorExists,car.companyTransName,car.exteriorImg,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.numberOfKeys,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.id=? and car.deleted = 0");
+        $stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.titleExist,car.keyExist,car.exteriorExists,car.companyTransName,car.exteriorImg,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.numberOfKeys,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,weight,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.id=? and car.deleted = 0");
 		
         $stmt->bind_param("s", $id);
         $stmt->execute();
 		
-        $stmt->bind_result($titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$numberOfKeys,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$numberOfKeys,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$weight,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
 
 
         while ($stmt->fetch()) {
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['dateOfDriverSigntureDestination'] = $dateOfDriverSigntureDestination;
 			$temp['urlOfDriverSigntureDestination'] = $urlOfDriverSigntureDestination;
 			$temp['CarType']=$CarType;
@@ -737,6 +739,7 @@ class FileHandler
 			$temp['consigneelastName'] = $this->getStringAsReq($consigneelastName);
 			$temp['customerfirstName'] = $this->getStringAsReq($customerfirstName);
 			$temp['customerlastName'] = $this->getStringAsReq($customerlastName);
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -763,7 +766,7 @@ class FileHandler
     }
 	
 	
-	public function insertNewCar($weight,$titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$idOfCar,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd)
+	public function insertNewCar($fuelTypePrimary,$fuelTypeSecondary,$weight,$titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$idOfCar,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd)
     {
 		if($releaseDate == '')
 			$releaseDate = null;
@@ -834,13 +837,13 @@ class FileHandler
 		}
 		
 		if($dataIdCheck  > 0){
-			$stmt = $this->con->prepare("UPDATE car set titleExist=(?), keyExist=(?),exteriorExists=(?), companyTransName = (?),  weight = (?) ,exteriorImg = (?),driverName = (?),  driverPhone = (?),numberOfKeys = (?),  CarType = (?), mainId = (?), mainTwoId = (?),shipperId = (?),vendorId = (?),customerId = (?),consigneeId = (?),make = (?),model = (?),year = (?),bodyStyle = (?),engineType = (?),engineLiters = (?),assemlyCountry = (?),color = (?),seacost = (?),landcost = (?),state = (?),releaseOption = (?), stateOut = (?),releaseDate = (?),uuid = (?),description = (?),containerLink = (?),eta = (?),etd = (?),lastUpdate = (?),mobileOrComp = 1 where id  = (?);");
-			$stmt->bind_param("iiisssssssiiiiiissssssssssiiisssssssi",$titleExist,$keyExist,$exteriorExists,$companyTransName,$weight,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate,$dataIdCheck);
+			$stmt = $this->con->prepare("UPDATE car set fuelTypePrimary=(?), fuelTypeSecondary=(?), titleExist=(?), keyExist=(?),exteriorExists=(?), companyTransName = (?),  weight = (?) ,exteriorImg = (?),driverName = (?),  driverPhone = (?),numberOfKeys = (?),  CarType = (?), mainId = (?), mainTwoId = (?),shipperId = (?),vendorId = (?),customerId = (?),consigneeId = (?),make = (?),model = (?),year = (?),bodyStyle = (?),engineType = (?),engineLiters = (?),assemlyCountry = (?),color = (?),seacost = (?),landcost = (?),state = (?),releaseOption = (?), stateOut = (?),releaseDate = (?),uuid = (?),description = (?),containerLink = (?),eta = (?),etd = (?),lastUpdate = (?),mobileOrComp = 1 where id  = (?);");
+			$stmt->bind_param("ssiiisssssssiiiiiissssssssssiiisssssssi",$fuelTypePrimary,$fuelTypeSecondary,$titleExist,$keyExist,$exteriorExists,$companyTransName,$weight,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate,$dataIdCheck);
       
 			
 		}else{
-			$stmt = $this->con->prepare("INSERT INTO car (storageStartDate,titleExist,weight,keyExist,exteriorExists,cargoRecieved,companyTransName,exteriorImg,driverName,driverPhone,numberOfKeys,CarType,mainId,mainTwoId,shipperId,vendorId,customerId,consigneeId,make,model,year,bodyStyle,engineType,engineLiters,assemlyCountry,color,seacost,landcost,state,releaseOption,stateOut,releaseDate,uuid,description,containerLink,eta,etd,lastUpdate,mobileOrComp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1);");
-			$stmt->bind_param("sisiisssssssiiiiiissssssssssiiisssssss",$lastUpdate,$titleExist,$weight,$keyExist,$exteriorExists,$lastUpdate,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate);
+			$stmt = $this->con->prepare("INSERT INTO car (fuelTypePrimary,fuelTypeSecondary,storageStartDate,titleExist,weight,keyExist,exteriorExists,cargoRecieved,companyTransName,exteriorImg,driverName,driverPhone,numberOfKeys,CarType,mainId,mainTwoId,shipperId,vendorId,customerId,consigneeId,make,model,year,bodyStyle,engineType,engineLiters,assemlyCountry,color,seacost,landcost,state,releaseOption,stateOut,releaseDate,uuid,description,containerLink,eta,etd,lastUpdate,mobileOrComp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1);");
+			$stmt->bind_param("sssisiisssssssiiiiiissssssssssiiisssssss",$fuelTypePrimary,$fuelTypeSecondary,$lastUpdate,$titleExist,$weight,$keyExist,$exteriorExists,$lastUpdate,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd,$lastUpdate);
       
 		}
         
@@ -849,18 +852,20 @@ class FileHandler
 		 $stmt->execute();
 		
         $data = array();
-        $stmt = $this->con->prepare("SELECT car.titleExist,car.keyExist,car.exteriorExists,car.companyTransName,car.exteriorImg,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.numberOfKeys,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.id,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.uuid=(?) and car.deleted = 0");
+        $stmt = $this->con->prepare("SELECT car.fuelTypePrimary,car.fuelTypeSecondary,car.titleExist,car.keyExist,car.exteriorExists,car.companyTransName,car.exteriorImg,car.driverName,car.driverPhone,car.dateOfDriverSigntureDestination,car.urlOfDriverSigntureDestination,car.numberOfKeys,car.CarType,car.crashPointsJson,car.dateOfCrashImage,car.urlOfCrashImage,car.dateOfDriverSignture,car.urlOfDriverSignture,car.id,car.mainId,car.mainTwoId,car.shipperId,car.vendorId,car.customerId,car.consigneeId, user.firstName,user.lastName,tmainTwo.firstName,tmainTwo.lastName,tshipper.firstName,tshipper.lastName,tvendor.firstName,tvendor.lastName,tconsignee.firstName,tconsignee.lastName,tcustomer.firstName,tcustomer.lastName,weight,make,model,year,bodyStyle,engineType,engineLiters,car.assemlyCountry,car.color,car.seacost,car.landcost,car.state,car.releaseOption,car.stateOut,car.releaseDate,car.uuid,car.description,car.containerLink,car.eta,car.etd FROM carsystem.car left join user on user.id = car.mainId left join customer on customer.id = car.customerId left join shipper on shipper.id = car.shipperId left join vendor on vendor.id = car.vendorId left join consignee on consignee.id = car.consigneeId left join user as tvendor on tvendor.id = vendor.userId left join user as tshipper on tshipper.id = shipper.userId left join user as tcustomer on tcustomer.id = customer.userId left join user as tconsignee on tconsignee.id = consignee.userId left join user as tmainTwo on tmainTwo.id = car.mainTwoId  where car.uuid=(?) and car.deleted = 0");
 		
         $stmt->bind_param("s", $uuid);
         $stmt->execute();
 		
-        $stmt->bind_result($titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$numberOfKeys,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$id,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$dateOfDriverSigntureDestination,$urlOfDriverSigntureDestination,$numberOfKeys,$CarType,$crashPointsJson,$dateOfCrashImage,$urlOfCrashImage,$dateOfDriverSignture,$urlOfDriverSignture,$id,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$userfirstName,$userlastName,$mainTwofirstName,$mainTwolastName,$shipperfirstName,$shipperlastName,$vendorfirstName,$vendorlastName,$consigneefirstName,$consigneelastName,$customerfirstName,$customerlastName,$weight,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd);
 
 
         while ($stmt->fetch()) {
             $temp['id'] = $this->getIdData($id);
 			$temp['CarType']=$CarType;
 			$temp['numberOfKeys']=$numberOfKeys;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			
 			if($keyExist==0){
 				
@@ -917,6 +922,7 @@ class FileHandler
 			$temp['consigneelastName'] = $this->getStringAsReq($consigneelastName);
 			$temp['customerfirstName'] = $this->getStringAsReq($customerfirstName);
 			$temp['customerlastName'] = $this->getStringAsReq($customerlastName);
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -945,30 +951,30 @@ class FileHandler
 	 public function getAllCarsForMainAccount($mainId,$page,$itemsNumber,$type)
     {
 		if($type == 0){
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
 		}elseif($type == 1){
             //WareHouse
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 2){
             //Dry Cargo
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 3){
             //Fright in Transit
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 4){
             //Sent For Payment
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }
         
         $stmt->bind_param("sss", $mainId, $page, $itemsNumber);
         $stmt->execute();
 		
-        $stmt->bind_result($state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$make,$model,$year,$releaseOption,$url);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$weight,$make,$model,$year,$releaseOption,$url);
 
         $data = array();
 
@@ -976,12 +982,15 @@ class FileHandler
 
             $temp = array();
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['state'] = $state;
 			$temp['lastUpdateCar'] = $lastUpdateCar;
 			$temp['shipper_firstName'] = $this->getStringAsReq($firstName);
 			$temp['shipper_lastName'] = $this->getStringAsReq($lastName);
 			$temp['shipperId'] = $shipperId;
 			$temp['uuid'] = $uuid;
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -998,30 +1007,30 @@ class FileHandler
 	 public function getAllCarsForMainTwoAccount($mainTwoId,$page,$itemsNumber,$type)
     {
 		if($type == 0){
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
 		}elseif($type == 1){
             //WareHouse
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 2){
             //Dry Cargo
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 3){
             //Fright in Transit
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 4){
             //Sent For Payment
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.mainTwoId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }
         
         $stmt->bind_param("sss", $mainTwoId, $page, $itemsNumber);
         $stmt->execute();
 		
-        $stmt->bind_result($state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$make,$model,$year,$releaseOption,$url);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$weight,$make,$model,$year,$releaseOption,$url);
 
         $data = array();
 
@@ -1029,12 +1038,15 @@ class FileHandler
 
             $temp = array();
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['state'] = $state;
 			$temp['lastUpdateCar'] = $lastUpdateCar;
 			$temp['shipper_firstName'] = $this->getStringAsReq($firstName);
 			$temp['shipper_lastName'] = $this->getStringAsReq($lastName);
 			$temp['shipperId'] = $shipperId;
 			$temp['uuid'] = $uuid;
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -1051,30 +1063,30 @@ class FileHandler
 	 public function getAllCarsForShipperAccount($shipperId,$page,$itemsNumber,$type)
     {
 		if($type == 0){
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
 		}elseif($type == 1){
             //WareHouse
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 2){
             //Dry Cargo
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 3){
             //Fright in Transit
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 4){
             //Sent For Payment
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.shipperId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }
         
         $stmt->bind_param("sss", $shipperId, $page, $itemsNumber);
         $stmt->execute();
 		
-        $stmt->bind_result($state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$make,$model,$year,$releaseOption,$url);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$weight,$make,$model,$year,$releaseOption,$url);
 
         $data = array();
 
@@ -1082,12 +1094,15 @@ class FileHandler
 
             $temp = array();
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['state'] = $state;
 			$temp['lastUpdateCar'] = $lastUpdateCar;
 			$temp['shipper_firstName'] = $this->getStringAsReq($firstName);
 			$temp['shipper_lastName'] = $this->getStringAsReq($lastName);
 			$temp['shipperId'] = $shipperId;
 			$temp['uuid'] = $uuid;
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -1104,30 +1119,30 @@ class FileHandler
 	 public function getAllCarsForVendorAccount($vendorId,$page,$itemsNumber,$type)
     {
 		if($type == 0){
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
 		}elseif($type == 1){
             //WareHouse
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 2){
             //Dry Cargo
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 3){
             //Fright in Transit
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 4){
             //Sent For Payment
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.vendorId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }
         
         $stmt->bind_param("sss", $vendorId, $page, $itemsNumber);
         $stmt->execute();
 		
-        $stmt->bind_result($state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$make,$model,$year,$releaseOption,$url);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$weight,$make,$model,$year,$releaseOption,$url);
 
         $data = array();
 
@@ -1135,12 +1150,15 @@ class FileHandler
 
             $temp = array();
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['state'] = $state;
 			$temp['lastUpdateCar'] = $lastUpdateCar;
 			$temp['shipper_firstName'] = $this->getStringAsReq($firstName);
 			$temp['shipper_lastName'] = $this->getStringAsReq($lastName);
 			$temp['shipperId'] = $shipperId;
 			$temp['uuid'] = $uuid;
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -1156,30 +1174,30 @@ class FileHandler
 	 public function getAllCarsForCustomerAccount($customerId,$page,$itemsNumber,$type)
     {
 		if($type == 0){
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
 		}elseif($type == 1){
             //WareHouse
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 2){
             //Dry Cargo
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 3){
             //Fright in Transit
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 4){
             //Sent For Payment
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.customerId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }
         
         $stmt->bind_param("sss", $customerId, $page, $itemsNumber);
         $stmt->execute();
 		
-        $stmt->bind_result($state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$make,$model,$year,$releaseOption,$url);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$weight,$make,$model,$year,$releaseOption,$url);
 
         $data = array();
 
@@ -1187,12 +1205,15 @@ class FileHandler
 
             $temp = array();
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['state'] = $state;
 			$temp['lastUpdateCar'] = $lastUpdateCar;
 			$temp['shipper_firstName'] = $this->getStringAsReq($firstName);
 			$temp['shipper_lastName'] = $this->getStringAsReq($lastName);
 			$temp['shipperId'] = $shipperId;
 			$temp['uuid'] = $uuid;
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;
@@ -1209,30 +1230,30 @@ class FileHandler
 	 public function getAllCarsForConsigneeAccount($consigneeId,$page,$itemsNumber,$type)
     {
 		if($type == 0){
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
 		}elseif($type == 1){
             //WareHouse
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=0 or car.state=1 or car.state=2 or car.state=3) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 2){
             //Dry Cargo
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=4 or car.state=5) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 3){
             //Fright in Transit
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=6 or car.state=7) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }elseif($type == 4){
             //Sent For Payment
-			$stmt = $this->con->prepare("SELECT  car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
+			$stmt = $this->con->prepare("SELECT  car.fuelTypePrimary,car.fuelTypeSecondary,car.state,car.lastUpdate,user.firstName,user.lastName,car.id,car.shipperId,car.uuid,car.weight,car.make,car.model,car.year,car.releaseOption,carimage.url  FROM car  LEFT JOIN shipper on car.shipperId = shipper.id LEFT JOIN user on shipper.userId = user.id LEFT JOIN carimage  on carimage.carId=car.id and carimage.type=0 where car.consigneeId=? and (car.state=8) and car.deleted = 0   group by  car.id order by car.lastUpdate DESC LIMIT ?,?;");
 		
         }
         
         $stmt->bind_param("sss", $consigneeId, $page, $itemsNumber);
         $stmt->execute();
 		
-        $stmt->bind_result($state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$make,$model,$year,$releaseOption,$url);
+        $stmt->bind_result($fuelTypePrimary,$fuelTypeSecondary,$state,$lastUpdateCar,$firstName,$lastName,$id,$shipperId,$uuid,$weight,$make,$model,$year,$releaseOption,$url);
 
         $data = array();
 
@@ -1240,12 +1261,15 @@ class FileHandler
 
             $temp = array();
             $temp['id'] = $id;
+			$temp['fuelTypePrimary'] = $fuelTypePrimary;
+			$temp['fuelTypeSecondary'] = $fuelTypeSecondary;
 			$temp['state'] = $state;
 			$temp['lastUpdateCar'] = $lastUpdateCar;
 			$temp['shipper_firstName'] = $this->getStringAsReq($firstName);
 			$temp['shipper_lastName'] = $this->getStringAsReq($lastName);
 			$temp['shipperId'] = $shipperId;
 			$temp['uuid'] = $uuid;
+			$temp['weight'] = $weight;
 			$temp['make'] = $make;
 			$temp['model'] = $model;
 			$temp['year'] = $year;

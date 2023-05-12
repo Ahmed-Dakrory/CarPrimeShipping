@@ -152,7 +152,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($data->uuid) && strlen($data->uuid) > 0 ){ 
 			$upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->insertNewCar($data->weight,$data->titleExist,$data->keyExist,$data->exteriorExists,$data->companyTransName,$data->exteriorImg,$data->driverName,$data->driverPhone,$data->numberOfKeys,$data->CarType,$data->id,$data->mainId,$data->mainTwoId,$data->shipperId,$data->vendorId,$data->customerId,$data->consigneeId,$data->make,$data->model,$data->year,$data->bodyStyle,$data->engineType,$data->engineLiters,$data->assemlyCountry,$data->color,$data->seacost,$data->landcost,$data->state,$data->releaseOption,$data->stateOut,$data->releaseDate,$data->uuid,$data->description,$data->containerLink,$data->eta,$data->etd);
+            $response['data'] = $upload->insertNewCar($data->fuelTypePrimary,$data->fuelTypeSecondary,$data->weight,$data->titleExist,$data->keyExist,$data->exteriorExists,$data->companyTransName,$data->exteriorImg,$data->driverName,$data->driverPhone,$data->numberOfKeys,$data->CarType,$data->id,$data->mainId,$data->mainTwoId,$data->shipperId,$data->vendorId,$data->customerId,$data->consigneeId,$data->make,$data->model,$data->year,$data->bodyStyle,$data->engineType,$data->engineLiters,$data->assemlyCountry,$data->color,$data->seacost,$data->landcost,$data->state,$data->releaseOption,$data->stateOut,$data->releaseDate,$data->uuid,$data->description,$data->containerLink,$data->eta,$data->etd);
             
 			$response['images'] = $upload->getCarImages($response['data']['id']);
             $response['docs'] = $upload->getCarDoc($response['data']['id']);
