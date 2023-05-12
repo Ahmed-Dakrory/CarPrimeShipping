@@ -265,6 +265,13 @@ public class car {
 	@Column(name = "description")
 	private String description;
 	
+	
+	@Column(name = "fuelTypePrimary")
+	private String fuelTypePrimary;
+	
+	@Column(name = "fuelTypeSecondary")
+	private String fuelTypeSecondary;
+	
 	@Column(name = "year")
 	private String year;
 
@@ -1512,6 +1519,42 @@ public class car {
 	}
 
 
+
+
+
+
+
+
+	public String getFuelTypePrimary() {
+		return fuelTypePrimary;
+	}
+
+
+
+
+
+
+	public void setFuelTypePrimary(String fuelTypePrimary) {
+		this.fuelTypePrimary = fuelTypePrimary;
+	}
+
+
+
+
+
+
+	public String getFuelTypeSecondary() {
+		return fuelTypeSecondary;
+	}
+
+
+
+
+
+
+	public void setFuelTypeSecondary(String fuelTypeSecondary) {
+		this.fuelTypeSecondary = fuelTypeSecondary;
+	}
 
 
 

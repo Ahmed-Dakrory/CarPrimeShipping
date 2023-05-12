@@ -77,9 +77,13 @@
 <table class="table table-bordered">
   <tbody>
     <tr>
-      <td colspan="6">LOAD ID: #{carBean.selectedCar.id}</td>
-      
+      <td colspan="2">LOAD ID: #{carBean.selectedCar.id}</td>
+      <td class="text-center" colspan="2" ><p class="fw-bold fontForCirules ">Primary Fuel: #{carBean.selectedCar.fuelTypePrimary}</p></td>
+      <td class="text-center" colspan="2" ><p class="fw-bold fontForCirules ">Secondary Fuel: #{carBean.selectedCar.fuelTypeSecondary}</p></td>
+    
     </tr>
+    
+    
     <tr>
       <td class="text-center" colspan="3" ><p class=" fw-bold fontForCirules ">ORIGIN</p></td>
       <td class="text-center" colspan="3" ><p class=" fw-bold fontForCirules ">DESTINATION</p></td>
@@ -107,6 +111,8 @@
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.color}</td>
       <td colspan="1" class="text-center fontForCirules ">#{carBean.selectedCar.odometer}</td>
     </tr>
+    
+    
     <tr>
       <td colspan="6" class=" fontForCirules ">Inspection Notes: #{carBean.selectedCar.note}</td>
       

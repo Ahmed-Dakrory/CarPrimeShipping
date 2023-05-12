@@ -42,9 +42,13 @@ public class OrderOutDetails {
 	    	 
 	    	 @SerializedName("EngineConfiguration")
 	 	    public String EngineConfiguration;
-	    	 
+
 	    	 @SerializedName("FuelTypePrimary")
 	 	    public String FuelTypePrimary;
+	    	 
+
+	    	 @SerializedName("FuelTypeSecondary")
+	 	    public String FuelTypeSecondary;
 	    	 
 
 	    	 @SerializedName("GVWR")

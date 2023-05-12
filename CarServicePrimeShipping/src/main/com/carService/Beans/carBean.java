@@ -464,6 +464,8 @@ public class carBean implements Serializable{
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtModel");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtMake");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtYear");
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:fuelPrimary");
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:fuelSecondary");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtAssemblyCountry");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtBodyStyle");
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:ctl00_BodyHolder_txtEngineType");
@@ -484,6 +486,8 @@ public class carBean implements Serializable{
 	        	addNewCar.setMake(car.Results.get(0).Make);
 	        	addNewCar.setModel(car.Results.get(0).Model);
 	        	addNewCar.setYear(car.Results.get(0).ModelYear);
+	        	addNewCar.setFuelTypePrimary(car.Results.get(0).FuelTypePrimary);
+	        	addNewCar.setFuelTypeSecondary(car.Results.get(0).FuelTypeSecondary);
 	        	addNewCar.setAssemlyCountry(car.Results.get(0).PlantCountry);
 	        	addNewCar.setBodyStyle(car.Results.get(0).DriveType);
 	        	addNewCar.setEngineLiters(car.Results.get(0).DisplacementL);
