@@ -1,0 +1,643 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<ui:composition template="/templates/dashboard2.xhtml">
+
+
+  <ui:define name="title"> Prime International Shipping LLC</ui:define>
+
+  <ui:define name="mainHead">
+    <ul class="mn-sub">
+      <li class="mn-sub-item mn-item-vendors"><a href="vitView.jsf" class="mn-sub-item-current"><b>Vehicle List</b></a>
+      </li>
+    </ul>
+    <link rel="stylesheet" href="#{resource['css:dashboardPrime/all.min.css']}" />
+    <link rel="stylesheet" href="#{resource['css:dashboardPrime/bootstrap.min.css']}" />
+
+  </ui:define>
+
+  <ui:define name="content">
+    <style>
+      .ui-fileupload-choose {
+        position: relative;
+        overflow: hidden;
+        outline: 0;
+        display: none;
+      }
+
+      .ui-button-icon-only {
+        width: 19px;
+        background: url(/resources/images/public/img/gr-error.png) no-repeat;
+        height: 19px;
+      }
+
+      .ui-datepicker {
+        border: black;
+        background: white;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 8%;
+      }
+
+      .ui-datepicker .ui-icon {
+        display: block;
+        text-indent: 1px;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        left: .5em;
+        top: .3em;
+      }
+
+      .ui-datepicker .ui-datepicker-next {
+        right: 17px;
+      }
+    </style>
+
+
+    <style>
+      .ui-fileupload-content .ui-progressbar .ui-progressbar-value {
+        background: gray;
+        height: 100%;
+      }
+
+      .ui-fileupload-content .ui-progressbar {
+        width: 200px;
+        height: 20px;
+        margin: 0;
+        top: 5px;
+        border-style: solid;
+        border-radius: 4px;
+        border-width: 1px;
+      }
+
+
+      input,
+      select {
+        font-family: arial;
+        height: 29px !important;
+        padding: 1px 1px 1px 9px;
+        margin: 2px;
+        border-radius: 5px;
+        font-size: 15px !important;
+        font-family: calibri;
+      }
+
+      td {
+        /* font-weight: 400; */
+        font-size: 15px;
+        font-family: calibri;
+      }
+
+      .tbltxt {
+        font: 16px 'calibri';
+        color: #000;
+      }
+    </style>
+    <style>
+      .radiobtn {
+        position: absolute;
+        display: block;
+        text-align: center;
+        top: 1%;
+        width: 18%;
+      }
+
+      .radiobtn label {
+        display: block;
+        background: #f0f6ef;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 7px 0px;
+        border: 2px solid #01a7e100;
+        margin-bottom: 5px;
+        cursor: pointer;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      input[type="radio"] {
+        display: none;
+        position: absolute;
+        width: 100%;
+        appearance: none;
+      }
+
+      input[type="radio"]:checked+label {
+        background: #b4e101;
+        color: #fff;
+      }
+    </style>
+    <link rel="stylesheet" href="#{resource['css:dashboard/mailMultiple/jquerysctipttop.css']}" />
+    <link rel="stylesheet" href="#{resource['css:dashboard/mailMultiple/email.multiple.css']}" />
+
+
+    <h:outputScript name="js/dashboard/mailMultiple/jquery.email.multiple.js" />
+
+
+    <h:form name="aspnetForm" id="aspnetForm">
+
+
+
+      <div id="content">
+        <!-- page src -->
+        <table cellspacing="0" cellpadding="5" class="content-table" border="0">
+          <tbody>
+            <tr valign="top">
+              <td width="100%">
+                <!-- Table 1 -->
+
+
+
+                <table cellspacing="0" cellpadding="1" width="100%" bgcolor="#003399" border="0">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table cellspacing="0" cellpadding="8" width="100%" bgcolor="#ffffff" border="0">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <!-- Table name block -->
+                                <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                                  <tr>
+                                    <td class="blkname" width="100%">
+                                      <nobr>&nbsp;VIN:
+                                        <span id="ctl00_BodyHolder_lblVIN">New Container</span>
+                                      </nobr>
+                                    </td>
+                                  </tr>
+                                </table>
+                                <img height="3" src="/resources/images/dumb.gif" width="1" /><br></br>
+                                <!-- End of Table name block -->
+                                                           <table style="
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    padding: 15px;
+" cellspacing="4" cellpadding="0" width="100%" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <table cellspacing="0" cellpadding="1" width="100%" bgcolor="#cccccc"
+                                          border="0">
+                                          <tbody>
+                                            <tr>
+                                              <td>
+                                                <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f7f7f7"
+                                                  border="0">
+                                                  <tbody>
+
+
+                                                    <tr height="23">
+
+                                                      <td class="tbltxt" width="130">
+                                                        <div style="margin-left: 6px">
+                                                          Container Number:</div>
+                                                      </td>
+                                                      <td width="200">
+                                                        <h:inputText type="text"
+                                                          value="#{carBean.selectedContainer.container_number}"
+                                                          style="font-size:11px;height:19px;width:200px;" />
+
+                                                      </td>
+
+
+
+                                                      <td class="tbltxt">
+                                                        <div style="margin-left: 6px">
+                                                          Date:</div>
+                                                      </td>
+                                                      <td>
+                                                        <h:inputText name="ctl00$BodyHolder$txtVIRReceived" type="text"
+                                                          value="#{carBean.releaseDate}" class="timePicker"
+                                                          id="ctl00_BodyHolder_txtVIRReceived"
+                                                          style="font-size:11px;height:19px;width:200px;" />
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                    </tr>
+                                                    <tr height="2">
+                                                      <td bgcolor="#ffffff" colspan="6">
+                                                      </td>
+                                                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    <tr height="2">
+                                                      <td bgcolor="#ffffff" colspan="6">
+                                                      </td>
+                                                    </tr>
+
+
+
+
+                                                    <tr height="23">
+                                                      <td style="vertical-align: initial;width: 250px;" class="tbltxt">
+                                                        <div style="margin-left: 6px">
+                                                          Container Description:</div>
+                                                      </td>
+                                                      <td colspan="3" style="width: 250px" align="left">
+                                                        <h:inputTextarea
+                                                          value="#{carBean.selectedContainer.description_of_container}"
+                                                          style="height:150px;width:100%;" />
+
+                                                      </td>
+                                                    </tr>
+
+
+
+
+
+
+
+                                                    <tr height="2">
+                                                      <td bgcolor="#ffffff" colspan="6">
+                                                      </td>
+                                                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+                                                                                             <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('picDivMain','picExpandMain')">
+                                                                                                            <img id="picExpandMain" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Main
+                                                                                                                Pictures:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                              <tr height="23">
+                                                                                                <td>
+                                                                                                </td>
+                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
+                                                                                                     <div id="picDivMain" style="display: inline; margin-left: 6px">
+                                                                                                     	
+                                                                                                     	 <h:panelGroup id="imagesPanelMain">
+																	                                 <p:fileUpload id="FileUploadedMain" fileUploadListener="#{carBean.previewImageMain2}" dragDropSupport="true" sizeLimit="99999999" fileLimit="20" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
+        
+																	                                    <label for="aspnetForm:FileUploadedMain_input">
+																	                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" rendered="#{carBean.selectedContainer.mainUrl!=null?'false':'true'}" alt="imageMain3" style="border-width:0px;width: auto;max-width: 61px;height: auto;max-height: 195px;" />
+																	                                    <h:graphicImage value="/images/?file=#{carBean.selectedContainer.mainUrl}" rendered="#{carBean.selectedContainer.mainUrl!=null?'true':'false'}" alt="imageMain" style="border-width:0px;width: auto;max-width: 195px;height: auto;max-height: 195px;" />
+																	                                    </label>
+																	                                     </h:panelGroup>   
+                                                                                                     	
+                                                                                                     	</div>
+                                                                                                </td>
+                                                                                              </tr>
+                                                                                                  
+                                                                                            
+                                                                                            
+
+
+											
+                                                                                            <tr height="23">
+                                                                                                <td colspan="6" class="tbltxt">
+                                                                                                    <div style="margin-left: 6px">
+                                                                                                    <br></br>
+                                                                                                        <a onmouseover="this.style.cursor='hand'" onmouseout="this.style.cursor='default'"
+                                                                                                            onclick="ChangeVisibillity('picDiv','picExpand')">
+                                                                                                            <img id="picExpand" width="19px" height="19px" src="/resources/images/img/accordeon_open.png" /><b> Enclosed
+                                                                                                                Pictures:</b></a></div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr height="23">
+                                                                                               
+                                                                                                <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt" valign="top">
+                                                                                                    <div id="picDiv" style="display: inline; margin-left: 6px">
+                                                                                                     	<p:fileUpload id="FileUploaded" fileUploadListener="#{carBean.previewImage2}" dragDropSupport="true" sizeLimit="10000000" fileLimit="100" multiple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"></p:fileUpload>
+        
+        
+ 
+               <p:panel id="imagesPanel" class="container">
+       				<div class="demo-gallery " style="display:none;">
+			            <ul id="img_holder_to_open_picDiv" class="list-unstyled row">
+			            
+							<ui:repeat var="var" value="#{carBean.images2}">
+			                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="/images/?file=#{var}" data-src="/images/?file=#{var}" >
+			                    <a id="img_holder_to_open_picDiv_#{var}" href="">
+			                        <img class="img-responsive" src="/images/?file=#{var}" />
+			                    </a>
+			                </li>
+			                </ui:repeat>
+			            </ul>
+			        </div>
+        
+        
+					<div class="row">
+					
+							<ui:repeat var="var" value="#{carBean.images2}">
+    <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;">			
+				<div class="containerDevCloseButtonNew">
+						<div class="devCloseButtonNew" onclick="deleteImageNum('#{var}')">
+	                                	<div href="javascript:void(0)"  class="closeButtonNew">
+	                                	</div>
+	                    </div>
+					</div>
+					<div class="radiobtn" >
+					    <input type="radio" id="#{var}" onclick="selectThisContainerAsMainPic([{name: 'fileURL', value: '#{var}'}])"
+					                     name="main_pic_car" value="#{var}"  />
+					    <label for="#{var}"><i class="fa fa-check"></i></label>
+					  </div>
+  
+                    <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <a href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_picDiv_#{var}")'>
+                                        <h:graphicImage value="/images/?file=#{var}" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;"/></a>
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewImage_Gallery("img_holder_to_open_picDiv_#{var}")'>
+                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">#{var}</span></a>
+                                
+                           </div>
+                   </div>
+               </div>
+                
+                
+               
+		</ui:repeat>
+             
+             <div class="col-md-3" style="border: black;border-style: solid;border-width: 1px;margin: 7px;padding-top: 16px;">
+             
+                     <div class="row" style=" text-align: center; ">
+                        
+                             <div class="row">
+                                    <label for="aspnetForm:FileUploaded_input">
+                                    <h:graphicImage value="/resources/images/public/img/membership-choice-step/addNew.png" alt="image#{var}" style="border-width:0px;width: 151px;height: 109px;" />
+                                    </label>
+                                        
+                                </div>
+                        
+                        <div class="row">
+                                <a style="color: Black;" href="javascript:void(0)" onclick='ViewDocById("#{var}")'>
+                                    <span id="ctl00_BodyHolder_imageList_imageList_ctl00_docName">click to select Image</span></a>
+                                
+                               </div>
+                   </div>
+             
+              </div>
+	   
+					</div>
+				</p:panel>
+				</div>
+                                                                                                </td>
+
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                   
+
+
+
+
+
+
+
+
+
+                                            <tr height="23">
+                                              <td colspan="6" class="tbltxt">
+                                              </td>
+                                            </tr>
+                                            <tr height="23">
+                                              <td style="text-align: right;">
+                                                <div class="fa fa-trash-o" style="font-size: 35px;"></div>
+
+                                              </td>
+                                              <td id="ctl00_BodyHolder_picTableCell" colspan="4" class="tbltxt"
+                                                valign="top">
+                                                <a onclick="deleteThisobj('#{carBean.selectedContainer.id}')"
+                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default ">
+                                                  Delete This Container</a>
+                                              </td>
+
+                                              <td>
+                                              </td>
+                                            </tr>
+
+
+
+
+
+
+
+
+
+                                            <tr height="23">
+                                              <td class="tbltxt">
+                                                <div style="margin-left: 6px">
+                                                </div>
+                                              </td>
+                                              <td>
+                                              </td>
+                                              <td>
+                                              </td>
+                                              <td class="tbltxt">
+                                                <div style="margin-left: 6px">
+                                                </div>
+                                              </td>
+                                              <td>
+                                              </td>
+                                              <td>
+                                              </td>
+                                            </tr>
+                                           
+                                            <tr height="13">
+                                              <td align="center">
+                                                <p:commandButton class="btn btn-default"
+                                                  action="#{carBean.updateContainerDataMain()}" name="ctl00$BodyHolder$cmdSave2"
+                                                  value="update" id="ctl00_BodyHolder_cmdSave2"
+                                                  style=" font-family:Verdana;font-size:10px;font-weight:bold;width:120px;" />
+
+                                              </td>
+                                              <td align="center">
+                                                <p:commandButton class="btn btn-default"
+                                                  name="ctl00$BodyHolder$cmdBackToList" value="Back"
+                                                  id="ctl00_BodyHolder_cmdBackToList" action="#{carBean.cancelContainer()}"
+                                                  style=" font-family:Verdana;font-size:10px;font-weight:bold;width:120px;" />
+                                              </td>
+                                              <td>
+                                                <p:commandButton class="btn btn-default"
+                                                  name="ctl00$BodyHolder$cmdCancel" value="Cancel"
+                                                  id="ctl00_BodyHolder_cmdCancel" action="#{carBean.cancelContainer()}"
+                                                  style=" font-family:Verdana;font-size:10px;font-weight:bold;width:120px;" />
+                                              </td>
+                                              <td>
+                                              </td>
+                                            </tr>
+                                            <tr height="2">
+                                              <td colspan="6">
+                                              </td>
+                                            </tr>
+
+
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+
+
+
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- End of Table 1 -->
+        <img height="3" src="/resources/images/dumb.gif" width="1" /><br></br>
+        </td>
+        </tr>
+        <tr>
+          <td bgcolor="white" colspan="2">
+          </td>
+        </tr>
+        </tbody>
+        </table>
+
+      </div>
+      <script src="https://pchen66.github.io/js/three/three.min.js"></script>
+      <script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+
+
+      <script>
+
+
+        $('#aspnetForm\\:panelToreload').hide();
+      </script>
+
+
+
+<script>
+
+
+
+$(function() {
+	$('#aspnetForm\\:ctl00_BodyHolder_txtVIRReceived').datepicker({
+	    dateFormat: 'yy-dd-mm',
+	    onSelect: function(datetext){
+
+	        var d = new Date(); // for now
+
+	        var h = d.getHours();
+	        h = (h &lt; 10) ? ("0" + h) : h ;
+
+	        var m = d.getMinutes();
+	        m = (m &lt; 10) ? ("0" + m) : m ;
+
+	        var s = d.getSeconds();
+	        s = (s &lt; 10) ? ("0" + s) : s ;
+
+	        datetext = datetext + " " + h + ":" + m + ":" + s;
+
+	        $('#aspnetForm\\:ctl00_BodyHolder_txtVIRReceived').val(datetext);
+	    }
+	});
+	});
+</script>
+
+
+
+      <script>
+
+
+
+
+
+
+        $(document).ready(function () {
+          $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+          });
+        });
+      </script>
+
+
+
+										<p:remoteCommand name="selectThisContainerAsMainPic" action="#{carBean.setAsMainPic2()}"> 
+	                                	</p:remoteCommand>
+	                                	
+      <p:remoteCommand name="deleteFile" action="#{carBean.deleteFile2()}">
+      </p:remoteCommand>
+
+
+      <p:remoteCommand name="deleteObj" action="#{carBean.deleteContainer()}">
+      </p:remoteCommand>
+
+
+    </h:form>
+
+
+    <h:outputScript name="js/dashboardPrime/popper.min.js" />
+    <h:outputScript name="js/dashboardPrime/bootstrap.min.js" />
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $.noConflict();
+    </script>
+    <h:outputScript name="js/dashboard2/assets/jquery-ui.min.js" />
+   
+  </ui:define>
+
+
+
+  <ui:define name="endOfContent">
+    <script>
+      lightGallery(document.getElementById('img_holder_to_open_picDiv'));
+      lightGallery(document.getElementById('img_holder_to_open_LoadingpicDiv'));
+      lightGallery(document.getElementById('img_holder_to_open_docDiv'));
+
+      function ViewImage_Gallery(image_ID) {
+
+        document.getElementById(image_ID).click();
+      }
+    </script>
+  </ui:define>
+
+</ui:composition>
+
+</html>

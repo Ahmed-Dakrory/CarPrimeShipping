@@ -56,6 +56,10 @@ import main.com.carService.carImage.carimage;
 import main.com.carService.carImage.carimageAppServiceImpl;
 import main.com.carService.consignee.consignee;
 import main.com.carService.consignee.consigneeAppServiceImpl;
+import main.com.carService.container.container;
+import main.com.carService.container.containerAppServiceImpl;
+import main.com.carService.containerImage.containerimage;
+import main.com.carService.containerImage.containerimageAppServiceImpl;
 import main.com.carService.customer.customer;
 import main.com.carService.customer.customerAppServiceImpl;
 
@@ -99,6 +103,11 @@ public class carBean implements Serializable{
 	@ManagedProperty(value = "#{carFacadeImpl}")
 	private carAppServiceImpl carFacade;
 	
+	
+
+	@ManagedProperty(value = "#{containerFacadeImpl}")
+	private containerAppServiceImpl containerFacade;
+	
 
 	@ManagedProperty(value = "#{vendorFacadeImpl}")
 	private vendorAppServiceImpl vendorFacade;
@@ -110,6 +119,9 @@ public class carBean implements Serializable{
 	@ManagedProperty(value = "#{carimageFacadeImpl}")
 	private carimageAppServiceImpl carimageFacade;
 	
+	@ManagedProperty(value = "#{containerimageFacadeImpl}")
+	private containerimageAppServiceImpl containerimageFacade;
+	
 	private int selectedCarState=0; 
 	private List<car> allCars;
 	private List<car> allSelectedCars;
@@ -118,9 +130,13 @@ public class carBean implements Serializable{
 	private List<shipper> allshipper;
 	private List<vendor> allvendor;
 	private List<customer> allcustomer;
-	
+
 	private car selectedCar;
 	private car addNewCar;
+	
+
+	private container selectedContainer;
+	private container addNewContainer;
 	
 	
 	private List<String> carStates;
@@ -144,7 +160,8 @@ public class carBean implements Serializable{
 	private List<String> pdfs;
 	private List<String> loadingImages;
 	private List<String> images3D;
-	
+
+	private List<String> images2;
 	
 	
 	private List<String> images_deleted;
@@ -152,6 +169,8 @@ public class carBean implements Serializable{
 	private List<String> pdfs_deleted;
 	private List<String> loadingImages_deleted;
 	private List<String> images3D_deleted;
+	
+	private List<String> images_deleted2;
 	
 
 	private Map<Integer, String> distinationMap;
@@ -208,12 +227,14 @@ public class carBean implements Serializable{
 	
 	public void releaseVariablesForMain() {
 		images=new ArrayList<String>();
+		images2=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
 		images3D = new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
+		images_deleted2=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<String>();
@@ -242,12 +263,14 @@ public class carBean implements Serializable{
 	
 	public void releaseVariablesForMainTwo() {
 		images=new ArrayList<String>();
+		images2=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
 		images3D=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
+		images_deleted2=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<>();
@@ -276,12 +299,14 @@ public class carBean implements Serializable{
 	}
 	public void releaseVariablesForShipper() {
 		images=new ArrayList<String>();
+		images2=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
 		images3D=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
+		images_deleted2=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<>();
@@ -310,12 +335,14 @@ public class carBean implements Serializable{
 	
 	public void releaseVariablesForRemind() {
 		images=new ArrayList<String>();
+		images2=new ArrayList<String>();
 		docs=new ArrayList<String>();
 		pdfs=new ArrayList<String>();
 		loadingImages=new ArrayList<String>();
 		images3D=new ArrayList<String>();
 
 		images_deleted=new ArrayList<String>();
+		images_deleted2=new ArrayList<String>();
 		docs_deleted=new ArrayList<String>();
 		pdfs_deleted=new ArrayList<String>();
 		loadingImages_deleted=new ArrayList<>();
@@ -392,12 +419,14 @@ public class carBean implements Serializable{
 					
 
 					images=new ArrayList<String>();
+					images2=new ArrayList<String>();
 					docs=new ArrayList<String>();
 					pdfs=new ArrayList<String>();
 					loadingImages=new ArrayList<String>();
 					images3D=new ArrayList<String>();
 
 					images_deleted=new ArrayList<String>();
+					images_deleted2=new ArrayList<String>();
 					docs_deleted=new ArrayList<String>();
 					pdfs_deleted=new ArrayList<String>();
 					loadingImages_deleted=new ArrayList<>();
@@ -923,6 +952,42 @@ public class carBean implements Serializable{
 
 		}
 		
+		
+		
+		public void refreshSelectedContainerMain() {
+
+			images2=new ArrayList<String>();
+			images_deleted2=new ArrayList<String>();
+			List<containerimage> imagesOfCar =containerimageFacade.getAllByContainerIdAndType(selectedContainer.getId(), containerimage.TYPE_PIC);
+			if(imagesOfCar!=null) {
+				for(int i=0;i<imagesOfCar.size();i++) {
+					images2.add(imagesOfCar.get(i).getUrl());
+				}
+			}
+			
+			
+			
+			
+			releaseDate=getStringFromCalendar(selectedContainer.getDate());
+
+			
+		}
+		
+		
+		public void selectContainerForMain(int idcontainer) {
+			
+			selectedContainer=containerFacade.getById(idcontainer);
+			refreshSelectedContainerMain();
+			try {
+				FacesContext.getCurrentInstance()
+				   .getExternalContext().redirect("/pages/secured/shipper/container/vitViewEdit.jsf?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		
 		/*
 		 * 
 		 * 
@@ -1324,173 +1389,235 @@ public void refreshSelectedCarVendor() {
 
 	}
 	//Save the New Car with the main Account
-	public void saveNewCarDataMain() {
-		loginBean.getTheUserOfThisAccount();
-		if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_MAIN2) {
-			addNewCar.setCommentToSend("");
-			addNewCar.setEmailToSendComment("");
-		}
-		addNewCar.setTitleRecieved(titleRecievedSelected);
-		
-		addNewCar.setCargoRecieved(setCalendarFromString(cargoRecievedDate));
-		addNewCar.setReleaseDate(setCalendarFromString(releaseDate));
-		addNewCar.setStRecieved(setCalendarFromString(stRecievedDate));
-		addNewCar.setEtd(setCalendarFromString(etdDate));
-		addNewCar.setEta(setCalendarFromString(etaDate));
-		addNewCar.setStorageStartDate(setCalendarFromString(storageStartDate));
-		addNewCar.setStorageEndDate(setCalendarFromString(storageEndDate));
-		
-		//Set the selected Main Two
-		if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_MAIN) {
-		addNewCar.setMainTwoId(mainTwoFacade.getById(mainTwoSelectedId));
-		}
-		
-		//Set the selected shipper
-		addNewCar.setShipperId(shipperFacade.getById(shipperSelectedId));
-		
-		//Set the selected Vendor
-		addNewCar.setVendorId(vendorFacade.getById(vendorSelectedId));
-		
-		boolean isValid=checkValidForCar(addNewCar);
-		if(isValid) {
-			boolean checkCar = checkCarIsExist(addNewCar.getUuid());
-			if(checkCar) {
-		
-		carFacade.addcar(addNewCar);
-		
-		for(int i=0;i<images_deleted.size();i++) {
-			carimage cImage=new carimage();
-			cImage.setCarId(addNewCar);
-			cImage.setUrl(images_deleted.get(i));
-			cImage.setType(carimage.TYPE_PIC);
-			cImage.setDeleted(true);
-			carimageFacade.addcarimage(cImage);
-			addNewCar.setPhotoExist(false);
+		public void saveNewCarDataMain() {
+			loginBean.getTheUserOfThisAccount();
+			if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_MAIN2) {
+				addNewCar.setCommentToSend("");
+				addNewCar.setEmailToSendComment("");
+			}
+			addNewCar.setTitleRecieved(titleRecievedSelected);
+			
+			addNewCar.setCargoRecieved(setCalendarFromString(cargoRecievedDate));
+			addNewCar.setReleaseDate(setCalendarFromString(releaseDate));
+			addNewCar.setStRecieved(setCalendarFromString(stRecievedDate));
+			addNewCar.setEtd(setCalendarFromString(etdDate));
+			addNewCar.setEta(setCalendarFromString(etaDate));
+			addNewCar.setStorageStartDate(setCalendarFromString(storageStartDate));
+			addNewCar.setStorageEndDate(setCalendarFromString(storageEndDate));
+			
+			//Set the selected Main Two
+			if(loginBean.getTheUserOfThisAccount().getRole()==user.ROLE_MAIN) {
+			addNewCar.setMainTwoId(mainTwoFacade.getById(mainTwoSelectedId));
+			}
+			
+			//Set the selected shipper
+			addNewCar.setShipperId(shipperFacade.getById(shipperSelectedId));
+			
+			//Set the selected Vendor
+			addNewCar.setVendorId(vendorFacade.getById(vendorSelectedId));
+			
+			boolean isValid=checkValidForCar(addNewCar);
+			if(isValid) {
+				boolean checkCar = checkCarIsExist(addNewCar.getUuid());
+				if(checkCar) {
+			
+			carFacade.addcar(addNewCar);
+			
+			for(int i=0;i<images_deleted.size();i++) {
+				carimage cImage=new carimage();
+				cImage.setCarId(addNewCar);
+				cImage.setUrl(images_deleted.get(i));
+				cImage.setType(carimage.TYPE_PIC);
+				cImage.setDeleted(true);
+				carimageFacade.addcarimage(cImage);
+				addNewCar.setPhotoExist(false);
 
-		}
-		
-		for(int i=0;i<docs_deleted.size();i++) {
-			carimage cDocs=new carimage();
-			cDocs.setCarId(addNewCar);
-			cDocs.setUrl(docs_deleted.get(i));
-			cDocs.setType(carimage.TYPE_DOC);
-			cDocs.setDeleted(true);
-			carimageFacade.addcarimage(cDocs);
-			addNewCar.setDocExist(false);
-		}
-		
-		for(int i=0;i<pdfs_deleted.size();i++) {
-			carimage cPDFs=new carimage();
-			cPDFs.setCarId(addNewCar);
-			cPDFs.setUrl(pdfs_deleted.get(i));
-			cPDFs.setType(carimage.TYPE_PDFS);
-			cPDFs.setDeleted(true);
-			carimageFacade.addcarimage(cPDFs);
-			addNewCar.setDocExist(false);
-		}
-		
-		
-		for(int i=0;i<loadingImages_deleted.size();i++) {
-			carimage cPDFs=new carimage();
-			cPDFs.setCarId(addNewCar);
-			cPDFs.setUrl(loadingImages_deleted.get(i));
-			cPDFs.setType(carimage.TYPE_Loading);
-			cPDFs.setDeleted(true);
-			carimageFacade.addcarimage(cPDFs);
-		}
-		
-		
-		for(int i=0;i<images3D_deleted.size();i++) {
-			carimage cPDFs=new carimage();
-			cPDFs.setCarId(addNewCar);
-			cPDFs.setUrl(images3D_deleted.get(i));
-			cPDFs.setType(carimage.TYPE_3D);
-			cPDFs.setDeleted(true);
-			carimageFacade.addcarimage(cPDFs);
-		}
-		
-		
-		
-		
-		for(int i=0;i<images.size();i++) {
-			carimage cImage=new carimage();
-			cImage.setCarId(addNewCar);
-			cImage.setUrl(images.get(i));
-			cImage.setType(carimage.TYPE_PIC);
-			carimageFacade.addcarimage(cImage);
-			addNewCar.setPhotoExist(true);
+			}
+			
+			for(int i=0;i<docs_deleted.size();i++) {
+				carimage cDocs=new carimage();
+				cDocs.setCarId(addNewCar);
+				cDocs.setUrl(docs_deleted.get(i));
+				cDocs.setType(carimage.TYPE_DOC);
+				cDocs.setDeleted(true);
+				carimageFacade.addcarimage(cDocs);
+				addNewCar.setDocExist(false);
+			}
+			
+			for(int i=0;i<pdfs_deleted.size();i++) {
+				carimage cPDFs=new carimage();
+				cPDFs.setCarId(addNewCar);
+				cPDFs.setUrl(pdfs_deleted.get(i));
+				cPDFs.setType(carimage.TYPE_PDFS);
+				cPDFs.setDeleted(true);
+				carimageFacade.addcarimage(cPDFs);
+				addNewCar.setDocExist(false);
+			}
+			
+			
+			for(int i=0;i<loadingImages_deleted.size();i++) {
+				carimage cPDFs=new carimage();
+				cPDFs.setCarId(addNewCar);
+				cPDFs.setUrl(loadingImages_deleted.get(i));
+				cPDFs.setType(carimage.TYPE_Loading);
+				cPDFs.setDeleted(true);
+				carimageFacade.addcarimage(cPDFs);
+			}
+			
+			
+			for(int i=0;i<images3D_deleted.size();i++) {
+				carimage cPDFs=new carimage();
+				cPDFs.setCarId(addNewCar);
+				cPDFs.setUrl(images3D_deleted.get(i));
+				cPDFs.setType(carimage.TYPE_3D);
+				cPDFs.setDeleted(true);
+				carimageFacade.addcarimage(cPDFs);
+			}
+			
+			
+			
+			
+			for(int i=0;i<images.size();i++) {
+				carimage cImage=new carimage();
+				cImage.setCarId(addNewCar);
+				cImage.setUrl(images.get(i));
+				cImage.setType(carimage.TYPE_PIC);
+				carimageFacade.addcarimage(cImage);
+				addNewCar.setPhotoExist(true);
 
-		}
-		
-		for(int i=0;i<docs.size();i++) {
-			carimage cDocs=new carimage();
-			cDocs.setCarId(addNewCar);
-			cDocs.setUrl(docs.get(i));
-			cDocs.setType(carimage.TYPE_DOC);
-			carimageFacade.addcarimage(cDocs);
-			addNewCar.setDocExist(true);
-		}
-		
-		for(int i=0;i<pdfs.size();i++) {
-			carimage cPDFs=new carimage();
-			cPDFs.setCarId(addNewCar);
-			cPDFs.setUrl(pdfs.get(i));
-			cPDFs.setType(carimage.TYPE_PDFS);
-			carimageFacade.addcarimage(cPDFs);
-			addNewCar.setDocExist(true);
-		}
-		
-		
-		for(int i=0;i<loadingImages.size();i++) {
-			carimage cPDFs=new carimage();
-			cPDFs.setCarId(addNewCar);
-			cPDFs.setUrl(loadingImages.get(i));
-			cPDFs.setType(carimage.TYPE_Loading);
-			carimageFacade.addcarimage(cPDFs);
-		}
-		
-		
-		for(int i=0;i<images3D_deleted.size();i++) {
-			carimage cPDFs=new carimage();
-			cPDFs.setCarId(addNewCar);
-			cPDFs.setUrl(images3D_deleted.get(i));
-			cPDFs.setType(carimage.TYPE_3D);
-			cPDFs.setDeleted(true);
-			carimageFacade.addcarimage(cPDFs);
-		}
-		
-		
-		
-		addNewCar.setStorageStartDate(Calendar.getInstance());
-		carFacade.addcar(addNewCar);
-		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
-				"			title: 'Success',\r\n" + 
-				"			text: 'Your car has been added.',\r\n" + 
-				"			type: 'success'\r\n" + 
-				"		});");
-		
-		try {
-			FacesContext.getCurrentInstance()
-			   .getExternalContext().redirect("/pages/secured/userData/vehicleList.jsf?faces-redirect=true");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			}
+			
+			for(int i=0;i<docs.size();i++) {
+				carimage cDocs=new carimage();
+				cDocs.setCarId(addNewCar);
+				cDocs.setUrl(docs.get(i));
+				cDocs.setType(carimage.TYPE_DOC);
+				carimageFacade.addcarimage(cDocs);
+				addNewCar.setDocExist(true);
+			}
+			
+			for(int i=0;i<pdfs.size();i++) {
+				carimage cPDFs=new carimage();
+				cPDFs.setCarId(addNewCar);
+				cPDFs.setUrl(pdfs.get(i));
+				cPDFs.setType(carimage.TYPE_PDFS);
+				carimageFacade.addcarimage(cPDFs);
+				addNewCar.setDocExist(true);
+			}
+			
+			
+			for(int i=0;i<loadingImages.size();i++) {
+				carimage cPDFs=new carimage();
+				cPDFs.setCarId(addNewCar);
+				cPDFs.setUrl(loadingImages.get(i));
+				cPDFs.setType(carimage.TYPE_Loading);
+				carimageFacade.addcarimage(cPDFs);
+			}
+			
+			
+			for(int i=0;i<images3D_deleted.size();i++) {
+				carimage cPDFs=new carimage();
+				cPDFs.setCarId(addNewCar);
+				cPDFs.setUrl(images3D_deleted.get(i));
+				cPDFs.setType(carimage.TYPE_3D);
+				cPDFs.setDeleted(true);
+				carimageFacade.addcarimage(cPDFs);
+			}
+			
+			
+			
+			addNewCar.setStorageStartDate(Calendar.getInstance());
+			carFacade.addcar(addNewCar);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'Your car has been added.',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+			
+			try {
+				FacesContext.getCurrentInstance()
+				   .getExternalContext().redirect("/pages/secured/userData/vehicleList.jsf?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				}else {
+					PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+							"			title: 'Check this ',\r\n" + 
+							"			text: 'This car is already Registered',\r\n" + 
+							"			left:\"2%\"\r\n" + 
+							"		});");
+				}
 			}else {
 				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
 						"			title: 'Check this ',\r\n" + 
-						"			text: 'This car is already Registered',\r\n" + 
+						"			text: 'Check the Madatory fields',\r\n" + 
 						"			left:\"2%\"\r\n" + 
 						"		});");
 			}
-		}else {
-			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
-					"			title: 'Check this ',\r\n" + 
-					"			text: 'Check the Madatory fields',\r\n" + 
-					"			left:\"2%\"\r\n" + 
-					"		});");
 		}
-	}
+
+		
+		
+		
+		//Save the New Car with the main Account
+		public void saveNewContainerDataMain() {
+			loginBean.getTheUserOfThisAccount();
+			
+			selectedContainer.setDate(setCalendarFromString(releaseDate));
+			
+			
+				boolean checkCar = checkContainerIsExist(selectedContainer.getContainer_number());
+				if(checkCar) {
+			
+			containerFacade.addcontainer(selectedContainer);
+			
+			for(int i=0;i<images_deleted2.size();i++) {
+				containerimage cImage=new containerimage();
+				cImage.setContainerId(selectedContainer);
+				cImage.setUrl(images_deleted2.get(i));
+				cImage.setType(containerimage.TYPE_PIC);
+				cImage.setDeleted(true);
+				containerimageFacade.addcontainerimage(cImage);
+
+			}
+			
+			
+			
+			
+			for(int i=0;i<images2.size();i++) {
+				containerimage cImage=new containerimage();
+				cImage.setContainerId(selectedContainer);
+				cImage.setUrl(images2.get(i));
+				cImage.setType(containerimage.TYPE_PIC);
+				containerimageFacade.addcontainerimage(cImage);
+			}
+			
+			
+			
+			containerFacade.addcontainer(selectedContainer);
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Success',\r\n" + 
+					"			text: 'Your car has been added.',\r\n" + 
+					"			type: 'success'\r\n" + 
+					"		});");
+			
+			try {
+				FacesContext.getCurrentInstance()
+				   .getExternalContext().redirect("/pages/secured/userData/containerList.jsf?faces-redirect=true");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				}else {
+					PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+							"			title: 'Check this ',\r\n" + 
+							"			text: 'This container is already Registered',\r\n" + 
+							"			left:\"2%\"\r\n" + 
+							"		});");
+				}
+			
+		}
 
 	public String getStringFromCalendar(Calendar calendar) {
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss"); 
@@ -1523,6 +1650,16 @@ public void refreshSelectedCarVendor() {
 		// TODO Auto-generated method stub
 		
 		car theCar=carFacade.getByVin(vinId);
+		if(theCar!=null) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean checkContainerIsExist(String container_number) {
+		// TODO Auto-generated method stub
+		
+		container theCar=containerFacade.getByContainerNumber(container_number);
 		if(theCar!=null) {
 			return false;
 		}
@@ -1695,6 +1832,13 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanel");
 	}
 	
+	public void previewImage2(FileUploadEvent event) {
+		byte[] image =event.getFile().getContents();
+		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
+		images2.add(fileName);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanel");
+	}
+	
 	public void previewFile(FileUploadEvent event) {
 		byte[] fileDoc =event.getFile().getContents();
 		String fileName =saveImageToDirectory(fileDoc, System.getProperty("catalina.base")+"/images/");
@@ -1730,6 +1874,17 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 		try {
 			FacesContext.getCurrentInstance()
 			   .getExternalContext().redirect("/pages/secured/userData/vehicleList.jsf?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void cancelContainer() {
+		System.out.println("Cancel");
+		try {
+			FacesContext.getCurrentInstance()
+			   .getExternalContext().redirect("/pages/secured/userData/containerList.jsf?faces-redirect=true");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1942,6 +2097,65 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 
 	
 	
+	
+	public void updateContainerDataMain() {
+
+
+		selectedContainer.setDate(setCalendarFromString(releaseDate));
+
+		
+			
+		containerFacade.addcontainer(selectedContainer);
+		for(int i=0;i<images_deleted2.size();i++) {
+			containerimage cImage=new containerimage();
+			cImage.setContainerId(selectedContainer);
+			cImage.setUrl(images_deleted2.get(i));
+			cImage.setType(carimage.TYPE_PIC);
+			cImage.setDeleted(true);
+			containerimageFacade.addcontainerimage(cImage);
+
+		}
+		
+
+		
+		for(int i=0;i<images2.size();i++) {
+			containerimage cImage=new containerimage();
+			cImage.setContainerId(selectedContainer);
+			cImage.setUrl(images2.get(i));
+			cImage.setType(carimage.TYPE_PIC);
+			containerimageFacade.addcontainerimage(cImage);
+		}
+		
+		
+		
+
+
+		containerFacade.addcontainer(selectedContainer);
+			
+		
+		
+		PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+				"			title: 'Success',\r\n" + 
+				"			text: 'Your container has been added.',\r\n" + 
+				"			type: 'success'\r\n" + 
+				"		});");
+
+
+		System.out.println("Ahmed Mail Old 1");
+		
+		try {
+			FacesContext.getCurrentInstance()
+			   .getExternalContext().redirect("/pages/secured/userData/containerList.jsf?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+	}
+
+	
+	
 	public void previewImageMain(FileUploadEvent event) {
 		byte[] image =event.getFile().getContents();
 		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
@@ -1950,7 +2164,28 @@ private Map<Integer, String> origineMap2=new LinkedHashMap<Integer,String>();
 		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
 	}
 	
+	public void previewImageMain2(FileUploadEvent event) {
+		byte[] image =event.getFile().getContents();
+		String fileName =saveImageToDirectory(image, System.getProperty("catalina.base")+"/images/");
+		selectedContainer.setMainUrl(fileName);
+		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
+	}
 	
+	public void setAsMainPic2() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+		 String imageUrl = (String) map.get("fileURL");
+		 
+		 selectedContainer.setMainUrl(imageUrl);
+
+		
+		 
+			PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Image Has Been set\", \"success\");");
+			
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanelMain");
+			
+		
+	}
 	public void setAsMainPic() {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -2121,6 +2356,66 @@ public void openUUID() {
 	 
 	 
 }
+
+
+
+
+public void addnewContainer() {
+	 
+	 selectedContainer=new container();
+	 images2=new ArrayList<String>();
+		images_deleted2=new ArrayList<String>();
+		images2=new ArrayList<String>();
+		
+		
+		
+		
+		try {
+		releaseDate=getStringFromCalendar(selectedContainer.getDate());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			FacesContext.getCurrentInstance()
+			   .getExternalContext().redirect("/pages/secured/shipper/container/vitView.jsf?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 
+	 
+}
+
+
+
+
+
+public void showContainerWithId() {
+	System.out.println(System.getProperty("catalina.base"));
+	System.out.println("HERE________________________________________");
+	FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 int id = Integer.parseInt((String) map.get("number"));
+
+		System.out.println(id);
+	 
+	 selectedContainer=containerFacade.getById(id);
+		selectContainerForMain(id);
+		try {
+			FacesContext.getCurrentInstance()
+			   .getExternalContext().redirect("/pages/secured/shipper/container/vitViewEdit.jsf?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(id);
+		}
+	 
+	 
+}
+
+
+
 public void openDialogForVins() {
 	FacesContext context = FacesContext.getCurrentInstance();
 	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -2169,6 +2464,27 @@ public void deleteCar() {
 }
 
 
+public void deleteContainer() {
+	 FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 Integer objId = Integer.valueOf((String) map.get("id"));
+	 
+	 container deletedobj = containerFacade.getById(objId);
+	 deletedobj.setDeleted(true);
+	 containerFacade.addcontainer(deletedobj);
+	 
+		PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Container Has Been Deleted\", \"success\");");
+		
+	 try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/pages/secured/userData/containerList.jsf?faces-redirect=true");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 
+}
+
+
 
 public void open3DImageother() {
 	FacesContext context = FacesContext.getCurrentInstance();
@@ -2193,6 +2509,37 @@ public void open3DImage() {
 	PrimeFaces.current().executeScript("$('#panelToreload').show();");
 	
 }
+
+
+public void deleteFile2() {
+	 FacesContext context = FacesContext.getCurrentInstance();
+	 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+	 Integer typeOfFile = Integer.valueOf((String) map.get("typeOfFile"));
+	 String fileURL = (String) map.get("fileURL");
+
+		System.out.println(fileURL);
+		System.out.println(typeOfFile);
+	if(typeOfFile==containerimage.TYPE_PIC) {
+		
+		removeFileFromImages2(fileURL);
+	FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("aspnetForm:imagesPanel");
+	PrimeFaces.current().executeScript("swal(\"Action Done\", \"The Image Has Been Deleted\", \"success\");");
+	}
+	
+}
+
+private void removeFileFromImages2(String fileURL) {
+	// TODO Auto-generated method stub
+	for(int i=0;i<images2.size();i++) {
+		if(images2.get(i).equalsIgnoreCase(fileURL)) {
+			images2.remove(i);
+			images_deleted2.add(fileURL);
+			return;
+		}
+	}
+}
+
+
 	public void deleteFile() {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 Map<String, String> map = context.getExternalContext().getRequestParameterMap();
@@ -2560,6 +2907,14 @@ public void open3DImage() {
 	public void setImages(List<String> images) {
 		this.images = images;
 	}
+	
+	public List<String> getImages2() {
+		return images2;
+	}
+
+	public void setImages2(List<String> images2) {
+		this.images2 = images2;
+	}
 
 	public List<String> getDocs() {
 		return docs;
@@ -2693,6 +3048,31 @@ public void open3DImage() {
 	}
 
 
+	
+
+	public container getSelectedContainer() {
+		return selectedContainer;
+	}
+
+
+
+	public void setSelectedContainer(container selectedContainer) {
+		this.selectedContainer = selectedContainer;
+	}
+
+
+
+	public container getAddNewContainer() {
+		return addNewContainer;
+	}
+
+
+
+	public void setAddNewContainer(container addNewContainer) {
+		this.addNewContainer = addNewContainer;
+	}
+
+
 
 	public Map<Integer, String> getOrigineMap() {
 		return origineMap;
@@ -2722,6 +3102,30 @@ public void open3DImage() {
 
 	
 	
+	public containerAppServiceImpl getContainerFacade() {
+		return containerFacade;
+	}
+
+
+
+	public void setContainerFacade(containerAppServiceImpl containerFacade) {
+		this.containerFacade = containerFacade;
+	}
+
+
+
+	public containerimageAppServiceImpl getContainerimageFacade() {
+		return containerimageFacade;
+	}
+
+
+
+	public void setContainerimageFacade(containerimageAppServiceImpl containerimageFacade) {
+		this.containerimageFacade = containerimageFacade;
+	}
+
+
+
 	public List<car> getAllSelectedCars() {
 		return allSelectedCars;
 	}
@@ -2736,6 +3140,14 @@ public void open3DImage() {
 
 	public void setImages_deleted(List<String> images_deleted) {
 		this.images_deleted = images_deleted;
+	}
+	
+	public List<String> getImages_deleted2() {
+		return images_deleted2;
+	}
+
+	public void setImages_deleted2(List<String> images_deleted2) {
+		this.images_deleted2 = images_deleted2;
 	}
 
 	public List<String> getDocs_deleted() {

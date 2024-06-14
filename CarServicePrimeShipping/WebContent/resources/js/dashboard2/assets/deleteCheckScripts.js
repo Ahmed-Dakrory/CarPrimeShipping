@@ -159,4 +159,32 @@ function deleteThisCar(carId){
 	                                			      
 	                                			  }
 	                                			});
-	                                	}	                                	
+	                                	}	
+	                                	
+	                                	
+	                                	
+	                                	      		       	                                	                         	
+function deleteThisobj(id){
+	                                		swal("Are You Sure You want To Delete this?", {
+	                                			  buttons: {
+	                                			    cancel: "Cancel",
+	                                			    catch: {
+	                                			      text: "Yes Sure, Delete it",
+	                                			      value: "catch",
+	                                			    }
+	                                			  },
+	                                			})
+	                                			.then((value) => {
+	                                			  switch (value) {
+	                                			 
+	                                			 
+	                                			    case "catch":
+	                                			    var dataNewOfString = id;
+	                                			      deleteObj([{name: 'id', value: dataNewOfString}]);
+	                                			      break;
+	                                			 
+	                                			    default:
+	                                			      
+	                                			  }
+	                                			});
+	                                	}                                	

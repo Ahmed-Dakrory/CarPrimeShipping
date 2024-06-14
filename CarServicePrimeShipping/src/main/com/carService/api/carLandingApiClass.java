@@ -20,6 +20,8 @@ import main.com.carService.car.car;
 import main.com.carService.car.carAppServiceImpl;
 import main.com.carService.carLanding.carLanding;
 import main.com.carService.carLanding.carLandingAppServiceImpl;
+import main.com.carService.container.container;
+import main.com.carService.container.containerAppServiceImpl;
 @Controller
 @RequestMapping("/ApiCarLanding")
 public class carLandingApiClass {
@@ -33,6 +35,10 @@ public class carLandingApiClass {
 	private carAppServiceImpl carFacade;
 	
 
+	@Inject
+	private containerAppServiceImpl containerFacade;
+	
+	
 	
 
 	
@@ -92,6 +98,36 @@ public class carLandingApiClass {
 	      }
 	      
 	      long numberOfCarsTotal =  carFacade.getAllCountSearch(start, length,search_value,role,state,useridAny,col_order_number,col_ordering);
+	      JsonObject obj =new JsonObject();
+	      obj.add("data", allCars);
+	      obj.addProperty("draw", draw);
+	      obj.addProperty("recordsTotal",numberOfCarsTotal);
+	      obj.addProperty("recordsFiltered", numberOfCarsTotal);
+	    	return new ResponseEntity<>(gson.toJson(obj), HttpStatus.CREATED); 
+	
+
+     
+    }
+
+	
+	@RequestMapping(value = "/allContainersDependsOnStateAndRole" ,method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> allContainersDependsOnStateAndRole(@RequestParam(value="start",required=false) Integer start,
+    		@RequestParam(value="length",required=false) Integer length,
+    		@RequestParam(value="draw",required=false) Integer draw,
+    		@RequestParam(value="search[value]",required=false) String search_value,
+    		@RequestParam(value="order[0][column]",required=false) int col_order_number,
+    		@RequestParam(value="order[0][dir]",required=false) String col_ordering) {
+
+		Gson gson = new Gson();
+//			int pageNumber = (start/length + 1);
+			List<container> list = containerFacade.getAllWithPagination(start, length,search_value,col_order_number,col_ordering);
+		
+	      JsonArray allCars = new JsonArray();
+	      for(int i=0;i<list.size();i++) {
+	    	  allCars.add(list.get(i).toJson());
+	      }
+	      
+	      long numberOfCarsTotal =  containerFacade.getAllCountSearch(start, length,search_value,col_order_number,col_ordering);
 	      JsonObject obj =new JsonObject();
 	      obj.add("data", allCars);
 	      obj.addProperty("draw", draw);
