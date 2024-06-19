@@ -2115,8 +2115,9 @@ public class car {
 		      obj.addProperty("numberOfDays", String.valueOf(getNumberOfDays(this.storageStartDate,this.storageEndDate)));
 		      obj.addProperty("formatedDate", String.valueOf(getFormatedDate(this.cargoRecieved)));
 		      
-		      
+
 		      obj.addProperty("titleRecieved", String.valueOf(this.titleRecieved));
+		      obj.addProperty("titleExist", String.valueOf(this.titleExist));
 		      obj.addProperty("origin", String.valueOf(new carBean().getTheOrigin2(this.origin)));
 		      obj.addProperty("docExist", String.valueOf(this.docExist));
 		      obj.addProperty("photoExist", String.valueOf(this.photoExist));

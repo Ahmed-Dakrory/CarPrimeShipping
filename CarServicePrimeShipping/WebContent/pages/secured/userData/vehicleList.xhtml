@@ -950,22 +950,30 @@ vertical-align: middle;
                                     {
                                         className: "center hidden-phone verticalAlign", "orderable": false, "mData": null, "sWidth": "100%","mRender": function (item) {
                                             
-                                        	
+                                        	/**
                                         	if(item.titleRecieved==0){
+                                    		titleData = '<div  class="noTitle">Missing</div>';
+                                    	}else if(item.titleRecieved==1){
+                                    		titleData = '<div  class="titlePending">Pending</div>';
+                                    	}else if(item.titleRecieved==2){
+                                    		titleData = '<div  class="RequestedTitle">Requested</div>';
+                                    	}else if(item.titleRecieved==3){
+                                    		titleData = '<div  class="titleOk">YES</div>';
+                                    	}else if(item.titleRecieved==4){
+                                    		titleData = '<div  class="lienOnTitle">In Lien</div>';
+                                    	}else if(item.titleRecieved==5){
+                                    		titleData = '<div  class="paid">Paid</div>';
+                                    	}else if(item.titleRecieved==6){
+                                    		titleData = '<div  class="billOfSale">Bill Of Sale</div>';
+                                    	}*/
+                                    	
+                                        	if(item.titleExist==0){
                                         		titleData = '<div  class="noTitle">Missing</div>';
-                                        	}else if(item.titleRecieved==1){
-                                        		titleData = '<div  class="titlePending">Pending</div>';
-                                        	}else if(item.titleRecieved==2){
-                                        		titleData = '<div  class="RequestedTitle">Requested</div>';
-                                        	}else if(item.titleRecieved==3){
+                                        	}else{
                                         		titleData = '<div  class="titleOk">YES</div>';
-                                        	}else if(item.titleRecieved==4){
-                                        		titleData = '<div  class="lienOnTitle">In Lien</div>';
-                                        	}else if(item.titleRecieved==5){
-                                        		titleData = '<div  class="paid">Paid</div>';
-                                        	}else if(item.titleRecieved==6){
-                                        		titleData = '<div  class="billOfSale">Bill Of Sale</div>';
                                         	}
+                                        	
+                                        	
                                         return titleData;
                                         }
                                       },
