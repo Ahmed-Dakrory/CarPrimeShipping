@@ -221,6 +221,75 @@ class FileHandler
     }
 
 	
+	
+	public function saveFileContainer($mainfile, $extension, $containerId,$type)
+    {
+		
+		$file = $mainfile['image']['tmp_name'];
+		$filenameMain = $mainfile['image']['name'];
+		
+		
+		
+		
+		if($extension == "pdf"){
+			 $name = round(microtime(true) * 1000) . '.' . 'pdf';
+        $filedest = UPLOAD_PATH_PDF . $name;
+        move_uploaded_file($file, $filedest);
+		//$this->changeImageSize($file,$filedest);
+		
+		
+        $url = $server_ip = gethostbyname(gethostname());
+		
+        $stmt = $this->con->prepare("INSERT INTO containerimage (containerId, url, type) VALUES (?, ?, ?)");
+        $stmt->bind_param("isi", $carId, $name,$type);
+		
+        if ($stmt->execute()){
+			
+				return true;
+			
+		}
+            
+		
+		
+		}else{
+			
+				
+		$name = round(microtime(true) * 1000) . '.' . 'jpeg'; 
+			
+        $filedest = UPLOAD_PATH . $name;
+        //move_uploaded_file($file, $filedest);
+		if($type==4||$type==9){
+			$result = move_uploaded_file($file, $filedest);
+        	if(!$result){
+				return false;
+			}
+			
+			if($type==9){
+				return true;
+			}
+		}else{
+			$this->changeImageSize($file,$filedest);
+
+		}
+		
+		if($type!=9){
+        $url = $server_ip = gethostbyname(gethostname());
+        $stmt = $this->con->prepare("INSERT INTO containerimage (containerId, url, type) VALUES (?, ?, ?)");
+		
+        $stmt->bind_param("isi", $containerId, $name,$type);
+		
+        if ($stmt->execute()){
+			
+				return true;
+			
+		}
+		}
+		}
+        return false;
+    }
+
+	
+	
 	public function changeImageSize($f1,$upload_path) {
 		
 		
@@ -556,6 +625,29 @@ class FileHandler
 		return $AllImages;
 	}
 	
+	
+	 public function getContainerImages($id)
+    {
+		
+        $data = array();
+		$stmt = $this->con->prepare("SELECT url FROM containerimage where containerId=? and type = 0 and deleted = 0");
+		
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+		
+        $stmt->bind_result($url);
+
+        $AllImages = array();
+
+        while ($stmt->fetch()) {
+            $images = array();
+            $images['url'] = $url;
+            $images['type'] = 1;
+            array_push($AllImages, $images);
+        }
+		return $AllImages;
+	}
+	
 	public function getCarDoc($id)
     {
 		
@@ -766,6 +858,104 @@ class FileHandler
     }
 	
 	
+	
+	
+	public function getContainerData($id)
+    {
+		
+		
+		
+		
+		
+		
+        $data = array();
+        $stmt = $this->con->prepare("SELECT  container.id,container.container_number,container.description_of_container,container.mainUrl,container.date as datetime FROM carsystem.container where container.id=? and container.deleted = 0");
+		
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+		
+        $stmt->bind_result($id,$container_number,$description_of_container,$mainUrl,$datetime);
+
+
+        while ($stmt->fetch()) {
+            $temp['id'] = $id;
+			$temp['container_number'] = $container_number;
+			$temp['description_of_container'] = $description_of_container;
+			$temp['mainUrl'] = $mainUrl;
+			$temp['datetime'] = $datetime;
+			
+		}
+
+		
+        return $temp;
+    }
+	
+	
+	
+	
+	public function insertNewContainer($id,$container_number,$description_of_container,$datetime)
+    {
+		if($datetime == '')
+			$datetime = null;
+		
+		
+		
+		$stmt = $this->con->prepare("SELECT container.id FROM carsystem.container where container.id=(?) and container.deleted = 0");
+		
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+		
+        $stmt->bind_result($id);
+
+
+
+        while ($stmt->fetch()) {
+            $dataIdCheck = $this->getIdData($id);
+		}
+		
+		
+		
+		if($dataIdCheck  > 0){
+			$stmt = $this->con->prepare("UPDATE container set container_number=(?), description_of_container=(?), date=(?) where id  = (?);");
+			$stmt->bind_param("sssi",$container_number,$description_of_container,$datetime,$dataIdCheck);
+      
+			$stmt->execute();
+			
+		}else{
+			$stmt = $this->con->prepare("INSERT INTO container (container_number,description_of_container,date) VALUES (?,?,?);");
+			$stmt->bind_param("sss",$container_number,$description_of_container,$datetime);
+			
+		 $stmt->execute();
+		 $dataIdCheck = $stmt->insert_id;
+		}
+        
+        
+		
+		
+        $data = array();
+        $stmt = $this->con->prepare("SELECT container.container_number,container.mainUrl,container.description_of_container,container.date as datetime from container where container.id=(?) and container.deleted = 0");
+		
+        $stmt->bind_param("s", $dataIdCheck);
+        $stmt->execute();
+		
+        $stmt->bind_result($container_number,$mainUrl,$description_of_container,$datetime);
+
+
+        while ($stmt->fetch()) {
+            $temp['id'] = $this->getIdData($dataIdCheck);
+			$temp['container_number']=$container_number;
+			$temp['mainUrl']=$mainUrl;
+			$temp['description_of_container'] = $description_of_container;
+			$temp['datetime'] = $date;
+		}
+
+		
+        return $temp;
+    }
+	
+	
+	
+	
 	public function insertNewCar($fuelTypePrimary,$fuelTypeSecondary,$weight,$titleExist,$keyExist,$exteriorExists,$companyTransName,$exteriorImg,$driverName,$driverPhone,$numberOfKeys,$CarType,$idOfCar,$mainId,$mainTwoId,$shipperId,$vendorId,$customerId,$consigneeId,$make,$model,$year,$bodyStyle,$engineType,$engineLiters,$assemlyCountry,$color,$seacost,$landcost,$state,$releaseOption,$stateOut,$releaseDate,$uuid,$description,$containerLink,$eta,$etd)
     {
 		if($releaseDate == '')
@@ -947,6 +1137,45 @@ class FileHandler
 		
         return $temp;
     }
+	
+	
+	 public function getAllContainersForMainAccount($mainId,$page,$itemsNumber)
+    {
+		
+		
+		
+		$stmt = $this->con->prepare("SELECT  container.id,container.container_number,container.description_of_container,container.mainUrl,container.date as datetime from container where  container.deleted = 0    order by container.date DESC LIMIT ?,?;");
+		
+        
+        $stmt->bind_param("ss", $page, $itemsNumber);
+        $stmt->execute();
+		
+		
+		
+        $stmt->bind_result($id,$container_number,$description_of_container,$mainUrl,$datetime);
+
+        $data = array();
+
+        while ($stmt->fetch()) {
+
+            $temp = array();
+            $temp['id'] = $id;
+			$temp['container_number'] = $container_number;
+			$temp['description_of_container'] = $description_of_container;
+			$temp['mainUrl'] = $mainUrl;
+			$temp['datetime'] = $datetime;
+			array_push($data, $temp);
+        }
+
+		
+		
+
+        return $data;
+    }
+
+	
+	
+	
 	
 	 public function getAllCarsForMainAccount($mainId,$page,$itemsNumber,$type)
     {

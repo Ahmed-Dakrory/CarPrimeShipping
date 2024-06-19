@@ -33,6 +33,27 @@ if (isset($_GET['apicall'])) {
  
             break;
 			
+		case 'uploadImageContainer':
+            if (isset($_POST['type'])  && isset($_POST['containerId']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $upload = new FileHandler();
+                $file = $_FILES['image']['tmp_name'];
+ 
+
+                if ($upload->saveFileContainer($_FILES, getFileExtension($_FILES['image']['name']),$_POST['containerId'],$_POST['type'])) {
+                    $response['error'] = false;
+                    $response['message'] = 'File Uploaded Successfullly';
+					
+                }
+ 
+            } else {
+                $response['error'] = true;
+                $response['message'] = 'Required parameters are not available';
+						
+
+            }
+ 
+            break;
+			
 		case 'uploadSignitureOfDriver':
             if ( isset($_POST['carId']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $upload = new FileHandler();
@@ -125,6 +146,15 @@ if (isset($_GET['apicall'])) {
             $response['allshippers'] = $upload->getShippersAllData($response['data']['mainId']);
 			}
             break;
+		
+		case 'getContainerData':
+			if (isset($_POST['id']) && strlen($_POST['id']) > 0 ){ 
+			$upload = new FileHandler();
+            $response['error'] = false;
+            $response['images'] = $upload->getContainerImages($_POST['id']);
+            $response['data'] = $upload->getContainerData($_POST['id']);
+			}
+            break;
 			
 		case 'insertNewCar':
 		
@@ -161,7 +191,34 @@ if (isset($_GET['apicall'])) {
             $response['allshippers'] = $upload->getShippersAllData($response['data']['mainId']);
 			}
             break;
+		
+
+	case 'insertNewContainer':
+		
+		$json = file_get_contents('php://input');
+		// Converts it into a PHP object
+		$data = json_decode($json);
 			
+		
+			if (isset($data->container_number) && strlen($data->container_number) > 0 ){ 
+			$upload = new FileHandler();
+            $response['error'] = false;
+            $response['data'] = $upload->insertNewContainer($data->id,$data->container_number,$data->description_of_container,$data->datetime);
+            
+			$response['images'] = $upload->getContainerImages($response['data']['id']);
+           
+		   
+			}
+            break;
+				
+			
+		case 'getAllContainersForMainAccount':
+			if (isset($_POST['mainId']) && strlen($_POST['mainId']) > 0  && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
+            $upload = new FileHandler();
+            $response['error'] = false;
+            $response['data'] = $upload->getAllContainersForMainAccount($_POST['mainId'],$_POST['page'],$_POST['N_items']);
+			}
+            break;
 			
 		case 'getAllCarsForMainAccount':
 			if (isset($_POST['mainId']) && strlen($_POST['mainId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
@@ -170,6 +227,7 @@ if (isset($_GET['apicall'])) {
             $response['data'] = $upload->getAllCarsForMainAccount($_POST['mainId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
 			}
             break;
+		
 			
 			
 		case 'getAllCarsForMainTwoAccount':
@@ -224,6 +282,7 @@ if (isset($_GET['apicall'])) {
     }
 }
  
+
 echo json_encode($response);
  
 function getFileExtension($file)
