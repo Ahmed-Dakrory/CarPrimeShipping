@@ -216,8 +216,13 @@ public class carBean implements Serializable{
 		for(int i=0;i<car.stateString.length;i++) {
 			carStates.add(car.stateString[i]);
 		}
+		try {
 		refresh();
-		
+		}catch(Error err) {
+			
+		}catch(Exception exp) {
+			
+		}
 		
 
 		selectedCarState=0;
@@ -481,6 +486,49 @@ public class carBean implements Serializable{
 		}
 		
 	}
+	
+	
+	
+	public void openImage2Link() {
+		HttpServletRequest origRequest = (HttpServletRequest)FacesContext
+				.getCurrentInstance()
+				.getExternalContext()
+				.getRequest();
+		
+		try{
+			Integer id=Integer.parseInt(origRequest.getParameterValues("imagesOfContainer")[0]);
+				if(id!=null){
+					selectedContainer=containerFacade.getById(id);
+					
+
+					images2=new ArrayList<String>();
+					
+					images_deleted2=new ArrayList<String>();
+					List<containerimage> imagesOfCar =containerimageFacade.getAllByContainerIdAndType(selectedContainer.getId(), carimage.TYPE_PIC);
+		
+					
+					if(imagesOfCar!=null) {
+						for(int i=0;i<imagesOfCar.size();i++) {
+							images2.add(imagesOfCar.get(i).getUrl());
+						}
+					}
+					
+					
+					
+					
+
+					
+					FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("mainPanel");
+					
+				}
+			}
+		catch(Exception ex){
+			 
+		}
+		
+	}
+	
+	
 	
 	public void theloaderFirst() {
 		

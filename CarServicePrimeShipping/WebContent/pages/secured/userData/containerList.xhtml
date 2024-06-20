@@ -713,6 +713,7 @@ vertical-align: middle;
 											<th>Image</th>
 											<th>Container Number</th>
 											<th>Date</th>
+											<th>Public Images</th>
 											
 										</tr>
 									</thead>
@@ -823,15 +824,27 @@ vertical-align: middle;
                     return '<a onclick="openContainerNumber('+item.id+')">'+item.container_number+'</a><br></br>';
                     }
                   },
-                    
+                  
+                  
+                  
+                  {
+                      className: "center hidden-phone", "orderable": true, "mData": null, "sWidth": "5%!important","mRender": function (item) {
                           
-                                  
-                                  {
-                                      className: "center hidden-phone", "orderable": true, "mData": null, "sWidth": "5%!important","mRender": function (item) {
-                                          
-                                    	  return '<span style="overflow: hidden; display: inline-flex; width: max-content;">'+item.formatedDate+'</span>';
-                                      }
-                                    }]
+                    	  return '<span style="overflow: hidden; display: inline-flex; width: max-content;">'+item.formatedDate+'</span>';
+                      }
+                    }
+                  ,
+                  
+                  
+                  
+                  {
+                      className: "center hidden-phone", "orderable": true, "mData": null, "sWidth": "5%!important","mRender": function (item) {
+                          
+                    	  return '<a href="/pages/public/allimagesOfCar.jsf?imagesOfContainer='+item.id+'" style="display:block ;">'+
+							'<img style=" box-shadow: 2px 0px 1px #b9b9b9, 0 0 21px #ffffff, 0 0 3px #504d4d; border-radius: 15%;   width: 41px;" src = "/resources/images/public/img/imageIcon.jpg"/>'+
+								'</a>';
+                      }
+                    }]
     } );
     
     
