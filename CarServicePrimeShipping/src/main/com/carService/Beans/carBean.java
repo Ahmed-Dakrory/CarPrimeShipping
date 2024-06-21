@@ -600,7 +600,71 @@ public class carBean implements Serializable{
 					"		});");
 		}
 	}
+
 	
+	
+	public void getCarWithVinNew2() {
+		if(!selectedCar.getUuid().equals("")) {
+			
+			if(checkCarIsExist2(selectedCar.getUuid(),selectedCar.getId())) {
+				progress=false;
+				selectedCar.setUuid("");
+				refreshUpdatecCarData();
+				PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+						"			title: 'Check this ',\r\n" + 
+						"			text: 'The vin is existed before',\r\n" + 
+						"			left:\"2%\"\r\n" + 
+						"		});");
+			}else {
+			
+		APIInterface apiInterface = APIClient.getClient(selectedCar.getUuid()+"/").create(APIInterface.class);
+		  Call<OrderOutDetails> call = apiInterface.performOrder();
+	        try {
+	        	OrderOutDetails car= call.execute().body();
+
+	        	selectedCar.setWeight("");
+	        	selectedCar.setMake(car.Results.get(0).Make);
+	        	selectedCar.setModel(car.Results.get(0).Model);
+	        	selectedCar.setYear(car.Results.get(0).ModelYear);
+	        	selectedCar.setFuelTypePrimary(car.Results.get(0).FuelTypePrimary);
+	        	selectedCar.setFuelTypeSecondary(car.Results.get(0).FuelTypeSecondary);
+	        	selectedCar.setAssemlyCountry(car.Results.get(0).PlantCountry);
+	        	selectedCar.setBodyStyle(car.Results.get(0).DriveType);
+	        	selectedCar.setEngineLiters(car.Results.get(0).DisplacementL);
+	        	selectedCar.setEngineType(car.Results.get(0).EngineConfiguration+"- "+car.Results.get(0).EngineCylinders+" Cylinders");
+	        	try {
+		        	String weight = car.Results.get(0).GVWR;
+		        	System.out.println(weight);
+		        	weight = weight.substring(weight.lastIndexOf("("));
+
+		        	System.out.println(weight);
+		        	addNewCar.setWeight(weight);
+	        	}catch(Error err) {
+	        		
+	        	}catch(Exception exc) {
+	        		
+	        	}
+				progress=false;
+				refreshUpdatecCarData();
+	          	  
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				progress=false;
+				refreshUpdatecCarData();
+			}
+			}
+		}else {
+			progress=false;
+			refreshUpdatecCarData();
+			PrimeFaces.current().executeScript("new PNotify({\r\n" + 
+					"			title: 'Check this ',\r\n" + 
+					"			text: 'Please enter the Vin number',\r\n" + 
+					"			left:\"2%\"\r\n" + 
+					"		});");
+		}
+	}
+
 	public void filterCarBySelectFirstTime() {
 
 		allCars=new ArrayList<car>();
@@ -1702,6 +1766,23 @@ public void refreshSelectedCarVendor() {
 			return false;
 		}
 		return true;
+	}
+	
+	
+	private boolean checkCarIsExist2(String vinId,int id) {
+		// TODO Auto-generated method stub
+		
+		car theCar=carFacade.getByVin(vinId);
+		if(theCar!=null) {
+			if(theCar.getId().equals(id)) {
+				return false;
+			}
+			
+			return true;
+			
+		}
+		
+		return false;
 	}
 	
 	private boolean checkContainerIsExist(String container_number) {

@@ -245,7 +245,25 @@ input[type="radio"]:checked + label {
                                                                                                         VIN:</div>
                                                                                                 </td>
                                                                                                 <td width="200">
-                                                                                                    <h:inputText disabled="true" name="ctl00$BodyHolder$txtVIN" type="text" value="#{carBean.selectedCar.uuid}" id="ctl00_BodyHolder_txtVIN" style="font-size:11px;height:19px;width:200px;" />
+                                                                                                    <h:inputText name="ctl00$BodyHolder$txtVIN" type="text" value="#{carBean.selectedCar.uuid}" id="ctl00_BodyHolder_txtVIN" style="font-size:11px;height:19px;width:200px;" />
+                                                                                                    
+                                                                                                       <p:commandButton id="searchButton" value="" onclick="loadingOk();" style="background-image: url('/resources/images/img/#{(carBean.progress==true)?'ajax-loader.gif':'zoom-magnifier.png'}');width: 8px;height: 18px;padding: 12px;position: absolute;margin-left: 7px;background-position: 2px 0px;background-size: contain;background-repeat: no-repeat;"/>
+                                                                                                   <p:remoteCommand name="theloaderFirst" action="#{carBean.theloaderFirst()}"/>
+                                                                                                   <p:remoteCommand name="getCarWithVinNewJs" action="#{carBean.getCarWithVinNew2()}"/>
+                                                                                                    <script>
+                                                                                                    
+                                                                                                    function loadingOk(){
+                                                                                                    	theloaderFirst();
+                                                                                                    	var delayInMilliseconds = 0.3; //0.5 second
+
+                                                                                    					setTimeout(function() {
+                                                                                    						getCarWithVinNewJs();
+                                                                                    					}, delayInMilliseconds);
+                                                                                    					
+                                                                                                    }
+                                                                                                    </script>
+                                                                                                   
+                                                                                                   
                                                                                                 </td>
                                                                                                 <td class="tbltxt" width="130">
                                                                                                     <div style="margin-left: 6px">
