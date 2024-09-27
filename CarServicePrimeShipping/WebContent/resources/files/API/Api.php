@@ -224,7 +224,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($_POST['mainId']) && strlen($_POST['mainId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
             $upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->getAllCarsForMainAccount($_POST['mainId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
+            $response['data'] = $upload->getAllCarsForMainAccount($_POST['mainId'],$_POST['page'],$_POST['N_items'],$_POST['type'],$_POST['date_selected']);
 			}
             break;
 		
@@ -234,7 +234,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($_POST['mainTwoId']) && strlen($_POST['mainTwoId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
             $upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->getAllCarsForMainTwoAccount($_POST['mainTwoId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
+            $response['data'] = $upload->getAllCarsForMainTwoAccount($_POST['mainTwoId'],$_POST['page'],$_POST['N_items'],$_POST['type'],$_POST['date_selected']);
 			}
             break;
 			
@@ -242,7 +242,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($_POST['shipperId']) && strlen($_POST['shipperId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
             $upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->getAllCarsForShipperAccount($_POST['shipperId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
+            $response['data'] = $upload->getAllCarsForShipperAccount($_POST['shipperId'],$_POST['page'],$_POST['N_items'],$_POST['type'],$_POST['date_selected']);
 			}
             break;
 			
@@ -251,7 +251,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($_POST['vendorId']) && strlen($_POST['vendorId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
             $upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->getAllCarsForVendorAccount($_POST['vendorId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
+            $response['data'] = $upload->getAllCarsForVendorAccount($_POST['vendorId'],$_POST['page'],$_POST['N_items'],$_POST['type'],$_POST['date_selected']);
 			}
             break;
 			
@@ -259,7 +259,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($_POST['customerId']) && strlen($_POST['customerId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
             $upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->getAllCarsForCustomerAccount($_POST['customerId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
+            $response['data'] = $upload->getAllCarsForCustomerAccount($_POST['customerId'],$_POST['page'],$_POST['N_items'],$_POST['type'],$_POST['date_selected']);
 			}
             break;
 			
@@ -267,7 +267,7 @@ if (isset($_GET['apicall'])) {
 			if (isset($_POST['consigneeId']) && strlen($_POST['consigneeId']) > 0 && isset($_POST['type']) && strlen($_POST['type']) > 0 && isset($_POST['page']) && strlen($_POST['page']) > 0 &&isset($_POST['N_items']) && strlen($_POST['N_items']) > 0 ){ 
             $upload = new FileHandler();
             $response['error'] = false;
-            $response['data'] = $upload->getAllCarsForConsigneeAccount($_POST['consigneeId'],$_POST['page'],$_POST['N_items'],$_POST['type']);
+            $response['data'] = $upload->getAllCarsForConsigneeAccount($_POST['consigneeId'],$_POST['page'],$_POST['N_items'],$_POST['type'],$_POST['date_selected']);
 			}
             break;
 			
