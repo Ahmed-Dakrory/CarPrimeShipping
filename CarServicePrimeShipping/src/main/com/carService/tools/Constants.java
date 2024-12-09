@@ -2981,7 +2981,8 @@ public class Constants {
 				
 				String from = "support@primeshippingllc.com";
 		        String pass = "tqtqwruxkwiqnvgh";
-				
+		        System.setProperty("javax.net.debug", "ssl,handshake");
+
 				// TODO Auto-generated method stub
 				 Properties props = System.getProperties();
 
@@ -2993,7 +2994,13 @@ public class Constants {
 			        props.put("mail.smtp.port", "587");
 			        props.put("mail.smtp.auth", "true");
 			        
-
+			        props.put("mail.smtp.connectiontimeout", "10000");  // Connection timeout
+		            props.put("mail.smtp.timeout", "10000");  // Timeout for sending email
+		            
+		            // Additional SSL/TLS settings (force TLS)
+		            props.put("mail.smtp.ssl.protocols", "TLSv1.2");  // Explicitly set TLS version
+		            props.put("mail.smtp.ssl.enable", "true");
+		            
 			        Session session = Session.getDefaultInstance(props);
 			        MimeMessage message = new MimeMessage(session);
 
